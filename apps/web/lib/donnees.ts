@@ -79,7 +79,14 @@ export type Cours = {
 
 export type Creneau = {
   cours: string;
-  saison: "automne" | "printemps";
+  /*
+   * Le semestre reel, « automne-2026 » et non « automne ». Les releves
+   * couvrent le printemps 2026, second semestre de l'annee 2025-2026, et
+   * l'automne 2026, premier semestre de 2026-2027. Les melanger ferait
+   * apparaitre des chevauchements entre deux semestres qui n'ont jamais lieu
+   * en meme temps.
+   */
+  semestre: string;
   jour: string;
   debut: string;
   fin: string;
@@ -92,8 +99,7 @@ export type Creneau = {
 
 export type Horaires = {
   programme: string;
-  annee: string;
-  source: { document: string; url: string; releveLe: string };
+  source: { document: string; url: string; releveLe: string; note?: string };
   creneaux: Omit<Creneau, "debutMin" | "finMin">[];
 };
 
@@ -138,7 +144,7 @@ const enMinutes = (t: string): number => {
  * normal aujourd'hui : l'interface doit alors dire qu'elle ne sait pas.
  */
 export function horairesDe(slug: string): Horaires | null {
-  const f = path.join(RACINE, "horaires", `${slug}-${ANNEE}.json`);
+  const f = path.join(RACINE, "horaires", `${slug}.json`);
   if (!fs.existsSync(f)) return null;
   return JSON.parse(fs.readFileSync(f, "utf8")) as Horaires;
 }

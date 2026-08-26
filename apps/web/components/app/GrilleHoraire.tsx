@@ -46,16 +46,16 @@ function disposer(blocs: Omit<Bloc, "voie" | "voies">[]): Bloc[] {
 
 export function GrilleHoraire({
   cours,
-  saison,
+  semestre,
   enConflit,
 }: {
   cours: Cours[];
-  saison: "automne" | "printemps";
+  semestre: string;
   enConflit: Set<string>;
 }) {
   const bruts = cours.flatMap((c) =>
     c.creneaux
-      .filter((k) => k.saison === saison && Number.isFinite(k.debutMin))
+      .filter((k) => k.semestre === semestre && Number.isFinite(k.debutMin))
       .map((k) => ({
         cours: c,
         jour: k.jour,

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { Cours, Master, Regles } from "@/lib/donnees";
+import { libelleSemestre, semestresDe } from "@/lib/semestres";
 import { nomModule, valider } from "@/lib/valider";
 import { Mascotte } from "@/components/brand/Mascotte";
 import { GrilleHoraire } from "./GrilleHoraire";
@@ -183,7 +184,7 @@ export function Planificateur({
     }
     return s;
   }, [resultat.diagnostics, retenus]);
-  const saisons: ("automne" | "printemps")[] = ["automne", "printemps"];
+  const semestres = useMemo(() => semestresDe(avecHoraire), [avecHoraire]);
   const feuilles = regles.modules.filter(
     (m) => !regles.modules.some((x) => x.parent === m.code),
   );
@@ -194,16 +195,14 @@ export function Planificateur({
       <div>
         {avecHoraire.length > 0 && (
           <div className="mb-10 grid gap-6">
-            {saisons
-              .filter((s) => avecHoraire.some((c) => c.creneaux.some((k) => k.saison === s)))
-              .map((s) => (
-                <div key={s}>
-                  <h2 className="mb-3 font-display text-[20px] tracking-[-0.02em] text-ink">
-                    Semestre {s === "automne" ? "d'automne" : "de printemps"}
-                  </h2>
-                  <GrilleHoraire cours={avecHoraire} saison={s} enConflit={enConflit} />
-                </div>
-              ))}
+            {semestres.map((s) => (
+              <div key={s}>
+                <h2 className="mb-3 font-display text-[20px] tracking-[-0.02em] text-ink">
+                  {libelleSemestre(s)}
+                </h2>
+                <GrilleHoraire cours={avecHoraire} semestre={s} enConflit={enConflit} />
+              </div>
+            ))}
           </div>
         )}
 

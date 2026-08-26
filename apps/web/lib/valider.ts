@@ -1,4 +1,5 @@
 import type { Cours, Creneau, Module, Regles } from "./donnees";
+import { libelleSemestre } from "./semestres";
 
 /**
  * Le moteur de regles, transpose en TypeScript pour l'interface.
@@ -129,14 +130,14 @@ export function valider(
       const a = reguliers[i];
       const b = reguliers[j];
       if (a.c.id === b.c.id) continue;
-      if (a.k.saison !== b.k.saison || a.k.jour !== b.k.jour) continue;
+      if (a.k.semestre !== b.k.semestre || a.k.jour !== b.k.jour) continue;
       if (a.k.debutMin >= b.k.finMin || b.k.debutMin >= a.k.finMin) continue;
       ajouter(
         "erreur",
         "chevauchement",
-        `Chevauchement le ${a.k.jour.toLowerCase()} au semestre ${
-          a.k.saison === "automne" ? "d'automne" : "de printemps"
-        } : ${a.c.titre} et ${b.c.titre}.`,
+        `Chevauchement le ${a.k.jour.toLowerCase()} en ${libelleSemestre(
+          a.k.semestre,
+        ).toLowerCase()} : ${a.c.titre} et ${b.c.titre}.`,
       );
     }
   }

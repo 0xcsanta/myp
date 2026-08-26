@@ -1,6 +1,6 @@
 # Les horaires
 
-Un fichier par master et par année : `<slug>-<annee>.json`.
+Un fichier par master : `<slug>.json`.
 
 Ce dossier est vide au départ. **Les horaires ne figurent dans aucune source
 que le projet peut lire automatiquement**, ni dans les plans d'études, ni dans
@@ -17,7 +17,6 @@ créneau, et ne reprend jamais celui d'une autre année.
 ```json
 {
   "programme": "mscis",
-  "annee": "2025-2026",
   "source": {
     "document": "horaire type du programme, semestre d'automne",
     "url": "https://applicationspub.unil.ch/interpub/noauth/php/Ud/agendaType.php?...",
@@ -27,7 +26,7 @@ créneau, et ne reprend jamais celui d'une autre année.
   "creneaux": [
     {
       "cours": "data-science-machine-learning",
-      "saison": "automne",
+      "semestre": "automne-2026",
       "jour": "Lundi",
       "debut": "14:15",
       "fin": "18:00",
@@ -44,7 +43,7 @@ créneau, et ne reprend jamais celui d'une autre année.
 | Champ | Règle |
 |---|---|
 | `cours` | l'identifiant du cours, celui que produit `coursDe()` à partir du titre. Un identifiant inconnu est signalé au build plutôt qu'ignoré en silence. |
-| `saison` | `automne` ou `printemps`. C'est ce qui permet de ne comparer que des créneaux qui se chevauchent vraiment. |
+| `semestre` | le semestre **réel**, `automne-2026` ou `printemps-2026`, jamais une saison seule. Les relevés couvrent le printemps 2026, second semestre de l'année 2025-2026, et l'automne 2026, premier semestre de 2026-2027. Les confondre ferait apparaître des chevauchements entre deux semestres qui n'ont jamais lieu en même temps. |
 | `jour` | `Lundi` à `Vendredi`, en toutes lettres. |
 | `debut`, `fin` | format `HH:MM` sur 24 heures. |
 | `salle` | telle qu'écrite par l'UNIL, par exemple `Internef/237`. |
@@ -54,7 +53,7 @@ créneau, et ne reprend jamais celui d'une autre année.
 ### Ce qu'on n'écrit pas
 
 - **Pas de créneau deviné.** Si l'horaire officiel ne dit rien, on n'écrit rien.
-- **Pas de report d'une année sur l'autre.** Un cours peut changer de jour.
+- **Pas de report d'une année sur l'autre.** Un cours peut changer de jour, et il arrive qu'il disparaisse : « Strategy in Digital Markets » et « Preferable Futures » figurent au plan d'études 2025-2026 mais plus à l'agenda de l'automne 2026.
 - **Pas de plage approximative.** `14:15` et non `14:00`, l'UNIL est précise.
 
 ### Vérification
