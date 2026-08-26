@@ -64,6 +64,19 @@ body {
   font-family: var(--font-sans);
 }
 
+/*
+ * La gouttiere du site. La maquette de reference est en pleine largeur : le
+ * logotype colle a gauche, l'action a droite, avec une marge d'environ 3.5
+ * pour cent de la largeur d'ecran. Un conteneur fige a 1200 pixels donnait au
+ * contraire une bande etroite perdue au milieu des grands ecrans.
+ */
+.shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1800px;
+  padding-inline: clamp(20px, 3.6vw, 72px);
+}
+
 /* les chiffres alignes en colonne : credits, heures, codes de module */
 .tnum {
   font-variant-numeric: tabular-nums;

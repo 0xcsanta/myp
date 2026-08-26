@@ -25,7 +25,7 @@ const SCREEN_TOP = (16.5 / 644) * 100;
 export function HeroFrame() {
   return (
     <div
-      className="relative mx-auto w-full max-w-[1200px] overflow-hidden"
+      className="relative w-full overflow-hidden"
       style={{ aspectRatio: WRAP }}
     >
       {/* le fond bleu */}
