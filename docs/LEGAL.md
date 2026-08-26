@@ -94,7 +94,7 @@ une trentaine de cours chacun. Ce n'est pas un robot, c'est de la curation.
 
 À afficher en pied de chaque page et dans le README :
 
-> Cursus est un projet indépendant réalisé par Omniscient. Il n'est ni affilié
+> MYP est un projet indépendant réalisé par Omniscient. Il n'est ni affilié
 > à l'Université de Lausanne, ni approuvé, ni soutenu, ni relu par elle. Les
 > informations présentées sont reprises de documents publics de l'UNIL et
 > peuvent contenir des erreurs ou être périmées. Seuls le plan d'études et le

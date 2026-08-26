@@ -1,6 +1,6 @@
 # Sources
 
-Toute donnée affichée par Cursus vient d'un document listé ici. Chaque entrée
+Toute donnée affichée par MYP vient d'un document listé ici. Chaque entrée
 de la base porte un champ `source` avec l'URL exacte et la date de
 consultation, et l'interface l'affiche.
 
@@ -76,7 +76,7 @@ depuis plus d'un semestre est marqué comme tel dans l'interface.
 | Élément | Origine |
 |---|---|
 | Bleu `#0037EB` et échelle de neutres | jetons `--brand-primary-*` et `--brand-neutral-*` de `https://www.unil.ch/modules/refonte-templates/css/styles.css` |
-| Inter, IBM Plex Mono | Google Fonts, licence SIL Open Font |
+| DynaPuff (logotype), Crimson Text (titres), DM Sans (interface), IBM Plex Mono (chiffres) | Google Fonts, licence SIL Open Font |
 | Logo et signature Omniscient | charte de marque Omniscient |
 
 Aucun élément graphique de l'UNIL n'est repris : ni logo, ni armoiries, ni
@@ -85,7 +85,7 @@ gabarit. Voir la section 3 de [LEGAL.md](./LEGAL.md).
 ## 6. Contacts officiels vers lesquels renvoyer
 
 Ces contacts sont affichés dans le site, à côté de l'avertissement de non
-affiliation, sous le titre « une question sur votre plan d'études ». Cursus ne
+affiliation, sous le titre « une question sur votre plan d'études ». MYP ne
 répond à aucune question académique et renvoie systématiquement ici.
 
 Page de référence :
@@ -137,4 +137,4 @@ référence est affichée en permanence dans l'interface, à côté du sélecteu
 master, et rappelée dans l'avertissement de non affiliation.
 
 Les plans d'études des années antérieures restent listés sur la page HEC pour
-celles et ceux qui suivent un ancien cursus. Cursus ne les reprend pas.
+celles et ceux qui suivent un ancien cursus. MYP ne les reprend pas.

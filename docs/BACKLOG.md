@@ -28,10 +28,11 @@
 
 ## Décisions en attente
 
-- [ ] **Le nom.** Cursus, ou une alternative.
+- [x] **Le nom.** Tranché : **MYP, Master Your Plan**, choisi par Clément.
 - [ ] **Périmètre de la version 1.** Les dix masters, ou le seul MScIS pour
       tester auprès des camarades.
-- [ ] **Supabase tout de suite ou à l'étape 3.**
+- [x] **Supabase.** Authentifié le 26 août 2026. Les outils du serveur du projet
+      arrivent au prochain démarrage de session.
 - [ ] **Envoyer la demande d'accès à l'UNIL** (brouillon prêt dans
       [LEGAL.md](./LEGAL.md), section 5). C'est ce qui débloquerait la mise à
       jour automatique.

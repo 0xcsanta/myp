@@ -1,4 +1,4 @@
-# Cursus
+# MYP, Master Your Plan
 
 Un outil gratuit qui aide les étudiantes et étudiants de l'UNIL à composer leur
 plan d'études : compteur de crédits ECTS en direct, vérification des minimums
@@ -8,7 +8,7 @@ chevauchements d'horaire, et export du calendrier.
 Périmètre initial : les dix masters de HEC Lausanne. L'architecture est prévue
 pour s'étendre aux autres facultés.
 
-> **Cursus est un projet indépendant réalisé par [Omniscient](https://omniscient.swiss).
+> **MYP est un projet indépendant réalisé par [Omniscient](https://omniscient.swiss).
 > Il n'est ni affilié à l'Université de Lausanne, ni approuvé, ni soutenu, ni
 > relu par elle.**
 >
