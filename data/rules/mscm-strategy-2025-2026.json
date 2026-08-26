@@ -51,7 +51,18 @@
    "label": "Module 6",
    "minEcts": 30,
    "kind": "thesis",
-   "note": "Master thesis"
+   "note": "Master thesis",
+   "unlockedBy": {
+    "ectsFrom": [
+     "M1",
+     "M2",
+     "M3",
+     "M4",
+     "M5"
+    ],
+    "atLeast": 90
+   },
+   "unlockedNote": "Only students having acquired 90 ECTS credits from Modules 1 to 5 are allowed to present their thesis."
   }
  ],
  "checks": [

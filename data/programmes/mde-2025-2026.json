@@ -5,7 +5,7 @@
   {
    "title": "Comptabilité et analyse des états financiers",
    "teachers": "A. Schatt",
-   "module": "SM1",
+   "module": "SM1a",
    "ects": 6,
    "semesters": [
     1,
@@ -19,7 +19,7 @@
   {
    "title": "bEconomie I",
    "teachers": "Q. Gallea /Ayoubi C.",
-   "module": "SM1",
+   "module": "SM1a",
    "ects": 3,
    "semesters": [
     1,
@@ -33,7 +33,7 @@
   {
    "title": "Empirical Methods for Lawyers",
    "teachers": "C. Thoeni",
-   "module": "SM1",
+   "module": "SM1a",
    "ects": 6,
    "semesters": [
     1,
@@ -47,7 +47,7 @@
   {
    "title": "Introduction à la finance",
    "teachers": "F. Alessandrini",
-   "module": "SM1",
+   "module": "SM1a",
    "ects": 6,
    "semesters": [
     1,
@@ -61,7 +61,7 @@
   {
    "title": "#Leadership development",
    "teachers": "S. Bendahan",
-   "module": "SM1",
+   "module": "SM1a",
    "ects": 3,
    "semesters": [
     1,
@@ -75,7 +75,7 @@
   {
    "title": "Microeconomics and Game Theory",
    "teachers": "C. Thoeni",
-   "module": "SM1",
+   "module": "SM1a",
    "ects": 6,
    "semesters": [
     1,
@@ -89,7 +89,7 @@
   {
    "title": "Stratégie d'entreprise",
    "teachers": "J. Monnier",
-   "module": "SM1",
+   "module": "SM1a",
    "ects": 6,
    "semesters": [
     1,
@@ -103,7 +103,7 @@
   {
    "title": "bEconomie II",
    "teachers": "Tièche / S. Huetsch L. / Houde S.",
-   "module": "SM1",
+   "module": "SM1a",
    "ects": 6,
    "semesters": [
     2,
@@ -117,7 +117,7 @@
   {
    "title": "bDroit de l'Union européenne",
    "teachers": "F. Maiani",
-   "module": "SM1",
+   "module": "SM1b",
    "ects": 6,
    "semesters": [
     1,
@@ -131,7 +131,7 @@
   {
    "title": "Droit des obligations",
    "teachers": "P. Favrod-Coune",
-   "module": "SM1",
+   "module": "SM1b",
    "ects": 6,
    "semesters": [
     1,
@@ -145,7 +145,7 @@
   {
    "title": "Droit pénal",
    "teachers": "N. Dongois",
-   "module": "SM1",
+   "module": "SM1b",
    "ects": 3,
    "semesters": [
     1,
@@ -159,7 +159,7 @@
   {
    "title": "Droit public",
    "teachers": "A. Neuenschwander",
-   "module": "SM1",
+   "module": "SM1b",
    "ects": 3,
    "semesters": [
     1,
@@ -173,7 +173,7 @@
   {
    "title": "Méthodes en droit des affaires",
    "teachers": "E. Philippin/J. Rouvinez",
-   "module": "SM1",
+   "module": "SM1b",
    "ects": 6,
    "semesters": [
     1,
@@ -187,7 +187,7 @@
   {
    "title": "bDroit des poursuites et faillites",
    "teachers": "Peter H. / Muster E.",
-   "module": "SM1",
+   "module": "SM1b",
    "ects": 6,
    "semesters": [
     2,

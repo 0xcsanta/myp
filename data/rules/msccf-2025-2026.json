@@ -51,7 +51,15 @@
    "label": "Module 4",
    "minEcts": 15,
    "kind": "thesis",
-   "note": "Mémoire de Master"
+   "note": "Mémoire de Master",
+   "unlockedBy": {
+    "ectsFrom": [
+     "M1",
+     "M2"
+    ],
+    "atLeast": 60
+   },
+   "unlockedNote": "Seuls les étudiants ayant préalablement acquis 60 crédits ECTS du Module 1 et 2 sont autorisés à présenter leur mémoire de recherche."
   }
  ],
  "checks": [

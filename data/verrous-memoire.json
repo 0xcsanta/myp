@@ -1,0 +1,54 @@
+{
+ "annee": "2025-2026",
+ "note": "Condition d'accès au mémoire, par master. Cette règle ne figure pas dans la grille du plan d'études mais dans une note de bas de page, et sa formulation change d'un master à l'autre : « Module 1, 2 et 3 », « Modules 1 and 2 », « Modules 1 to 5 ». Une expression régulière s'y casse les dents, et un piège avéré rôde : dans les plans de management, une autre phrase parle de 12 crédits du Module 2 pour CHANGER D'ORIENTATION, ce qui n'a rien à voir avec le mémoire. La table ci-dessous est donc saisie à la main, chaque phrase relue, et le texte d'origine conservé pour vérification.",
+ "verifieLe": "2026-08-26",
+ "verrous": {
+  "mscis": {
+   "ectsRequis": 60,
+   "modules": ["M1", "M2", "M3"],
+   "phrase": "Seuls les étudiants ayant préalablement acquis 60 crédits ECTS du Module 1, 2 et 3 sont autorisés à présenter leur mémoire."
+  },
+  "msccf": {
+   "ectsRequis": 60,
+   "modules": ["M1", "M2"],
+   "phrase": "Seuls les étudiants ayant préalablement acquis 60 crédits ECTS du Module 1 et 2 sont autorisés à présenter leur mémoire de recherche."
+  },
+  "msce": {
+   "ectsRequis": 90,
+   "modules": ["M1", "M2"],
+   "phrase": "Only students having acquired 90 ECTS credits from Modules 1 and 2 are allowed to present their thesis."
+  },
+  "mscf": {
+   "ectsRequis": 90,
+   "modules": ["M1", "M2", "M3", "M4"],
+   "phrase": "Only students having acquired 90 ECTS credits from Modules 1, 2, 3 et 4 are allowed to present their thesis."
+  },
+  "mscas": {
+   "ectsRequis": 90,
+   "modules": ["M1", "M2", "M3", "M4"],
+   "phrase": "Only students having acquired 90 ECTS credits from Modules 1, 2, 3 and 4 are allowed to present their thesis."
+  },
+  "mscm-marketing": {
+   "ectsRequis": 90,
+   "modules": ["M1", "M2", "M3", "M4", "M5"],
+   "phrase": "Only students having acquired 90 ECTS credits from Modules 1 to 5 are allowed to present their thesis."
+  },
+  "mscm-strategy": {
+   "ectsRequis": 90,
+   "modules": ["M1", "M2", "M3", "M4", "M5"],
+   "phrase": "Only students having acquired 90 ECTS credits from Modules 1 to 5 are allowed to present their thesis."
+  },
+  "mscm-business-analytics": {
+   "ectsRequis": 90,
+   "modules": ["M1", "M2", "M3", "M4", "M5"],
+   "phrase": "Only students having acquired 90 ECTS credits from Modules 1 to 5 are allowed to present their thesis."
+  },
+  "mscm-behaviour": {
+   "ectsRequis": 90,
+   "modules": ["M1", "M2", "M3", "M4", "M5"],
+   "phrase": "Only students having acquired 90 ECTS credits from Modules 1 to 5 are allowed to present their thesis."
+  },
+  "mde": null
+ },
+ "mde": "Le plan d'études du master en Droit et Économie ne porte aucune condition d'accès au mémoire. On n'en invente donc pas : aucun verrou n'est appliqué, et l'étudiant est renvoyé au règlement."
+}

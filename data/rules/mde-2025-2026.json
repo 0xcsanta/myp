@@ -12,20 +12,20 @@
    "note": "Enseignements à option (complément à la formation antérieure)"
   },
   {
-   "code": "SM1",
+   "code": "SM1a",
    "parent": "M1",
-   "label": "Sousmodule 1",
+   "label": "Sousmodule 1a",
    "minEcts": 24,
    "kind": "free_choice",
-   "note": "a: Cours à option pour les titulaires d'un Baccalauréat universitaire en Droit"
+   "note": "Cours à option pour les titulaires d'un Baccalauréat universitaire en Droit"
   },
   {
-   "code": "SM1",
+   "code": "SM1b",
    "parent": "M1",
-   "label": "Sousmodule 1",
+   "label": "Sousmodule 1b",
    "minEcts": 24,
    "kind": "free_choice",
-   "note": "b: Cours à option pour les titulaires d'un Baccalauréat ès Sciences en sciences économiques"
+   "note": "Cours à option pour les titulaires d'un Baccalauréat ès Sciences en sciences économiques"
   },
   {
    "code": "M2",

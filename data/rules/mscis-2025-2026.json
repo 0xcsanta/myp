@@ -35,7 +35,16 @@
    "label": "Module 4",
    "minEcts": 30,
    "kind": "thesis",
-   "note": "Mémoire et activités pédagogiques"
+   "note": "Mémoire et activités pédagogiques",
+   "unlockedBy": {
+    "ectsFrom": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "atLeast": 60
+   },
+   "unlockedNote": "Seuls les étudiants ayant préalablement acquis 60 crédits ECTS du Module 1, 2 et 3 sont autorisés à présenter leur mémoire."
   },
   {
    "code": "SM4.1",
@@ -60,7 +69,7 @@
     ],
     "atLeast": 60
    },
-   "unlockedNote": "60 crédits ECTS du Module 1, 2 et 3"
+   "unlockedNote": "Seuls les étudiants ayant préalablement acquis 60 crédits ECTS du Module 1, 2 et 3 sont autorisés à présenter leur mémoire."
   }
  ],
  "checks": [

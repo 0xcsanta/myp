@@ -15,6 +15,7 @@ import collections, glob, io, json, os, re, unicodedata
 import pdfplumber
 
 YEAR = '2025-2026'
+VERROUS = json.load(io.open('data/verrous-memoire.json', encoding='utf-8'))['verrous']
 OUT_RULES = 'data/rules'
 OUT_COURSES = 'data/programmes'
 
@@ -88,7 +89,7 @@ def semester_columns(rows, x_prof, x_ects):
     return cols
 
 MODULE_RE = re.compile(
-    r'^(SOUS-?MODULE|MODULE)\s*([\d.]+)\s*:?\s*(.*?)'
+    r'^(SOUS-?MODULE|MODULE)\s*([\d.]+[a-zA-Z]?)\s*:?\s*(.*?)'
     r'(?:[-–—]\s*)?(\d+)\s*(?:credits?|crédits?)\s*ECTS',
     re.I)
 
@@ -115,14 +116,17 @@ def parse_plan(pdf_path, slug):
             # « Sous-module 4.1 » est une subdivision de « Module 4 » : ses
             # credits sont DEJA comptes dans le parent. Sans ce lien, le MScIS
             # totalise 120 ECTS au lieu de 90.
-            parent = 'M' + code[2:].split('.')[0] if is_sub else None
+            parent = 'M' + re.match(r'\d+', code[2:]).group(0) if is_sub else None
             current = {
                 'code': code,
                 'parent': parent,
                 'label': f'{kind.title()} {m.group(2)}',
                 'minEcts': int(ects),
-                'kind': 'all_required' if re.search(r'obligatoire|compulsory', fold(label))
-                        else 'thesis' if re.search(r'memoire|thesis', fold(label))
+                # l'ordre compte : « Master thesis (compulsory) » porte les deux
+                # mots, et tester « obligatoire » en premier en faisait un module
+                # de cours obligatoires au lieu du memoire
+                'kind': 'thesis' if re.search(r'memoire|thesis', fold(label))
+                        else 'all_required' if re.search(r'obligatoire|compulsory', fold(label))
                         else 'free_choice',
                 'note': re.sub(r'\s+', ' ', label).strip(' -–—:'),
             }
@@ -172,21 +176,24 @@ def parse_plan(pdf_path, slug):
             'raw': right_txt.strip()[:60],
         })
 
-    # Le verrou du memoire ne vit pas dans la grille mais dans les notes de bas
-    # de page : « Seuls les etudiants ayant prealablement acquis 60 credits ECTS
-    # du Module 1, 2 et 3 sont autorises a presenter leur memoire. »
-    full = ' '.join(' '.join(t for _, t in cells) for _, cells in rows)
-    full = re.sub(r'\s+', ' ', full)
-    lock = re.search(
-        r'(\d+)\s*(?:credits?|crédits?)\s*ECTS\s*(?:du|des|of)\s*Modules?\s*([\d,\s]+(?:et\s*\d+)?)',
-        full, re.I)
-    if lock:
-        need = int(lock.group(1))
-        froms = ['M' + n for n in re.findall(r'\d+', lock.group(2))]
+    # Le verrou du memoire vient d'une table saisie a la main, pas d'une
+    # expression reguliere.
+    #
+    # Pourquoi : la condition ne figure pas dans la grille mais dans une note de
+    # bas de page, dont la formulation change d'un master a l'autre, « Module 1,
+    # 2 et 3 », « Modules 1 and 2 », « Modules 1 to 5 ». Et un piege avere rode :
+    # dans les plans de management, une autre phrase parle de 12 credits du
+    # Module 2 pour CHANGER D'ORIENTATION. Une regex l'attrapait et en faisait
+    # une fausse condition d'acces au memoire, affichee aux etudiants.
+    #
+    # Dix masters, dix phrases relues : la table est plus sure que le motif.
+    verrou = VERROUS.get(slug)
+    if verrou:
         for mod in modules:
-            if mod['kind'] == 'thesis' and mod.get('parent'):
-                mod['unlockedBy'] = {'ectsFrom': froms, 'atLeast': need}
-                mod['unlockedNote'] = lock.group(0).strip()
+            if mod['kind'] == 'thesis':
+                mod['unlockedBy'] = {'ectsFrom': verrou['modules'],
+                                     'atLeast': verrou['ectsRequis']}
+                mod['unlockedNote'] = verrou['phrase']
 
     return {'modules': modules, 'courses': courses, 'semesterColumns': len(sem_x)}, None
 
