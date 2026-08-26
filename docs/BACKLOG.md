@@ -1,5 +1,16 @@
 # À décider, à faire
 
+## Règles de conception non négociables
+
+- **Dire « on ne sait pas ».** Beaucoup de cours n'ont ni horaire publié, ni
+  modalités d'évaluation détaillées, ni salle. Dans ce cas l'interface écrit
+  explicitement « information non publiée par l'UNIL » avec le lien vers la
+  fiche officielle. Jamais de case vide, jamais de tiret muet, et surtout
+  jamais une valeur devinée ou reprise d'une autre année. Une donnée absente
+  est une information en soi : elle dit à l'étudiant qu'il doit aller vérifier.
+- **Chaque donnée porte sa source et sa date.** Voir [SOURCES.md](./SOURCES.md).
+- **Année de référence affichée en permanence :** 2025-2026.
+
 ## Demandé, pas encore construit
 
 - [ ] **Export du calendrier en PDF et en PNG.** En plus de l'export `.ics`.
