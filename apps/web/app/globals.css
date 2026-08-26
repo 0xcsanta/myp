@@ -95,9 +95,42 @@ body {
   color: transparent;
 }
 
+/* ------------------------------------------------------------------ mascotte
+ * Trace progressif, repris de la demonstration de Sajid.
+ *
+ * `pathLength=1` renormalise chaque chemin, donc `stroke-dasharray: 1` couvre
+ * exactement sa longueur et `stroke-dashoffset` va de 1, invisible, a 0,
+ * entierement dessine, puis a -1, efface par l'autre bout. Aucune mesure en
+ * JavaScript, et ca marche quelle que soit la taille d'affichage.
+ */
+.mascotte-fond {
+  opacity: 0.16;
+}
+
+.mascotte-trace path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: mascotte-trace 6.5s var(--ease-out-std) infinite;
+}
+
+@keyframes mascotte-trace {
+  0%        { stroke-dashoffset: 1 }
+  38%, 62%  { stroke-dashoffset: 0 }
+  100%      { stroke-dashoffset: -1 }
+}
+
+/* au survol, le trait se redessine d'un coup, avec du ressort */
+.mascotte:hover .mascotte-trace path {
+  animation-duration: 2.6s;
+  animation-timing-function: var(--ease-pop);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .mascotte-fond {
+    opacity: 1;
   }
   *,
   *::before,

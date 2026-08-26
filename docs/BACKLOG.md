@@ -29,6 +29,12 @@
 ## Décisions en attente
 
 - [x] **Le nom.** Tranché : **MYP, Master Your Plan**, choisi par Clément.
+- [x] **Année de référence.** Tranché : le site vise **2026-2027**, l'année que
+      les étudiants vont réellement vivre. Les règles de crédits viennent du
+      plan d'études **2025-2026**, le dernier publié par HEC, et c'est écrit
+      tel quel dans le pied de page. Les horaires ne sont pas encore intégrés,
+      donc on ne les annonce pas. Quand HEC publiera le plan 2026-2027, mise à
+      jour si le temps le permet.
 - [x] **Périmètre.** Tranché le 26 août 2026 : **HEC uniquement**. Les autres
       facultés ne sont pas un objectif, ni annoncé ni préparé. Si la demande
       vient, on décidera à ce moment là. Ne rien construire « au cas où » :
