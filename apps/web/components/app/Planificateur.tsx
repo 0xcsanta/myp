@@ -1,0 +1,361 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import type { Cours, Master, Regles } from "@/lib/donnees";
+import { nomModule, valider } from "@/lib/valider";
+import { Mascotte } from "@/components/brand/Mascotte";
+
+/**
+ * Le planificateur.
+ *
+ * Tout tourne dans le navigateur : la selection ne part sur aucun serveur, il
+ * n'y a ni compte ni cookie. Elle vit dans l'adresse de la page, ce qui la
+ * rend partageable, et dans le stockage local, ce qui la fait survivre a une
+ * fermeture d'onglet.
+ */
+
+/* ---------------------------------------------------------------- partage */
+
+/*
+ * La selection est encodee en champ de bits sur l'ordre du catalogue, puis en
+ * base 64 compatible URL. Un plan de trente cours tient en une dizaine de
+ * caracteres, la ou une liste d'identifiants en ferait plusieurs centaines.
+ * L'ordre du catalogue vient du plan d'etudes et ne bouge pas dans l'annee.
+ *
+ * Un champ d'octets plutot qu'un entier long : pas de litteral BigInt, donc
+ * aucune contrainte sur la cible de compilation, et le code reste lisible.
+ */
+const B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+
+function encoder(selection: Set<string>, catalogue: Cours[]): string {
+  if (!selection.size) return "";
+  const octets = new Uint8Array(Math.ceil(catalogue.length / 8));
+  catalogue.forEach((c, i) => {
+    if (selection.has(c.id)) octets[i >> 3] |= 1 << (i & 7);
+  });
+  let out = "";
+  for (let i = 0; i < octets.length; i += 3) {
+    const n = (octets[i] << 16) | ((octets[i + 1] ?? 0) << 8) | (octets[i + 2] ?? 0);
+    out += B64[(n >> 18) & 63] + B64[(n >> 12) & 63] + B64[(n >> 6) & 63] + B64[n & 63];
+  }
+  return out.replace(/A+$/, "");
+}
+
+function decoder(code: string, catalogue: Cours[]): Set<string> {
+  const s = new Set<string>();
+  if (!code) return s;
+  const octets = new Uint8Array(Math.ceil(catalogue.length / 8));
+  for (let i = 0, o = 0; i < code.length; i += 4, o += 3) {
+    const v = [0, 1, 2, 3].map((k) => Math.max(0, B64.indexOf(code[i + k] ?? "A")));
+    const n = (v[0] << 18) | (v[1] << 12) | (v[2] << 6) | v[3];
+    if (o < octets.length) octets[o] = (n >> 16) & 255;
+    if (o + 1 < octets.length) octets[o + 1] = (n >> 8) & 255;
+    if (o + 2 < octets.length) octets[o + 2] = n & 255;
+  }
+  catalogue.forEach((c, i) => {
+    if (octets[i >> 3] & (1 << (i & 7))) s.add(c.id);
+  });
+  return s;
+}
+
+/* --------------------------------------------------------------- affichage */
+
+function Jauge({
+  nom,
+  obtenu,
+  requis,
+}: {
+  nom: string;
+  obtenu: number;
+  requis: number;
+}) {
+  const pct = Math.min(100, requis ? Math.round((obtenu / requis) * 100) : 0);
+  const etat = obtenu > requis ? "trop" : obtenu === requis ? "fait" : "";
+  return (
+    <div>
+      <div className="flex items-baseline justify-between gap-3">
+        <span className="text-[13px] font-medium text-ink">{nom}</span>
+        <span className="tnum font-mono text-[11.5px] text-muted">
+          {obtenu} / {requis}
+        </span>
+      </div>
+      <div className="mt-1.5 h-[7px] overflow-hidden rounded-full bg-line/70">
+        <i
+          className={`block h-full rounded-full transition-[width,background-color] duration-500 ease-[var(--ease-pop)] ${
+            etat === "trop"
+              ? "bg-warn"
+              : etat === "fait"
+                ? "bg-ok"
+                : "bg-unil-400"
+          }`}
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ----------------------------------------------------------------- ecran */
+
+export function Planificateur({
+  master,
+  regles,
+  catalogue,
+}: {
+  master: Master;
+  regles: Regles;
+  catalogue: Cours[];
+}) {
+  const [selection, setSelection] = useState<Set<string>>(new Set());
+  const [recherche, setRecherche] = useState("");
+  const [pret, setPret] = useState(false);
+  const cle = `myp:${master.slug}`;
+
+  /* reprise : l'adresse d'abord, le stockage local ensuite */
+  useEffect(() => {
+    const url = new URLSearchParams(window.location.search).get("p");
+    const source = url ?? window.localStorage.getItem(cle) ?? "";
+    setSelection(decoder(source, catalogue));
+    setPret(true);
+  }, [cle, catalogue]);
+
+  /* sauvegarde */
+  useEffect(() => {
+    if (!pret) return;
+    const code = encoder(selection, catalogue);
+    try {
+      window.localStorage.setItem(cle, code);
+    } catch {
+      /* navigation privee : tant pis, l'adresse suffit */
+    }
+    const u = new URL(window.location.href);
+    if (code) u.searchParams.set("p", code);
+    else u.searchParams.delete("p");
+    window.history.replaceState(null, "", u);
+  }, [selection, pret, cle, catalogue]);
+
+  const resultat = useMemo(
+    () => valider(selection, regles, catalogue),
+    [selection, regles, catalogue],
+  );
+
+  const basculer = (id: string) =>
+    setSelection((s) => {
+      const n = new Set(s);
+      if (n.has(id)) n.delete(id);
+      else n.add(id);
+      return n;
+    });
+
+  const q = recherche.trim().toLowerCase();
+  const parModule = useMemo(() => {
+    const groupes = new Map<string, Cours[]>();
+    for (const c of catalogue) {
+      if (
+        q &&
+        ![c.titre, c.enseignants ?? "", c.evaluation ?? ""]
+          .join(" ")
+          .toLowerCase()
+          .includes(q)
+      )
+        continue;
+      const l = groupes.get(c.module) ?? [];
+      l.push(c);
+      groupes.set(c.module, l);
+    }
+    return groupes;
+  }, [catalogue, q]);
+
+  const erreurs = resultat.diagnostics.filter((x) => x.niveau === "erreur");
+  const feuilles = regles.modules.filter(
+    (m) => !regles.modules.some((x) => x.parent === m.code),
+  );
+
+  return (
+    <div className="shell grid gap-10 pb-24 lg:grid-cols-[1fr_340px] lg:items-start lg:gap-12">
+      {/* ---------------- le catalogue ---------------- */}
+      <div>
+        <label className="block">
+          <span className="sr-only">Rechercher un cours</span>
+          <input
+            type="search"
+            value={recherche}
+            onChange={(e) => setRecherche(e.target.value)}
+            placeholder="Rechercher un cours, un enseignant, un type d'évaluation…"
+            className="w-full rounded-xl border border-line-2 bg-white px-4 py-3 text-[14.5px]
+              outline-none transition-colors duration-150 ease-[var(--ease-out-std)]
+              placeholder:text-muted focus:border-unil-400"
+          />
+        </label>
+
+        <div className="mt-8 grid gap-10">
+          {regles.modules
+            .filter((m) => parModule.has(m.code))
+            .map((m) => {
+              const cours = parModule.get(m.code)!;
+              return (
+                <section key={m.code}>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h2 className="font-display text-[22px] tracking-[-0.02em] text-ink">
+                      {nomModule(m)}
+                    </h2>
+                    <p className="tnum font-mono text-[11.5px] text-muted">
+                      {resultat.parModule[m.code] ?? 0} / {m.minEcts} ECTS
+                      {m.kind === "all_required" ? " · obligatoire" : ""}
+                    </p>
+                  </div>
+                  {m.note && (
+                    <p className="mt-1 max-w-[70ch] text-[12.5px] text-muted">{m.note}</p>
+                  )}
+
+                  <ul className="mt-4 grid gap-1.5">
+                    {cours.map((c) => {
+                      const pris = selection.has(c.id);
+                      return (
+                        <li key={c.id}>
+                          <label
+                            className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3
+                              transition-colors duration-150 ease-[var(--ease-out-std)]
+                              ${
+                                pris
+                                  ? "border-unil-400 bg-unil-100"
+                                  : "border-line bg-white hover:border-line-2 hover:bg-surface-2"
+                              }`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={pris}
+                              onChange={() => basculer(c.id)}
+                              className="mt-0.5 size-[17px] shrink-0 accent-[var(--color-unil-400)]"
+                            />
+                            <span className="min-w-0 flex-1">
+                              <span className="block text-[14.5px] font-medium leading-snug text-ink">
+                                {c.titre}
+                              </span>
+                              <span className="mt-1 block text-[12px] text-muted">
+                                {[
+                                  c.enseignants,
+                                  c.langue,
+                                  c.evaluation,
+                                  c.dureeExamen ? `examen ${c.dureeExamen} min` : null,
+                                  c.saisons.length
+                                    ? c.saisons.join(" ou ")
+                                    : "semestre non précisé",
+                                ]
+                                  .filter(Boolean)
+                                  .join(" · ")}
+                              </span>
+                            </span>
+                            <span className="tnum shrink-0 font-mono text-[13px] font-semibold text-ink">
+                              {c.ects}
+                            </span>
+                          </label>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
+              );
+            })}
+        </div>
+
+        {parModule.size === 0 && (
+          <p className="mt-10 text-center text-[14px] text-muted">
+            Aucun cours ne correspond à « {recherche} ».
+          </p>
+        )}
+      </div>
+
+      {/* ---------------- le rail de credits ---------------- */}
+      <aside className="lg:sticky lg:top-6">
+        <div className="rounded-2xl border border-line bg-white p-6 shadow-[0_1px_2px_rgba(10,31,48,0.05),0_14px_40px_-28px_rgba(10,31,48,0.5)]">
+          <div className="flex items-baseline justify-between">
+            <span className="text-[12.5px] text-muted">Ton plan</span>
+            <span className="tnum font-mono text-[28px] font-semibold tracking-[-0.02em] text-ink">
+              {resultat.total}
+              <span className="text-[16px] text-muted"> / {regles.totalEcts}</span>
+            </span>
+          </div>
+
+          <div className="mt-6 grid gap-4">
+            {feuilles.map((m) => (
+              <Jauge
+                key={m.code}
+                nom={nomModule(m)}
+                obtenu={resultat.parModule[m.code] ?? 0}
+                requis={m.minEcts}
+              />
+            ))}
+          </div>
+
+          <div className="mt-6 grid gap-2">
+            {resultat.diagnostics.length === 0 && (
+              <p className="text-[12.5px] text-muted">
+                Coche des cours pour voir apparaître les vérifications.
+              </p>
+            )}
+            {resultat.diagnostics.map((x, i) => (
+              <p
+                key={`${x.code}-${i}`}
+                className={`rounded-lg px-3 py-2 text-[12.5px] leading-snug ${
+                  x.niveau === "erreur"
+                    ? "bg-warn-soft text-warn"
+                    : x.niveau === "ok"
+                      ? "bg-ok-soft text-ok"
+                      : "bg-unil-100 text-unil-500"
+                }`}
+              >
+                {x.message}
+              </p>
+            ))}
+          </div>
+
+          {selection.size > 0 && (
+            <button
+              onClick={() => setSelection(new Set())}
+              className="mt-6 w-full rounded-lg border border-line-2 py-2 text-[13px]
+                font-medium text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
+                hover:border-muted hover:bg-surface-2"
+            >
+              Tout décocher
+            </button>
+          )}
+        </div>
+
+        {/* la mascotte s'inquiete quand quelque chose ne joue pas */}
+        <div className="mt-6 flex items-center gap-4 px-2">
+          <Mascotte
+            taille={72}
+            className={erreurs.length ? "text-warn" : "text-unil-400"}
+            titre={
+              erreurs.length
+                ? "La mascotte de MYP, qui signale un problème"
+                : "La mascotte de MYP"
+            }
+          />
+          <p className="text-[12px] leading-snug text-muted">
+            {erreurs.length
+              ? `${erreurs.length} point${erreurs.length > 1 ? "s" : ""} à régler avant que ton plan soit conforme.`
+              : selection.size
+                ? "Rien à signaler pour l'instant."
+                : "Je vérifie ton plan au fur et à mesure."}
+          </p>
+        </div>
+
+        <p className="mt-6 px-2 text-[11.5px] leading-relaxed text-muted">
+          Les horaires ne sont pas encore intégrés, donc les chevauchements ne
+          sont pas détectés. Vérifie les créneaux sur le{" "}
+          <a
+            href="https://applicationspub.unil.ch/interpub/noauth/php/Ud/index.php?v_ueid=173&v_langue=fr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-unil-400 underline underline-offset-2"
+          >
+            catalogue officiel
+          </a>
+          .
+        </p>
+      </aside>
+    </div>
+  );
+}

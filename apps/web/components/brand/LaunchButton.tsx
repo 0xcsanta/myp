@@ -6,7 +6,7 @@ import Link from "next/link";
  * en SVG inline plutot qu'importee d'un fichier de chemins.
  */
 export function LaunchButton({
-  href = "/fr/hec",
+  href = "/fr",
   label = "Launch app",
   className = "",
 }: {

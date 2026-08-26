@@ -1,0 +1,86 @@
+{
+ "annee": "2025-2026",
+ "note": "Registre des masters de HEC Lausanne. Les noms longs sont ceux de l'UNIL, repris tels quels. Les noms courts servent a l'interface.",
+ "masters": [
+  {
+   "slug": "mscis",
+   "court": "Systèmes d'information",
+   "long": "Maîtrise universitaire ès Sciences en systèmes d'information et innovation numérique",
+   "sigle": "MScIS",
+   "etapeids": ["35523"],
+   "ects": 90
+  },
+  {
+   "slug": "msccf",
+   "court": "Comptabilité, contrôle et finance",
+   "long": "Maîtrise universitaire ès Sciences en comptabilité, contrôle et finance",
+   "sigle": "MScCCF",
+   "etapeids": ["35005", "35007"],
+   "ects": 90
+  },
+  {
+   "slug": "mde",
+   "court": "Droit et Économie",
+   "long": "Maîtrise universitaire en Droit et Économie",
+   "sigle": "MDE",
+   "etapeids": ["34698", "35628", "34699"],
+   "ects": 90
+  },
+  {
+   "slug": "msce",
+   "court": "Économie",
+   "long": "Maîtrise universitaire ès Sciences en économie",
+   "sigle": "MScE",
+   "etapeids": ["38002", "38001"],
+   "ects": 120
+  },
+  {
+   "slug": "mscf",
+   "court": "Finance",
+   "long": "Maîtrise universitaire ès Sciences en finance",
+   "sigle": "MScF",
+   "etapeids": ["38003", "38004"],
+   "ects": 120
+  },
+  {
+   "slug": "mscas",
+   "court": "Sciences actuarielles",
+   "long": "Maîtrise universitaire ès Sciences en sciences actuarielles",
+   "sigle": "MScAS",
+   "etapeids": ["37944", "37947"],
+   "ects": 120
+  },
+  {
+   "slug": "mscm-marketing",
+   "court": "Management, Marketing",
+   "long": "Maîtrise universitaire ès Sciences en management, orientation Marketing",
+   "sigle": "MScM",
+   "etapeids": ["35016", "35017"],
+   "ects": 120
+  },
+  {
+   "slug": "mscm-strategy",
+   "court": "Management, Stratégie et organisation",
+   "long": "Maîtrise universitaire ès Sciences en management, orientation stratégie, organisation et leadership",
+   "sigle": "MScM",
+   "etapeids": ["35018", "35019"],
+   "ects": 120
+  },
+  {
+   "slug": "mscm-business-analytics",
+   "court": "Management, Business analytics",
+   "long": "Maîtrise universitaire ès Sciences en management, orientation business analytics",
+   "sigle": "MScM",
+   "etapeids": ["35020", "35021"],
+   "ects": 120
+  },
+  {
+   "slug": "mscm-behaviour",
+   "court": "Management, Comportement et évolution",
+   "long": "Maîtrise universitaire ès Sciences en management, orientation comportement, économie et évolution",
+   "sigle": "MScM",
+   "etapeids": ["36274", "36275"],
+   "ects": 120
+  }
+ ]
+}
