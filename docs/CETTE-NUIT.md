@@ -89,8 +89,25 @@ cours de ta sélection ne sont pas vérifiés.
 2. **Les trois intitulés perdus**, si tu veux les récupérer. Cinq minutes, ils
    sont listés avec leur jour et leur heure. Les 43 autres n'ont pas à être
    corrigés : ce sont des cours de 2026-2027.
-3. **Le reste du chantier** n'a pas bougé : export PDF et PNG du calendrier,
-   anglais, styles de calendrier, mise en ligne.
+3. **L'export PDF et PNG est fait**, un bouton par semestre et par format, sous
+   les grilles. Essaie le, le fichier porte le nom du master et du semestre.
+4. **Le reste du chantier** : export `.ics`, anglais, styles de calendrier,
+   mise en ligne.
+
+## L'export, en deux mots
+
+La grille est redessinée sur un canevas plutôt que photographiée depuis la page,
+ce qui donne une image nette à n'importe quelle taille et une maîtrise complète
+de la mise en page. Le PDF est ensuite assemblé à la main autour de ce JPEG :
+un catalogue, une page, le flux de l'image, une soixantaine de lignes. Une
+bibliothèque de rendu aurait pesé plusieurs centaines de kilooctets pour un
+résultat moins propre.
+
+Vérifié : en-tête `%PDF-1.4`, les cinq décalages de la table de références
+pointent exactement sur leur objet, le flux image commence bien par la signature
+JPEG, le fichier se termine par `%%EOF`. Les décalages sont comptés en octets et
+non en caractères, sans quoi le moindre accent du titre aurait décalé toute la
+table et rendu le fichier illisible.
 
 ## Pour corriger un créneau
 

@@ -1,0 +1,277 @@
+import type { Cours } from "./donnees";
+import { libelleSemestre } from "./semestres";
+
+/**
+ * Export de l'emploi du temps en image et en PDF.
+ *
+ * Tout se fait dans le navigateur, sans bibliothèque : la grille est redessinée
+ * sur un canevas, ce qui donne une image nette et maîtrisée, puis le PDF est
+ * assemblé à la main autour de ce JPEG. Une bibliothèque de rendu HTML vers
+ * image pèserait plusieurs centaines de kilooctets pour un résultat moins
+ * propre, et un générateur de PDF davantage encore.
+ */
+
+const JOURS = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
+
+const C = {
+  encre: "#0a1f30",
+  doux: "#6a7883",
+  trait: "#d4dde4",
+  bleu: "#0037eb",
+  bleuFond: "#e6f0ff",
+  ambre: "#b26b00",
+  ambreFond: "#fbf0de",
+  papier: "#ffffff",
+};
+
+type Bloc = { cours: Cours; jour: string; debut: number; fin: number; salle: string | null; voie: number; voies: number };
+
+function disposer(items: Omit<Bloc, "voie" | "voies">[]): Bloc[] {
+  const out: Bloc[] = [];
+  for (const jour of JOURS) {
+    const duJour = items.filter((b) => b.jour === jour).sort((a, b) => a.debut - b.debut);
+    let groupe: typeof duJour = [];
+    let fin = -1;
+    const vider = () => {
+      groupe.forEach((b, i) => out.push({ ...b, voie: i, voies: groupe.length }));
+      groupe = [];
+      fin = -1;
+    };
+    for (const b of duJour) {
+      if (groupe.length && b.debut >= fin) vider();
+      groupe.push(b);
+      fin = Math.max(fin, b.fin);
+    }
+    vider();
+  }
+  return out;
+}
+
+/** Coupe un texte à la largeur donnée, en autant de lignes que permis. */
+function lignes(ctx: CanvasRenderingContext2D, texte: string, large: number, max: number) {
+  const mots = texte.split(" ");
+  const out: string[] = [];
+  let courante = "";
+  for (const mot of mots) {
+    const essai = courante ? `${courante} ${mot}` : mot;
+    if (ctx.measureText(essai).width > large && courante) {
+      out.push(courante);
+      courante = mot;
+      if (out.length === max) break;
+    } else {
+      courante = essai;
+    }
+  }
+  if (out.length < max && courante) out.push(courante);
+  if (out.length === max && mots.length) {
+    const dernier = out[max - 1];
+    if (ctx.measureText(dernier).width > large) {
+      out[max - 1] = `${dernier.slice(0, Math.max(0, dernier.length - 2))}…`;
+    }
+  }
+  return out;
+}
+
+export function dessinerHoraire(
+  cours: Cours[],
+  semestre: string,
+  titreMaster: string,
+  enConflit: Set<string>,
+  echelle = 2,
+): HTMLCanvasElement {
+  const items = cours.flatMap((c) =>
+    c.creneaux
+      .filter((k) => k.semestre === semestre && Number.isFinite(k.debutMin))
+      .map((k) => ({ cours: c, jour: k.jour, debut: k.debutMin, fin: k.finMin, salle: k.salle })),
+  );
+  const blocs = disposer(items);
+
+  const debut = Math.min(8 * 60, ...blocs.map((b) => b.debut)) ;
+  const fin = Math.max(18 * 60, ...blocs.map((b) => b.fin));
+  const debutH = Math.floor(debut / 60) * 60;
+  const finH = Math.ceil(fin / 60) * 60;
+
+  const marge = 40;
+  const gouttiere = 56;
+  const enTete = 108;
+  const pied = 42;
+  const colonne = 196;
+  const parMin = 0.92;
+
+  const L = marge * 2 + gouttiere + colonne * JOURS.length;
+  const H = enTete + (finH - debutH) * parMin + pied + marge;
+
+  const cv = document.createElement("canvas");
+  cv.width = L * echelle;
+  cv.height = H * echelle;
+  const ctx = cv.getContext("2d")!;
+  ctx.scale(echelle, echelle);
+  ctx.textBaseline = "top";
+
+  ctx.fillStyle = C.papier;
+  ctx.fillRect(0, 0, L, H);
+
+  /* en-tete */
+  ctx.fillStyle = C.encre;
+  ctx.font = "600 26px Georgia, 'Times New Roman', serif";
+  ctx.fillText(titreMaster, marge, marge);
+  ctx.fillStyle = C.bleu;
+  ctx.font = "600 15px system-ui, sans-serif";
+  ctx.fillText(libelleSemestre(semestre), marge, marge + 34);
+
+  const x0 = marge + gouttiere;
+  const y0 = enTete;
+  const bas = y0 + (finH - debutH) * parMin;
+
+  /* jours */
+  ctx.textAlign = "center";
+  ctx.font = "600 13px system-ui, sans-serif";
+  ctx.fillStyle = C.encre;
+  JOURS.forEach((j, i) => ctx.fillText(j, x0 + colonne * i + colonne / 2, y0 - 22));
+  ctx.textAlign = "left";
+
+  /* heures */
+  ctx.strokeStyle = C.trait;
+  ctx.lineWidth = 1;
+  for (let m = debutH; m <= finH; m += 60) {
+    const y = y0 + (m - debutH) * parMin;
+    ctx.beginPath();
+    ctx.moveTo(x0, y);
+    ctx.lineTo(x0 + colonne * JOURS.length, y);
+    ctx.stroke();
+    ctx.fillStyle = C.doux;
+    ctx.font = "11px ui-monospace, monospace";
+    ctx.textAlign = "right";
+    ctx.fillText(`${String(m / 60).padStart(2, "0")}:00`, x0 - 10, y - 6);
+    ctx.textAlign = "left";
+  }
+  for (let i = 0; i <= JOURS.length; i++) {
+    const x = x0 + colonne * i;
+    ctx.beginPath();
+    ctx.moveTo(x, y0);
+    ctx.lineTo(x, bas);
+    ctx.stroke();
+  }
+
+  /* blocs */
+  for (const b of blocs) {
+    const i = JOURS.indexOf(b.jour);
+    if (i < 0) continue;
+    const large = colonne / b.voies;
+    const x = x0 + colonne * i + large * b.voie + 3;
+    const y = y0 + (b.debut - debutH) * parMin + 2;
+    const w = large - 6;
+    const h = (b.fin - b.debut) * parMin - 4;
+    const chaud = enConflit.has(b.cours.id);
+
+    ctx.fillStyle = chaud ? C.ambreFond : C.bleuFond;
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, 7);
+    ctx.fill();
+    ctx.fillStyle = chaud ? C.ambre : C.bleu;
+    ctx.fillRect(x, y, 3, h);
+
+    ctx.fillStyle = chaud ? C.ambre : "#003d9c";
+    ctx.font = "600 11.5px system-ui, sans-serif";
+    const titre = lignes(ctx, b.cours.titre, w - 16, Math.max(1, Math.floor((h - 26) / 14)));
+    titre.forEach((l, k) => ctx.fillText(l, x + 9, y + 7 + k * 14));
+
+    ctx.fillStyle = C.doux;
+    ctx.font = "10px ui-monospace, monospace";
+    const heure = `${String(Math.floor(b.debut / 60)).padStart(2, "0")}:${String(b.debut % 60).padStart(2, "0")}–${String(Math.floor(b.fin / 60)).padStart(2, "0")}:${String(b.fin % 60).padStart(2, "0")}`;
+    ctx.fillText(heure, x + 9, y + 9 + titre.length * 14);
+    if (b.salle && h > 52) ctx.fillText(b.salle, x + 9, y + 22 + titre.length * 14);
+  }
+
+  /* pied */
+  ctx.fillStyle = C.doux;
+  ctx.font = "10.5px system-ui, sans-serif";
+  ctx.fillText(
+    "Généré par MYP · projet indépendant d'Omniscient, non affilié à l'UNIL · seuls le plan d'études et le règlement officiels font foi",
+    marge,
+    bas + 18,
+  );
+  return cv;
+}
+
+/* --------------------------------------------------------------- fichiers */
+
+function telecharger(blob: Blob, nom: string) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = nom;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+export function exporterPng(cv: HTMLCanvasElement, nom: string) {
+  cv.toBlob((b) => b && telecharger(b, `${nom}.png`), "image/png");
+}
+
+/**
+ * Assemble un PDF d'une page autour du JPEG du canevas.
+ *
+ * Un PDF minimal, c'est un catalogue, une page, et le flux de l'image : une
+ * soixantaine de lignes, contre plusieurs centaines de kilooctets pour une
+ * bibliothèque. Les décalages de la table des objets sont calculés en octets,
+ * pas en caractères, sans quoi tout accent du titre décalerait le fichier et le
+ * rendrait illisible.
+ */
+export function exporterPdf(cv: HTMLCanvasElement, nom: string) {
+  const jpeg = cv.toDataURL("image/jpeg", 0.92).split(",")[1];
+  const binaire = atob(jpeg);
+  const octets = new Uint8Array(binaire.length);
+  for (let i = 0; i < binaire.length; i++) octets[i] = binaire.charCodeAt(i);
+
+  const l = 842;                                   // A4 paysage, en points
+  const h = Math.round((cv.height / cv.width) * l);
+  const marge = 24;
+  const larImg = l - marge * 2;
+  const hautImg = Math.round((cv.height / cv.width) * larImg);
+  const hautPage = Math.min(595, hautImg + marge * 2);
+
+  const objets: (string | Uint8Array)[] = [];
+  const pousser = (s: string | Uint8Array) => objets.push(s);
+
+  pousser("1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n");
+  pousser(`2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n`);
+  pousser(
+    `3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${l} ${hautPage}] ` +
+      `/Resources << /XObject << /Im0 5 0 R >> >> /Contents 4 0 R >>\nendobj\n`,
+  );
+  const flux = `q ${larImg} 0 0 ${hautImg} ${marge} ${hautPage - marge - hautImg} cm /Im0 Do Q`;
+  pousser(`4 0 obj\n<< /Length ${flux.length} >>\nstream\n${flux}\nendstream\nendobj\n`);
+  pousser(
+    `5 0 obj\n<< /Type /XObject /Subtype /Image /Width ${cv.width} /Height ${cv.height} ` +
+      `/ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${octets.length} >>\nstream\n`,
+  );
+  pousser(octets);
+  pousser("\nendstream\nendobj\n");
+
+  const enc = new TextEncoder();
+  const morceaux = objets.map((o) => (typeof o === "string" ? enc.encode(o) : o));
+  const tete = enc.encode("%PDF-1.4\n");
+
+  // decalages en octets de chaque objet, pour la table de references
+  const decalages: number[] = [];
+  let pos = tete.length;
+  morceaux.forEach((m, i) => {
+    if (i <= 4) decalages.push(pos);        // les cinq objets, le 5e sur trois morceaux
+    pos += m.length;
+  });
+
+  let xref = `xref\n0 6\n0000000000 65535 f \n`;
+  for (const d of decalages) xref += `${String(d).padStart(10, "0")} 00000 n \n`;
+  xref += `trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n${pos}\n%%EOF\n`;
+
+  const total = new Uint8Array(pos + enc.encode(xref).length);
+  let k = 0;
+  total.set(tete, k); k += tete.length;
+  for (const m of morceaux) { total.set(m, k); k += m.length; }
+  total.set(enc.encode(xref), k);
+
+  telecharger(new Blob([total], { type: "application/pdf" }), `${nom}.pdf`);
+}

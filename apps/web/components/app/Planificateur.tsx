@@ -6,6 +6,7 @@ import { libelleSemestre, semestresDe } from "@/lib/semestres";
 import { nomModule, valider } from "@/lib/valider";
 import { Mascotte } from "@/components/brand/Mascotte";
 import { GrilleHoraire } from "./GrilleHoraire";
+import { dessinerHoraire, exporterPdf, exporterPng } from "@/lib/exporter";
 
 /**
  * Le planificateur.
@@ -187,6 +188,21 @@ export function Planificateur({
     return s;
   }, [resultat.diagnostics, retenus]);
   const semestres = useMemo(() => semestresDe(avecHoraire), [avecHoraire]);
+
+  const dessine = (s: string) =>
+    dessinerHoraire(avecHoraire, s, master.court, enConflit);
+  /*
+   * Le nom du fichier est translitteré plutôt que filtré : `\w` ignore les
+   * accents, donc « Systèmes d'information » devenait « Systmes dinformation ».
+   */
+  const nomFichier = (s: string) =>
+    `MYP ${master.court} ${libelleSemestre(s)}`
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .replace(/['’]/g, " ")
+      .replace(/[^A-Za-z0-9 \-]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
   const feuilles = regles.modules.filter(
     (m) => !regles.modules.some((x) => x.parent === m.code),
   );
@@ -205,6 +221,29 @@ export function Planificateur({
                 <GrilleHoraire cours={avecHoraire} semestre={s} enConflit={enConflit} />
               </div>
             ))}
+
+            <div className="flex flex-wrap items-center gap-2">
+              {semestres.map((s) => (
+                <span key={s} className="contents">
+                  <button
+                    onClick={() => exporterPng(dessine(s), nomFichier(s))}
+                    className="rounded-lg border border-line-2 px-3 py-1.5 text-[12.5px] font-medium
+                      text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
+                      hover:border-unil-400 hover:text-unil-400"
+                  >
+                    PNG · {libelleSemestre(s)}
+                  </button>
+                  <button
+                    onClick={() => exporterPdf(dessine(s), nomFichier(s))}
+                    className="rounded-lg border border-line-2 px-3 py-1.5 text-[12.5px] font-medium
+                      text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
+                      hover:border-unil-400 hover:text-unil-400"
+                  >
+                    PDF · {libelleSemestre(s)}
+                  </button>
+                </span>
+              ))}
+            </div>
 
             {releve && (
               <p className="text-[11.5px] leading-relaxed text-muted">

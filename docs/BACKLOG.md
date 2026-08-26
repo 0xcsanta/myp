@@ -13,11 +13,12 @@
 
 ## Demandé, pas encore construit
 
-- [ ] **Export du calendrier en PDF et en PNG.** En plus de l'export `.ics`.
-      Le PNG sert au partage rapide entre étudiants, le PDF à l'impression et à
-      l'entretien de conseil aux études. Piste : rendu du calendrier dans un
-      canevas, puis `toBlob` pour le PNG et une mise en page dédiée pour le PDF,
-      le tout côté client pour éviter tout serveur de rendu.
+- [x] **Export du calendrier en PDF et en PNG.** Fait le 27 août. La grille est
+      redessinée sur un canevas, ce qui donne une image nette, puis le PDF est
+      assemblé à la main autour de ce JPEG. Aucune bibliothèque : un moteur de
+      rendu HTML vers image pèserait plusieurs centaines de kilooctets pour un
+      résultat moins propre. Un bouton par semestre et par format.
+      Reste l'export `.ics`, non fait.
 
 - [ ] **Plusieurs styles de calendrier, avec fond personnalisable.**
       *À rediscuter avec Clément avant de construire.* Questions ouvertes :
