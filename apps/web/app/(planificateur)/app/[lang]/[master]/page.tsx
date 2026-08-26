@@ -4,8 +4,20 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Planificateur } from "@/components/app/Planificateur";
-import { coursDe, horairesDe, master, reglesDe, tousLesMasters, verifierHoraires } from "@/lib/donnees";
-import { LANGUES, estLangue } from "@/lib/langues";
+import {
+  coursDe,
+  horairesDe,
+  master,
+  reglesDe,
+  tousLesMasters,
+  verifierHoraires,
+} from "@/lib/donnees";
+import { LANGUES, autreLangue, estLangue } from "@/lib/langues";
+import { textes } from "@/lib/textes";
+import { nomCourt } from "@/lib/nomMaster";
+
+const LIEN_PLANS =
+  "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html";
 
 export function generateStaticParams() {
   return LANGUES.flatMap((lang) =>
@@ -18,12 +30,18 @@ export async function generateMetadata({
 }: {
   params: Promise<{ lang: string; master: string }>;
 }): Promise<Metadata> {
-  const { master: slug } = await params;
+  const { lang, master: slug } = await params;
+  const langue = estLangue(lang) ? lang : "fr";
+  const T = textes(langue).master;
   const m = master(slug);
-  if (!m) return { title: "Master introuvable · MYP" };
+  if (!m) return { title: T.introuvable };
   return {
-    title: `${m.court} · MYP`,
-    description: `Compose ton ${m.long} : ${m.ects} crédits ECTS, minimums par module vérifiés en direct.`,
+    title: `${nomCourt(m, langue)} · MYP`,
+    description: T.description(m.long, m.ects),
+    alternates: {
+      canonical: `/app/${langue}/${slug}`,
+      languages: { fr: `/app/fr/${slug}`, en: `/app/en/${slug}` },
+    },
   };
 }
 
@@ -36,6 +54,7 @@ export default async function PageMaster({
   if (!estLangue(lang)) notFound();
   const m = master(slug);
   if (!m) notFound();
+  const T = textes(lang).master;
 
   const regles = reglesDe(slug);
   const catalogue = coursDe(slug);
@@ -55,7 +74,10 @@ export default async function PageMaster({
 
   return (
     <div className="flex min-h-dvh flex-col bg-white">
-      <SiteHeader />
+      <SiteHeader
+        langue={lang}
+        hrefAutreLangue={`/app/${autreLangue(lang)}/${slug}`}
+      />
 
       <main className="flex-1">
         <section className="shell pt-[clamp(32px,4vw,64px)] pb-[clamp(28px,3vw,48px)]">
@@ -64,26 +86,26 @@ export default async function PageMaster({
             className="inline-flex items-center gap-1.5 text-[13px] text-muted
               transition-colors duration-150 ease-[var(--ease-out-std)] hover:text-unil-400"
           >
-            <span aria-hidden="true">←</span> Tous les masters
+            <span aria-hidden="true">←</span> {T.retour}
           </Link>
 
           <h1
             className="mt-4 max-w-[22ch] font-display leading-[0.94] text-black"
             style={{ fontSize: "clamp(34px, 5.2vw, 72px)", letterSpacing: "-0.032em" }}
           >
-            {m.court}
+            {nomCourt(m, lang)}
           </h1>
           <p className="mt-4 max-w-[68ch] text-[14.5px] leading-relaxed text-muted">
-            {m.long} · {m.ects} crédits ECTS · règles selon le plan d&apos;études{" "}
+            {T.sousTitreAvant(m.long, m.ects)}
             <a
-              href="https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html"
+              href={LIEN_PLANS}
               target="_blank"
               rel="noopener noreferrer"
               className="text-unil-400 underline underline-offset-2 hover:text-unil-500"
             >
               {regles.year}
             </a>
-            , le dernier publié par HEC
+            {T.sousTitreApres}
           </p>
         </section>
 
@@ -92,10 +114,11 @@ export default async function PageMaster({
           regles={regles}
           catalogue={catalogue}
           releve={horairesDe(slug)?.source ?? null}
+          langue={lang}
         />
       </main>
 
-      <SiteFooter />
+      <SiteFooter langue={lang} />
     </div>
   );
 }

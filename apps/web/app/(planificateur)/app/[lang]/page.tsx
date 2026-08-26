@@ -1,19 +1,28 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { coursDe, reglesDe, tousLesMasters } from "@/lib/donnees";
-import { LANGUES, estLangue } from "@/lib/langues";
-import { notFound } from "next/navigation";
+import { autreLangue, estLangue } from "@/lib/langues";
+import { textes } from "@/lib/textes";
 
-export const metadata: Metadata = {
-  title: "Choisis ton master · MYP",
-  description:
-    "Les dix masters de HEC Lausanne, avec leurs modules et leurs seuils de crédits.",
-};
-
-export function generateStaticParams() {
-  return LANGUES.map((lang) => ({ lang }));
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  if (!estLangue(lang)) return {};
+  const T = textes(lang).choix;
+  return {
+    title: T.titre,
+    description: T.description,
+    alternates: {
+      canonical: `/app/${lang}`,
+      languages: { fr: "/app/fr", en: "/app/en" },
+    },
+  };
 }
 
 export default async function ChoixDuMaster({
@@ -23,11 +32,13 @@ export default async function ChoixDuMaster({
 }) {
   const { lang } = await params;
   if (!estLangue(lang)) notFound();
+  const T = textes(lang).choix;
 
   const masters = tousLesMasters().map((m) => {
     const r = reglesDe(m.slug);
     return {
       ...m,
+      annee: r.year,
       nbCours: coursDe(m.slug).length,
       nbModules: r.modules.filter((x) => !x.parent).length,
     };
@@ -35,7 +46,7 @@ export default async function ChoixDuMaster({
 
   return (
     <div className="flex min-h-dvh flex-col bg-white">
-      <SiteHeader />
+      <SiteHeader langue={lang} hrefAutreLangue={`/app/${autreLangue(lang)}`} />
 
       <main className="flex-1">
         <section className="shell pt-[clamp(40px,5vw,80px)] pb-[clamp(64px,8vw,128px)]">
@@ -43,11 +54,10 @@ export default async function ChoixDuMaster({
             className="max-w-[18ch] font-display leading-[0.92] text-black"
             style={{ fontSize: "clamp(40px, 6.4vw, 92px)", letterSpacing: "-0.035em" }}
           >
-            Choisis ton master
+            {T.h1}
           </h1>
           <p className="mt-6 max-w-[62ch] text-[16px] leading-relaxed text-ink-2">
-            Les dix masters de HEC Lausanne, tels que les décrivent les plans
-            d&apos;études officiels 2025-2026.
+            {T.intro(masters[0]?.annee ?? "2025-2026")}
           </p>
 
           <ul className="mt-12 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
@@ -74,7 +84,7 @@ export default async function ChoixDuMaster({
                     </p>
                   </div>
                   <p className="tnum font-mono text-[12px] text-muted">
-                    {m.ects} ECTS · {m.nbModules} modules · {m.nbCours} cours
+                    {T.resume(m.ects, m.nbModules, m.nbCours)}
                   </p>
                 </Link>
               </li>
@@ -83,7 +93,7 @@ export default async function ChoixDuMaster({
         </section>
       </main>
 
-      <SiteFooter />
+      <SiteFooter langue={lang} />
     </div>
   );
 }

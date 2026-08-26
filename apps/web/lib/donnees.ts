@@ -17,7 +17,14 @@ const lire = <T>(rel: string): T =>
 
 export type Master = {
   slug: string;
+  /** Etiquette d'interface, ecrite pour le site, pas un intitule officiel. */
   court: string;
+  courtEn: string;
+  /**
+   * L'intitule officiel du diplome, repris tel quel. HEC ne le publie pas en
+   * anglais pour les dix masters, donc il reste en francais dans les deux
+   * langues du site : traduire un intitule officiel, ce serait l'inventer.
+   */
   long: string;
   sigle: string;
   etapeids: string[];

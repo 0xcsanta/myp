@@ -3,7 +3,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Cours, Master, Regles } from "@/lib/donnees";
 import { libelleSemestre, semestresDe } from "@/lib/semestres";
-import { nomModule, valider } from "@/lib/valider";
+import type { Langue } from "@/lib/langues";
+import { textes } from "@/lib/textes";
+import { nomCourt } from "@/lib/nomMaster";
+import { evaluationDuCours, langueDuCours } from "@/lib/codes";
+import { libelleSaison } from "@/lib/semestres";
+import { coursEnConflit, messageDiagnostic, nomModule, valider } from "@/lib/valider";
 import { Mascotte } from "@/components/brand/Mascotte";
 import { GrilleHoraire } from "./GrilleHoraire";
 import { dessinerHoraire, exporterPdf, exporterPng } from "@/lib/exporter";
@@ -105,12 +110,16 @@ export function Planificateur({
   regles,
   catalogue,
   releve,
+  langue,
 }: {
   master: Master;
   regles: Regles;
   catalogue: Cours[];
   releve: { releveLe: string; url: string; note?: string } | null;
+  langue: Langue;
 }) {
+  const TT = textes(langue);
+  const T = TT.plan;
   const [selection, setSelection] = useState<Set<string>>(new Set());
   const [recherche, setRecherche] = useState("");
   const [pret, setPret] = useState(false);
@@ -199,24 +208,20 @@ export function Planificateur({
     [catalogue, selection],
   );
   const avecHoraire = retenus.filter((c) => c.horaireConnu);
-  const enConflit = useMemo(() => {
-    const s = new Set<string>();
-    for (const d of resultat.diagnostics) {
-      if (d.code !== "chevauchement") continue;
-      for (const c of retenus) if (d.message.includes(c.titre)) s.add(c.id);
-    }
-    return s;
-  }, [resultat.diagnostics, retenus]);
+  const enConflit = useMemo(
+    () => coursEnConflit(resultat.diagnostics),
+    [resultat.diagnostics],
+  );
   const semestres = useMemo(() => semestresDe(avecHoraire), [avecHoraire]);
 
   const dessine = (s: string) =>
-    dessinerHoraire(avecHoraire, s, master.court, enConflit);
+    dessinerHoraire(avecHoraire, s, nomCourt(master, langue), enConflit, langue);
   /*
    * Le nom du fichier est translitteré plutôt que filtré : `\w` ignore les
    * accents, donc « Systèmes d'information » devenait « Systmes dinformation ».
    */
   const nomFichier = (s: string) =>
-    `MYP ${master.court} ${libelleSemestre(s)}`
+    `MYP ${nomCourt(master, langue)} ${libelleSemestre(s, langue)}`
       .normalize("NFD")
       .replace(/[̀-ͯ]/g, "")
       .replace(/['’]/g, " ")
@@ -243,9 +248,14 @@ export function Planificateur({
             {semestres.map((s) => (
               <div key={s} className="min-w-0">
                 <h2 className="mb-3 font-display text-[20px] tracking-[-0.02em] text-ink">
-                  {libelleSemestre(s)}
+                  {libelleSemestre(s, langue)}
                 </h2>
-                <GrilleHoraire cours={avecHoraire} semestre={s} enConflit={enConflit} />
+                <GrilleHoraire
+                  cours={avecHoraire}
+                  semestre={s}
+                  enConflit={enConflit}
+                  langue={langue}
+                />
               </div>
             ))}
 
@@ -258,7 +268,7 @@ export function Planificateur({
                       text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
                       hover:border-unil-400 hover:text-unil-400"
                   >
-                    PNG · {libelleSemestre(s)}
+                    PNG · {libelleSemestre(s, langue)}
                   </button>
                   <button
                     onClick={() => exporterPdf(dessine(s), nomFichier(s))}
@@ -266,7 +276,7 @@ export function Planificateur({
                       text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
                       hover:border-unil-400 hover:text-unil-400"
                   >
-                    PDF · {libelleSemestre(s)}
+                    PDF · {libelleSemestre(s, langue)}
                   </button>
                 </span>
               ))}
@@ -274,39 +284,49 @@ export function Planificateur({
 
             {releve && (
               <p className="text-[11.5px] leading-relaxed text-muted">
-                Horaires relevés le{" "}
-                {new Date(releve.releveLe).toLocaleDateString("fr-CH", {
+                {T.releveAvant}
+                {new Date(releve.releveLe).toLocaleDateString(TT.locale, {
                   day: "numeric",
                   month: "long",
                   year: "numeric",
-                })}{" "}
-                sur l&apos;
+                })}
+                {T.releveMilieu}
                 <a
                   href={releve.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-unil-400 underline underline-offset-2"
                 >
-                  agenda officiel de l&apos;UNIL
+                  {T.releveLien}
                 </a>
-                . Recoupe les avant de t&apos;inscrire : un horaire peut changer.
+                {T.releveApres}
               </p>
             )}
           </div>
         )}
 
         <label className="block">
-          <span className="sr-only">Rechercher un cours</span>
+          <span className="sr-only">{T.rechercher}</span>
           <input
             type="search"
             value={recherche}
             onChange={(e) => setRecherche(e.target.value)}
-            placeholder="Rechercher un cours, un enseignant, un type d'évaluation…"
+            placeholder={T.recherchePlaceholder}
             className="w-full rounded-xl border border-line-2 bg-white px-4 py-3 text-[14.5px]
               outline-none transition-colors duration-150 ease-[var(--ease-out-std)]
               placeholder:text-muted focus:border-unil-400"
           />
         </label>
+
+        {/*
+          Les intitules et les notes viennent des plans officiels et ne sont pas
+          traduits : le dire evite que le lecteur prenne un titre reste dans
+          l'autre langue pour un oubli. La remarque vaut dans les deux sens, la
+          page francaise porte elle aussi des titres anglais.
+        */}
+        <p className="mt-3 text-[11.5px] leading-relaxed text-muted">
+          {T.langueOfficielle}
+        </p>
 
         <div className="mt-8 grid gap-10">
           {regles.modules
@@ -317,11 +337,11 @@ export function Planificateur({
                 <section key={m.code}>
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                     <h2 className="font-display text-[22px] tracking-[-0.02em] text-ink">
-                      {nomModule(m)}
+                      {nomModule(m, langue)}
                     </h2>
                     <p className="tnum font-mono text-[11.5px] text-muted">
                       {resultat.parModule[m.code] ?? 0} / {m.minEcts} ECTS
-                      {m.kind === "all_required" ? " · obligatoire" : ""}
+                      {m.kind === "all_required" ? T.obligatoire : ""}
                     </p>
                   </div>
                   {m.note && (
@@ -355,12 +375,14 @@ export function Planificateur({
                               <span className="mt-1 block text-[12px] text-muted">
                                 {[
                                   c.enseignants,
-                                  c.langue,
-                                  c.evaluation,
-                                  c.dureeExamen ? `examen ${c.dureeExamen} min` : null,
+                                  langueDuCours(c.langue, langue),
+                                  evaluationDuCours(c.evaluation, langue),
+                                  c.dureeExamen ? T.examenMinutes(c.dureeExamen) : null,
                                   c.saisons.length
-                                    ? c.saisons.join(" ou ")
-                                    : "semestre non précisé",
+                                    ? c.saisons
+                                        .map((x) => libelleSaison(x, langue))
+                                        .join(langue === "fr" ? " ou " : " or ")
+                                    : T.semestreInconnu,
                                 ]
                                   .filter(Boolean)
                                   .join(" · ")}
@@ -381,7 +403,7 @@ export function Planificateur({
 
         {parModule.size === 0 && (
           <p className="mt-10 text-center text-[14px] text-muted">
-            Aucun cours ne correspond à « {recherche} ».
+            {T.aucunResultat(recherche)}
           </p>
         )}
       </div>
@@ -390,7 +412,7 @@ export function Planificateur({
       <aside ref={rail} className="min-w-0 lg:sticky lg:top-6">
         <div className="rounded-2xl border border-line bg-white p-6 shadow-[0_1px_2px_rgba(10,31,48,0.05),0_14px_40px_-28px_rgba(10,31,48,0.5)]">
           <div className="flex items-baseline justify-between">
-            <span className="text-[12.5px] text-muted">Ton plan</span>
+            <span className="text-[12.5px] text-muted">{T.tonPlan}</span>
             <span className="tnum font-mono text-[28px] font-semibold tracking-[-0.02em] text-ink">
               {resultat.total}
               <span className="text-[16px] text-muted"> / {regles.totalEcts}</span>
@@ -401,7 +423,7 @@ export function Planificateur({
             {feuilles.map((m) => (
               <Jauge
                 key={m.code}
-                nom={nomModule(m)}
+                nom={nomModule(m, langue)}
                 obtenu={resultat.parModule[m.code] ?? 0}
                 requis={m.minEcts}
               />
@@ -410,9 +432,7 @@ export function Planificateur({
 
           <div className="mt-6 grid gap-2">
             {resultat.diagnostics.length === 0 && (
-              <p className="text-[12.5px] text-muted">
-                Coche des cours pour voir apparaître les vérifications.
-              </p>
+              <p className="text-[12.5px] text-muted">{T.cocheDesCours}</p>
             )}
             {resultat.diagnostics.map((x, i) => (
               <p
@@ -425,7 +445,7 @@ export function Planificateur({
                       : "bg-unil-100 text-unil-500"
                 }`}
               >
-                {x.message}
+                {messageDiagnostic(x, regles, langue)}
               </p>
             ))}
           </div>
@@ -449,30 +469,30 @@ export function Planificateur({
             className={erreurs.length ? "text-warn" : "text-unil-400"}
             titre={
               erreurs.length
-                ? "La mascotte de MYP, qui signale un problème"
-                : "La mascotte de MYP"
+                ? T.mascotteAlerte
+                : T.mascotteNormale
             }
           />
           <p className="text-[12px] leading-snug text-muted">
             {erreurs.length
-              ? `${erreurs.length} point${erreurs.length > 1 ? "s" : ""} à régler avant que ton plan soit conforme.`
+              ? T.aRegler(erreurs.length)
               : selection.size
-                ? "Rien à signaler pour l'instant."
-                : "Je vérifie ton plan au fur et à mesure."}
+                ? T.rienASignaler
+                : T.jeVerifie}
           </p>
         </div>
 
         <p className="mt-6 px-2 text-[11.5px] leading-relaxed text-muted">
           {catalogue.some((c) => c.horaireConnu)
-            ? "Les créneaux affichés viennent d'un relevé humain de l'horaire officiel. Recoupe les avant de t'inscrire, sur le "
-            : "Aucun horaire n'est encore relevé pour ce master, donc les chevauchements ne sont pas détectés. Vérifie les créneaux sur le "}
+            ? T.noteAvecHoraires
+            : T.noteSansHoraires}
           <a
             href="https://applicationspub.unil.ch/interpub/noauth/php/Ud/index.php?v_ueid=173&v_langue=fr"
             target="_blank"
             rel="noopener noreferrer"
             className="text-unil-400 underline underline-offset-2"
           >
-            catalogue officiel
+            {T.catalogueOfficiel}
           </a>
           .
         </p>
@@ -492,7 +512,7 @@ export function Planificateur({
         >
           <span className="min-w-0">
             <span className="block text-[11px] uppercase tracking-[0.08em] text-muted">
-              Ton plan
+              {T.tonPlan}
             </span>
             <span
               className={`block truncate text-[12.5px] ${
@@ -500,10 +520,10 @@ export function Planificateur({
               }`}
             >
               {erreurs.length
-                ? `${erreurs.length} point${erreurs.length > 1 ? "s" : ""} à régler`
+                ? T.aReglerCourt(erreurs.length)
                 : selection.size
-                  ? "Rien à signaler pour l'instant"
-                  : "Coche un cours pour commencer"}
+                  ? T.rienASignalerCourt
+                  : T.cocheUnCours}
             </span>
           </span>
           <span className="flex shrink-0 items-center gap-3">

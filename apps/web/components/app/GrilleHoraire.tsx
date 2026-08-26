@@ -2,6 +2,9 @@
 
 import type { ReactElement } from "react";
 import type { Cours } from "@/lib/donnees";
+import type { Langue } from "@/lib/langues";
+import { JOURS_OUVRABLES, libelleJour } from "@/lib/semestres";
+import { textes } from "@/lib/textes";
 
 /**
  * La grille horaire d'un semestre.
@@ -15,7 +18,11 @@ import type { Cours } from "@/lib/donnees";
  * grille vide qui laisserait croire a un emploi du temps libre.
  */
 
-const JOURS = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
+/*
+ * Les jours sont stockes en francais, comme les ecrit l'agenda officiel : le
+ * releve doit rester comparable au PDF dont il sort. Seul l'affichage traduit.
+ */
+const JOURS = JOURS_OUVRABLES;
 const DEBUT = 8 * 60;
 const FIN = 20 * 60;
 const PX_PAR_MIN = 0.86;
@@ -48,11 +55,14 @@ export function GrilleHoraire({
   cours,
   semestre,
   enConflit,
+  langue,
 }: {
   cours: Cours[];
   semestre: string;
   enConflit: Set<string>;
+  langue: Langue;
 }) {
+  const T = textes(langue).grille;
   const bruts = cours.flatMap((c) =>
     c.creneaux
       .filter((k) => k.semestre === semestre && Number.isFinite(k.debutMin))
@@ -87,7 +97,7 @@ export function GrilleHoraire({
           <div />
           {JOURS.map((j) => (
             <div key={j} className="py-2.5 text-center text-[12.5px] font-semibold text-ink">
-              {j}
+              {libelleJour(j, langue)}
             </div>
           ))}
         </div>
@@ -130,7 +140,7 @@ export function GrilleHoraire({
                         left: `calc(${b.voie * largeur}% + 3px)`,
                         width: `calc(${largeur}% - 6px)`,
                       }}
-                      title={`${b.cours.titre} · ${b.salle ?? "salle non précisée"}`}
+                      title={`${b.cours.titre} · ${b.salle ?? T.sallePrecisee}`}
                     >
                       <p
                         className={`text-[11.5px] font-semibold leading-tight ${
@@ -140,7 +150,7 @@ export function GrilleHoraire({
                         {b.cours.titre}
                       </p>
                       <p className="mt-0.5 font-mono text-[10px] text-muted">
-                        {b.salle ?? "salle inconnue"}
+                        {b.salle ?? T.salleInconnue}
                       </p>
                     </div>
                   );

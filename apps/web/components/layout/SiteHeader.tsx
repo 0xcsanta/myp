@@ -1,6 +1,8 @@
 import { Wordmark } from "@/components/brand/Wordmark";
 import { MadeByPill } from "@/components/brand/MadeByPill";
 import { LaunchButton } from "@/components/brand/LaunchButton";
+import { BasculeLangue } from "@/components/brand/BasculeLangue";
+import type { Langue } from "@/lib/langues";
 
 /**
  * L'en-tete, aux positions conventionnelles : marque collee a gauche,
@@ -19,12 +21,18 @@ import { LaunchButton } from "@/components/brand/LaunchButton";
  * La page etant un flex en colonne, poser `mx-auto` directement sur l'en-tete
  * annulerait l'etirement et la ferait retrecir a la largeur de son contenu.
  */
-export function SiteHeader() {
+export function SiteHeader({
+  langue,
+  hrefAutreLangue,
+}: {
+  langue: Langue;
+  hrefAutreLangue: string;
+}) {
   return (
     <header className="w-full pt-[clamp(20px,2.6vw,52px)]">
       <div className="shell grid grid-cols-[auto_auto] items-center gap-4 lg:grid-cols-[1fr_auto_1fr]">
         <div className="justify-self-start">
-          <Wordmark />
+          <Wordmark href={`/${langue}`} />
         </div>
 
         {/* la signature quitte l'en-tete sous 1024px et repasse en pied de page */}
@@ -32,8 +40,9 @@ export function SiteHeader() {
           <MadeByPill />
         </div>
 
-        <div className="justify-self-end">
-          <LaunchButton />
+        <div className="flex items-center gap-2 justify-self-end sm:gap-3">
+          <BasculeLangue langue={langue} href={hrefAutreLangue} />
+          <LaunchButton href={`/app/${langue}`} />
         </div>
       </div>
     </header>
