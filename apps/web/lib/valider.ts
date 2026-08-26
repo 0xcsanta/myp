@@ -149,7 +149,9 @@ export function valider(
       "horaire_inconnu",
       sansHoraire.length === choisis.length
         ? "Aucun horaire n'est encore relevé pour ce master, donc les chevauchements ne sont pas vérifiés."
-        : `${sansHoraire.length} cours sur ${choisis.length} n'ont pas d'horaire relevé : leurs chevauchements ne sont pas vérifiés.`,
+        : sansHoraire.length === 1
+          ? `1 cours sur ${choisis.length} n'a pas d'horaire relevé : ses chevauchements ne sont pas vérifiés.`
+          : `${sansHoraire.length} cours sur ${choisis.length} n'ont pas d'horaire relevé : leurs chevauchements ne sont pas vérifiés.`,
     );
   }
 

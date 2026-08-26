@@ -23,7 +23,7 @@ défaut. Le titre peut être abrégé : la résolution accepte un préfixe uniqu
     python tools_horaires.py            construit tous les fichiers
     python tools_horaires.py mscis      un seul master
 """
-import glob, io, json, os, re, sys, unicodedata
+import difflib, glob, io, json, os, re, sys, unicodedata
 
 BRUT = 'data/horaires/brut'
 SORTIE = 'data/horaires'
@@ -34,8 +34,29 @@ JOURS = {'lundi': 'Lundi', 'mardi': 'Mardi', 'mercredi': 'Mercredi',
          'jeudi': 'Jeudi', 'vendredi': 'Vendredi', 'samedi': 'Samedi'}
 
 
+def nettoyer(t):
+    """
+    Repare les intitules haches par la mise en page du PDF.
+
+    Quand plusieurs cours se chevauchent le meme jour, l'agenda les dessine dans
+    des colonnes tres etroites et le texte part lettre par lettre :
+    « Financial A-ccounting », « c i v ile e t c o m m e ». On recolle donc les
+    lettres isolees et on retire les fragments de salle ou d'enseignant qui se
+    sont glisses dans le titre.
+    """
+    t = re.sub(r'\s*/\s*$', '', t.strip())
+    t = re.sub(r'C\s*-\s*', ' ', t)                 # marqueur de type de cours
+    t = re.sub(r'(?<=[A-Za-zÀ-ÿ])-(?=[a-zà-ÿ])', '', t)  # « A-ccounting »
+    # une suite de lettres isolees separees par des espaces se recolle
+    t = re.sub(r'(?:(?<=\s)|^)((?:[A-Za-zÀ-ÿ]\s){2,}[A-Za-zÀ-ÿ])(?=\s|$)',
+               lambda m: m.group(1).replace(' ', ''), t)
+    t = re.sub(r'\s*[-–]\s*(Internef|Anthropole|Amphimax|Amphipôle|Synathlon|Cubotron|IDHEAP).*$',
+               '', t, flags=re.I)
+    return re.sub(r'\s+', ' ', t).strip(' -–—/|')
+
+
 def fold(t):
-    n = unicodedata.normalize('NFKD', t)
+    n = unicodedata.normalize('NFKD', nettoyer(t))
     n = ''.join(c for c in n if not unicodedata.combining(c)).lower()
     return re.sub(r'\s+', ' ', re.sub(r'[^a-z0-9]+', ' ', n)).strip()
 
@@ -73,7 +94,10 @@ def resoudre(titre, ids):
     if len(exact) == 1:
         return exact[0], None
     if len(exact) > 1:
-        return None, f'ambigu, {len(exact)} cours portent ce titre exact'
+        # Le meme cours figure dans deux modules du plan. Ce n'est pas une
+        # ambiguite a trancher : c'est le meme enseignement a la meme heure,
+        # et il recoit donc le creneau dans les deux entrees.
+        return exact, None
 
     prefixe = [k for k, v in ids.items() if fold(v).startswith(cible) or cible.startswith(fold(v))]
     if len(prefixe) == 1:
@@ -87,8 +111,17 @@ def resoudre(titre, ids):
     if len(contenu) > 1:
         return None, 'ambigu : ' + ', '.join(sorted(contenu)[:4])
 
-    proches = sorted(ids, key=lambda k: -len(os.path.commonprefix([fold(ids[k]), cible])))[:3]
-    return None, 'introuvable, proches : ' + ', '.join(proches)
+    # Dernier recours : la similarite. Un intitule hache par la mise en page
+    # reste tres proche du vrai. Le seuil est haut et chaque rapprochement de
+    # ce type est journalise, pour rester verifiable.
+    notes = [(difflib.SequenceMatcher(None, cible, fold(v)).ratio(), k) for k, v in ids.items()]
+    notes.sort(reverse=True)
+    if notes and notes[0][0] >= 0.86 and (len(notes) < 2 or notes[0][0] - notes[1][0] > 0.06):
+        return notes[0][1], f'SIMILARITE {notes[0][0]:.2f}'
+
+    proches = ', '.join(k for _, k in notes[:3])
+    return None, f'introuvable (meilleure similarite {notes[0][0]:.2f}), proches : {proches}'
+
 
 
 def lire_brut(chemin):
@@ -121,18 +154,22 @@ def construire(slug):
     chemin = f'{BRUT}/{slug}.txt'
     ids = catalogue(slug)
     lignes = lire_brut(chemin)
-    creneaux, soucis = [], []
+    creneaux, soucis, approx = [], [], []
     for l in lignes:
         cid, err = resoudre(l['titre'], ids)
+        if err and err.startswith('SIMILARITE'):
+            approx.append((l['n'], l['titre'], cid, err))
+            err = None
         if err:
             soucis.append((l['n'], l['titre'], err))
             continue
         if not re.match(r'^\d{1,2}:\d{2}$', l['debut']) or not re.match(r'^\d{1,2}:\d{2}$', l['fin']):
             soucis.append((l['n'], l['titre'], f"heures illisibles : {l['debut']} / {l['fin']}"))
             continue
-        creneaux.append({'cours': cid, 'semestre': l['semestre'], 'jour': l['jour'],
-                         'debut': l['debut'], 'fin': l['fin'], 'salle': l['salle'],
-                         'cadence': l['cadence'], 'note': l['note']})
+        for c in (cid if isinstance(cid, list) else [cid]):
+            creneaux.append({'cours': c, 'semestre': l['semestre'], 'jour': l['jour'],
+                             'debut': l['debut'], 'fin': l['fin'], 'salle': l['salle'],
+                             'cadence': l['cadence'], 'note': l['note']})
 
     sem = {}
     for c in creneaux:
@@ -144,10 +181,21 @@ def construire(slug):
         print(f"{'':26} A CORRIGER ({len(soucis)}) :")
         for n, titre, err in soucis:
             print(f"{'':28} ligne {n} « {titre[:44]} » -> {err}")
+    if approx:
+        print(f"{'':26} rapproches par similarite ({len(approx)}) :")
+        for n, titre, cid, note in approx:
+            print(f"{'':28} ligne {n} « {titre[:40]} » -> {cid}  [{note}]")
     if sans:
         print(f"{'':26} {len(sans)} cours du plan sans creneau")
 
-    if not soucis:
+    rapport = {'programme': slug, 'nonResolus': [
+        {'ligne': n, 'titre': t, 'raison': e} for n, t, e in soucis],
+        'rapprochesParSimilarite': [
+        {'ligne': n, 'titre': t, 'retenu': c, 'note': e} for n, t, c, e in approx]}
+    json.dump(rapport, io.open(f'{SORTIE}/rapport-{slug}.json', 'w', encoding='utf-8'),
+              ensure_ascii=False, indent=1)
+
+    if creneaux:
         out = {
             'programme': slug,
             'source': {
@@ -155,7 +203,7 @@ def construire(slug):
                 'url': 'https://applicationspub.unil.ch/interpub/noauth/php/Ud/index.php?v_ueid=173&v_langue=fr',
                 'releveLe': '2026-08-26',
                 'releveParUnHumain': True,
-                'note': "Transcription d'images. Les intitulés sont recoupés automatiquement avec le catalogue, mais les heures et les salles ne peuvent pas l'être : à vérifier sur l'horaire officiel avant de s'inscrire.",
+                'note': "Extrait des PDF officiels par géométrie. Les heures sont calées automatiquement sur la grille du document. Les intitulés sont recoupés avec le catalogue ; ceux que la mise en page du PDF a hachés au point de les rendre méconnaissables sont exclus et listés dans rapport-<master>.json.",
             },
             'creneaux': creneaux,
         }

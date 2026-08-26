@@ -103,10 +103,12 @@ export function Planificateur({
   master,
   regles,
   catalogue,
+  releve,
 }: {
   master: Master;
   regles: Regles;
   catalogue: Cours[];
+  releve: { releveLe: string; url: string; note?: string } | null;
 }) {
   const [selection, setSelection] = useState<Set<string>>(new Set());
   const [recherche, setRecherche] = useState("");
@@ -203,6 +205,27 @@ export function Planificateur({
                 <GrilleHoraire cours={avecHoraire} semestre={s} enConflit={enConflit} />
               </div>
             ))}
+
+            {releve && (
+              <p className="text-[11.5px] leading-relaxed text-muted">
+                Horaires relevés le{" "}
+                {new Date(releve.releveLe).toLocaleDateString("fr-CH", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}{" "}
+                sur l&apos;
+                <a
+                  href={releve.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-unil-400 underline underline-offset-2"
+                >
+                  agenda officiel de l&apos;UNIL
+                </a>
+                . Recoupe les avant de t&apos;inscrire : un horaire peut changer.
+              </p>
+            )}
           </div>
         )}
 

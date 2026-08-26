@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Planificateur } from "@/components/app/Planificateur";
-import { coursDe, master, reglesDe, tousLesMasters, verifierHoraires } from "@/lib/donnees";
+import { coursDe, horairesDe, master, reglesDe, tousLesMasters, verifierHoraires } from "@/lib/donnees";
 import { LANGUES, estLangue } from "@/lib/langues";
 
 export function generateStaticParams() {
@@ -87,7 +87,12 @@ export default async function PageMaster({
           </p>
         </section>
 
-        <Planificateur master={m} regles={regles} catalogue={catalogue} />
+        <Planificateur
+          master={m}
+          regles={regles}
+          catalogue={catalogue}
+          releve={horairesDe(slug)?.source ?? null}
+        />
       </main>
 
       <SiteFooter />
