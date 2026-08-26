@@ -138,3 +138,44 @@ master, et rappelée dans l'avertissement de non affiliation.
 
 Les plans d'études des années antérieures restent listés sur la page HEC pour
 celles et ceux qui suivent un ancien cursus. MYP ne les reprend pas.
+
+---
+
+## 8. Les codes des plans, et qui les traduit
+
+Les plans notent la langue d'enseignement et le type d'évaluation par des
+lettres. Le site les affiche en toutes lettres, et il faut savoir d'où vient
+chaque libellé.
+
+**La langue d'enseignement.** Les deux légendes officielles ne se recouvrent
+pas, ce qui est un piège réel :
+
+| Plan | Légende, citée telle quelle |
+|---|---|
+| Rédigé en français | « Langue: Langue d'enseignement (F: Français; A: Anglais) » |
+| Rédigé en anglais | « Language: Teaching language (F: French; E: English) » |
+
+Donc **`A` et `E` désignent tous les deux l'anglais**, selon la langue du
+document dont le cours provient. Le site les ramène à une seule notion.
+
+**Le type d'évaluation.** La légende n'existe qu'en français, y compris dans
+les plans rédigés en anglais, qui ne définissent que ECTS et Language. Le
+libellé français est celui de la légende, mot pour mot :
+
+> Type d'évaluation: E: Examen écrit; ENEP: Examen numérique en présentiel;
+> O: Examen oral; VCN: Validation continue notée; M: Mémoire
+
+**Le libellé anglais de ces types est une traduction de ma main**, pas un texte
+officiel, faute de source. Elle est dans `apps/web/lib/codes.ts`.
+
+**`VM` n'est défini nulle part.** Il apparaît sur trois cours du MScIS
+(Digital Innovation week, et les deux séminaires d'introduction à la
+recherche). Il n'est pas deviné : il s'affiche tel quel. À demander à
+l'administration si l'occasion se présente.
+
+**Les intitulés ne sont jamais traduits.** Ni les titres de cours, ni les
+intitulés de diplôme, ni les notes de module. HEC ne publie pas les dix
+intitulés officiels en anglais, et en inventer un serait fabriquer une donnée
+officielle. Seules les étiquettes courtes du sélecteur de master
+(`courtEn` dans `data/masters.json`) sont écrites pour le site, et le fichier
+le dit.

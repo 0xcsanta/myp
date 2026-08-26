@@ -13,11 +13,27 @@
 
 ## Demandé, pas encore construit
 
+- [x] **Le site en français et en anglais.** Fait le 27 août. `/fr` et `/en`
+      pour l'accueil, `/app/fr` et `/app/en` pour le planificateur, avec une
+      bascule dans l'en tête qui garde la page où on est. Le dictionnaire
+      (`lib/textes.ts`) est typé d'après le français : une chaîne oubliée en
+      anglais arrête la compilation, plutôt que de servir du français sous une
+      adresse anglaise.
+      Ce qui vient des documents officiels n'est **pas** traduit : intitulés de
+      cours, intitulés de diplôme, notes de module. Une ligne le dit au lecteur
+      dans les deux langues, car l'inverse est fréquent : la page française
+      porte beaucoup de titres anglais.
+      Reste à vérifier avec Clément : faut il pointer les liens UNIL vers leurs
+      pages anglaises. Elles existent mais leurs adresses ne se déduisent pas
+      de la version française, et je n'ai pas voulu deviner une adresse qui
+      renverrait une page introuvable.
+
 - [x] **Export du calendrier en PDF et en PNG.** Fait le 27 août. La grille est
       redessinée sur un canevas, ce qui donne une image nette, puis le PDF est
       assemblé à la main autour de ce JPEG. Aucune bibliothèque : un moteur de
       rendu HTML vers image pèserait plusieurs centaines de kilooctets pour un
       résultat moins propre. Un bouton par semestre et par format.
+      L'export sort dans la langue de la page, nom de fichier compris.
       Reste l'export `.ics`, non fait.
 
 - [ ] **Plusieurs styles de calendrier, avec fond personnalisable.**
@@ -35,13 +51,13 @@
       plan d'études **2025-2026**, le dernier publié par HEC, et c'est écrit
       tel quel dans le pied de page. Les horaires ne sont pas encore intégrés,
       donc on ne les annonce pas. Quand HEC publiera le plan 2026-2027, mise à
-      jour si le temps le permet.
+      jour si le temps le permet. Les horaires **sont** intégrés depuis le
+      27 août, et le pied de page a été corrigé en conséquence.
 - [x] **Périmètre.** Tranché le 26 août 2026 : **HEC uniquement**. Les autres
       facultés ne sont pas un objectif, ni annoncé ni préparé. Si la demande
       vient, on décidera à ce moment là. Ne rien construire « au cas où » :
       le schéma reste simple tant qu'il ne sert qu'à HEC.
-- [ ] **Périmètre de la version 1.** Les dix masters, ou le seul MScIS pour
-      tester auprès des camarades.
+- [x] **Périmètre de la version 1.** Tranché par Clément : **les dix masters**.
 - [x] **Supabase.** Authentifié le 26 août 2026. Les outils du serveur du projet
       arrivent au prochain démarrage de session.
 - [ ] **Envoyer la demande d'accès à l'UNIL** (brouillon prêt dans

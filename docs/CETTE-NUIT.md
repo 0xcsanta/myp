@@ -82,6 +82,51 @@ date du relevé et un lien vers l'agenda officiel.
 Un cours sans horaire relevé n'affiche rien de faux : le rail écrit combien de
 cours de ta sélection ne sont pas vérifiés.
 
+## Le site parle anglais
+
+`/fr` et `/en` pour l'accueil, `/app/fr` et `/app/en` pour le planificateur,
+avec une bascule dans l'en tête qui garde la page où tu es. Le dictionnaire est
+typé d'après le français : si j'oublie une phrase en anglais, la compilation
+s'arrête. Je préfère ça à une page anglaise qui sert du français en douce.
+
+**Ce qui vient de HEC n'est pas traduit.** Les intitulés de cours, les
+intitulés de diplôme et les notes de module restent dans la langue où HEC les
+publie. Traduire un intitulé officiel, ce serait inventer une donnée. Une ligne
+le dit au lecteur, dans les deux sens : la page française porte elle aussi
+beaucoup de titres anglais.
+
+## Les codes des plans, enfin lisibles
+
+Une ligne de cours affichait « A · VCN+ENEP · examen 120 min ». Elle affiche
+maintenant « anglais · validation continue notée et examen numérique en
+présentiel · examen 120 min ».
+
+En allant chercher la légende officielle, j'ai trouvé un vrai piège. Les plans
+rédigés en français écrivent « A: Anglais », ceux rédigés en anglais écrivent
+« E: English ». **Le même anglais s'écrivait donc `A` ou `E` selon le
+document**, et le site montrait deux codes pour une seule réalité. C'est
+ramené à une seule notion.
+
+Un code n'est pas deviné : `VM`, qui apparaît sur trois cours du MScIS, n'est
+défini dans aucune légende, donc il s'affiche tel quel. À demander à
+l'administration si l'occasion se présente.
+
+Le libellé français est celui de la légende mot pour mot. **L'anglais est une
+traduction de ma main**, faute de source : aucun plan ne donne cette légende en
+anglais, pas même ceux qui sont écrits en anglais.
+
+## Deux corrections trouvées en vérifiant
+
+**Le planificateur débordait sur téléphone**, de 350 pixels sur un écran de
+390. La grille horaire garde une largeur minimale de 720 pixels pour rester
+lisible, et elle repoussait toute la page au lieu de défiler dans son cadre.
+Corrigé, et le compteur de crédits vient maintenant se coller en bas de l'écran
+tant que le rail est hors champ : sur téléphone il passait sous le catalogue,
+donc après une quarantaine de cours.
+
+**Le pied de page annonçait encore que les horaires n'étaient pas intégrés.**
+C'était vrai avant cette nuit.
+
 ## Ce qui t'attend
 
 1. **Regarder ton propre master.** Coche ton plan réel sur `/app/fr/mscis` et
@@ -91,8 +136,15 @@ cours de ta sélection ne sont pas vérifiés.
    corrigés : ce sont des cours de 2026-2027.
 3. **L'export PDF et PNG est fait**, un bouton par semestre et par format, sous
    les grilles. Essaie le, le fichier porte le nom du master et du semestre.
-4. **Le reste du chantier** : export `.ics`, anglais, styles de calendrier,
-   mise en ligne.
+4. **L'anglais est fait.** Regarde `/en` et `/app/en/mscis`, dis moi si le ton
+   te va. Une question ouverte pour toi : les liens vers l'UNIL pointent vers
+   les pages françaises, même en anglais. Leurs versions anglaises existent
+   mais leurs adresses ne se déduisent pas, et je n'ai pas voulu deviner une
+   adresse qui tomberait sur une page introuvable.
+5. **Le reste du chantier** : export `.ics`, styles de calendrier (tu m'as
+   demandé de te le rappeler, donc je te le rappelle : **on devait en
+   rediscuter ensemble avant que je construise quoi que ce soit**), mise en
+   ligne.
 
 ## L'export, en deux mots
 
