@@ -29,6 +29,10 @@
 ## Décisions en attente
 
 - [x] **Le nom.** Tranché : **MYP, Master Your Plan**, choisi par Clément.
+- [x] **Périmètre.** Tranché le 26 août 2026 : **HEC uniquement**. Les autres
+      facultés ne sont pas un objectif, ni annoncé ni préparé. Si la demande
+      vient, on décidera à ce moment là. Ne rien construire « au cas où » :
+      le schéma reste simple tant qu'il ne sert qu'à HEC.
 - [ ] **Périmètre de la version 1.** Les dix masters, ou le seul MScIS pour
       tester auprès des camarades.
 - [x] **Supabase.** Authentifié le 26 août 2026. Les outils du serveur du projet

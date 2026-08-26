@@ -5,8 +5,8 @@ plan d'études : compteur de crédits ECTS en direct, vérification des minimums
 par module, alerte quand on dépasse le total du diplôme, détection des
 chevauchements d'horaire, et export du calendrier.
 
-Périmètre initial : les dix masters de HEC Lausanne. L'architecture est prévue
-pour s'étendre aux autres facultés.
+Périmètre : **les dix masters de HEC Lausanne**, et rien d'autre. Une extension
+à d'autres facultés se décidera à la demande, si elle vient, et pas avant.
 
 > **MYP est un projet indépendant réalisé par [Omniscient](https://omniscient.swiss).
 > Il n'est ni affilié à l'Université de Lausanne, ni approuvé, ni soutenu, ni
