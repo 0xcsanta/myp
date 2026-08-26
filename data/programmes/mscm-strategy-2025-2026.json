@@ -1,0 +1,622 @@
+{
+ "programme": "mscm-strategy",
+ "year": "2025-2026",
+ "courses": [
+  {
+   "title": "Statistical Methods for Management - all orientations",
+   "teachers": "Boldi M.-O.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Strategic Management - SOL/BEE orientations",
+   "teachers": "Amer Maistriau E.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E ENEP 120"
+  },
+  {
+   "title": "Organizational Theory and Decision Making - SOL/BEE orientations",
+   "teachers": "Grieder M.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Genes, Populations and Evolution - BEE orientation",
+   "teachers": "Lehmann L.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 15,
+   "raw": "E O 15"
+  },
+  {
+   "title": "Data Science Methods for Management - BA orientation",
+   "teachers": "Vialfont A.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Optimization Methods for Management - BA orientation",
+   "teachers": "Oeuvray R.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "Marketing Science - MKT orientation",
+   "teachers": "Clegg M.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Strategic Marketing - MKT orientation",
+   "teachers": "Engeler I.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Grand Challenges Strategy Project",
+   "teachers": "Haack P.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Innovation Strategy Project (for SOL orientation only)",
+   "teachers": "Queiros R.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Strategy Development Project (for SOL orientation only)",
+   "teachers": "Delbreil M.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Sustainability Strategy Project",
+   "teachers": "Aeschlimann S./Fischer C.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Advanced Project Management & Outsourcing in a Digital Era",
+   "teachers": "Bienz P.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Crisis Management (limited to 17 students)",
+   "teachers": "Zanarone G./Schmid Mast M.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Social Well Being",
+   "teachers": "Clergue V.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Advanced issues in International and European Tax Law",
+   "teachers": "Danon R.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "Entrepreneurship, Innovation and Control Systems (limited to 35 students)",
+   "teachers": "Davila A.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "La recherche dans tous ses états",
+   "teachers": "Preissmann D.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A"
+  },
+  {
+   "title": "Normes comptables internationales (IFRS)",
+   "teachers": "Bianchi A.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "F ENEP 120"
+  },
+  {
+   "title": "Strategic Pricing",
+   "teachers": "Christen M.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Corporate Strategy (Limited to 36 students)",
+   "teachers": "Castañer X.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "International Strategy",
+   "teachers": "Zanarone G.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Managing Contractual Relationship",
+   "teachers": "Zanarone G.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Management of AI in Organizations (course limited)",
+   "teachers": "Shrestha Y.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 60,
+   "raw": "E VCN + ENEP 60"
+  },
+  {
+   "title": "The Management of Risk, Reputation and Legitimacy",
+   "teachers": "Haack P.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Applied Strategy Consulting",
+   "teachers": "Borghi G. / Barras N. / P. Domicent",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Corporate Sustainability (Aut26)",
+   "teachers": "Philippe D.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Digital Strategies and Innovation",
+   "teachers": "Missonier S.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN+ENEP",
+   "examMinutes": 60,
+   "raw": "F VCN + ENEP 60"
+  },
+  {
+   "title": "Entrepreneurship and Strategy (limited to 60 students)",
+   "teachers": "Tsukanova T.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Human Decisions-Making and the SDGs",
+   "teachers": "Vogt S.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Social Innovation Lab (Limited to 15 students)",
+   "teachers": "Romon Carnegie E.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Social Norms and Social Tipping: Mechanisms of Behavioral Change",
+   "teachers": "Vogt S.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Strategic Management Control Systems",
+   "teachers": "Schnegg M. / Mejri F.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Strategy in Digital Markets",
+   "teachers": "Peukert C.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Strategy of Innovation",
+   "teachers": "Cagnolo E.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Group Processes",
+   "teachers": "Krings F.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN+ENEP 120"
+  },
+  {
+   "title": "Power and Leadership",
+   "teachers": "Tur B.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Simple Rules for Leadership and Strategy: a Practical Approach",
+   "teachers": "Marewski J.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Evidence-Based Management",
+   "teachers": "Dietz J.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN+ENEP N/A"
+  },
+  {
+   "title": "Heuristic Decision Making Strategies",
+   "teachers": "Marewski J.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Human Behavior and Evolutionary Inference",
+   "teachers": "Efferson C.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Leadership Development",
+   "teachers": "Bendahan S.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Managerial Decision Making",
+   "teachers": "Hoffrage U.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Unethical Decision Making – Advanced",
+   "teachers": "Hoffrage U./Palazzo G.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Unethical Decision Making – Basics",
+   "teachers": "Palazzo G./Hoffrage U.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "The Art of Writing a Master's Thesis",
+   "teachers": "Philippe D.",
+   "module": "M6",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VM N/A"
+  },
+  {
+   "title": "Thesis (Research or Internship)",
+   "teachers": "Choose your thesis director",
+   "module": "M6",
+   "ects": 27,
+   "semesters": [
+    4
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E/F M N/A"
+  }
+ ],
+ "source": {
+  "document": "mscm-strategy--plan--2025-2026.pdf",
+  "page": "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html",
+  "checkedOn": "2026-08-26"
+ }
+}

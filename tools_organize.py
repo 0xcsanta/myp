@@ -30,7 +30,7 @@ CODES = [
     (r'strategy|strategie',                            'mscm-strategy'),
     (r'\bsmt\b|durable|sustainable',                   'msc-smt'),
     (r'criminalite|\bmldcs\b',                         'mldcs'),
-    (r'reglement faculte hec|hautes etudes commerciales r', 'hec-faculte'),
+    (r'reglement faculte hec|hec faculte|hautes etudes commerciales r', 'hec-faculte'),
     (r'\bmscm\b|\bmanagement\b',                       'mscm'),
     (r'\bmscf\b|\bfinance\b',                          'mscf'),
     (r'\bmsce\b|\beconomie\b|economics|economie',      'msce'),
@@ -58,9 +58,14 @@ def read_head(path, pages=2):
     return re.sub(r'\s+', ' ', t), len(r.pages)
 
 def kind_of(name, txt):
+    # un nom deja normalise porte son type : le rangement doit etre idempotent,
+    # sinon une seconde execution reclasse les plans renommes en brochures
+    already = re.search(r'--(plan|annuaire|reglement|brochure)--|--(plan|annuaire|reglement|brochure)\.pdf$', name)
+    if already:
+        return already.group(1) or already.group(2)
     if 'Annuaire des cours' in txt:                        return 'annuaire'
-    if re.search(r'r[eè eé]glement', fold(name)):          return 'reglement'
-    if re.search(r"plan d'|orientation ", name, re.I):     return 'plan'
+    if re.search(r'reglement', fold(name)):                return 'reglement'
+    if re.search(r"plan d |orientation ", fold(name)):     return 'plan'
     if re.search(r'Entr[eé]e en vigueur', txt):            return 'reglement'
     return 'brochure'
 

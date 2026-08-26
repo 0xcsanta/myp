@@ -56,7 +56,22 @@ export function validate(selectedIds, rules, catalogue) {
     if (byModule[code] === undefined) byModule[code] = 0;
     byModule[code] += creditsOf(c, code);
   }
-  const total = sum(Object.values(byModule));
+
+  /*
+   * Un module parent n'a pas de cours a lui : ses credits sont ceux de ses
+   * sous-modules. Sans cette remontee, le Module 4 du MScIS reste a zero alors
+   * que le memoire et le seminaire le remplissent, et le total du diplome est
+   * compte deux fois.
+   */
+  const childrenOf = (code) => rules.modules.filter((m) => m.parent === code);
+  for (const m of rules.modules) {
+    const kids = childrenOf(m.code);
+    if (kids.length) byModule[m.code] = sum(kids.map((k) => byModule[k.code] ?? 0));
+  }
+
+  const total = sum(
+    rules.modules.filter((m) => !m.parent).map((m) => byModule[m.code] ?? 0)
+  );
 
   for (const m of rules.modules) {
     const got = byModule[m.code] ?? 0;

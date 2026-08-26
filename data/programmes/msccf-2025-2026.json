@@ -1,0 +1,466 @@
+{
+ "programme": "msccf",
+ "year": "2025-2026",
+ "courses": [
+  {
+   "title": "Accounting for Financial Instruments",
+   "teachers": "Oberson R.",
+   "module": "M1",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": 90,
+   "raw": "A ENEP 90"
+  },
+  {
+   "title": "Advanced Group Accounting",
+   "teachers": "Bytyqi B.",
+   "module": "M1",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": 180,
+   "raw": "A ENEP 180"
+  },
+  {
+   "title": "Audit Externe",
+   "teachers": "Delaloye P.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": 90,
+   "raw": "F ENEP 90"
+  },
+  {
+   "title": "Contrôle stratégique",
+   "teachers": "Oyon D.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "F ENEP 120"
+  },
+  {
+   "title": "Fiscalité de l'entreprise - Impôts directs",
+   "teachers": "Danon R.",
+   "module": "M1",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "F E 120"
+  },
+  {
+   "title": "IA en comptabilité, contrôle et finance",
+   "teachers": "El Fassi I.",
+   "module": "M1",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "F",
+   "evalType": "VCN+ENEP",
+   "examMinutes": 60,
+   "raw": "F VCN + ENEP 60"
+  },
+  {
+   "title": "Normes comptables internationales (IFRS)",
+   "teachers": "Bianchi A.",
+   "module": "M1",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "F ENEP 120"
+  },
+  {
+   "title": "Séminaire de restructuration financière",
+   "teachers": "Ambrosio G.",
+   "module": "M1",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "F ENEP 120"
+  },
+  {
+   "title": "Avanced Course in Governance and Corporate Finance",
+   "teachers": "Barroso R. / Zou D.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "A ENEP 120"
+  },
+  {
+   "title": "Advanced Management Accounting",
+   "teachers": "Davila A.",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "A ENEP 120"
+  },
+  {
+   "title": "Advanced Financial Analysis",
+   "teachers": "Kurtovic H.",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": 90,
+   "raw": "A ENEP 90"
+  },
+  {
+   "title": "Audit des systèmes d'information de gestion",
+   "teachers": "Campos E. / Arpino L.",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "F ENEP 120"
+  },
+  {
+   "title": "Bank Accounting and Reporting",
+   "teachers": "Morin S. / Ribeiro S.",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "A ENEP 120"
+  },
+  {
+   "title": "Corporate Sustainability Reporting",
+   "teachers": "Habermann F.",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": 90,
+   "raw": "A ENEP 90"
+  },
+  {
+   "title": "Fiscalité directe II & Fiscalité indirecte (TVA)",
+   "teachers": "Glauser P.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "F ENEP 120"
+  },
+  {
+   "title": "Gestion du risque (MSc)",
+   "teachers": "Fragnière E.",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "A ENEP 120"
+  },
+  {
+   "title": "Capital Markets Research in Accounting",
+   "teachers": "Markarian G.",
+   "module": "SM3.1",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A"
+  },
+  {
+   "title": "Empirical Research in Accounting and Control",
+   "teachers": "Habermann F.",
+   "module": "SM3.1",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A"
+  },
+  {
+   "title": "Recherche en gouvernance d'entreprise I",
+   "teachers": "El Fassi I.",
+   "module": "SM3.1",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A"
+  },
+  {
+   "title": "Recherche en gouvernance d'entreprise II",
+   "teachers": "Oyon D.",
+   "module": "SM3.1",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A"
+  },
+  {
+   "title": "Research in Fair Value and Bank Accounting",
+   "teachers": "Aoun A.",
+   "module": "SM3.1",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A"
+  },
+  {
+   "title": "Research in Regulation",
+   "teachers": "Rudolf N.",
+   "module": "SM3.1",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A"
+  },
+  {
+   "title": "Research in Sustainability Accounting",
+   "teachers": "Melloni G.",
+   "module": "SM3.1",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A"
+  },
+  {
+   "title": "Research Seminar in Management Control",
+   "teachers": "Davila A.",
+   "module": "SM3.1",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A"
+  },
+  {
+   "title": "Advanced issues in International and European Tax Law",
+   "teachers": "Danon R.",
+   "module": "SM3.2",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "A E 120"
+  },
+  {
+   "title": "Analyse financière appliquée",
+   "teachers": "Effgen M.",
+   "module": "SM3.2",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A"
+  },
+  {
+   "title": "Audit des institutions financières",
+   "teachers": "Moser N.",
+   "module": "SM3.2",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": 30,
+   "raw": "F O 30"
+  },
+  {
+   "title": "Comptabilité comparée : RPC-IFRS",
+   "teachers": "Dousse V.",
+   "module": "SM3.2",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "F E 120"
+  },
+  {
+   "title": "Entrepreneurship, Innovation and Control Systems",
+   "teachers": "Davila A.",
+   "module": "SM3.2",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A"
+  },
+  {
+   "title": "International Tax Disputes & Investment Treaty Arbitration",
+   "teachers": "Danon R.",
+   "module": "SM3.2",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "A E 120"
+  },
+  {
+   "title": "Séminaire d'Audit",
+   "teachers": "Bryois F.",
+   "module": "SM3.2",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "F E 120"
+  },
+  {
+   "title": "Séminaire de fiscalité",
+   "teachers": "Glauser P-M.",
+   "module": "SM3.2",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A"
+  },
+  {
+   "title": "Systèmes de contrôle de gestion appliqués",
+   "teachers": "Schnegg M.",
+   "module": "SM3.2",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A"
+  },
+  {
+   "title": "Stage MScCCF (voir détails # 3 ci-dessous)",
+   "teachers": "Superviseur de stage",
+   "module": "SM3.2",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F/A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F/A VCN N/A"
+  },
+  {
+   "title": "Mémoire de recherche",
+   "teachers": "Choisir votre directeur de mémoire",
+   "module": "M4",
+   "ects": 15,
+   "semesters": [
+    3
+   ],
+   "language": "F/A",
+   "evalType": "M",
+   "examMinutes": null,
+   "raw": "F/A M N/A"
+  }
+ ],
+ "source": {
+  "document": "msccf--plan--2025-2026.pdf",
+  "page": "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html",
+  "checkedOn": "2026-08-26"
+ }
+}

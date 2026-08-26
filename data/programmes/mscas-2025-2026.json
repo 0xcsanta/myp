@@ -1,0 +1,362 @@
+{
+ "programme": "mscas",
+ "year": "2025-2026",
+ "courses": [
+  {
+   "title": "Computational Tools for Actuaries",
+   "teachers": "Zucchinetti G.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 20,
+   "raw": "E VCN + O 20"
+  },
+  {
+   "title": "Insurance Economics",
+   "teachers": "Fuino M.",
+   "module": "M1",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + E 120"
+  },
+  {
+   "title": "Introduction to Data Science I",
+   "teachers": "Azizi I.",
+   "module": "M1",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Introduction to Data Science II",
+   "teachers": "Hieber P.",
+   "module": "M1",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "Mathematics of Compound Interest",
+   "teachers": "Viquerat S.",
+   "module": "M1",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "Principles of Finance",
+   "teachers": "Kistak S.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + E 120"
+  },
+  {
+   "title": "Probability and Stochastic Processes",
+   "teachers": "Albrecher H.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 180,
+   "raw": "E VCN + E 180"
+  },
+  {
+   "title": "Life Contingencies I",
+   "teachers": "Havrylenko Y.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 180,
+   "raw": "E VCN + E 180"
+  },
+  {
+   "title": "Loss Models",
+   "teachers": "Hashorva E.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "Data Science for Non-Life Insurance",
+   "teachers": "Hieber P.",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Risk Theory",
+   "teachers": "Albrecher H.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 180,
+   "raw": "E VCN + E 180"
+  },
+  {
+   "title": "Social Insurance",
+   "teachers": "Drouin A.",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + E 120"
+  },
+  {
+   "title": "Asset and Liability Management for Actuaries",
+   "teachers": "Wagner J.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + E 120"
+  },
+  {
+   "title": "Credibility Theory",
+   "teachers": "Smith N.",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "Dependence Modelling",
+   "teachers": "Ievlev P.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "Time Series (Aut26)",
+   "teachers": "Hashorva E.",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 90,
+   "raw": "E E 90"
+  },
+  {
+   "title": "Life Contingencies II",
+   "teachers": "Hieber P.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 180,
+   "raw": "E VCN + E 180"
+  },
+  {
+   "title": "Blockchain and Crypto Economy",
+   "teachers": "Ivliev S.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Cloud and Advanced Analytics",
+   "teachers": "Vlachos M.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Game Theory",
+   "teachers": "Klaus B.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 180,
+   "raw": "E E 180"
+  },
+  {
+   "title": "Simulation Methods in Finance and Insurance",
+   "teachers": "Tamraz M.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Financial Accounting",
+   "teachers": "Markarian G.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E ENEP 120"
+  },
+  {
+   "title": "Investments",
+   "teachers": "Goyal A.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E ENEP 120"
+  },
+  {
+   "title": "Mathématiques des caisses de pension",
+   "teachers": "Saïd L.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN+E",
+   "examMinutes": 180,
+   "raw": "F VCN + E 180"
+  },
+  {
+   "title": "Time Series",
+   "teachers": "Tamraz M.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 90,
+   "raw": "E E 90"
+  },
+  {
+   "title": "Prévoyance professionnelle",
+   "teachers": "Monnard Séchaud C.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": 15,
+   "raw": "F O 15"
+  },
+  {
+   "title": "Thesis (Research or Internship)",
+   "teachers": "Choose your thesis director",
+   "module": "M5",
+   "ects": 30,
+   "semesters": [
+    4
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E/F M N/A"
+  }
+ ],
+ "source": {
+  "document": "mscas--plan--2025-2026.pdf",
+  "page": "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html",
+  "checkedOn": "2026-08-26"
+ }
+}

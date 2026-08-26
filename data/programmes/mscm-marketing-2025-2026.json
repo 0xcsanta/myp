@@ -1,0 +1,440 @@
+{
+ "programme": "mscm-marketing",
+ "year": "2025-2026",
+ "courses": [
+  {
+   "title": "Statistical Methods for Management - all orientations",
+   "teachers": "Boldi M.-O.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Marketing Science - MKT orientation",
+   "teachers": "Clegg M.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Strategic Marketing - MKT orientation",
+   "teachers": "Engeler I.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Strategic Management - SOL/BEE orientations",
+   "teachers": "Amer Maistriau E.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E ENEP 120"
+  },
+  {
+   "title": "Organizational Theory and Decision Making - SOL/BEE orientationGsrieder",
+   "teachers": "M.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Genes, Populations and Evolution - BEE orientation",
+   "teachers": "Lehmann L.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 15,
+   "raw": "E O 15"
+  },
+  {
+   "title": "Data Science Methods for Management - BA orientation",
+   "teachers": "Vialfont A.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Optimization Methods for Management - BA orientation",
+   "teachers": "Oeuvray R.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "Company project in Marketing (for MKT orientation only)",
+   "teachers": "Dabrowska-Leszczynska A.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Brand Strategic Project (for MKT orientation only)",
+   "teachers": "Morhart F.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Advanced Project Management & Outsourcing in a Digital Era",
+   "teachers": "Bienz P.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Crisis Management (limited to 17 students)",
+   "teachers": "Zanarone G./Schmid Mast M.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Social Well Being",
+   "teachers": "Clergue V.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Advanced issues in International and European Tax Law",
+   "teachers": "Danon R.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "Entrepreneurship, Innovation and Control Systems",
+   "teachers": "Davila A.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "La recherche dans tous ses états",
+   "teachers": "Preissmann D.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A"
+  },
+  {
+   "title": "Normes comptables internationales (IFRS)",
+   "teachers": "Bianchi A.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "F ENEP 120"
+  },
+  {
+   "title": "Strategic Pricing",
+   "teachers": "Christen M.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Customer Relationship Management",
+   "teachers": "Haasova S.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Developing Behavioral Insights and Nudging",
+   "teachers": "Engeler I.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Digital Marketing Strategy",
+   "teachers": "Clegg M.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Distribution Management",
+   "teachers": "Eckardt T.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Grand Challenges Strategy Project",
+   "teachers": "Haack P.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Sustainability Strategy Project",
+   "teachers": "Aeschlimann S./Fischer C.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Business Case en Marketing",
+   "teachers": "Uhlmann V.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A"
+  },
+  {
+   "title": "Datascience for Marketing",
+   "teachers": "Schlager T.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Digital Strategies and Innovation",
+   "teachers": "Missonier S.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN+ENEP",
+   "examMinutes": 60,
+   "raw": "F VCN + ENEP 60"
+  },
+  {
+   "title": "Global Marketing",
+   "teachers": "Eckardt Th.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + E 120"
+  },
+  {
+   "title": "Heuristic Decision Making Strategies",
+   "teachers": "Marewski J.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Integrated Marketing Communications",
+   "teachers": "Haasova S.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Strategy of Innovation",
+   "teachers": "Cagnolo E.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "The Art of Writing a Master's Thesis",
+   "teachers": "Philippe D.",
+   "module": "M6",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VM N/A"
+  },
+  {
+   "title": "Thesis (Research or Internship)",
+   "teachers": "Choose your thesis director",
+   "module": "M6",
+   "ects": 27,
+   "semesters": [
+    4
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E/F M N/A"
+  }
+ ],
+ "source": {
+  "document": "mscm-marketing--plan--2025-2026.pdf",
+  "page": "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html",
+  "checkedOn": "2026-08-26"
+ }
+}

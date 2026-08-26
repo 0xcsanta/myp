@@ -1,0 +1,69 @@
+{
+ "programme": "mde",
+ "year": "2025-2026",
+ "totalEcts": 90,
+ "modules": [
+  {
+   "code": "M1",
+   "parent": null,
+   "label": "Module 1",
+   "minEcts": 24,
+   "kind": "free_choice",
+   "note": "Enseignements à option (complément à la formation antérieure)"
+  },
+  {
+   "code": "SM1",
+   "parent": "M1",
+   "label": "Sousmodule 1",
+   "minEcts": 24,
+   "kind": "free_choice",
+   "note": "a: Cours à option pour les titulaires d'un Baccalauréat universitaire en Droit"
+  },
+  {
+   "code": "SM1",
+   "parent": "M1",
+   "label": "Sousmodule 1",
+   "minEcts": 24,
+   "kind": "free_choice",
+   "note": "b: Cours à option pour les titulaires d'un Baccalauréat ès Sciences en sciences économiques"
+  },
+  {
+   "code": "M2",
+   "parent": null,
+   "label": "Module 2",
+   "minEcts": 15,
+   "kind": "free_choice",
+   "note": "Enseignements à option (fondements)"
+  },
+  {
+   "code": "M3",
+   "parent": null,
+   "label": "Module 3",
+   "minEcts": 36,
+   "kind": "free_choice",
+   "note": "Enseignement à option"
+  },
+  {
+   "code": "M4",
+   "parent": null,
+   "label": "Module 4",
+   "minEcts": 15,
+   "kind": "thesis",
+   "note": "Mémoire de Master"
+  }
+ ],
+ "checks": [
+  "module_min",
+  "module_max",
+  "total_ects",
+  "time_clash",
+  "semester_offered",
+  "prereq_met",
+  "capacity_limited"
+ ],
+ "source": {
+  "document": "mde--plan--2025-2026.pdf",
+  "page": "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html",
+  "checkedOn": "2026-08-26"
+ }
+}

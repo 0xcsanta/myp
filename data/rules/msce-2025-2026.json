@@ -1,0 +1,46 @@
+{
+ "programme": "msce",
+ "year": "2025-2026",
+ "totalEcts": 120,
+ "modules": [
+  {
+   "code": "M1",
+   "parent": null,
+   "label": "Module 1",
+   "minEcts": 30,
+   "kind": "all_required",
+   "note": "Average set (≥4.0) of compulsory courses",
+   "avgMin": 4.0
+  },
+  {
+   "code": "M2",
+   "parent": null,
+   "label": "Module 2",
+   "minEcts": 60,
+   "kind": "free_choice",
+   "note": "Optional courses for Mentions and the BEE Specialisation"
+  },
+  {
+   "code": "M3",
+   "parent": null,
+   "label": "Module 3",
+   "minEcts": 30,
+   "kind": "thesis",
+   "note": "Master thesis"
+  }
+ ],
+ "checks": [
+  "module_min",
+  "module_max",
+  "total_ects",
+  "time_clash",
+  "semester_offered",
+  "prereq_met",
+  "capacity_limited"
+ ],
+ "source": {
+  "document": "msce--plan--2025-2026.pdf",
+  "page": "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html",
+  "checkedOn": "2026-08-26"
+ }
+}

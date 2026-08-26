@@ -1,0 +1,1180 @@
+{
+ "programme": "mde",
+ "year": "2025-2026",
+ "courses": [
+  {
+   "title": "Comptabilité et analyse des états financiers",
+   "teachers": "A. Schatt",
+   "module": "SM1",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 H F"
+  },
+  {
+   "title": "bEconomie I",
+   "teachers": "Q. Gallea /Ayoubi C.",
+   "module": "SM1",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 H"
+  },
+  {
+   "title": "Empirical Methods for Lawyers",
+   "teachers": "C. Thoeni",
+   "module": "SM1",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN+E",
+   "examMinutes": null,
+   "raw": "A VCN + E 120 H"
+  },
+  {
+   "title": "Introduction à la finance",
+   "teachers": "F. Alessandrini",
+   "module": "SM1",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 180 H F"
+  },
+  {
+   "title": "#Leadership development",
+   "teachers": "S. Bendahan",
+   "module": "SM1",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A"
+  },
+  {
+   "title": "Microeconomics and Game Theory",
+   "teachers": "C. Thoeni",
+   "module": "SM1",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "A E 120 H"
+  },
+  {
+   "title": "Stratégie d'entreprise",
+   "teachers": "J. Monnier",
+   "module": "SM1",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN+O",
+   "examMinutes": null,
+   "raw": "F VCN + O 20 H"
+  },
+  {
+   "title": "bEconomie II",
+   "teachers": "Tièche / S. Huetsch L. / Houde S.",
+   "module": "SM1",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 150 H"
+  },
+  {
+   "title": "bDroit de l'Union européenne",
+   "teachers": "F. Maiani",
+   "module": "SM1",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 D"
+  },
+  {
+   "title": "Droit des obligations",
+   "teachers": "P. Favrod-Coune",
+   "module": "SM1",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "Droit pénal",
+   "teachers": "N. Dongois",
+   "module": "SM1",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "Droit public",
+   "teachers": "A. Neuenschwander",
+   "module": "SM1",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 D"
+  },
+  {
+   "title": "Méthodes en droit des affaires",
+   "teachers": "E. Philippin/J. Rouvinez",
+   "module": "SM1",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 30 D"
+  },
+  {
+   "title": "bDroit des poursuites et faillites",
+   "teachers": "Peter H. / Muster E.",
+   "module": "SM1",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "° Advanced Issues in International & European Tax Law",
+   "teachers": "R. Danon",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "A E 120 H/D T"
+  },
+  {
+   "title": "f Fiscalité de l'entreprise - impôts directs",
+   "teachers": "R. Danon",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 H/D T"
+  },
+  {
+   "title": "Droit bancaire",
+   "teachers": "C. Lombardini",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D F"
+  },
+  {
+   "title": "Droit des marchés financiers",
+   "teachers": "A. Richa",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D F"
+  },
+  {
+   "title": "Entreprenariat : outils et atelier",
+   "teachers": "L. Halifi",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A H"
+  },
+  {
+   "title": "f Fiscalité directe II & Fiscalité indirecte (TVA)",
+   "teachers": "P.M. Glauser",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F ENEP 120 H/D T"
+  },
+  {
+   "title": "Rédaction de contrats",
+   "teachers": "A. Richa",
+   "module": "M2",
+   "ects": 3,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 180 D"
+  },
+  {
+   "title": "°°Advanced Group Accounting",
+   "teachers": "B. Bytyqi",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "A ENEP 180 H"
+  },
+  {
+   "title": "Arbitrage en droit du sport",
+   "teachers": "A. Rigozzi/M . Viret",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "°°°Audit externe",
+   "teachers": "P. Delaloye",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F ENEP 90 H/D"
+  },
+  {
+   "title": "°°°Contrôle stratégique",
+   "teachers": "D. Oyon",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F ENEP 120 H"
+  },
+  {
+   "title": "Corporate Sustainability (Aut26)",
+   "teachers": "D. Philippe",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A H/D"
+  },
+  {
+   "title": "Droit de la consommation",
+   "teachers": "A.C. Fornage",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 D"
+  },
+  {
+   "title": "Droit des assurances privées",
+   "teachers": "V. Brulhart",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D F"
+  },
+  {
+   "title": "Droit des obligations approfondi (A25/P27)",
+   "teachers": "A. Morin",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    2
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 90 D"
+  },
+  {
+   "title": "bDroit des sociétés",
+   "teachers": "A. Richa/J. Guex",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F ENEP 120 D"
+  },
+  {
+   "title": "Droit fiscal du patrimoine",
+   "teachers": "Y. Noël/Monod/J.Ph. Krafft",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D T"
+  },
+  {
+   "title": "Droit de l'immobilier",
+   "teachers": "Th. Dubois",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "xxDroit et éthique de la profession d'avocat",
+   "teachers": "T. Stegmüller",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "Entraide judiciaire internationale en matière pénale",
+   "teachers": "A. Macaluso",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 D"
+  },
+  {
+   "title": "Entrepreneurship, Innovation and Control Systems",
+   "teachers": "T. Davila",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A H"
+  },
+  {
+   "title": "IA en comptabilité, contrôle et finance",
+   "teachers": "I. El Fassi",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN+ENEP",
+   "examMinutes": null,
+   "raw": "F VCN + ENEP 60 H F"
+  },
+  {
+   "title": "International Tax Disputes & Investment Treaty Arbitration",
+   "teachers": "R. Danon",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "A E 120 H/D T"
+  },
+  {
+   "title": "La philanthropie et ses principaux enjeux juridiques (UNIGE)",
+   "teachers": "G. Neri-Castracane",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 20 D"
+  },
+  {
+   "title": "La recherche dans tous ses états",
+   "teachers": "D. Preissmann",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A H/D"
+  },
+  {
+   "title": "x Le gouvernement d'entreprise (Aut26)",
+   "teachers": "TBH",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F ENEP 120 D F"
+  },
+  {
+   "title": "Managerial Decision Making",
+   "teachers": "U. Hoffrage",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A H"
+  },
+  {
+   "title": "Médiation civile et commerciale",
+   "teachers": "C. Lévy",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "Normes comptables internationales IFRS",
+   "teachers": "A. Bianchi",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F ENEP 120 H F"
+  },
+  {
+   "title": "Procédure civile",
+   "teachers": "P. Dietschy",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "Procédure et juridiction administratives",
+   "teachers": "B. Bovay / C. Bouchat",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "Procédure pénale/DPA",
+   "teachers": "A. Gabarsky / A. Macaluso",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 D"
+  },
+  {
+   "title": "Propriété intellectuelle",
+   "teachers": "P. Gilliéron",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "Protection des données",
+   "teachers": "S. Métille",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 D"
+  },
+  {
+   "title": "Regulatory Economics",
+   "teachers": "C. Thöni",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 H F"
+  },
+  {
+   "title": "f Séminaire de fiscalité",
+   "teachers": "P.-M. Glauser",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A H/D T"
+  },
+  {
+   "title": "°°Séminaire de restucturation financière",
+   "teachers": "G. Ambrosio",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F ENEP 120 H F"
+  },
+  {
+   "title": "#Strategy of Innovation",
+   "teachers": "E. Cagnolo",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A H"
+  },
+  {
+   "title": "Taxation of Multinational Enterprises and Transfer Pricing Policy",
+   "teachers": "V. Chand",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "A E 120 H/D T"
+  },
+  {
+   "title": "Unethical decision making - Advanced",
+   "teachers": "Hoffrage U. / Palazzo G.",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A H"
+  },
+  {
+   "title": "Unethical decision making - Basics",
+   "teachers": "Palazzo G. / Hoffrage U.",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1,
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A H"
+  },
+  {
+   "title": "Advanced Financial Analysis",
+   "teachers": "Kurtovic H.",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "A ENEP 120 H F"
+  },
+  {
+   "title": "Advanced Project Management & Outsourcing in a Digital Era",
+   "teachers": "P. Bienz",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A H"
+  },
+  {
+   "title": "Analyse économique du droit",
+   "teachers": "L. Bieri",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 H/D"
+  },
+  {
+   "title": "Digitalization and Taxation: Focus on Global Minimum",
+   "teachers": "V. Chand",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "A E 60 H/D T"
+  },
+  {
+   "title": "Droit de la concurrence suisse et européen",
+   "teachers": "A. Heinemann / V. Marteret",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "Droit des marchés publics P26/P28",
+   "teachers": "Di Cicco D.",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "Droit du sport",
+   "teachers": "M. Viret",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E D"
+  },
+  {
+   "title": "Droit du travail",
+   "teachers": "Raedler D.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D"
+  },
+  {
+   "title": "Droit international économique",
+   "teachers": "A. Ziegler",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 D"
+  },
+  {
+   "title": "Droit pénal économique/DPA",
+   "teachers": "A. Garbarski / A. Macaluso",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 D F"
+  },
+  {
+   "title": "Droit pénal informatique",
+   "teachers": "S. Métille / N. Bottinelli",
+   "module": "M3",
+   "ects": 4,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 30 DCS"
+  },
+  {
+   "title": "Finance, droit et digitalisation (cours bloc avant début semestre)",
+   "teachers": "P. Favrod-Coune",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A H/D F"
+  },
+  {
+   "title": "Financial Institutions & Regulation",
+   "teachers": "A. Bruhin",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "VCN+E",
+   "examMinutes": null,
+   "raw": "F VCN + E 120 H F"
+  },
+  {
+   "title": "Fusions, acquisitions et régime des OPA",
+   "teachers": "E. Philippin",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O 15 D F"
+  },
+  {
+   "title": "International Commercial Arbitration",
+   "teachers": "A. Bonomi / E. Lein",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "A",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "A O 15 D"
+  },
+  {
+   "title": "International Corporate and Individual Taxation - International and European Perspective",
+   "teachers": "V. Chand",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "A E 120 H/D T"
+  },
+  {
+   "title": "International Strategy",
+   "teachers": "G. Zanarone",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A H"
+  },
+  {
+   "title": "Managing Contractual Relationship",
+   "teachers": "G. Zanarone",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A H"
+  },
+  {
+   "title": "Procédure fiscale",
+   "teachers": "R. Danon",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 120 D T"
+  },
+  {
+   "title": "Political and Institutional Economics",
+   "teachers": "Saia D.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "A",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "A E 120 H"
+  },
+  {
+   "title": "Power and Leadership",
+   "teachers": "B. Tur",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A H"
+  },
+  {
+   "title": "Simple Rules for Leadership and Strategy: a Practical Approach",
+   "teachers": "J. Marewski",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A H"
+  },
+  {
+   "title": "Swiss Moot Court - concours juridique",
+   "teachers": "Philippin E.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": null,
+   "raw": "F O N/A D"
+  },
+  {
+   "title": "Vienna Moot Court - Willem C. Vis International Commercial Arbitration Moot Court",
+   "teachers": "Bonomi A.",
+   "module": "M3",
+   "ects": 19,
+   "semesters": [],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A D"
+  },
+  {
+   "title": "Séminaire interfacultaire en environnement",
+   "teachers": "A. Guisan",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A H/D"
+  },
+  {
+   "title": "Economie publique (cours limité)",
+   "teachers": "L. Athias",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A H"
+  },
+  {
+   "title": "Politique économique et budgets publics en Suisse (cours limité)",
+   "teachers": "Th. Braendle / N. Soguel",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    2,
+    4
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "F E 2 H"
+  },
+  {
+   "title": "x Fiscal Policy",
+   "teachers": "N. Soguel",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A H T"
+  },
+  {
+   "title": "Mémoire (recherche ou stage)",
+   "teachers": "Choisir votre directeur de mémoire",
+   "module": "M4",
+   "ects": 15,
+   "semesters": [
+    2,
+    3,
+    4
+   ],
+   "language": "F/A",
+   "evalType": "M",
+   "examMinutes": null,
+   "raw": "F/A M N/A H/D"
+  }
+ ],
+ "source": {
+  "document": "mde--plan--2025-2026.pdf",
+  "page": "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html",
+  "checkedOn": "2026-08-26"
+ }
+}

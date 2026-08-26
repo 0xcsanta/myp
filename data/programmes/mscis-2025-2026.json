@@ -1,0 +1,286 @@
+{
+ "programme": "mscis",
+ "year": "2025-2026",
+ "courses": [
+  {
+   "title": "Data Science & Machine Learning",
+   "teachers": "Moosavi S.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "A",
+   "evalType": "VCN+ENEP",
+   "examMinutes": 120,
+   "raw": "A VCN + ENEP 120"
+  },
+  {
+   "title": "Digital Strategies and Innovation",
+   "teachers": "Missonier S.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "F/A",
+   "evalType": "VCN+ENEP",
+   "examMinutes": 60,
+   "raw": "F/A VCN + ENEP 60"
+  },
+  {
+   "title": "Software Architectures",
+   "teachers": "Delgado P.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "A",
+   "evalType": "VCN+ENEP",
+   "examMinutes": 120,
+   "raw": "A VCN + ENEP 120"
+  },
+  {
+   "title": "Business and IS Design",
+   "teachers": "Legner C.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "VCN+ENEP",
+   "examMinutes": 120,
+   "raw": "A VCN + ENEP 120"
+  },
+  {
+   "title": "Interaction Design",
+   "teachers": "Cherubini M.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "VCN+ENEP",
+   "examMinutes": 60,
+   "raw": "A VCN + ENEP 60"
+  },
+  {
+   "title": "BIP CIVIS - Digital Transformation of the Democratic Discourse",
+   "teachers": "Cherubini M.",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "A",
+   "evalType": "VCN+ENEP",
+   "examMinutes": 60,
+   "raw": "A VCN + ENEP 60"
+  },
+  {
+   "title": "Entreprise Data and Integration",
+   "teachers": "Estier T.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A"
+  },
+  {
+   "title": "Information Security & Privacy",
+   "teachers": "Huguenin K.",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "A",
+   "evalType": "VCN+E",
+   "examMinutes": 120,
+   "raw": "A VCN + E 120"
+  },
+  {
+   "title": "Preferable Futures through Business Modeling and Imagination",
+   "teachers": "Avdiji H. / Wicht P.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "F/A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F/A VCN N/A"
+  },
+  {
+   "title": "Strategy in Digital Markets",
+   "teachers": "Peuckert C.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "A VCN N/A"
+  },
+  {
+   "title": "Advanced Project Management & Outsourcing in a Digital Era",
+   "teachers": "Bienz P.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "F/A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F/A VCN N/A"
+  },
+  {
+   "title": "Audit & Gouvernance IT",
+   "teachers": "Borboën Y.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A"
+  },
+  {
+   "title": "Cloud and Advanced Analytics",
+   "teachers": "Vlachos M.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "VCN+ENEP",
+   "examMinutes": 120,
+   "raw": "A VCN + ENEP 120"
+  },
+  {
+   "title": "Digital Innovation and Design Thinking",
+   "teachers": "Zavolokina L.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "VCN+ENEP",
+   "examMinutes": 120,
+   "raw": "A VCN + ENEP 120"
+  },
+  {
+   "title": "Management of AI in Organizations (limited to 80 students)",
+   "teachers": "Shrestha Y.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "VCN+ENEP",
+   "examMinutes": 60,
+   "raw": "A VCN + ENEP 60"
+  },
+  {
+   "title": "Cybersecurity",
+   "teachers": "Humbert M.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "VCN+E",
+   "examMinutes": 120,
+   "raw": "A VCN + E 120"
+  },
+  {
+   "title": "Projet de semestre (voir Informations générales ci-dessous)",
+   "teachers": "Un.e professeur.e du MScIS",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    1,
+    2,
+    3
+   ],
+   "language": "F/A",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F/A VCN N/A"
+  },
+  {
+   "title": "Digital Innovation week",
+   "teachers": "Conti M.",
+   "module": "SM4.1",
+   "ects": 3,
+   "semesters": [
+    1
+   ],
+   "language": "F/A",
+   "evalType": "VM",
+   "examMinutes": null,
+   "raw": "F/A VM N/A"
+  },
+  {
+   "title": "Seminar: Introduction to IS Research",
+   "teachers": "Missonier S. / Legner C.",
+   "module": "SM4.1",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "F/A",
+   "evalType": "VM",
+   "examMinutes": null,
+   "raw": "F/A VM N/A"
+  },
+  {
+   "title": "Seminar: Introduction to Computer Science Research",
+   "teachers": "Garbinato B. / Humbert M.",
+   "module": "SM4.1",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "A",
+   "evalType": "VM",
+   "examMinutes": null,
+   "raw": "A VM N/A"
+  },
+  {
+   "title": "Mémoire (recherche ou stage)",
+   "teachers": "Choisir votre directeur de mémoire",
+   "module": "SM4.2",
+   "ects": 24,
+   "semesters": [
+    3
+   ],
+   "language": "F/A",
+   "evalType": "M",
+   "examMinutes": null,
+   "raw": "F/A M N/A"
+  }
+ ],
+ "source": {
+  "document": "mscis--plan--2025-2026.pdf",
+  "page": "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html",
+  "checkedOn": "2026-08-26"
+ }
+}

@@ -1,0 +1,80 @@
+{
+ "programme": "mscis",
+ "year": "2025-2026",
+ "totalEcts": 90,
+ "modules": [
+  {
+   "code": "M1",
+   "parent": null,
+   "label": "Module 1",
+   "minEcts": 18,
+   "kind": "all_required",
+   "note": "Moyenne pondérée (≥4.0) d’enseignements obligatoires",
+   "avgMin": 4.0
+  },
+  {
+   "code": "M2",
+   "parent": null,
+   "label": "Module 2",
+   "minEcts": 12,
+   "kind": "all_required",
+   "note": "Moyenne pondérée (≥4.0) d’enseignements obligatoires",
+   "avgMin": 4.0
+  },
+  {
+   "code": "M3",
+   "parent": null,
+   "label": "Module 3",
+   "minEcts": 30,
+   "kind": "free_choice",
+   "note": "Enseignements à option"
+  },
+  {
+   "code": "M4",
+   "parent": null,
+   "label": "Module 4",
+   "minEcts": 30,
+   "kind": "thesis",
+   "note": "Mémoire et activités pédagogiques"
+  },
+  {
+   "code": "SM4.1",
+   "parent": "M4",
+   "label": "Sous-Module 4.1",
+   "minEcts": 6,
+   "kind": "free_choice",
+   "note": "Activités pédagogiques à option"
+  },
+  {
+   "code": "SM4.2",
+   "parent": "M4",
+   "label": "Sous-Module 4.2",
+   "minEcts": 24,
+   "kind": "thesis",
+   "note": "Mémoire de Master",
+   "unlockedBy": {
+    "ectsFrom": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "atLeast": 60
+   },
+   "unlockedNote": "60 crédits ECTS du Module 1, 2 et 3"
+  }
+ ],
+ "checks": [
+  "module_min",
+  "module_max",
+  "total_ects",
+  "time_clash",
+  "semester_offered",
+  "prereq_met",
+  "capacity_limited"
+ ],
+ "source": {
+  "document": "mscis--plan--2025-2026.pdf",
+  "page": "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html",
+  "checkedOn": "2026-08-26"
+ }
+}

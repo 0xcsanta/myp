@@ -17,3 +17,5 @@ packages/scraper/.cache/
 # le site renvoie vers les URL officielles. Voir docs/SOURCES.md.
 allmaster/*.pdf
 allmaster/*.docx
+tools_*.pyc
+__pycache__/

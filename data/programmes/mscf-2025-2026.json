@@ -1,0 +1,453 @@
+{
+ "programme": "mscf",
+ "year": "2025-2026",
+ "courses": [
+  {
+   "title": "Corporate Finance",
+   "teachers": "Dimoupoulos T.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 180,
+   "raw": "E VCN + ENEP 180"
+  },
+  {
+   "title": "Datascience and Advanced Programming",
+   "teachers": "Scheidegger S.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Financial Accounting",
+   "teachers": "Markarian G.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E ENEP 120"
+  },
+  {
+   "title": "Investments",
+   "teachers": "Goyal A.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E ENEP 120"
+  },
+  {
+   "title": "Mathematics for Economics and Finance",
+   "teachers": "Schuerhoff N.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 180,
+   "raw": "E VCN + ENEP 180"
+  },
+  {
+   "title": "Derivatives",
+   "teachers": "Bretscher L.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + E 120"
+  },
+  {
+   "title": "Fixed Income and Credit Risk",
+   "teachers": "Karyampas D.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E ENEP 120"
+  },
+  {
+   "title": "Sustainability Aware Asset Management",
+   "teachers": "Jondeau E.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Empirical Methods in Finance",
+   "teachers": "Ielpo F.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 180,
+   "raw": "E VCN + E 180"
+  },
+  {
+   "title": "Alternative Investments",
+   "teachers": "Goyal A.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Managing Risk in Financial Institutions",
+   "teachers": "Mihet R.",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E ENEP 120"
+  },
+  {
+   "title": "Quantitative Asset and Risk Management II",
+   "teachers": "Divernois M.-A.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + E 120"
+  },
+  {
+   "title": "Valuation",
+   "teachers": "Eisfeld L.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Managing Risk in Financial Institutions",
+   "teachers": "Mihet R.",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E ENEP 120"
+  },
+  {
+   "title": "CFA General Research Challenge (see General Information below)",
+   "teachers": "Schuerhoff N.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Mergers, Acquisitions and Corporate Structuring",
+   "teachers": "Tazi A.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Private Equity & Venture Capital",
+   "teachers": "Dimoupolos T.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Blockchain and Crypto Economy",
+   "teachers": "Ivliev S.",
+   "module": "M3",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Advanced Data Analysis",
+   "teachers": "Scheidegger S.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Entrepreneurship and Strategy",
+   "teachers": "Tsukanova T.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Private Equity & Venture Capital",
+   "teachers": "Dimoupolos T.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Asset Pricing",
+   "teachers": "Bretscher L.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + E 120"
+  },
+  {
+   "title": "Droit bancaire",
+   "teachers": "Lombardini C.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": 15,
+   "raw": "F O 15"
+  },
+  {
+   "title": "Droit des marchés financiers",
+   "teachers": "Richa A.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "F",
+   "evalType": "O",
+   "examMinutes": 15,
+   "raw": "F O 15"
+  },
+  {
+   "title": "Financial Analysis",
+   "teachers": "Froidevaux J.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "International Strategy",
+   "teachers": "Zanarone G.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Real Estate Investments",
+   "teachers": "Celentano F.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "International Finance",
+   "teachers": "Zhao Z.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 90,
+   "raw": "E VCN + E 90"
+  },
+  {
+   "title": "Market Microstructure",
+   "teachers": "Mihet R.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Optimization Methods for Management",
+   "teachers": "Oeuvray R.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "Unethical Decision Making - Basics",
+   "teachers": "Hoffrage U./Palazzo G.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Unethical Decision Making - Advanced",
+   "teachers": "Palazzo G./Hoffrage U.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "CFA Advanced Research Challenge (See General Information below)",
+   "teachers": "Schürhoff N.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    4
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Thesis (Research or Internship)",
+   "teachers": "Choose your thesis director",
+   "module": "M5",
+   "ects": 30,
+   "semesters": [
+    4
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E/F M N/A"
+  }
+ ],
+ "source": {
+  "document": "mscf--plan--2025-2026.pdf",
+  "page": "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html",
+  "checkedOn": "2026-08-26"
+ }
+}

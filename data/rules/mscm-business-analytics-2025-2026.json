@@ -1,0 +1,71 @@
+{
+ "programme": "mscm-business-analytics",
+ "year": "2025-2026",
+ "totalEcts": 120,
+ "modules": [
+  {
+   "code": "M1",
+   "parent": null,
+   "label": "Module 1",
+   "minEcts": 18,
+   "kind": "all_required",
+   "note": "Average set (≥4.0) of compulsory courses",
+   "avgMin": 4.0
+  },
+  {
+   "code": "M2",
+   "parent": null,
+   "label": "Module 2",
+   "minEcts": 12,
+   "kind": "free_choice",
+   "note": "Average set (≥4.0) of restricted elective courses",
+   "avgMin": 4.0
+  },
+  {
+   "code": "M3",
+   "parent": null,
+   "label": "Module 3",
+   "minEcts": 6,
+   "kind": "free_choice",
+   "note": "Restricted elective courses"
+  },
+  {
+   "code": "M4",
+   "parent": null,
+   "label": "Module 4",
+   "minEcts": 18,
+   "kind": "free_choice",
+   "note": "Optional courses"
+  },
+  {
+   "code": "M5",
+   "parent": null,
+   "label": "Module 5",
+   "minEcts": 36,
+   "kind": "free_choice",
+   "note": "Optional courses in the orientation"
+  },
+  {
+   "code": "M6",
+   "parent": null,
+   "label": "Module 6",
+   "minEcts": 30,
+   "kind": "thesis",
+   "note": "Master thesis"
+  }
+ ],
+ "checks": [
+  "module_min",
+  "module_max",
+  "total_ects",
+  "time_clash",
+  "semester_offered",
+  "prereq_met",
+  "capacity_limited"
+ ],
+ "source": {
+  "document": "mscm-business-analytics--plan--2025-2026.pdf",
+  "page": "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html",
+  "checkedOn": "2026-08-26"
+ }
+}

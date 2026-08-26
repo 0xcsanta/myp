@@ -1,0 +1,479 @@
+{
+ "programme": "mscm-business-analytics",
+ "year": "2025-2026",
+ "courses": [
+  {
+   "title": "Statistical Methods for Management - all orientations",
+   "teachers": "Boldi M.-O.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Data Science Methods for Management - BA orientation",
+   "teachers": "Vialfont A.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Optimization Methods for Management - BA orientation",
+   "teachers": "Oeuvray R.",
+   "module": "M1",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "Strategic Management - SOL/BEE orientations",
+   "teachers": "Amer Maistriau E.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E ENEP 120"
+  },
+  {
+   "title": "Organizational Theory and Decision Making - SOL/BEE orientations",
+   "teachers": "Grieder M.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Genes, Populations and Evolution - BEE orientation",
+   "teachers": "Lehmann L.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 15,
+   "raw": "E O 15"
+  },
+  {
+   "title": "Marketing Science - MKT orientation",
+   "teachers": "Clegg M.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Strategic Marketing - MKT orientation",
+   "teachers": "Engeler I.",
+   "module": "M2",
+   "ects": 6,
+   "semesters": [
+    1
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E VCN + ENEP 120"
+  },
+  {
+   "title": "Analytics in Action: Business Intelligence with Real Data (for BA only)",
+   "teachers": "Vuillon L.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Analytics in Action: Operations Management through Simulation (for BA only)",
+   "teachers": "Hayek A.",
+   "module": "M3",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Advanced Project Management & Outsourcing in a Digital Era",
+   "teachers": "Bienz P.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Crisis Management (limited to 17 students)",
+   "teachers": "Zanarone G./Schmid Mast M.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Social Well Being",
+   "teachers": "Clergue V.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Advanced Data Analysis",
+   "teachers": "Scheidegger S.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Advanced issues in International and European Tax Law",
+   "teachers": "Danon R.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "E E 120"
+  },
+  {
+   "title": "Datascience and Advanced Programming",
+   "teachers": "Scheidegger S.",
+   "module": "M4",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Entrepreneurship, Innovation and Control Systems",
+   "teachers": "Davila A.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "La recherche dans tous ses états",
+   "teachers": "Preissmann D.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "VCN",
+   "examMinutes": null,
+   "raw": "F VCN N/A"
+  },
+  {
+   "title": "Normes comptables internationales (IFRS)",
+   "teachers": "Bianchi A.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "F",
+   "evalType": "E",
+   "examMinutes": 120,
+   "raw": "F ENEP 120"
+  },
+  {
+   "title": "Strategic Pricing",
+   "teachers": "Christen M.",
+   "module": "M4",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Production Planning and Scheduling",
+   "teachers": "Lurkin V.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Machine Learning in Business Analytics",
+   "teachers": "Vialfont A.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Multicriteria Decision Analysis",
+   "teachers": "Thiémard M.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Supply Chain Network Design and Planning",
+   "teachers": "Stauffer G.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Sustainable Logistics",
+   "teachers": "Gajda M.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    2
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Applied AI & Deep Learning for Managers: From Fundamentals to Business Applications",
+   "teachers": "Vatter Th.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Data and Code Management: From Collection to Application",
+   "teachers": "Orso S.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Demand Management",
+   "teachers": "Kaboli A.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Generative AI for Intelligent Information Extraction",
+   "teachers": "Vuillon L.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Insights from Text Data",
+   "teachers": "Baumgartner M.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Projects in Demand Forecasting",
+   "teachers": "Aviolat F.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Risk Analytics",
+   "teachers": "Aviolat F.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Software and Tools for Business Analytics",
+   "teachers": "Baumgartner M.",
+   "module": "M5",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "Sustainable Choice Models",
+   "teachers": "Lurkin V.",
+   "module": "M5",
+   "ects": 6,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VCN N/A"
+  },
+  {
+   "title": "The Art of Writing a Master's Thesis",
+   "teachers": "Philippe D.",
+   "module": "M6",
+   "ects": 3,
+   "semesters": [
+    3
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E VM N/A"
+  },
+  {
+   "title": "Thesis (Research or Internship)",
+   "teachers": "Choose your thesis director",
+   "module": "M6",
+   "ects": 27,
+   "semesters": [
+    4
+   ],
+   "language": "E",
+   "evalType": "E",
+   "examMinutes": null,
+   "raw": "E/F M N/A"
+  }
+ ],
+ "source": {
+  "document": "mscm-business-analytics--plan--2025-2026.pdf",
+  "page": "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html",
+  "checkedOn": "2026-08-26"
+ }
+}

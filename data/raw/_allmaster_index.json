@@ -1,7 +1,7 @@
 [
  {
   "file": "a-identifier--reglement.pdf",
-  "original": "hec-faculte--reglement.pdf",
+  "original": "a-identifier--reglement.pdf",
   "kind": "reglement",
   "slug": null,
   "year": null,
@@ -87,9 +87,9 @@
   "md5": "cdb7da054e94fcef71d391dd91bc9f72"
  },
  {
-  "file": "mde--brochure--2025-2026.pdf",
+  "file": "mde--plan--2025-2026.pdf",
   "original": "mde--plan--2025-2026.pdf",
-  "kind": "brochure",
+  "kind": "plan",
   "slug": "mde",
   "year": "2025-2026",
   "modules": [],
@@ -162,9 +162,9 @@
   "md5": "5315c7f90afd8d05cbb02132878e6a36"
  },
  {
-  "file": "mscas--brochure--2025-2026.pdf",
+  "file": "mscas--plan--2025-2026.pdf",
   "original": "mscas--plan--2025-2026.pdf",
-  "kind": "brochure",
+  "kind": "plan",
   "slug": "mscas",
   "year": "2025-2026",
   "modules": [],
@@ -209,9 +209,9 @@
   "md5": "e2893347d7e584f090b599683dc817e5"
  },
  {
-  "file": "msccf--brochure--2025-2026.pdf",
+  "file": "msccf--plan--2025-2026.pdf",
   "original": "msccf--plan--2025-2026.pdf",
-  "kind": "brochure",
+  "kind": "plan",
   "slug": "msccf",
   "year": "2025-2026",
   "modules": [],
@@ -269,9 +269,9 @@
   "md5": "9809e5312dca28ba2178eae2bc27d469"
  },
  {
-  "file": "msce--brochure--2025-2026.pdf",
+  "file": "msce--plan--2025-2026.pdf",
   "original": "msce--plan--2025-2026.pdf",
-  "kind": "brochure",
+  "kind": "plan",
   "slug": "msce",
   "year": "2025-2026",
   "modules": [],
@@ -315,9 +315,9 @@
   "md5": "19cccc4f8e76467d03fe7a58a5e0697b"
  },
  {
-  "file": "mscf--brochure--2025-2026.pdf",
+  "file": "mscf--plan--2025-2026.pdf",
   "original": "mscf--plan--2025-2026.pdf",
-  "kind": "brochure",
+  "kind": "plan",
   "slug": "mscf",
   "year": "2025-2026",
   "modules": [],
@@ -359,9 +359,9 @@
   "md5": "4a58df5e8b0e0a79eeba7971e9505f6f"
  },
  {
-  "file": "mscis--brochure--2025-2026.pdf",
+  "file": "mscis--plan--2025-2026.pdf",
   "original": "mscis--plan--2025-2026.pdf",
-  "kind": "brochure",
+  "kind": "plan",
   "slug": "mscis",
   "year": "2025-2026",
   "modules": [],
@@ -433,9 +433,9 @@
   "md5": "7b70d3945fd5a3a3aa1ebdbeda8b36b4"
  },
  {
-  "file": "mscm-behaviour--brochure--2025-2026.pdf",
+  "file": "mscm-behaviour--plan--2025-2026.pdf",
   "original": "mscm-behaviour--plan--2025-2026.pdf",
-  "kind": "brochure",
+  "kind": "plan",
   "slug": "mscm-behaviour",
   "year": "2025-2026",
   "modules": [],
@@ -474,9 +474,9 @@
   "md5": "264f734c0d8388c2efc40ba4edf81183"
  },
  {
-  "file": "mscm-business-analytics--brochure--2025-2026.pdf",
+  "file": "mscm-business-analytics--plan--2025-2026.pdf",
   "original": "mscm-business-analytics--plan--2025-2026.pdf",
-  "kind": "brochure",
+  "kind": "plan",
   "slug": "mscm-business-analytics",
   "year": "2025-2026",
   "modules": [],
@@ -531,9 +531,9 @@
   "md5": "e8b2f752a2076108f662231479c636fe"
  },
  {
-  "file": "mscm-marketing--brochure--2025-2026.pdf",
+  "file": "mscm-marketing--plan--2025-2026.pdf",
   "original": "mscm-marketing--plan--2025-2026.pdf",
-  "kind": "brochure",
+  "kind": "plan",
   "slug": "mscm-marketing",
   "year": "2025-2026",
   "modules": [],
@@ -572,9 +572,9 @@
   "md5": "db7bc10a8209a63d84da66b1f0ed85cb"
  },
  {
-  "file": "mscm-strategy--brochure--2025-2026.pdf",
+  "file": "mscm-strategy--plan--2025-2026.pdf",
   "original": "mscm-strategy--plan--2025-2026.pdf",
-  "kind": "brochure",
+  "kind": "plan",
   "slug": "mscm-strategy",
   "year": "2025-2026",
   "modules": [],
