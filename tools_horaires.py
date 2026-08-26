@@ -48,7 +48,7 @@ def nettoyer(t):
     t = re.sub(r'C\s*-\s*', ' ', t)                 # marqueur de type de cours
     t = re.sub(r'(?<=[A-Za-zÀ-ÿ])-(?=[a-zà-ÿ])', '', t)  # « A-ccounting »
     # une suite de lettres isolees separees par des espaces se recolle
-    t = re.sub(r'(?:(?<=\s)|^)((?:[A-Za-zÀ-ÿ]\s){2,}[A-Za-zÀ-ÿ])(?=\s|$)',
+    t = re.sub(r'(?:(?<=\s)|^)((?:[A-Za-zÀ-ÿ]\s){2,}[A-Za-zÀ-ÿ]{1,3})(?=\s|$)',
                lambda m: m.group(1).replace(' ', ''), t)
     t = re.sub(r'\s*[-–]\s*(Internef|Anthropole|Amphimax|Amphipôle|Synathlon|Cubotron|IDHEAP).*$',
                '', t, flags=re.I)
@@ -119,6 +119,22 @@ def resoudre(titre, ids):
     if notes and notes[0][0] >= 0.86 and (len(notes) < 2 or notes[0][0] - notes[1][0] > 0.06):
         return notes[0][1], f'SIMILARITE {notes[0][0]:.2f}'
 
+    # Le recouvrement de mots rattrape ce que la similarite caractere par
+    # caractere manque : « Taxation o f e enterprises and t ransfer e pricing
+    # policy » partage cinq mots longs avec « Taxation of Multinational
+    # Enterprises and Transfer Pricing Policy », meme si les lettres sont hachees.
+    mots = {w for w in cible.split() if len(w) >= 4}
+    if len(mots) >= 3:
+        rec = []
+        for k, v in ids.items():
+            autres = {w for w in fold(v).split() if len(w) >= 4}
+            if not autres:
+                continue
+            rec.append((len(mots & autres) / max(len(mots), len(autres)), k))
+        rec.sort(reverse=True)
+        if rec and rec[0][0] >= 0.6 and (len(rec) < 2 or rec[0][0] - rec[1][0] > 0.12):
+            return rec[0][1], f'MOTS COMMUNS {rec[0][0]:.2f}'
+
     proches = ', '.join(k for _, k in notes[:3])
     return None, f'introuvable (meilleure similarite {notes[0][0]:.2f}), proches : {proches}'
 
@@ -150,14 +166,33 @@ def lire_brut(chemin):
     return lignes
 
 
+def corrections(slug):
+    """Intitules retablis a la main, indexes sur le creneau et non sur la ligne."""
+    f = f'{SORTIE}/corrections.json'
+    if not os.path.exists(f):
+        return {}
+    out = {}
+    for c in json.load(io.open(f, encoding='utf-8'))['corrections']:
+        if c['master'] == slug:
+            out[(c['semestre'], c['jour'], c['debut'])] = c['titre']
+    return out
+
+
 def construire(slug):
     chemin = f'{BRUT}/{slug}.txt'
     ids = catalogue(slug)
     lignes = lire_brut(chemin)
+    corr = corrections(slug)
+    for l in lignes:
+        cle = (l['semestre'], l['jour'], l['debut'])
+        if cle in corr and l['titre'] != corr[cle]:
+            # on ne corrige que ce qui resiste : un intitule deja resolu reste
+            if resoudre(l['titre'], ids)[1]:
+                l['titre'] = corr[cle]
     creneaux, soucis, approx = [], [], []
     for l in lignes:
         cid, err = resoudre(l['titre'], ids)
-        if err and err.startswith('SIMILARITE'):
+        if err and (err.startswith('SIMILARITE') or err.startswith('MOTS COMMUNS')):
             approx.append((l['n'], l['titre'], cid, err))
             err = None
         if err:

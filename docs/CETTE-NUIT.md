@@ -2,10 +2,15 @@
 
 ## En une phrase
 
-Les dix masters ont désormais leurs horaires, **291 créneaux** extraits des PDF
+Les dix masters ont désormais leurs horaires : **376 créneaux** extraits des PDF
 officiels avec leurs salles et leurs cadences. Le site affiche les grilles, les
-salles et les chevauchements. **83 créneaux restent à récupérer**, listés dans
-[HORAIRES-A-VERIFIER.md](./HORAIRES-A-VERIFIER.md).
+salles et les chevauchements.
+
+Il reste 46 blocs de côté, mais **43 d'entre eux sont des cours qui n'existent
+pas au plan d'études 2025-2026** : ils appartiennent à l'année 2026-2027, que
+HEC n'a pas encore publiée. Ce n'est donc pas un défaut, c'est un décalage réel
+entre les deux documents. **Il ne reste que trois intitulés vraiment perdus.**
+Le détail est dans [HORAIRES-A-VERIFIER.md](./HORAIRES-A-VERIFIER.md).
 
 ## Le point important sur la méthode
 
@@ -36,21 +41,36 @@ Ce qui reste méconnaissable est **écarté**, jamais deviné.
 
 ## L'état par master
 
-| Master | Créneaux retenus | Écartés |
+| Master | Créneaux | Mis de côté |
 |---|---|---|
-| Systèmes d'information | 16 | 0 |
-| Comptabilité, contrôle et finance | 32 | 2 |
-| Finance | 21 | 0 |
-| Économie | 24 | 5 |
+| Droit et Économie | 100 | 7 |
+| Management, Comportement | 46 | 8 |
+| Management, Stratégie | 39 | 6 |
+| Management, Business analytics | 35 | 6 |
+| Comptabilité, contrôle et finance | 32 | 0 |
+| Management, Marketing | 32 | 5 |
 | Sciences actuarielles | 31 | 9 |
-| Management, Marketing | 30 | 7 |
-| Management, Stratégie | 35 | 10 |
-| Management, Business analytics | 31 | 10 |
-| Management, Comportement | 44 | 10 |
-| Droit et Économie | 75 | 32 |
+| Économie | 24 | 5 |
+| Finance | 21 | 0 |
+| Systèmes d'information | 16 | 0 |
 
-Le Droit et Économie est le plus abîmé : c'est aussi le plus dense, avec ses
-groupes A, B et anglais, ses séances d'exercices et ses listes de dates.
+Trois choses ont fait gagner l'essentiel du terrain, après un premier jet à 291
+créneaux seulement.
+
+**Les marqueurs de note.** Le plan du Droit et Économie porte des lettres de
+renvoi collées devant certains intitulés, « bEconomie I », « f Fiscalité de
+l'entreprise ». Le titre stocké ne correspondait donc plus à celui de l'agenda,
+et l'horaire ne se rattachait jamais au cours.
+
+**Le recouvrement de mots.** La similarité caractère par caractère échoue sur un
+titre haché ; comparer les mots longs la rattrape. « Taxation o f e enterprises
+and t ransfer e pricing policy » partage cinq mots avec le vrai titre.
+
+**Quinze intitulés rétablis à la main**, dans `data/horaires/corrections.json`.
+Ils sont repérés par leur créneau et non par un numéro de ligne, donc ils
+survivent à une régénération. L'heure et la salle ne sont jamais touchées : le
+PDF reste la référence, seul le titre est rétabli, puis recoupé avec le
+catalogue comme tous les autres.
 
 ## Ce que ça donne à l'écran
 
@@ -66,17 +86,16 @@ cours de ta sélection ne sont pas vérifiés.
 
 1. **Regarder ton propre master.** Coche ton plan réel sur `/app/fr/mscis` et
    compare avec ce que tu sais. C'est le meilleur contrôle qui existe.
-2. **Décider pour les 83 écartés.** Trois options : les saisir à la main depuis
-   les captures, ce qui prend une heure ; les laisser, le site dira simplement
-   qu'il ne sait pas ; ou me demander de les lire sur les captures d'écran, ce
-   que je peux faire mais avec le risque de transcription dont on a parlé.
+2. **Les trois intitulés perdus**, si tu veux les récupérer. Cinq minutes, ils
+   sont listés avec leur jour et leur heure. Les 43 autres n'ont pas à être
+   corrigés : ce sont des cours de 2026-2027.
 3. **Le reste du chantier** n'a pas bougé : export PDF et PNG du calendrier,
    anglais, styles de calendrier, mise en ligne.
 
 ## Pour corriger un créneau
 
-Ouvrir `data/horaires/brut/<master>.txt`, remplacer l'intitulé de la ligne
-indiquée par le vrai titre du cours, puis :
+Ajouter une entrée dans `data/horaires/corrections.json`, en repérant le bloc
+par son master, son semestre, son jour et son heure de début, puis :
 
 ```bash
 python tools_horaires.py mde

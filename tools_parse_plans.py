@@ -144,6 +144,12 @@ def parse_plan(pdf_path, slug):
 
         left = [(x, t) for x, t in cells if x < cols.get('prof', 200) - 4]
         title = re.sub(r'\s+', ' ', ' '.join(t for _, t in left)).strip()
+        # Le plan du Droit et Economie porte des marqueurs de note dans la marge,
+        # une lettre seule collee devant l'intitule : « f Fiscalite de
+        # l'entreprise ». Sans ce nettoyage, le titre stocke ne correspond plus a
+        # celui de l'agenda et l'horaire ne se rattache jamais au cours.
+        title = re.sub(r"^[a-zA-Z]\s+(?=[A-ZÀ-Ý])", '', title)
+        title = re.sub(r"^[a-z](?=[A-ZÀ-Ý])", '', title)   # « bEconomie I », colle
         if not title or fold(title).startswith(('cours', 'courses')):
             continue
 

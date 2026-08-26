@@ -15,6 +15,8 @@ def ident(t, i=0):
 
 erreurs = 0
 for f in sorted(glob.glob('data/horaires/*.json')):
+    if os.path.basename(f).startswith(('rapport-', 'corrections')):
+        continue
     h = json.load(io.open(f, encoding='utf-8'))
     slug = h['programme']
     cat = json.load(io.open(f'data/programmes/{slug}-2025-2026.json', encoding='utf-8'))['courses']

@@ -17,7 +17,7 @@
    "raw": "F E 120 H F"
   },
   {
-   "title": "bEconomie I",
+   "title": "Economie I",
    "teachers": "Q. Gallea /Ayoubi C.",
    "module": "SM1a",
    "ects": 3,
@@ -101,7 +101,7 @@
    "raw": "F VCN + O 20 H"
   },
   {
-   "title": "bEconomie II",
+   "title": "Economie II",
    "teachers": "Tièche / S. Huetsch L. / Houde S.",
    "module": "SM1a",
    "ects": 6,
@@ -115,7 +115,7 @@
    "raw": "F E 150 H"
   },
   {
-   "title": "bDroit de l'Union européenne",
+   "title": "Droit de l'Union européenne",
    "teachers": "F. Maiani",
    "module": "SM1b",
    "ects": 6,
@@ -185,7 +185,7 @@
    "raw": "F O 30 D"
   },
   {
-   "title": "bDroit des poursuites et faillites",
+   "title": "Droit des poursuites et faillites",
    "teachers": "Peter H. / Muster E.",
    "module": "SM1b",
    "ects": 6,
@@ -213,7 +213,7 @@
    "raw": "A E 120 H/D T"
   },
   {
-   "title": "f Fiscalité de l'entreprise - impôts directs",
+   "title": "Fiscalité de l'entreprise - impôts directs",
    "teachers": "R. Danon",
    "module": "M2",
    "ects": 3,
@@ -269,7 +269,7 @@
    "raw": "F VCN N/A H"
   },
   {
-   "title": "f Fiscalité directe II & Fiscalité indirecte (TVA)",
+   "title": "Fiscalité directe II & Fiscalité indirecte (TVA)",
    "teachers": "P.M. Glauser",
    "module": "M2",
    "ects": 6,
@@ -409,7 +409,7 @@
    "raw": "F E 90 D"
   },
   {
-   "title": "bDroit des sociétés",
+   "title": "Droit des sociétés",
    "teachers": "A. Richa/J. Guex",
    "module": "M3",
    "ects": 6,
@@ -549,7 +549,7 @@
    "raw": "F VCN N/A H/D"
   },
   {
-   "title": "x Le gouvernement d'entreprise (Aut26)",
+   "title": "Le gouvernement d'entreprise (Aut26)",
    "teachers": "TBH",
    "module": "M3",
    "ects": 3,
@@ -688,7 +688,7 @@
    "raw": "F E 120 H F"
   },
   {
-   "title": "f Séminaire de fiscalité",
+   "title": "Séminaire de fiscalité",
    "teachers": "P.-M. Glauser",
    "module": "M3",
    "ects": 3,
@@ -1144,7 +1144,7 @@
    "raw": "F E 2 H"
   },
   {
-   "title": "x Fiscal Policy",
+   "title": "Fiscal Policy",
    "teachers": "N. Soguel",
    "module": "M3",
    "ects": 3,
