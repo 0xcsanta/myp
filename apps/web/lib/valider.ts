@@ -1,4 +1,4 @@
-import type { Cours, Module, Regles } from "./donnees";
+import type { Cours, Creneau, Module, Regles } from "./donnees";
 
 /**
  * Le moteur de regles, transpose en TypeScript pour l'interface.
@@ -100,12 +100,56 @@ export function valider(
           "erreur",
           "verrou",
           `${nom} verrouillé : il faut ${m.unlockedBy.atLeast} crédits acquis aux modules ${enumerer(
-            m.unlockedBy.ectsFrom.map((c) => c.replace(/^SM?/, "")),
+            m.unlockedBy.ectsFrom.map((c) => c.replace(/^S?M/, "")),
           )}, tu en as ${acquis}.`,
           m.code,
         );
       }
     }
+  }
+
+  /* ---------- chevauchements d'horaire ---------- */
+
+  /*
+   * On ne compare que ce qui est comparable : meme saison, meme jour, et les
+   * deux cours donnes chaque semaine. Un cours en semaine bloc ou a cadence
+   * irreguliere produirait un faux chevauchement la plupart du temps, donc il
+   * est ecarte et signale a part.
+   */
+  const avecHoraire = choisis.filter((c) => c.horaireConnu);
+  const creneaux: { c: Cours; k: Creneau }[] = avecHoraire.flatMap((c) =>
+    c.creneaux.map((k) => ({ c, k })),
+  );
+  const reguliers = creneaux.filter(
+    (x) => x.k.cadence === "hebdomadaire" || x.k.cadence === "quinzaine",
+  );
+
+  for (let i = 0; i < reguliers.length; i++) {
+    for (let j = i + 1; j < reguliers.length; j++) {
+      const a = reguliers[i];
+      const b = reguliers[j];
+      if (a.c.id === b.c.id) continue;
+      if (a.k.saison !== b.k.saison || a.k.jour !== b.k.jour) continue;
+      if (a.k.debutMin >= b.k.finMin || b.k.debutMin >= a.k.finMin) continue;
+      ajouter(
+        "erreur",
+        "chevauchement",
+        `Chevauchement le ${a.k.jour.toLowerCase()} au semestre ${
+          a.k.saison === "automne" ? "d'automne" : "de printemps"
+        } : ${a.c.titre} et ${b.c.titre}.`,
+      );
+    }
+  }
+
+  const sansHoraire = choisis.filter((c) => !c.horaireConnu);
+  if (sansHoraire.length && choisis.length) {
+    ajouter(
+      "info",
+      "horaire_inconnu",
+      sansHoraire.length === choisis.length
+        ? "Aucun horaire n'est encore relevé pour ce master, donc les chevauchements ne sont pas vérifiés."
+        : `${sansHoraire.length} cours sur ${choisis.length} n'ont pas d'horaire relevé : leurs chevauchements ne sont pas vérifiés.`,
+    );
   }
 
   /* ---------- total du diplome ---------- */

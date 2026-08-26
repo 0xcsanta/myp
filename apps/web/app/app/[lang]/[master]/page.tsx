@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Planificateur } from "@/components/app/Planificateur";
-import { coursDe, master, reglesDe, tousLesMasters } from "@/lib/donnees";
+import { coursDe, master, reglesDe, tousLesMasters, verifierHoraires } from "@/lib/donnees";
 import { LANGUES, estLangue } from "@/lib/langues";
 
 export function generateStaticParams() {
@@ -39,6 +39,19 @@ export default async function PageMaster({
 
   const regles = reglesDe(slug);
   const catalogue = coursDe(slug);
+
+  /*
+   * Un creneau qui vise un cours inexistant serait autrement ignore en
+   * silence : l'etudiant verrait « horaire non publie » pour un cours dont
+   * l'horaire est pourtant releve. Mieux vaut arreter le build.
+   */
+  const orphelins = verifierHoraires(slug);
+  if (orphelins.length) {
+    throw new Error(
+      `Horaires de ${slug} : ${orphelins.length} créneau(x) visent un cours inexistant — ` +
+        `${orphelins.join(", ")}. Corrige data/horaires/${slug}-${regles.year}.json.`,
+    );
+  }
 
   return (
     <div className="flex min-h-dvh flex-col bg-white">

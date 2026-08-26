@@ -68,8 +68,33 @@ export type Cours = {
   langue: string | null;
   evaluation: string | null;
   dureeExamen: number | null;
-  /* l'horaire n'est dans aucune source PDF : on ne l'invente pas */
-  horaireConnu: false;
+  /*
+   * L'horaire ne figure dans aucune source lisible automatiquement. Tant qu'un
+   * releve humain n'a pas ete depose dans data/horaires, la liste reste vide
+   * et `horaireConnu` reste faux. On n'invente jamais un creneau.
+   */
+  creneaux: Creneau[];
+  horaireConnu: boolean;
+};
+
+export type Creneau = {
+  cours: string;
+  saison: "automne" | "printemps";
+  jour: string;
+  debut: string;
+  fin: string;
+  debutMin: number;
+  finMin: number;
+  salle: string | null;
+  cadence: "hebdomadaire" | "quinzaine" | "bloc" | "irregulier";
+  note: string | null;
+};
+
+export type Horaires = {
+  programme: string;
+  annee: string;
+  source: { document: string; url: string; releveLe: string };
+  creneaux: Omit<Creneau, "debutMin" | "finMin">[];
 };
 
 export function tousLesMasters(): Master[] {
@@ -101,9 +126,27 @@ export function reglesDe(slug: string): Regles {
   return lire<Regles>(`rules/${slug}-${ANNEE}.json`);
 }
 
+const enMinutes = (t: string): number => {
+  const m = /^(\d{1,2}):(\d{2})$/.exec(t ?? "");
+  return m ? +m[1] * 60 + +m[2] : NaN;
+};
+
+/**
+ * Le releve d'horaire du master, s'il existe.
+ *
+ * Renvoie `null` quand le fichier n'a pas encore ete depose, ce qui est le cas
+ * normal aujourd'hui : l'interface doit alors dire qu'elle ne sait pas.
+ */
+export function horairesDe(slug: string): Horaires | null {
+  const f = path.join(RACINE, "horaires", `${slug}-${ANNEE}.json`);
+  if (!fs.existsSync(f)) return null;
+  return JSON.parse(fs.readFileSync(f, "utf8")) as Horaires;
+}
+
 export function coursDe(slug: string): Cours[] {
   const brut = lire<{ courses: CoursBrut[] }>(`programmes/${slug}-${ANNEE}.json`);
   const vus = new Map<string, number>();
+  const horaires = horairesDe(slug);
 
   return brut.courses.map((c, i) => {
     let id = identifiant(c.title, i);
@@ -122,7 +165,28 @@ export function coursDe(slug: string): Cours[] {
       langue: c.language,
       evaluation: c.evalType,
       dureeExamen: c.examMinutes,
+      creneaux: [],
       horaireConnu: false,
     };
+  }).map((c) => {
+    if (!horaires) return c;
+    const siens = horaires.creneaux
+      .filter((x) => x.cours === c.id)
+      .map((x) => ({ ...x, debutMin: enMinutes(x.debut), finMin: enMinutes(x.fin) }));
+    return siens.length ? { ...c, creneaux: siens, horaireConnu: true } : c;
   });
+}
+
+/**
+ * Verifie que chaque creneau vise un cours qui existe.
+ *
+ * Un identifiant errone passerait autrement inapercu : le creneau serait
+ * simplement ignore, et l'etudiant verrait « horaire non publie » pour un cours
+ * dont l'horaire est pourtant connu. Mieux vaut casser le build.
+ */
+export function verifierHoraires(slug: string): string[] {
+  const h = horairesDe(slug);
+  if (!h) return [];
+  const ids = new Set(coursDe(slug).map((c) => c.id));
+  return h.creneaux.filter((x) => !ids.has(x.cours)).map((x) => x.cours);
 }

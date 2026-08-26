@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { Cours, Master, Regles } from "@/lib/donnees";
 import { nomModule, valider } from "@/lib/valider";
 import { Mascotte } from "@/components/brand/Mascotte";
+import { GrilleHoraire } from "./GrilleHoraire";
 
 /**
  * Le planificateur.
@@ -167,6 +168,22 @@ export function Planificateur({
   }, [catalogue, q]);
 
   const erreurs = resultat.diagnostics.filter((x) => x.niveau === "erreur");
+
+  /* les cours retenus, et ceux dont un creneau en heurte un autre */
+  const retenus = useMemo(
+    () => catalogue.filter((c) => selection.has(c.id)),
+    [catalogue, selection],
+  );
+  const avecHoraire = retenus.filter((c) => c.horaireConnu);
+  const enConflit = useMemo(() => {
+    const s = new Set<string>();
+    for (const d of resultat.diagnostics) {
+      if (d.code !== "chevauchement") continue;
+      for (const c of retenus) if (d.message.includes(c.titre)) s.add(c.id);
+    }
+    return s;
+  }, [resultat.diagnostics, retenus]);
+  const saisons: ("automne" | "printemps")[] = ["automne", "printemps"];
   const feuilles = regles.modules.filter(
     (m) => !regles.modules.some((x) => x.parent === m.code),
   );
@@ -175,6 +192,21 @@ export function Planificateur({
     <div className="shell grid gap-10 pb-[clamp(64px,8vw,128px)] lg:grid-cols-[1fr_340px] lg:items-start lg:gap-12">
       {/* ---------------- le catalogue ---------------- */}
       <div>
+        {avecHoraire.length > 0 && (
+          <div className="mb-10 grid gap-6">
+            {saisons
+              .filter((s) => avecHoraire.some((c) => c.creneaux.some((k) => k.saison === s)))
+              .map((s) => (
+                <div key={s}>
+                  <h2 className="mb-3 font-display text-[20px] tracking-[-0.02em] text-ink">
+                    Semestre {s === "automne" ? "d'automne" : "de printemps"}
+                  </h2>
+                  <GrilleHoraire cours={avecHoraire} saison={s} enConflit={enConflit} />
+                </div>
+              ))}
+          </div>
+        )}
+
         <label className="block">
           <span className="sr-only">Rechercher un cours</span>
           <input
@@ -343,8 +375,9 @@ export function Planificateur({
         </div>
 
         <p className="mt-6 px-2 text-[11.5px] leading-relaxed text-muted">
-          Les horaires ne sont pas encore intégrés, donc les chevauchements ne
-          sont pas détectés. Vérifie les créneaux sur le{" "}
+          {catalogue.some((c) => c.horaireConnu)
+            ? "Les créneaux affichés viennent d'un relevé humain de l'horaire officiel. Recoupe les avant de t'inscrire, sur le "
+            : "Aucun horaire n'est encore relevé pour ce master, donc les chevauchements ne sont pas détectés. Vérifie les créneaux sur le "}
           <a
             href="https://applicationspub.unil.ch/interpub/noauth/php/Ud/index.php?v_ueid=173&v_langue=fr"
             target="_blank"
