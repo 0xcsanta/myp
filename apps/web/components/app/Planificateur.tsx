@@ -172,7 +172,7 @@ export function Planificateur({
   );
 
   return (
-    <div className="shell grid gap-10 pb-24 lg:grid-cols-[1fr_340px] lg:items-start lg:gap-12">
+    <div className="shell grid gap-10 pb-[clamp(64px,8vw,128px)] lg:grid-cols-[1fr_340px] lg:items-start lg:gap-12">
       {/* ---------------- le catalogue ---------------- */}
       <div>
         <label className="block">

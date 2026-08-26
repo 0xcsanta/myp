@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { coursDe, reglesDe, tousLesMasters } from "@/lib/donnees";
+import { LANGUES, estLangue } from "@/lib/langues";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Choisis ton master · MYP",
@@ -10,7 +12,18 @@ export const metadata: Metadata = {
     "Les dix masters de HEC Lausanne, avec leurs modules et leurs seuils de crédits.",
 };
 
-export default function ChoixDuMaster() {
+export function generateStaticParams() {
+  return LANGUES.map((lang) => ({ lang }));
+}
+
+export default async function ChoixDuMaster({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (!estLangue(lang)) notFound();
+
   const masters = tousLesMasters().map((m) => {
     const r = reglesDe(m.slug);
     return {
@@ -25,7 +38,7 @@ export default function ChoixDuMaster() {
       <SiteHeader />
 
       <main className="flex-1">
-        <section className="shell pt-[clamp(40px,5vw,80px)]">
+        <section className="shell pt-[clamp(40px,5vw,80px)] pb-[clamp(64px,8vw,128px)]">
           <h1
             className="max-w-[18ch] font-display leading-[0.92] text-black"
             style={{ fontSize: "clamp(40px, 6.4vw, 92px)", letterSpacing: "-0.035em" }}
@@ -41,7 +54,7 @@ export default function ChoixDuMaster() {
             {masters.map((m) => (
               <li key={m.slug}>
                 <Link
-                  href={`/fr/${m.slug}`}
+                  href={`/app/${lang}/${m.slug}`}
                   className="group flex h-full flex-col justify-between gap-6 rounded-2xl border
                     border-line bg-white p-6 transition-[border-color,transform,box-shadow]
                     duration-150 ease-[var(--ease-out-std)] hover:-translate-y-0.5

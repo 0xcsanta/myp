@@ -5,15 +5,18 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Planificateur } from "@/components/app/Planificateur";
 import { coursDe, master, reglesDe, tousLesMasters } from "@/lib/donnees";
+import { LANGUES, estLangue } from "@/lib/langues";
 
 export function generateStaticParams() {
-  return tousLesMasters().map((m) => ({ master: m.slug }));
+  return LANGUES.flatMap((lang) =>
+    tousLesMasters().map((m) => ({ lang, master: m.slug })),
+  );
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ master: string }>;
+  params: Promise<{ lang: string; master: string }>;
 }): Promise<Metadata> {
   const { master: slug } = await params;
   const m = master(slug);
@@ -27,9 +30,10 @@ export async function generateMetadata({
 export default async function PageMaster({
   params,
 }: {
-  params: Promise<{ master: string }>;
+  params: Promise<{ lang: string; master: string }>;
 }) {
-  const { master: slug } = await params;
+  const { lang, master: slug } = await params;
+  if (!estLangue(lang)) notFound();
   const m = master(slug);
   if (!m) notFound();
 
@@ -43,7 +47,7 @@ export default async function PageMaster({
       <main className="flex-1">
         <section className="shell pt-[clamp(32px,4vw,64px)] pb-[clamp(28px,3vw,48px)]">
           <Link
-            href="/fr"
+            href={`/app/${lang}`}
             className="inline-flex items-center gap-1.5 text-[13px] text-muted
               transition-colors duration-150 ease-[var(--ease-out-std)] hover:text-unil-400"
           >
