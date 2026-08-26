@@ -24,3 +24,6 @@ __pycache__/
 # apps/web/public/hero
 sources-brutes/
 shot-*.png
+
+# captures d'ecran des horaires, lourdes et remplacees par data/horaires
+horaires/
