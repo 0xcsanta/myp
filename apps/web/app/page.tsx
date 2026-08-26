@@ -8,12 +8,21 @@ export default function Home() {
     <main className="min-h-dvh bg-white">
       <header className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-4 px-6 pt-6 sm:px-8">
         <Wordmark />
-        {/* la signature disparait sous 900px : elle est longue et secondaire */}
-        <MadeByPill className="order-3 hidden lg:order-2 lg:inline-flex" />
+        {/*
+         * La signature est longue et secondaire : elle quitte l'en-tete sous
+         * 1024px et repasse en bas de page. Le masquage porte sur un conteneur
+         * et non sur la pastille elle meme : `hidden` et `inline-flex` sont
+         * deux utilitaires de meme specificite, donc les poser sur le meme
+         * element laisse l'ordre de la feuille de styles decider, et la
+         * pastille reapparaissait sur mobile.
+         */}
+        <div className="order-3 hidden lg:order-2 lg:block">
+          <MadeByPill />
+        </div>
         <LaunchButton className="order-2 lg:order-3" />
       </header>
 
-      <section className="mx-auto max-w-[1200px] px-6 pt-16 sm:px-8 sm:pt-24">
+      <section className="mx-auto max-w-[1200px] px-6 pt-14 sm:px-8 sm:pt-20">
         <h1
           className="text-center font-display leading-[0.9] text-black"
           style={{
@@ -23,12 +32,6 @@ export default function Home() {
         >
           Master Your Plan
         </h1>
-
-        <p className="mx-auto mt-8 max-w-[52ch] text-center text-[17px] leading-relaxed text-ink-2">
-          Compose ton master à l&apos;UNIL, module par module. Les crédits se
-          comptent tout seuls, les minimums par module sont vérifiés, et les
-          chevauchements d&apos;horaire te sautent aux yeux.
-        </p>
 
         <div className="mt-12 sm:mt-16">
           <HeroFrame />
@@ -42,7 +45,7 @@ export default function Home() {
           foi.
         </p>
 
-        <div className="mt-6 flex justify-center pb-24 lg:hidden">
+        <div className="mt-6 flex justify-center pb-20 lg:hidden">
           <MadeByPill />
         </div>
       </section>

@@ -19,3 +19,8 @@ allmaster/*.pdf
 allmaster/*.docx
 tools_*.pyc
 __pycache__/
+
+# sources graphiques brutes, lourdes : les versions optimisees vivent dans
+# apps/web/public/hero
+sources-brutes/
+shot-*.png
