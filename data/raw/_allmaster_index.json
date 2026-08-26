@@ -1,0 +1,585 @@
+[
+ {
+  "file": "a-identifier--reglement.pdf",
+  "original": "hec-faculte--reglement.pdf",
+  "kind": "reglement",
+  "slug": null,
+  "year": null,
+  "modules": [],
+  "pages": 19,
+  "label": "",
+  "md5": "a8ee3c62fec814a9346671f86f4e8533"
+ },
+ {
+  "file": "mde--annuaire--2025-2026--m2.pdf",
+  "original": "mde--annuaire--2025-2026--m2.pdf",
+  "kind": "annuaire",
+  "slug": "mde",
+  "year": "2025-2026",
+  "modules": [
+   "2"
+  ],
+  "pages": 12,
+  "label": "Maîtrise universitaire en Droit et Économie - Module 2 ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "6c08c19fc8c92efb3d676e0daa0a28ea"
+ },
+ {
+  "file": "mde--annuaire--2025-2026--m3.pdf",
+  "original": "mde--annuaire--2025-2026--m3.pdf",
+  "kind": "annuaire",
+  "slug": "mde",
+  "year": "2025-2026",
+  "modules": [
+   "3"
+  ],
+  "pages": 34,
+  "label": "Maîtrise universitaire en Droit et Économie - Module 3 ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "1dc13eddc7abf483e1d7f033548b8cf5"
+ },
+ {
+  "file": "mde--annuaire--2026-2027--m1.pdf",
+  "original": "mde--annuaire--2026-2027--m1.pdf",
+  "kind": "annuaire",
+  "slug": "mde",
+  "year": "2026-2027",
+  "modules": [
+   "1"
+  ],
+  "pages": 16,
+  "label": "Maîtrise universitaire en Droit et Économie - Module 1 ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "e678dd1e4b1e77e4350d9e79eded20d1"
+ },
+ {
+  "file": "mde--annuaire--2026-2027--m2.pdf",
+  "original": "mde--annuaire--2026-2027--m2.pdf",
+  "kind": "annuaire",
+  "slug": "mde",
+  "year": "2026-2027",
+  "modules": [
+   "2"
+  ],
+  "pages": 10,
+  "label": "Maîtrise universitaire en Droit et Économie - Module 2 ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "624aaed3898b8d4f381904d3c837da3b"
+ },
+ {
+  "file": "mde--annuaire--2026-2027--m3.pdf",
+  "original": "mde--annuaire--2026-2027--m3.pdf",
+  "kind": "annuaire",
+  "slug": "mde",
+  "year": "2026-2027",
+  "modules": [
+   "3"
+  ],
+  "pages": 34,
+  "label": "Maîtrise universitaire en Droit et Économie - Module 3 ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "dd26bb5a1c53f924a0ea9c0472f1a9d3"
+ },
+ {
+  "file": "mde--brochure.pdf",
+  "original": "mde--brochure.pdf",
+  "kind": "brochure",
+  "slug": "mde",
+  "year": null,
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "cdb7da054e94fcef71d391dd91bc9f72"
+ },
+ {
+  "file": "mde--brochure--2025-2026.pdf",
+  "original": "mde--plan--2025-2026.pdf",
+  "kind": "brochure",
+  "slug": "mde",
+  "year": "2025-2026",
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "7401c69bad55cdeddb7bba316b9ba67e"
+ },
+ {
+  "file": "mde--reglement.pdf",
+  "original": "mde--reglement.pdf",
+  "kind": "reglement",
+  "slug": "mde",
+  "year": null,
+  "modules": [],
+  "pages": 14,
+  "label": "",
+  "md5": "064dec78265a63aefa0b828069ad4fbc"
+ },
+ {
+  "file": "msc-smt--brochure.pdf",
+  "original": "msc-smt--brochure.pdf",
+  "kind": "brochure",
+  "slug": "msc-smt",
+  "year": null,
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "38bbf01f6b5c5dab2cf6efe3ee55256b"
+ },
+ {
+  "file": "mscas--annuaire--2026-2027--m12.pdf",
+  "original": "mscas--annuaire--2026-2027--m12.pdf",
+  "kind": "annuaire",
+  "slug": "mscas",
+  "year": "2026-2027",
+  "modules": [
+   "1",
+   "2"
+  ],
+  "pages": 12,
+  "label": "Maîtrise universitaire ès Sciences en sciences actuarielles, Modules 1 & 2 ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "d1c3359918d77e936e614a88db8f97de"
+ },
+ {
+  "file": "mscas--annuaire--2026-2027--m34567.pdf",
+  "original": "mscas--annuaire--2026-2027--m34567.pdf",
+  "kind": "annuaire",
+  "slug": "mscas",
+  "year": "2026-2027",
+  "modules": [
+   "3",
+   "4",
+   "5",
+   "6",
+   "7"
+  ],
+  "pages": 16,
+  "label": "Maîtrise universitaire ès Sciences en sciences actuarielles, Modules 3, 4, 5, 6 et 7 ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "8b1ac22831317af87b3db7f61b7643ec"
+ },
+ {
+  "file": "mscas--brochure.pdf",
+  "original": "mscas--brochure.pdf",
+  "kind": "brochure",
+  "slug": "mscas",
+  "year": null,
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "5315c7f90afd8d05cbb02132878e6a36"
+ },
+ {
+  "file": "mscas--brochure--2025-2026.pdf",
+  "original": "mscas--plan--2025-2026.pdf",
+  "kind": "brochure",
+  "slug": "mscas",
+  "year": "2025-2026",
+  "modules": [],
+  "pages": 1,
+  "label": "",
+  "md5": "77eb0a22ba966a91f5606fff2c1bb5ea"
+ },
+ {
+  "file": "mscas--reglement.pdf",
+  "original": "mscas--reglement.pdf",
+  "kind": "reglement",
+  "slug": "mscas",
+  "year": null,
+  "modules": [],
+  "pages": 13,
+  "label": "",
+  "md5": "fe5c917ff42b03ab601337dcfe245ce9"
+ },
+ {
+  "file": "msccf--annuaire--2026-2027--m12.pdf",
+  "original": "msccf--annuaire--2026-2027--m12.pdf",
+  "kind": "annuaire",
+  "slug": "msccf",
+  "year": "2026-2027",
+  "modules": [
+   "1",
+   "2"
+  ],
+  "pages": 16,
+  "label": "Maîtrise universitaire ès Sciences en comptabilité, contrôle et finance, Modules 1 et 2 ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "32c1a69a62b9c85a8d20f3326e17fc46"
+ },
+ {
+  "file": "msccf--brochure.pdf",
+  "original": "msccf--brochure.pdf",
+  "kind": "brochure",
+  "slug": "msccf",
+  "year": null,
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "e2893347d7e584f090b599683dc817e5"
+ },
+ {
+  "file": "msccf--brochure--2025-2026.pdf",
+  "original": "msccf--plan--2025-2026.pdf",
+  "kind": "brochure",
+  "slug": "msccf",
+  "year": "2025-2026",
+  "modules": [],
+  "pages": 1,
+  "label": "",
+  "md5": "d0ebe6c725949eb08602c1b0cd2e09c7"
+ },
+ {
+  "file": "msccf--reglement.pdf",
+  "original": "msccf--reglement.pdf",
+  "kind": "reglement",
+  "slug": "msccf",
+  "year": null,
+  "modules": [],
+  "pages": 11,
+  "label": "",
+  "md5": "c3f9445a7c400987a270a19880982fa6"
+ },
+ {
+  "file": "msce--annuaire--2026-2027--m1.pdf",
+  "original": "msce--annuaire--2026-2027--m1.pdf",
+  "kind": "annuaire",
+  "slug": "msce",
+  "year": "2026-2027",
+  "modules": [
+   "1"
+  ],
+  "pages": 14,
+  "label": "Maîtrise universitaire ès Sciences en économie, Module 1 ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "471dcf11a9d3e95b8031a69bfef260ab"
+ },
+ {
+  "file": "msce--annuaire--2026-2027--m23.pdf",
+  "original": "msce--annuaire--2026-2027--m23.pdf",
+  "kind": "annuaire",
+  "slug": "msce",
+  "year": "2026-2027",
+  "modules": [
+   "2",
+   "3"
+  ],
+  "pages": 26,
+  "label": "Maîtrise universitaire ès Sciences en économie, Modules 2 et 3 ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "24010f43824e3ebecc96ba761a78159f"
+ },
+ {
+  "file": "msce--brochure.pdf",
+  "original": "msce--brochure.pdf",
+  "kind": "brochure",
+  "slug": "msce",
+  "year": null,
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "9809e5312dca28ba2178eae2bc27d469"
+ },
+ {
+  "file": "msce--brochure--2025-2026.pdf",
+  "original": "msce--plan--2025-2026.pdf",
+  "kind": "brochure",
+  "slug": "msce",
+  "year": "2025-2026",
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "331416dfa15da5c9ad9cfc1d77251753"
+ },
+ {
+  "file": "msce--reglement.pdf",
+  "original": "msce--reglement.pdf",
+  "kind": "reglement",
+  "slug": "msce",
+  "year": null,
+  "modules": [],
+  "pages": 14,
+  "label": "",
+  "md5": "7c3229bd07df2c2042ef443cde16f4a9"
+ },
+ {
+  "file": "mscf--annuaire--2026-2027--m1.pdf",
+  "original": "mscf--annuaire--2026-2027--m1.pdf",
+  "kind": "annuaire",
+  "slug": "mscf",
+  "year": "2026-2027",
+  "modules": [
+   "1"
+  ],
+  "pages": 14,
+  "label": "Maîtrise universitaire ès Sciences en finance, Module 1 ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "8d784d6b320792caf33a174eaf1b491e"
+ },
+ {
+  "file": "mscf--brochure.pdf",
+  "original": "mscf--brochure.pdf",
+  "kind": "brochure",
+  "slug": "mscf",
+  "year": null,
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "19cccc4f8e76467d03fe7a58a5e0697b"
+ },
+ {
+  "file": "mscf--brochure--2025-2026.pdf",
+  "original": "mscf--plan--2025-2026.pdf",
+  "kind": "brochure",
+  "slug": "mscf",
+  "year": "2025-2026",
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "328ddc3696d5156abd8e6f0792a669de"
+ },
+ {
+  "file": "mscf--reglement.pdf",
+  "original": "mscf--reglement.pdf",
+  "kind": "reglement",
+  "slug": "mscf",
+  "year": null,
+  "modules": [],
+  "pages": 14,
+  "label": "",
+  "md5": "07376cf669328580a1681652c2e3a71e"
+ },
+ {
+  "file": "mscis--annuaire--2026-2027.pdf",
+  "original": "mscis--annuaire--2026-2027.pdf",
+  "kind": "annuaire",
+  "slug": "mscis",
+  "year": "2026-2027",
+  "modules": [],
+  "pages": 14,
+  "label": "Maîtrise universitaire ès Sciences en systèmes d'information et innovation numérique ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "c5401d6c49fed5873781b18d0ef09b3c"
+ },
+ {
+  "file": "mscis--brochure.pdf",
+  "original": "mscis--brochure.pdf",
+  "kind": "brochure",
+  "slug": "mscis",
+  "year": null,
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "4a58df5e8b0e0a79eeba7971e9505f6f"
+ },
+ {
+  "file": "mscis--brochure--2025-2026.pdf",
+  "original": "mscis--plan--2025-2026.pdf",
+  "kind": "brochure",
+  "slug": "mscis",
+  "year": "2025-2026",
+  "modules": [],
+  "pages": 1,
+  "label": "",
+  "md5": "e1d95325acc10b9a45af55e3b2ca4bce"
+ },
+ {
+  "file": "mscis--reglement.pdf",
+  "original": "mscis--reglement.pdf",
+  "kind": "reglement",
+  "slug": "mscis",
+  "year": null,
+  "modules": [],
+  "pages": 12,
+  "label": "",
+  "md5": "5e2b5c6a24f7ccb9eb114cd1fe850c3d"
+ },
+ {
+  "file": "mscm--brochure.pdf",
+  "original": "mscm--brochure.pdf",
+  "kind": "brochure",
+  "slug": "mscm",
+  "year": null,
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "cb9d52cd099339069bf3b35cfbf37384"
+ },
+ {
+  "file": "mscm--reglement.pdf",
+  "original": "mscm--reglement.pdf",
+  "kind": "reglement",
+  "slug": "mscm",
+  "year": null,
+  "modules": [],
+  "pages": 14,
+  "label": "",
+  "md5": "dcdb5f8c2ee17c0d5fbb5f5d8251f076"
+ },
+ {
+  "file": "mscm-behaviour--annuaire--2025-2026--m3456.pdf",
+  "original": "mscm-behaviour--annuaire--2025-2026--m3456.pdf",
+  "kind": "annuaire",
+  "slug": "mscm-behaviour",
+  "year": "2025-2026",
+  "modules": [
+   "3",
+   "4",
+   "5",
+   "6"
+  ],
+  "pages": 26,
+  "label": "Maîtrise universitaire ès Sciences en management, orientation comportement, économie et évolution, Modules 3, 4, 5 et 6 ii / Faculté des hau",
+  "md5": "a6f9dd61ecf8f9ac28d21efb1b1e71e3"
+ },
+ {
+  "file": "mscm-behaviour--annuaire--2026-2027--m12.pdf",
+  "original": "mscm-behaviour--annuaire--2026-2027--m12.pdf",
+  "kind": "annuaire",
+  "slug": "mscm-behaviour",
+  "year": "2026-2027",
+  "modules": [
+   "1",
+   "2"
+  ],
+  "pages": 16,
+  "label": "Maîtrise universitaire ès Sciences en management, orientation comportement, économie et évolution, Modules 1 et 2 ii / Faculté des hautes ét",
+  "md5": "7b70d3945fd5a3a3aa1ebdbeda8b36b4"
+ },
+ {
+  "file": "mscm-behaviour--brochure--2025-2026.pdf",
+  "original": "mscm-behaviour--plan--2025-2026.pdf",
+  "kind": "brochure",
+  "slug": "mscm-behaviour",
+  "year": "2025-2026",
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "7a497ecab9b0bd3b45cc88a9c295803c"
+ },
+ {
+  "file": "mscm-business-analytics--annuaire--2025-2026--m3456.pdf",
+  "original": "mscm-business-analytics--annuaire--2025-2026--m3456.pdf",
+  "kind": "annuaire",
+  "slug": "mscm-business-analytics",
+  "year": "2025-2026",
+  "modules": [
+   "3",
+   "4",
+   "5",
+   "6"
+  ],
+  "pages": 24,
+  "label": "Maîtrise universitaire ès Sciences en management, Orientation business analytics, Modules 3, 4, 5 et 6 ii / Faculté des hautes études commer",
+  "md5": "def8d55812802568c334d6869c6e774e"
+ },
+ {
+  "file": "mscm-business-analytics--annuaire--2026-2027--m12.pdf",
+  "original": "mscm-business-analytics--annuaire--2026-2027--m12.pdf",
+  "kind": "annuaire",
+  "slug": "mscm-business-analytics",
+  "year": "2026-2027",
+  "modules": [
+   "1",
+   "2"
+  ],
+  "pages": 16,
+  "label": "Maîtrise universitaire ès Sciences en management, Orientation business analytics, Module 1 et 2 ii / Faculté des hautes études commerciales ",
+  "md5": "264f734c0d8388c2efc40ba4edf81183"
+ },
+ {
+  "file": "mscm-business-analytics--brochure--2025-2026.pdf",
+  "original": "mscm-business-analytics--plan--2025-2026.pdf",
+  "kind": "brochure",
+  "slug": "mscm-business-analytics",
+  "year": "2025-2026",
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "35aa24f462cc7d0e1c15df6bb0290a89"
+ },
+ {
+  "file": "mscm-marketing--annuaire--2025-2026--m3456.pdf",
+  "original": "mscm-marketing--annuaire--2025-2026--m3456.pdf",
+  "kind": "annuaire",
+  "slug": "mscm-marketing",
+  "year": "2025-2026",
+  "modules": [
+   "3",
+   "4",
+   "5",
+   "6"
+  ],
+  "pages": 32,
+  "label": "Maîtrise universitaire ès Sciences en management, Orientation marketing, Modules 3, 4, 5 et 6 ii / Faculté des hautes études commerciales (H",
+  "md5": "a1272b06e1c9277e27c95921d9b49055"
+ },
+ {
+  "file": "mscm-marketing--annuaire--2026-2027--m12.pdf",
+  "original": "mscm-marketing--annuaire--2026-2027--m12.pdf",
+  "kind": "annuaire",
+  "slug": "mscm-marketing",
+  "year": "2026-2027",
+  "modules": [
+   "1",
+   "2"
+  ],
+  "pages": 16,
+  "label": "Maîtrise universitaire ès Sciences en management, Orientation marketing, Modules 1 et 2 ii / Faculté des hautes études commerciales (HEC)",
+  "md5": "a512b2f98aeac3aa4f68bb3d5a66eec6"
+ },
+ {
+  "file": "mscm-marketing--annuaire--2026-2027--m3456.pdf",
+  "original": "mscm-marketing--annuaire--2026-2027--m3456.pdf",
+  "kind": "annuaire",
+  "slug": "mscm-marketing",
+  "year": "2026-2027",
+  "modules": [
+   "3",
+   "4",
+   "5",
+   "6"
+  ],
+  "pages": 18,
+  "label": "Maîtrise universitaire ès Sciences en management, Orientation marketing, Modules 3, 4, 5 et 6 ii / Faculté des hautes études commerciales (H",
+  "md5": "e8b2f752a2076108f662231479c636fe"
+ },
+ {
+  "file": "mscm-marketing--brochure--2025-2026.pdf",
+  "original": "mscm-marketing--plan--2025-2026.pdf",
+  "kind": "brochure",
+  "slug": "mscm-marketing",
+  "year": "2025-2026",
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "1c9249d812bd10d6d80ac3e3ae5ebbde"
+ },
+ {
+  "file": "mscm-strategy--annuaire--2025-2026--m3456.pdf",
+  "original": "mscm-strategy--annuaire--2025-2026--m3456.pdf",
+  "kind": "annuaire",
+  "slug": "mscm-strategy",
+  "year": "2025-2026",
+  "modules": [
+   "3",
+   "4",
+   "5",
+   "6"
+  ],
+  "pages": 30,
+  "label": "Maîtrise universitaire ès Sciences en management, orientation stratégie, organisation et leadership, Modules 3, 4, 5 et 6 ii / Faculté des h",
+  "md5": "54ebdb8589fd44dd1158a09c57987e42"
+ },
+ {
+  "file": "mscm-strategy--annuaire--2026-2027--m12.pdf",
+  "original": "mscm-strategy--annuaire--2026-2027--m12.pdf",
+  "kind": "annuaire",
+  "slug": "mscm-strategy",
+  "year": "2026-2027",
+  "modules": [
+   "1",
+   "2"
+  ],
+  "pages": 16,
+  "label": "Maîtrise universitaire ès Sciences en management, orientation stratégie, organisation et leadership, Modules 1 et 2 ii / Faculté des hautes ",
+  "md5": "db7bc10a8209a63d84da66b1f0ed85cb"
+ },
+ {
+  "file": "mscm-strategy--brochure--2025-2026.pdf",
+  "original": "mscm-strategy--plan--2025-2026.pdf",
+  "kind": "brochure",
+  "slug": "mscm-strategy",
+  "year": "2025-2026",
+  "modules": [],
+  "pages": 2,
+  "label": "",
+  "md5": "a44b9ead2de8d1c06dd1657d7f53b75d"
+ }
+]

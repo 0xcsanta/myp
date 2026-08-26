@@ -1,0 +1,23 @@
+{
+  "name": "organizemymaster",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cursus - build your UNIL master, module by module.",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "scrape": "node packages/scraper/src/run.js",
+    "scrape:hec": "node packages/scraper/src/run.js --faculty=173",
+    "build:data": "node packages/scraper/src/build.js",
+    "test:rules": "node --test packages/rules/test/*.test.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

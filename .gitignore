@@ -1,0 +1,19 @@
+node_modules/
+.next/
+out/
+dist/
+.env
+.env.local
+.DS_Store
+Thumbs.db
+*.log
+.vercel
+
+# sorties de travail non versionnees
+data/raw/*.html
+packages/scraper/.cache/
+
+# les PDF officiels de l'UNIL ne sont pas redistribues par ce depot,
+# le site renvoie vers les URL officielles. Voir docs/SOURCES.md.
+allmaster/*.pdf
+allmaster/*.docx
