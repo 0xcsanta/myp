@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Cours, Master, Regles } from "@/lib/donnees";
 import { libelleSemestre, semestresDe } from "@/lib/semestres";
 import { nomModule, valider } from "@/lib/valider";
@@ -173,6 +173,26 @@ export function Planificateur({
 
   const erreurs = resultat.diagnostics.filter((x) => x.niveau === "erreur");
 
+  /*
+   * Sur telephone le rail passe sous le catalogue, donc le compteur de credits
+   * et les alertes se retrouvent apres une quarantaine de cours : on ne voit
+   * plus ce qu'on est en train de faire. Une barre de resume vient donc se
+   * coller en bas de l'ecran, mais seulement tant que le vrai rail n'est pas
+   * visible. Elle disparait des qu'il arrive, ce qui evite de recouvrir le pied
+   * de page et de dire deux fois la meme chose.
+   */
+  const rail = useRef<HTMLElement | null>(null);
+  const [railVu, setRailVu] = useState(true);
+  useEffect(() => {
+    const el = rail.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const o = new IntersectionObserver(([e]) => setRailVu(e.isIntersecting), {
+      rootMargin: "-64px 0px 0px 0px",
+    });
+    o.observe(el);
+    return () => o.disconnect();
+  }, []);
+
   /* les cours retenus, et ceux dont un creneau en heurte un autre */
   const retenus = useMemo(
     () => catalogue.filter((c) => selection.has(c.id)),
@@ -209,12 +229,19 @@ export function Planificateur({
 
   return (
     <div className="shell grid gap-10 pb-[clamp(64px,8vw,128px)] lg:grid-cols-[1fr_340px] lg:items-start lg:gap-12">
-      {/* ---------------- le catalogue ---------------- */}
-      <div>
+      {/*
+        ---------------- le catalogue ----------------
+        `min-w-0` n'est pas decoratif : une piste `1fr` vaut `minmax(auto, 1fr)`,
+        et son minimum `auto` laisse un enfant large repousser la colonne au dela
+        de l'ecran. La grille horaire porte un `min-width` de 720 pixels pour
+        rester lisible, ce qui faisait deborder toute la page sur mobile au lieu
+        de la faire defiler dans son propre cadre.
+      */}
+      <div className="min-w-0">
         {avecHoraire.length > 0 && (
-          <div className="mb-10 grid gap-6">
+          <div className="mb-10 grid grid-cols-1 gap-6">
             {semestres.map((s) => (
-              <div key={s}>
+              <div key={s} className="min-w-0">
                 <h2 className="mb-3 font-display text-[20px] tracking-[-0.02em] text-ink">
                   {libelleSemestre(s)}
                 </h2>
@@ -360,7 +387,7 @@ export function Planificateur({
       </div>
 
       {/* ---------------- le rail de credits ---------------- */}
-      <aside className="lg:sticky lg:top-6">
+      <aside ref={rail} className="min-w-0 lg:sticky lg:top-6">
         <div className="rounded-2xl border border-line bg-white p-6 shadow-[0_1px_2px_rgba(10,31,48,0.05),0_14px_40px_-28px_rgba(10,31,48,0.5)]">
           <div className="flex items-baseline justify-between">
             <span className="text-[12.5px] text-muted">Ton plan</span>
@@ -450,6 +477,49 @@ export function Planificateur({
           .
         </p>
       </aside>
+
+      {/* ---------------- le resume colle en bas, sur petit ecran ---------------- */}
+      <div
+        aria-hidden={railVu}
+        className={`fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 backdrop-blur transition-[transform,opacity] duration-300 lg:hidden ${
+          railVu ? "pointer-events-none translate-y-full opacity-0" : "translate-y-0 opacity-100"
+        }`}
+      >
+        <button
+          type="button"
+          onClick={() => rail.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
+          className="flex w-full items-center justify-between gap-4 px-5 py-3 text-left"
+        >
+          <span className="min-w-0">
+            <span className="block text-[11px] uppercase tracking-[0.08em] text-muted">
+              Ton plan
+            </span>
+            <span
+              className={`block truncate text-[12.5px] ${
+                erreurs.length ? "text-warn" : "text-muted"
+              }`}
+            >
+              {erreurs.length
+                ? `${erreurs.length} point${erreurs.length > 1 ? "s" : ""} à régler`
+                : selection.size
+                  ? "Rien à signaler pour l'instant"
+                  : "Coche un cours pour commencer"}
+            </span>
+          </span>
+          <span className="flex shrink-0 items-center gap-3">
+            <span className="tnum font-mono text-[20px] font-semibold tracking-[-0.02em] text-ink">
+              {resultat.total}
+              <span className="text-[13px] text-muted"> / {regles.totalEcts}</span>
+            </span>
+            <span
+              aria-hidden
+              className="grid size-7 place-items-center rounded-full border border-line text-[12px] text-muted"
+            >
+              ↑
+            </span>
+          </span>
+        </button>
+      </div>
     </div>
   );
 }
