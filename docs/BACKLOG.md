@@ -78,6 +78,47 @@
       cours : c'est la même vérité que le rail. Le site ne tranche pas à la
       place de l'étudiant, il lui montre le prix de chaque renoncement.
 
+## La transition entre l'accueil et l'application
+
+Faite le 27 août, en CSS seul, sans bibliothèque ni JavaScript.
+
+Les deux mises en page racines, qui existent pour poser le bon `lang` sur la
+balise html, font que passer de l'accueil au planificateur est un vrai
+changement de document. C'est exactement ce que les transitions de vue entre
+documents savent traiter : le navigateur capture l'ancienne page, charge la
+nouvelle, anime le passage. Là où ce n'est pas encore implémenté, Firefox
+aujourd'hui, la navigation reste simplement instantanée.
+
+**Le logotype est nommé**, donc il n'est pas capturé avec le reste de la page.
+Il persiste et se déplace de sa position d'accueil vers celle, plus petite, de
+l'application. C'est lui qui rend le passage lisible : l'œil a un point fixe à
+suivre pendant que le reste change. Un seul élément par page peut porter ce
+nom, donc celui du pied de page ne l'a pas, et c'est vérifié.
+
+**Deux pièges désamorcés**, tous deux invisibles jusqu'à ce qu'on les
+rencontre :
+
+- Le bouton et le logotype sont des ancres ordinaires, plus des `Link` de
+  Next. Next ne peut de toute façon pas naviguer sans recharger entre deux
+  mises en page racines, donc le `Link` ne faisait que précharger pour rien.
+  Surtout, il déclenchait la navigation **par script**, et une transition entre
+  deux documents ne s'active que sur une navigation native.
+- `mix-blend-mode: normal` sur les deux captures. La feuille du navigateur pose
+  `plus-lighter`, ce qui convient à son fondu croisé par défaut mais surexpose
+  les deux pages dès qu'on écrit ses propres animations : les textes
+  deviennent des fantômes délavés.
+
+`prefers-reduced-motion: reduce` coupe la transition à sa source plutôt que de
+la ralentir : les pseudo-éléments de transition vivent dans leur propre arbre
+et la règle `*` du bloc voisin ne les atteint pas.
+
+**Non vérifié à l'œil.** Le navigateur du banc d'essai ne peint pas de frames,
+et Chrome saute les transitions quand le document n'est pas visible. Tout le
+reste est vérifié : les règles survivent à la minification, les images clés
+sont acceptées, un seul élément porte le nom, et `pageswap` confirme une
+navigation de document. **L'animation elle même est à juger à l'œil, sur un
+vrai écran.**
+
 ## Avant la mise en ligne
 
 - [x] **Plan du site et robots.txt.** Faits le 27 août. 24 adresses, chacune

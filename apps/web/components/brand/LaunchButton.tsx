@@ -1,9 +1,15 @@
-import Link from "next/link";
-
 /**
  * Le bouton principal. Degrade vertical du bleu UNIL vers le bleu profond,
  * exactement celui du logotype, avec la fleche sortante du Figma redessinee
  * en SVG inline plutot qu'importee d'un fichier de chemins.
+ *
+ * C'est une ancre ordinaire et non un `Link` de Next, pour deux raisons qui
+ * n'en font qu'une. L'accueil et l'application ont des mises en page racines
+ * differentes, donc Next ne peut de toute facon pas naviguer sans recharger :
+ * le `Link` ne faisait que retarder le clic en prechargeant ce qui ne servira
+ * pas. Et surtout, il declenchait la navigation par script, or une transition
+ * de vue entre deux documents ne s'active que sur une navigation native. Une
+ * simple ancre rend donc le passage anime, et le code plus court.
  */
 export function LaunchButton({
   href = "/app/fr",
@@ -15,7 +21,7 @@ export function LaunchButton({
   className?: string;
 }) {
   return (
-    <Link
+    <a
       href={href}
       className={`group inline-flex items-center justify-center gap-[6px] rounded-[1000px]
         bg-gradient-to-b from-myp-from to-myp-to px-[22px] py-[14px]
@@ -44,6 +50,6 @@ export function LaunchButton({
           strokeLinejoin="round"
         />
       </svg>
-    </Link>
+    </a>
   );
 }

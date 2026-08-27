@@ -125,7 +125,109 @@ body {
   animation-timing-function: var(--ease-pop);
 }
 
+/* ------------------------------------------------------------------------
+   La transition entre l'accueil et l'application
+   ------------------------------------------------------------------------
+
+   Le site a deux mises en page racines, une par langue de balise html, donc
+   passer de l'accueil au planificateur est un vrai changement de document et
+   non une navigation interne. C'est precisement le cas que les transitions de
+   vue inter-documents savent traiter : le navigateur capture l'ancienne page,
+   charge la nouvelle, et anime le passage. Aucune bibliotheque, aucun
+   JavaScript, et une degradation propre la ou ce n'est pas encore implemente,
+   ou la navigation reste simplement instantanee.
+
+   Le logotype est nomme, donc il n'est pas capture avec le reste de la page :
+   il persiste et se deplace de sa position d'accueil vers celle, plus petite,
+   de l'application. Ce n'est pas un ornement, c'est ce qui rend le passage
+   lisible, l'oeil ayant un point fixe a suivre pendant que le reste change.
+   Le mouvement lui meme dit ou l'on va : l'accueil s'efface vers le haut,
+   l'application monte par le bas, comme si l'on entrait dans l'outil.
+*/
+
+@view-transition {
+  navigation: auto;
+}
+
+/*
+   `mix-blend-mode: normal` n'est pas un detail. La feuille du navigateur pose
+   `plus-lighter` sur les deux captures, ce qui convient au fondu croise qu'il
+   fait par defaut : deux opacites qui s'additionnent y donnent exactement
+   l'original. Des qu'on ecrit ses propres animations, les deux pages se
+   surexposent pendant le croisement et les textes deviennent des fantomes
+   delaves. En `normal`, le fondu redevient celui qu'on a ecrit.
+*/
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  animation: page-sortie 320ms var(--ease-snap) both;
+}
+
+::view-transition-new(root) {
+  animation: page-entree 460ms var(--ease-out-std) both;
+}
+
+@keyframes page-sortie {
+  from { opacity: 1; transform: none }
+  to   { opacity: 0; transform: translateY(-14px) scale(0.985) }
+}
+
+@keyframes page-entree {
+  from { opacity: 0; transform: translateY(22px) scale(0.992) }
+  to   { opacity: 1; transform: none }
+}
+
+/*
+   Le logotype garde son identite d'une page a l'autre. Le groupe porte le
+   deplacement et le changement de taille, avec un ressort leger : il arrive
+   un peu apres le reste, ce qui le pose comme point d'ancrage plutot que
+   comme un element de plus qui bouge.
+*/
+.vt-logo {
+  view-transition-name: myp-logo;
+}
+
+::view-transition-group(myp-logo) {
+  animation-duration: 560ms;
+  animation-timing-function: var(--ease-pop);
+}
+
+/*
+   Sans transitions de vue, une simple montee en opacite. Surtout pas de
+   `transform` ici : anime sur le corps du document, il fabriquerait un bloc
+   conteneur et les elements en position fixe, la barre de resume sur telephone
+   et la carte d'arbitrage, se caleraient dessus au lieu de la fenetre.
+*/
+@supports not (view-transition-name: none) {
+  body {
+    animation: page-apparition 340ms var(--ease-out-std) both;
+  }
+}
+
+@keyframes page-apparition {
+  from { opacity: 0 }
+  to   { opacity: 1 }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  /*
+     Les pseudo-elements de transition de vue vivent dans leur propre arbre :
+     la regle `*` plus bas ne les atteint pas. On coupe donc la transition a
+     sa source plutot que d'essayer de la ralentir a zero.
+  */
+  @view-transition {
+    navigation: none;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
   html {
     scroll-behavior: auto;
   }

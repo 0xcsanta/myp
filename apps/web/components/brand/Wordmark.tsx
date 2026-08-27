@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 /**
  * Le logotype MYP.
  *
@@ -17,13 +15,22 @@ export function Wordmark({
   className = "",
   size = "clamp(38px, 4.6vw, 64px)",
   href,
+  persistant = false,
 }: {
   className?: string;
   size?: string;
   /** Quand il est donne, le logotype devient le lien de retour a l'accueil. */
   href?: string;
+  /**
+   * Le logotype de l'en-tete traverse la transition entre l'accueil et
+   * l'application au lieu d'etre efface avec le reste de la page. Un seul
+   * element par page peut porter ce nom : celui du pied de page ne l'a pas.
+   */
+  persistant?: boolean;
 }) {
-  const classe = `myp-gradient-text inline-block font-brand font-medium select-none ${className}`;
+  const classe = `myp-gradient-text inline-block font-brand font-medium select-none ${
+    persistant ? "vt-logo " : ""
+  }${className}`;
   const style = {
     fontSize: size,
     lineHeight: 1.45,
@@ -33,16 +40,23 @@ export function Wordmark({
     fontVariationSettings: '"wdth" 100',
   } as const;
 
+  /*
+   * Une ancre ordinaire, pas un `Link` : ce lien mene toujours a l'accueil,
+   * donc soit c'est la page courante, soit c'est l'autre mise en page racine,
+   * que Next ne sait de toute facon pas atteindre sans recharger. L'ancre
+   * rend en prime le retour anime, une navigation lancee par script ne
+   * declenchant pas de transition entre deux documents.
+   */
   if (href) {
     return (
-      <Link
+      <a
         href={href}
         className={`${classe} rounded-[6px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-unil-400`}
         style={style}
         aria-label="MYP"
       >
         MYP
-      </Link>
+      </a>
     );
   }
 

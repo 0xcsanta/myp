@@ -50,6 +50,7 @@ export function SiteHeader({
         <div className="justify-self-start">
           <Wordmark
             href={`/${langue}`}
+            persistant
             size={
               dansLApp ? "clamp(28px, 3vw, 40px)" : "clamp(38px, 4.6vw, 64px)"
             }
