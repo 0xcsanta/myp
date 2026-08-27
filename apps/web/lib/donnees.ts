@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import type { CalendrierAcademique } from "./ics";
 import type { Langue } from "./langues";
 import { nomCourt } from "./nomMaster";
 
@@ -239,6 +240,17 @@ export function horairesDe(slug: string): Horaires | null {
   const f = path.join(RACINE, "horaires", `${slug}.json`);
   if (!fs.existsSync(f)) return null;
   return JSON.parse(fs.readFileSync(f, "utf8")) as Horaires;
+}
+
+/**
+ * Les dates reelles de l'annee academique, pour l'export vers un agenda.
+ *
+ * Elles ne sont pas dans les plans d'etudes : elles viennent du calendrier
+ * publie par la Direction de l'UNIL. Sans elles, un fichier .ics n'aurait
+ * aucune date a donner, et il faudrait les deviner.
+ */
+export function calendrierAcademique(): CalendrierAcademique {
+  return lire<CalendrierAcademique>("calendrier-academique.json");
 }
 
 export function coursDe(slug: string, langue: Langue = "fr"): Cours[] {

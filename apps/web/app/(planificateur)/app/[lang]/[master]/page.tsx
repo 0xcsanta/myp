@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Planificateur } from "@/components/app/Planificateur";
 import {
+  calendrierAcademique,
   coursDe,
   horairesDe,
   master,
@@ -60,6 +61,7 @@ export default async function PageMaster({
 
   const regles = reglesDe(slug);
   const catalogue = coursDe(slug, lang);
+  const calendrier = calendrierAcademique();
 
   /*
    * Un creneau qui vise un cours inexistant serait autrement ignore en
@@ -116,6 +118,7 @@ export default async function PageMaster({
           master={m}
           regles={regles}
           catalogue={catalogue}
+          calendrier={calendrier}
           releve={horairesDe(slug)?.source ?? null}
           langue={lang}
         />

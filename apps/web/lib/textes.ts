@@ -50,6 +50,17 @@ const fr = {
     tonPlan: "Ton plan",
     toutDecocher: "Tout décocher",
     partager: "Copier le lien de ce plan",
+    exporter: "Ajouter à mon agenda",
+    exporterFait: (n: number) => (n > 1 ? `${n} cours exportés.` : "1 cours exporté."),
+    exporterRien: "Rien à exporter : aucun cours coché n'a d'horaire relevé pour sa première année.",
+    exporterHorsCalendrier: (n: number) =>
+      n > 1
+        ? `${n} cours ne sont pas dans le fichier : ils tombent en 3e ou 4e semestre, et l'UNIL n'a pas encore publié le calendrier 2027-2028.`
+        : "1 cours n'est pas dans le fichier : il tombe en 3e ou 4e semestre, et l'UNIL n'a pas encore publié le calendrier 2027-2028.",
+    exporterSansHoraire: (n: number) =>
+      n > 1
+        ? `${n} cours ne sont pas dans le fichier : leur horaire n'est pas relevé.`
+        : "1 cours n'est pas dans le fichier : son horaire n'est pas relevé.",
     lienCopie: "Lien copié",
     lienEchec: "La copie a échoué, copie l'adresse à la main",
     planRecu:
@@ -225,6 +236,17 @@ const en: Textes = {
     tonPlan: "Your plan",
     toutDecocher: "Clear all",
     partager: "Copy the link to this plan",
+    exporter: "Add to my calendar",
+    exporterFait: (n: number) => (n > 1 ? `${n} courses exported.` : "1 course exported."),
+    exporterRien: "Nothing to export: none of the ticked courses has a timetable for its first year.",
+    exporterHorsCalendrier: (n: number) =>
+      n > 1
+        ? `${n} courses are not in the file: they fall in semester 3 or 4, and UNIL has not published the 2027-2028 calendar yet.`
+        : "1 course is not in the file: it falls in semester 3 or 4, and UNIL has not published the 2027-2028 calendar yet.",
+    exporterSansHoraire: (n: number) =>
+      n > 1
+        ? `${n} courses are not in the file: their timetable has not been read.`
+        : "1 course is not in the file: its timetable has not been read.",
     lienCopie: "Link copied",
     lienEchec: "Copying failed, copy the address by hand",
     planRecu:

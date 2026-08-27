@@ -3,7 +3,7 @@
 Un outil gratuit qui aide les étudiantes et étudiants de l'UNIL à composer leur
 plan d'études : compteur de crédits ECTS en direct, vérification des minimums
 par module, alerte quand on dépasse le total du diplôme, détection des
-chevauchements d'horaire.
+chevauchements d'horaire, et export vers un agenda au format iCalendar.
 
 Périmètre : **les dix masters de HEC Lausanne**, et rien d'autre. Une extension
 à d'autres facultés se décidera à la demande, si elle vient, et pas avant.

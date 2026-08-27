@@ -1,0 +1,43 @@
+{
+ "note": "Les dates de l'annee academique, relevees sur le calendrier officiel de l'UNIL. Elles servent a l'export du calendrier : sans elles, un fichier .ics n'a aucune date reelle a donner, et il faudrait les inventer.",
+ "source": {
+  "document": "Calendrier academique 2026-2027, valide par la Direction en mai 2025",
+  "url": "https://www.unil.ch/files/live/sites/unil/files/04-etudier/0414-calendrier/26-27-calendrier_FR.pdf",
+  "consulteLe": "2026-08-27"
+ },
+ "cequonnesaitpas": "Le calendrier 2027-2028 n'est pas publie. Les troisieme et quatrieme semestres du master n'ont donc aucune date reelle, et l'export ne les couvre pas : il s'arrete a la premiere annee.",
+
+ "semestres": {
+  "1": {
+   "nom": "automne-2026",
+   "anneeAcademique": "2026-2027",
+   "premierJour": "2026-09-14",
+   "dernierJour": "2026-12-18",
+   "citation": "Lundi 14 septembre 2026 : Debut des cours. Vendredi 18 decembre 2026 : Fin des cours.",
+   "sansEnseignement": [
+    { "du": "2026-09-21", "au": "2026-09-21", "motif": "Lundi du Jeune Federal" }
+   ],
+   "horaireRelevePour": "automne-2026",
+   "releveDeLaMemeAnnee": true
+  },
+  "2": {
+   "nom": "printemps-2027",
+   "anneeAcademique": "2026-2027",
+   "premierJour": "2027-02-22",
+   "dernierJour": "2027-06-04",
+   "citation": "Lundi 22 fevrier 2027 : Debut des cours. Vendredi 4 juin 2027 : Fin des cours.",
+   "sansEnseignement": [
+    { "du": "2027-03-26", "au": "2027-03-26", "motif": "Vendredi Saint" },
+    { "du": "2027-03-29", "au": "2027-04-02", "motif": "Vacances de cours, Lundi de Paques inclus" },
+    { "du": "2027-05-06", "au": "2027-05-06", "motif": "Ascension" },
+    { "du": "2027-05-17", "au": "2027-05-17", "motif": "Lundi de Pentecote" },
+    { "du": "2027-06-04", "au": "2027-06-04", "motif": "Dies academicus, les cours sont suspendus" }
+   ],
+   "horaireRelevePour": "printemps-2026",
+   "releveDeLaMemeAnnee": false,
+   "avertissement": "Le releve d'horaire disponible est celui du printemps 2026, le dernier publie. HEC n'a pas encore publie le printemps 2027. Les creneaux exportes pour ce semestre sont donc une indication, pas un horaire confirme."
+  }
+ },
+
+ "pourquoiPasLesQuatreSemestres": "Un master de cent vingt credits compte quatre semestres, mais l'export s'arrete au deuxieme. Le troisieme tombe a l'automne 2027 et le quatrieme au printemps 2028 : l'UNIL n'a publie ni l'un ni l'autre. Poser des dates dessus reviendrait a les deviner."
+}

@@ -5,6 +5,8 @@ import type { Cours, Creneau, Master, Regles } from "@/lib/donnees";
 import { libelleSemestre, semestresDe } from "@/lib/semestres";
 import type { Langue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
+import type { CalendrierAcademique } from "@/lib/ics";
+import { fabriquerIcs } from "@/lib/ics";
 import { nomCourt } from "@/lib/nomMaster";
 import { evaluationDuCours, langueDuCours } from "@/lib/codes";
 import { libelleCreneaux } from "@/lib/creneaux";
@@ -233,18 +235,23 @@ export function Planificateur({
   regles,
   catalogue,
   releve,
+  calendrier,
   langue,
 }: {
   master: Master;
   regles: Regles;
   catalogue: Cours[];
   releve: { releveLe: string; url: string; note?: string } | null;
+  /** Les dates reelles de l'annee academique, pour l'export vers un agenda. */
+  calendrier: CalendrierAcademique;
   langue: Langue;
 }) {
   const TT = textes(langue);
   const T = TT.plan;
   const [selection, setSelection] = useState<Set<string>>(new Set());
   const [recherche, setRecherche] = useState("");
+  /* le compte rendu de l'export, efface tout seul apres quelques secondes */
+  const [rapportExport, setExport] = useState<{ texte: string; bon: boolean } | null>(null);
   /* les credits pris hors du plan, quand le plan l'autorise */
   const [externes, setExternes] = useState(0);
   /* l'orientation suivie, quand le plan demande d'en choisir une */
@@ -418,6 +425,51 @@ export function Planificateur({
       setCopie("echec");
     }
     window.setTimeout(() => setCopie(null), 2600);
+  };
+
+  /*
+   * L'export vers un agenda.
+   *
+   * Le fichier ne couvre que la premiere annee du master. Les deux premiers
+   * semestres ont des dates publiees par l'UNIL ; le troisieme tombe a
+   * l'automne 2027 et le quatrieme au printemps 2028, dont le calendrier
+   * n'existe pas. Ce qui est ecarte est compte et dit, plutot que dispararaitre
+   * en silence.
+   */
+  const exporter = () => {
+    const choisis = catalogue.filter((c) => selection.has(c.id));
+    const r = fabriquerIcs({
+      cours: choisis,
+      calendrier,
+      nomDuMaster: nomCourt(master, langue),
+      langue,
+      placements,
+      groupes,
+      maintenant: new Date(),
+    });
+    if (!r.fichier) {
+      setExport({ texte: T.exporterRien, bon: false });
+      window.setTimeout(() => setExport(null), 6000);
+      return;
+    }
+    const url = URL.createObjectURL(
+      new Blob([r.fichier], { type: "text/calendar;charset=utf-8" }),
+    );
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `myp-${master.slug}.ics`;
+    a.click();
+    URL.revokeObjectURL(url);
+
+    const restes = [
+      r.horsCalendrier.length ? T.exporterHorsCalendrier(r.horsCalendrier.length) : null,
+      r.sansHoraire.length ? T.exporterSansHoraire(r.sansHoraire.length) : null,
+    ].filter(Boolean);
+    setExport({
+      texte: [T.exporterFait(r.cours), ...restes].join(" "),
+      bon: true,
+    });
+    window.setTimeout(() => setExport(null), 9000);
   };
 
   const q = recherche.trim().toLowerCase();
@@ -1164,6 +1216,24 @@ export function Planificateur({
                     ? T.lienEchec
                     : T.partager}
               </button>
+              <button
+                onClick={exporter}
+                className="w-full rounded-lg border border-line-2 py-2 text-[13px]
+                  font-medium text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
+                  hover:border-unil-400 hover:text-unil-400"
+              >
+                {T.exporter}
+              </button>
+              {rapportExport && (
+                <p
+                  role="status"
+                  className={`text-[12px] leading-snug ${
+                    rapportExport.bon ? "text-unil-500" : "text-muted"
+                  }`}
+                >
+                  {rapportExport.texte}
+                </p>
+              )}
               <button
                 onClick={toutDecocher}
                 className="w-full rounded-lg border border-line-2 py-2 text-[13px]
