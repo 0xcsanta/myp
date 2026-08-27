@@ -406,6 +406,61 @@ body .vague[data-phase="depart"][data-sens="descend"] {
   transition: background 260ms var(--ease-out-std, ease-out);
 }
 
+/*
+ * Le bloc de cours est toujours le contraire de sa toile.
+ *
+ * Sur le fond blanc il est bleu, sur un fond teinte il est blanc. Ce n'est pas
+ * une coquetterie : un bloc bleu tres pale pose sur un rose tres pale a la
+ * meme clarte que lui, et les deux se confondent. Clement l'a vu tout de
+ * suite sur « Aube ».
+ *
+ * L'ombre porte la separation quand la couleur ne suffit pas, et le liseré
+ * gauche garde l'identite de la marque dans tous les cas.
+ */
+:root {
+  --bloc-fond: var(--color-unil-100);
+  --bloc-conflit: var(--color-warn-soft);
+}
+
+:root[data-fond="bleu"],
+:root[data-fond="papier"],
+:root[data-fond="ardoise"],
+:root[data-fond="aube"],
+:root[data-fond="menthe"] {
+  --bloc-fond: #ffffff;
+  --bloc-conflit: #ffffff;
+}
+
+.bloc-cours {
+  background: var(--bloc-fond);
+  /*
+   * Le cerne fait plus pour la lisibilite que le remplissage.
+   *
+   * Un bloc blanc sur un rose tres pale n'a qu'un rapport de clarte de 1,18 :
+   * assez pour qu'on le devine, pas pour qu'on le lise d'un coup d'oeil. C'est
+   * le trait bleu qui dessine le bord, et il ne depend d'aucun fond, donc il
+   * tient sur les six.
+   */
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 55, 235, 0.22),
+    0 1px 2px rgba(10, 31, 48, 0.08),
+    0 8px 18px -14px rgba(10, 31, 48, 0.65);
+  transition: background 260ms var(--ease-out-std, ease-out);
+}
+
+/*
+ * Un chevauchement doit se voir sur les six fonds. Le remplissage ambre se
+ * confondrait avec le fond « Papier », qui est ambre lui aussi : c'est donc le
+ * cerne qui porte l'alerte, et il ne depend d'aucun fond.
+ */
+.bloc-cours-conflit {
+  background: var(--bloc-conflit);
+  box-shadow:
+    inset 0 0 0 1px var(--color-warn),
+    0 1px 2px rgba(10, 31, 48, 0.07),
+    0 8px 18px -14px rgba(10, 31, 48, 0.6);
+}
+
 :root[data-fond="bleu"] {
   --fond: linear-gradient(165deg, #e4edff 0%, #f4f8ff 55%, #ffffff 100%);
 }

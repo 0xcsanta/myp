@@ -148,8 +148,8 @@ export function GrilleHoraire({
                       key={`${b.cours.id}-${i}`}
                       className={`absolute overflow-hidden rounded-lg border-l-[3px] px-2 py-1.5 ${
                         conflit
-                          ? "border-l-warn bg-warn-soft"
-                          : "border-l-unil-400 bg-unil-100"
+                          ? "bloc-cours-conflit border-l-warn"
+                          : "bloc-cours border-l-unil-400"
                       }`}
                       style={{
                         top: (b.debut - DEBUT) * PX_PAR_MIN,
