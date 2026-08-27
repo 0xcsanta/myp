@@ -9,7 +9,7 @@
    "label": "Module 1",
    "minEcts": 18,
    "kind": "all_required",
-   "note": "Average set (≥4.0) of compulsory courses",
+   "note": "Average set (≥4.0) of compulsory courses - 18 credits ECTS",
    "avgMin": 4.0
   },
   {
@@ -18,7 +18,7 @@
    "label": "Module 2",
    "minEcts": 12,
    "kind": "free_choice",
-   "note": "Average set (≥4.0) of restricted elective courses",
+   "note": "Average set (≥4.0) of restricted elective courses - 12 credits ECTS",
    "avgMin": 4.0
   },
   {
@@ -27,7 +27,7 @@
    "label": "Module 3",
    "minEcts": 6,
    "kind": "all_required",
-   "note": "Compulsory course"
+   "note": "Compulsory course - 6 credits ECTS"
   },
   {
    "code": "M4",
@@ -35,7 +35,7 @@
    "label": "Module 4",
    "minEcts": 18,
    "kind": "free_choice",
-   "note": "Optional courses"
+   "note": "Optional courses - 18 credits ECTS"
   },
   {
    "code": "M5",
@@ -43,13 +43,75 @@
    "label": "Module 5",
    "minEcts": 36,
    "kind": "free_choice",
-   "note": "Optional courses in the orientation"
+   "note": "Optional courses in the orientation - 36 credits ECTS"
+  },
+  {
+   "code": "SM5.1",
+   "parent": "M5",
+   "label": "Submodule 5.1",
+   "minEcts": 2,
+   "kind": "free_choice",
+   "note": "Biology (select 2 ECTS)"
+  },
+  {
+   "code": "SM5.2",
+   "parent": "M5",
+   "label": "Submodule 5.2",
+   "minEcts": 2,
+   "kind": "free_choice",
+   "note": "Biology (select at least 2 ECTS)"
+  },
+  {
+   "code": "SM5.3",
+   "parent": "M5",
+   "label": "Submodule 5.3",
+   "minEcts": 6,
+   "kind": "free_choice",
+   "note": "Management and Economics (select at least 6 ECTS)"
   },
   {
    "code": "M6",
    "parent": null,
    "label": "Module 6",
    "minEcts": 30,
+   "kind": "thesis",
+   "note": "Master thesis - 30 credits ECTS",
+   "unlockedBy": {
+    "ectsFrom": [
+     "M1",
+     "M2",
+     "M3",
+     "M4",
+     "M5"
+    ],
+    "atLeast": 90
+   },
+   "unlockedNote": "Only students having acquired 90 ECTS credits from Modules 1 to 5 are allowed to present their thesis."
+  },
+  {
+   "code": "SM6.1",
+   "parent": "M6",
+   "label": "Submodule 6.1",
+   "minEcts": 0,
+   "kind": "thesis",
+   "note": "Writing a thesis",
+   "unlockedBy": {
+    "ectsFrom": [
+     "M1",
+     "M2",
+     "M3",
+     "M4",
+     "M5"
+    ],
+    "atLeast": 90
+   },
+   "unlockedNote": "Only students having acquired 90 ECTS credits from Modules 1 to 5 are allowed to present their thesis."
+  },
+  {
+   "code": "SM6.2",
+   "parent": "M6",
+   "label": "Submodule 6.2",
+   "minEcts": 0,
    "kind": "thesis",
    "note": "Master thesis",
    "unlockedBy": {

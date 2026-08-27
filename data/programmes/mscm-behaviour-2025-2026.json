@@ -226,7 +226,7 @@
   {
    "title": "Situating Humans in Time: From the Beginning of Life to the Anthropocene",
    "teachers": "Alvarez N.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 2,
    "semesters": [
     2
@@ -239,7 +239,7 @@
   {
    "title": "Co-evolution, Mutualism, Parasitism",
    "teachers": "FBM - Sanders I.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 2,
    "semesters": [
     2
@@ -252,7 +252,7 @@
   {
    "title": "The Evolution of Cooperation and Decision-Making",
    "teachers": "FBM - Lehmann L.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 2,
    "semesters": [
     2
@@ -265,7 +265,7 @@
   {
    "title": "Animal Communication and Parasitism",
    "teachers": "FBM - Christe P. / Roulin A.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 2,
    "semesters": [
     3
@@ -278,7 +278,7 @@
   {
    "title": "Spatial Modelling of Species and Biodiversity",
    "teachers": "FBM - Guisan A.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 4,
    "semesters": [
     3
@@ -291,7 +291,7 @@
   {
    "title": "Environmental Economics",
    "teachers": "Houde S.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     2
@@ -304,7 +304,7 @@
   {
    "title": "Experimental Methods",
    "teachers": "Cavallo M.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     2
@@ -317,7 +317,7 @@
   {
    "title": "Grand Challenges Strategy Project",
    "teachers": "Haack P.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     2
@@ -330,7 +330,7 @@
   {
    "title": "Group Processes",
    "teachers": "Krings F.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     2
@@ -343,7 +343,7 @@
   {
    "title": "Neuro Economie",
    "teachers": "Villa A.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     2
@@ -356,7 +356,7 @@
   {
    "title": "Power and Leadership",
    "teachers": "Tur B.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     2
@@ -369,7 +369,7 @@
   {
    "title": "Sustainability Strategy Project",
    "teachers": "Aeschlimann S./Fischer C.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     2
@@ -382,7 +382,7 @@
   {
    "title": "Behavioral Economics",
    "teachers": "Santos Pinto L.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     3
@@ -395,7 +395,7 @@
   {
    "title": "Corporate Sustainability (not in Aut25)",
    "teachers": "Philippe D.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     3
@@ -408,7 +408,7 @@
   {
    "title": "Evidence-Based Management",
    "teachers": "Dietz J.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     3
@@ -421,7 +421,7 @@
   {
    "title": "Heuristic Decision Making Strategies",
    "teachers": "Marewski J.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     3
@@ -434,7 +434,7 @@
   {
    "title": "Human Behavior and Evolutionary Inference",
    "teachers": "Efferson C.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     3
@@ -447,7 +447,7 @@
   {
    "title": "Human Decisions-Making and the SDGs",
    "teachers": "Vogt S.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     3
@@ -460,7 +460,7 @@
   {
    "title": "Leadership Development",
    "teachers": "Bendahan S.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 3,
    "semesters": [
     3
@@ -473,7 +473,7 @@
   {
    "title": "Managerial Decision Making",
    "teachers": "Hoffrage U.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     3
@@ -486,7 +486,7 @@
   {
    "title": "Strategic Management Control Systems",
    "teachers": "Schnegg M. / Mejri F.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 6,
    "semesters": [
     3
@@ -499,7 +499,7 @@
   {
    "title": "Unethical Decision Making – Advanced",
    "teachers": "Hoffrage U./Palazzo G.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 3,
    "semesters": [
     3
@@ -512,7 +512,7 @@
   {
    "title": "Unethical Decision Making – Basics",
    "teachers": "Palazzo G./Hoffrage U.",
-   "module": "M5",
+   "module": "SM5.3",
    "ects": 3,
    "semesters": [
     3
@@ -525,7 +525,7 @@
   {
    "title": "The Art of Writing a Master's Thesis",
    "teachers": "Philippe D.",
-   "module": "M6",
+   "module": "SM6.1",
    "ects": 3,
    "semesters": [
     3
@@ -538,7 +538,7 @@
   {
    "title": "Thesis (Research or Internship)",
    "teachers": "Choose your thesis director",
-   "module": "M6",
+   "module": "SM6.2",
    "ects": 27,
    "semesters": [
     4

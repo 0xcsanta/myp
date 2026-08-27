@@ -40,6 +40,11 @@ export type Module = {
   kind: "all_required" | "free_choice" | "thesis";
   note: string;
   avgMin?: number;
+  /**
+   * Le plan demande d'en choisir un seul parmi les sous-modules, et non de
+   * les additionner : « MODULE 3: Choose the submodule of your orientation ».
+   */
+  choisirUn?: boolean;
   unlockedBy?: { ectsFrom: string[]; atLeast: number };
   unlockedNote?: string;
 };

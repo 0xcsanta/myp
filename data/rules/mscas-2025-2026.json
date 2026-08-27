@@ -9,7 +9,7 @@
    "label": "Module 1",
    "minEcts": 30,
    "kind": "all_required",
-   "note": "* PROPEDEUTIC: Average set (≥4.0) of compulsory courses",
+   "note": "PROPEDEUTIC: Average set (≥4.0) of compulsory courses - 30 credits ECTS",
    "avgMin": 4.0
   },
   {
@@ -18,7 +18,7 @@
    "label": "Module 2",
    "minEcts": 24,
    "kind": "all_required",
-   "note": "GENERAL: Average set (≥4.0) of compulsory courses",
+   "note": "GENERAL: Average set (≥4.0) of compulsory courses - 24 credits ECTS",
    "avgMin": 4.0
   },
   {
@@ -27,7 +27,7 @@
    "label": "Module 3",
    "minEcts": 24,
    "kind": "all_required",
-   "note": "GENERAL: Average set (≥4.0) of compulsory courses",
+   "note": "GENERAL: Average set (≥4.0) of compulsory courses - 24 credits ECTS",
    "avgMin": 4.0
   },
   {
@@ -36,7 +36,7 @@
    "label": "Module 4",
    "minEcts": 12,
    "kind": "free_choice",
-   "note": "OPTIONAL: Optional courses"
+   "note": "OPTIONAL: Optional courses - 12 credits ECTS"
   },
   {
    "code": "M5",
@@ -44,7 +44,7 @@
    "label": "Module 5",
    "minEcts": 30,
    "kind": "thesis",
-   "note": "Master thesis (compulsory)",
+   "note": "Master thesis (compulsory) - 30 credits ECTS",
    "unlockedBy": {
     "ectsFrom": [
      "M1",

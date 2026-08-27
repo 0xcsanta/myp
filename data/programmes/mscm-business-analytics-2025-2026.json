@@ -447,7 +447,7 @@
   {
    "title": "The Art of Writing a Master's Thesis",
    "teachers": "Philippe D.",
-   "module": "M6",
+   "module": "SM6.1",
    "ects": 3,
    "semesters": [
     3
@@ -460,7 +460,7 @@
   {
    "title": "Thesis (Research or Internship)",
    "teachers": "Choose your thesis director",
-   "module": "M6",
+   "module": "SM6.2",
    "ects": 27,
    "semesters": [
     4

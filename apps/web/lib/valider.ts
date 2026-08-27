@@ -43,6 +43,7 @@ export type Diagnostic =
     }
   | { niveau: "info"; code: "horaire_inconnu"; sans: number; total: number }
   | { niveau: "erreur"; code: "externes_max"; module: string; pris: number; max: number }
+  | { niveau: "erreur"; code: "orientations"; module: string; nombre: number }
   | { niveau: "info"; code: "externes_accord"; module: string; pris: number }
   | { niveau: "erreur"; code: "total_depasse"; total: number; exces: number; requis: number }
   | { niveau: "info"; code: "total_manque"; total: number; requis: number }
@@ -110,7 +111,15 @@ export function valider(
      */
     const aDesEnfants = enfantsDe(m.code).length > 0;
 
-    if (obtenu < m.minEcts && !aDesEnfants) {
+    /*
+     * Un module dont le plan ne chiffre aucun seuil ne peut rien exiger. Les
+     * sous-modules d'orientation du MScF sont dans ce cas : leur en-tete ne
+     * porte pas de credits, c'est le module parent qui les donne pour tous.
+     * Sans ce filtre, ils s'annonceraient « complets » a zero credit.
+     */
+    const aUnSeuil = m.minEcts > 0;
+
+    if (aUnSeuil && obtenu < m.minEcts && !aDesEnfants) {
       d.push({
         niveau: "erreur",
         code: "module_min",
@@ -121,11 +130,11 @@ export function valider(
     }
 
     const max = m.maxEcts ?? (m.kind === "free_choice" ? Infinity : m.minEcts);
-    if (obtenu > max && !aDesEnfants) {
+    if (aUnSeuil && obtenu > max && !aDesEnfants) {
       d.push({ niveau: "erreur", code: "module_max", module: m.code, exces: obtenu - max });
     }
 
-    if (obtenu === m.minEcts && !aDesEnfants) {
+    if (aUnSeuil && obtenu === m.minEcts && !aDesEnfants) {
       d.push({ niveau: "ok", code: "module_fait", module: m.code });
     }
 
@@ -141,6 +150,25 @@ export function valider(
           depuis: m.unlockedBy.ectsFrom,
         });
       }
+    }
+  }
+
+  /* ---------- une seule orientation a la fois ---------- */
+  for (const m of regles.modules) {
+    if (!m.choisirUn) continue;
+    const enfants = enfantsDe(m.code);
+    const garnis = enfants.filter((e) => {
+      const sousEnfants = enfantsDe(e.code);
+      const codes = sousEnfants.length ? sousEnfants.map((x) => x.code) : [e.code];
+      return choisis.some((c) => codes.includes(c.module));
+    });
+    if (garnis.length > 1) {
+      d.push({
+        niveau: "erreur",
+        code: "orientations",
+        module: m.code,
+        nombre: garnis.length,
+      });
     }
   }
 
@@ -290,6 +318,8 @@ export function messageDiagnostic(
       );
     case "horaire_inconnu":
       return d.sans === d.total ? T.horaireAucun : T.horaireCertains(d.sans, d.total);
+    case "orientations":
+      return T.orientations(nom(d.module), d.nombre);
     case "externes_max":
       return T.externesMax(nom(d.module), d.pris, d.max);
     case "externes_accord":
@@ -317,6 +347,24 @@ function enumerer(xs: string[], et: string): string {
  * master a l'autre.
  */
 export function nomModule(m: Module, langue: Langue = "fr"): string {
-  const nom = m.label.replace(/sous-?module/i, langue === "fr" ? "Sous-module" : "Sub-module");
-  return nom;
+  /*
+   * Les plans ecrivent la meme notion de cinq facons : « Module 1 »,
+   * « Sous-Module 3.1 » au MScCCF, « Sousmodule 1a » au MDE, « Submodule 3.1 »
+   * et « Sub-Submodule 3.2.1 » au MScF. Une seule forme est affichee, dans la
+   * langue du lecteur, sans quoi la meme notion change d'aspect d'un master a
+   * l'autre et d'une ligne a la suivante.
+   */
+  const numero = m.label.replace(/^[^\d]*/, "").trim();
+  const sousSous = /sub-?sub|sous-?sous/i.test(m.label);
+  const sous = !sousSous && /sub|sous/i.test(m.label);
+  const mot = sousSous
+    ? langue === "fr"
+      ? "Sous-sous-module"
+      : "Sub-submodule"
+    : sous
+      ? langue === "fr"
+        ? "Sous-module"
+        : "Submodule"
+      : "Module";
+  return numero ? `${mot} ${numero}` : mot;
 }

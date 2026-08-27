@@ -9,7 +9,7 @@
    "label": "Module 1",
    "minEcts": 18,
    "kind": "all_required",
-   "note": "Moyenne pondérée (≥4.0) d’enseignements obligatoires",
+   "note": "Moyenne pondérée (≥4.0) d’enseignements obligatoires – 18 crédits ECTS",
    "avgMin": 4.0
   },
   {
@@ -18,7 +18,7 @@
    "label": "Module 2",
    "minEcts": 12,
    "kind": "all_required",
-   "note": "Moyenne pondérée (≥4.0) d’enseignements obligatoires",
+   "note": "Moyenne pondérée (≥4.0) d’enseignements obligatoires – 12 crédits ECTS",
    "avgMin": 4.0
   },
   {
@@ -27,7 +27,7 @@
    "label": "Module 3",
    "minEcts": 30,
    "kind": "free_choice",
-   "note": "Enseignements à option"
+   "note": "Enseignements à option – 30 crédits ECTS"
   },
   {
    "code": "M4",
@@ -35,7 +35,7 @@
    "label": "Module 4",
    "minEcts": 30,
    "kind": "thesis",
-   "note": "Mémoire et activités pédagogiques",
+   "note": "Mémoire et activités pédagogiques – 30 crédits ECTS",
    "unlockedBy": {
     "ectsFrom": [
      "M1",
@@ -52,7 +52,7 @@
    "label": "Sous-Module 4.1",
    "minEcts": 6,
    "kind": "free_choice",
-   "note": "Activités pédagogiques à option"
+   "note": "Activités pédagogiques à option - 6 crédits ECTS"
   },
   {
    "code": "SM4.2",
@@ -60,7 +60,7 @@
    "label": "Sous-Module 4.2",
    "minEcts": 24,
    "kind": "thesis",
-   "note": "Mémoire de Master",
+   "note": "Mémoire de Master - 24 crédits ECTS",
    "unlockedBy": {
     "ectsFrom": [
      "M1",

@@ -265,7 +265,7 @@
   {
    "title": "Corporate Strategy (Limited to 36 students)",
    "teachers": "Castañer X.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 6,
    "semesters": [
     2
@@ -278,7 +278,7 @@
   {
    "title": "International Strategy",
    "teachers": "Zanarone G.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 6,
    "semesters": [
     2
@@ -291,7 +291,7 @@
   {
    "title": "Managing Contractual Relationship",
    "teachers": "Zanarone G.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 6,
    "semesters": [
     2
@@ -304,7 +304,7 @@
   {
    "title": "Management of AI in Organizations (course limited)",
    "teachers": "Shrestha Y.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 6,
    "semesters": [
     2
@@ -317,7 +317,7 @@
   {
    "title": "The Management of Risk, Reputation and Legitimacy",
    "teachers": "Haack P.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 3,
    "semesters": [
     2
@@ -330,7 +330,7 @@
   {
    "title": "Applied Strategy Consulting",
    "teachers": "Borghi G. / Barras N. / P. Domicent",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 3,
    "semesters": [
     3
@@ -343,7 +343,7 @@
   {
    "title": "Corporate Sustainability (Aut26)",
    "teachers": "Philippe D.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 6,
    "semesters": [
     3
@@ -356,7 +356,7 @@
   {
    "title": "Digital Strategies and Innovation",
    "teachers": "Missonier S.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 6,
    "semesters": [
     3
@@ -369,7 +369,7 @@
   {
    "title": "Entrepreneurship and Strategy (limited to 60 students)",
    "teachers": "Tsukanova T.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 6,
    "semesters": [
     3
@@ -382,7 +382,7 @@
   {
    "title": "Human Decisions-Making and the SDGs",
    "teachers": "Vogt S.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 6,
    "semesters": [
     3
@@ -395,7 +395,7 @@
   {
    "title": "Social Innovation Lab (Limited to 15 students)",
    "teachers": "Romon Carnegie E.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 3,
    "semesters": [
     3
@@ -408,7 +408,7 @@
   {
    "title": "Social Norms and Social Tipping: Mechanisms of Behavioral Change",
    "teachers": "Vogt S.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 6,
    "semesters": [
     3
@@ -421,7 +421,7 @@
   {
    "title": "Strategic Management Control Systems",
    "teachers": "Schnegg M. / Mejri F.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 6,
    "semesters": [
     3
@@ -434,7 +434,7 @@
   {
    "title": "Strategy in Digital Markets",
    "teachers": "Peukert C.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 6,
    "semesters": [
     3
@@ -447,7 +447,7 @@
   {
    "title": "Strategy of Innovation",
    "teachers": "Cagnolo E.",
-   "module": "M5",
+   "module": "SM5.1",
    "ects": 6,
    "semesters": [
     3
@@ -460,7 +460,7 @@
   {
    "title": "Group Processes",
    "teachers": "Krings F.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 6,
    "semesters": [
     2
@@ -473,7 +473,7 @@
   {
    "title": "Power and Leadership",
    "teachers": "Tur B.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 6,
    "semesters": [
     2
@@ -486,7 +486,7 @@
   {
    "title": "Simple Rules for Leadership and Strategy: a Practical Approach",
    "teachers": "Marewski J.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 6,
    "semesters": [
     2
@@ -499,7 +499,7 @@
   {
    "title": "Evidence-Based Management",
    "teachers": "Dietz J.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 6,
    "semesters": [
     3
@@ -512,7 +512,7 @@
   {
    "title": "Heuristic Decision Making Strategies",
    "teachers": "Marewski J.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 6,
    "semesters": [
     3
@@ -525,7 +525,7 @@
   {
    "title": "Human Behavior and Evolutionary Inference",
    "teachers": "Efferson C.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 6,
    "semesters": [
     3
@@ -538,7 +538,7 @@
   {
    "title": "Leadership Development",
    "teachers": "Bendahan S.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 3,
    "semesters": [
     3
@@ -551,7 +551,7 @@
   {
    "title": "Managerial Decision Making",
    "teachers": "Hoffrage U.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 6,
    "semesters": [
     3
@@ -564,7 +564,7 @@
   {
    "title": "Unethical Decision Making – Advanced",
    "teachers": "Hoffrage U./Palazzo G.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 3,
    "semesters": [
     3
@@ -577,7 +577,7 @@
   {
    "title": "Unethical Decision Making – Basics",
    "teachers": "Palazzo G./Hoffrage U.",
-   "module": "M5",
+   "module": "SM5.2",
    "ects": 3,
    "semesters": [
     3
@@ -590,7 +590,7 @@
   {
    "title": "The Art of Writing a Master's Thesis",
    "teachers": "Philippe D.",
-   "module": "M6",
+   "module": "SM6.1",
    "ects": 3,
    "semesters": [
     3
@@ -603,7 +603,7 @@
   {
    "title": "Thesis (Research or Internship)",
    "teachers": "Choose your thesis director",
-   "module": "M6",
+   "module": "SM6.2",
    "ects": 27,
    "semesters": [
     4

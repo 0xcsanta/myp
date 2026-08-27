@@ -9,7 +9,7 @@
    "label": "Module 1",
    "minEcts": 30,
    "kind": "all_required",
-   "note": "Moyenne pondérée (≥4.0) d'enseignements obligatoires",
+   "note": "Moyenne pondérée (≥4.0) d'enseignements obligatoires - 30 crédits ECTS",
    "avgMin": 4.0
   },
   {
@@ -18,7 +18,7 @@
    "label": "Module 2",
    "minEcts": 30,
    "kind": "all_required",
-   "note": "Moyenne pondérée (≥4.0) d'enseignements obligatoires",
+   "note": "Moyenne pondérée (≥4.0) d'enseignements obligatoires - 30 crédits ECTS",
    "avgMin": 4.0
   },
   {
@@ -27,7 +27,7 @@
    "label": "Module 3",
    "minEcts": 15,
    "kind": "free_choice",
-   "note": "Enseignements à option"
+   "note": "Enseignements à option - 15 crédits ECTS"
   },
   {
    "code": "SM3.1",
@@ -35,7 +35,7 @@
    "label": "Sous-Module 3.1",
    "minEcts": 3,
    "kind": "free_choice",
-   "note": "Enseignements de recherche"
+   "note": "Enseignements de recherche - 3 crédits ECTS"
   },
   {
    "code": "SM3.2",
@@ -43,7 +43,7 @@
    "label": "Sous-Module 3.2",
    "minEcts": 12,
    "kind": "free_choice",
-   "note": "Enseignements d'approfondissement"
+   "note": "Enseignements d'approfondissement - 12 crédits ECTS (dont un minimum de 9 crédits de cette liste)"
   },
   {
    "code": "M4",
@@ -51,7 +51,7 @@
    "label": "Module 4",
    "minEcts": 15,
    "kind": "thesis",
-   "note": "Mémoire de Master",
+   "note": "Mémoire de Master - 15 crédits ECTS",
    "unlockedBy": {
     "ectsFrom": [
      "M1",

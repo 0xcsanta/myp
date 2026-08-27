@@ -9,7 +9,7 @@
    "label": "Module 1",
    "minEcts": 24,
    "kind": "free_choice",
-   "note": "Enseignements à option (complément à la formation antérieure)"
+   "note": "Enseignements à option (complément à la formation antérieure) - 24 crédits ECTS"
   },
   {
    "code": "SM1a",
@@ -17,7 +17,7 @@
    "label": "Sousmodule 1a",
    "minEcts": 24,
    "kind": "free_choice",
-   "note": "Cours à option pour les titulaires d'un Baccalauréat universitaire en Droit"
+   "note": "Cours à option pour les titulaires d'un Baccalauréat universitaire en Droit - 24 crédits ECTS"
   },
   {
    "code": "SM1b",
@@ -25,7 +25,7 @@
    "label": "Sousmodule 1b",
    "minEcts": 24,
    "kind": "free_choice",
-   "note": "Cours à option pour les titulaires d'un Baccalauréat ès Sciences en sciences économiques"
+   "note": "Cours à option pour les titulaires d'un Baccalauréat ès Sciences en sciences économiques - 24 crédits ECTS"
   },
   {
    "code": "M2",
@@ -33,7 +33,7 @@
    "label": "Module 2",
    "minEcts": 15,
    "kind": "free_choice",
-   "note": "Enseignements à option (fondements)"
+   "note": "Enseignements à option (fondements) - 15 crédits ECTS"
   },
   {
    "code": "M3",
@@ -41,7 +41,7 @@
    "label": "Module 3",
    "minEcts": 36,
    "kind": "free_choice",
-   "note": "Enseignement à option"
+   "note": "Enseignement à option - 36 crédits ECTS (dont 12 crédits liés à sa formation antérieure et 12 crédits qui ne le sont pas)"
   },
   {
    "code": "M4",
@@ -49,7 +49,7 @@
    "label": "Module 4",
    "minEcts": 15,
    "kind": "thesis",
-   "note": "Mémoire de Master"
+   "note": "Mémoire de Master - 15 crédits ECTS"
   }
  ],
  "checks": [

@@ -217,3 +217,61 @@ accord ni le prévoir.
 
 Le relevé, avec ses citations et sa méthode, est dans
 [data/cours-externes.json](../data/cours-externes.json).
+
+---
+
+## 10. Les sous-modules, et pourquoi la moitié manquait
+
+**Relu le 27 août 2026.** Notre extraction ne voyait les sous-modules que de
+quatre masters. Elle en manquait **six**, pour une raison bête : son motif de
+reconnaissance ne cherchait que le français, `SOUS-MODULE`, alors que les plans
+rédigés en anglais écrivent `SUBMODULE` et `SUB-SUBMODULE`.
+
+Trois autres défauts sont apparus en corrigeant le premier.
+
+**Les crédits n'étaient pas optionnels.** Le motif exigeait un nombre d'ECTS sur
+la ligne d'en tête. Or « SUBMODULE 3.1: Asset and Risk Management » n'en porte
+aucun, le module parent les donnant pour les trois orientations. L'en tête était
+donc rejeté en entier.
+
+**Les décimales étaient tronquées.** Le MScE a des seuils à 22,5 et 7,5 crédits,
+que `\d+` ramenait à 22 et 7.
+
+**La profondeur était limitée à un niveau.** Le parent se calculait en prenant le
+premier chiffre du code, donc « 3.2.1 » devenait un enfant de « Module 3 » au
+lieu du « Sous-module 3.2 ». Il se lit maintenant dans le code lui même.
+
+**Un garde-fou a dû être ajouté**, parce qu'un motif plus permissif attrape des
+phrases du corps du texte. « Module 4 can be any course listed above... » créait
+un second Module 4 fantôme dans les quatre orientations du MScM. Un en tête doit
+désormais porter un deux points juste après son numéro, ou un nombre de crédits.
+
+**Ce que ça donne**, sous-modules réellement présents dans les plans :
+
+| Master | Sous-modules |
+|---|---|
+| MDE | Sousmodule 1a, 1b |
+| MScCCF | 3.1, 3.2 |
+| MScE | 1.1, 1.2 |
+| **MScF** | 3.1, 3.2, 3.3, **et 3.2.1, 3.2.2 sous le 3.2** |
+| MScIS | 4.1, 4.2 |
+| MScM comportement | 5.1, 5.2, 5.3, 6.1, 6.2 |
+| MScM business analytics | 6.1, 6.2 |
+| MScM marketing | 6.1, 6.2 |
+| MScM stratégie | 5.1, 5.2, 6.1, 6.2 |
+| MScAS | aucun |
+
+**Vérification.** Aucun cours n'a été perdu ni inventé par la régénération :
+les dix catalogues comptent exactement le même nombre de titres qu'avant, et
+les mêmes. Seule leur répartition entre modules a changé, ce qui était le but.
+Les totaux de diplôme sont inchangés, 90 ou 120 crédits selon le master.
+
+### Choisir son orientation
+
+Le MScF écrit « MODULE 3: Choose the submodule of your orientation ». On en
+prend **un**, pas les trois. Le site le signale quand des cours sont cochés dans
+plusieurs orientations à la fois.
+
+Un module dont le plan ne chiffre aucun seuil, comme ces orientations, affiche
+ce qu'il totalise sans barre de comparaison : annoncer « 6 / 0 » serait faux,
+le seuil vivant sur le module parent.

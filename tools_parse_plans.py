@@ -88,9 +88,30 @@ def semester_columns(rows, x_prof, x_ects):
     cols.append(sum(cur) / len(cur))
     return cols
 
+# L'en-tete d'un module, dans les deux langues et a trois profondeurs.
+#
+# Quatre pieges, tous rencontres pour de vrai.
+#
+# Les plans rediges en anglais ecrivent SUBMODULE et SUB-SUBMODULE. Ne chercher
+# que le francais faisait rater les sous-modules de six masters sur dix, dont
+# les trois orientations du MScF et les deux niveaux de son sous-module 3.2.
+#
+# Le MScE ecrit SUBMODULES au pluriel : « SUBMODULES 1.2: Choose A, B or C ».
+#
+# Les credits ne sont pas toujours sur l'en-tete. « SUBMODULE 3.1: Asset and
+# Risk Management » n'en porte aucun, le module parent les donnant pour tous.
+# Les exiger faisait rejeter l'en-tete entier.
+#
+# Et ils ne sont pas toujours entiers : le MScE a des seuils a 22,5 et 7,5.
 MODULE_RE = re.compile(
-    r'^(SOUS-?MODULE|MODULE)\s*([\d.]+[a-zA-Z]?)\s*:?\s*(.*?)'
-    r'(?:[-–—]\s*)?(\d+)\s*(?:credits?|crédits?)\s*ECTS',
+    r'^(SUB-?SUB-?MODULES?|SOUS-?SOUS-?MODULES?|SUB-?MODULES?|SOUS-?MODULES?|MODULES?)'
+    r'\s*([\d.]+[a-zA-Z]?)\s*\**\s*(:)?\s*(.*)$',
+    re.I)
+
+# Les credits d'un en-tete, quel que soit leur tour de phrase :
+# « - 21 credits ECTS », « (select 2 ECTS) », « (select at least 6 ECTS) ».
+ECTS_ENTETE = re.compile(
+    r'(?:select(?:\s+at\s+least)?\s*)?(\d+(?:[.,]\d+)?)\s*(?:credits?|crédits?)?\s*ECTS',
     re.I)
 
 def parse_plan(pdf_path, slug):
@@ -110,18 +131,41 @@ def parse_plan(pdf_path, slug):
 
         m = MODULE_RE.match(line)
         if m:
-            kind, code, label, ects = m.groups()
-            is_sub = not kind.upper().startswith('MODULE')
-            code = ('SM' if is_sub else 'M') + code
-            # « Sous-module 4.1 » est une subdivision de « Module 4 » : ses
-            # credits sont DEJA comptes dans le parent. Sans ce lien, le MScIS
+            kind, code_brut, deux_points, label = m.groups()
+
+            # Un en-tete porte un deux-points juste apres son numero, ou un
+            # nombre de credits. Sans ce garde-fou, des phrases du corps du
+            # texte passaient pour des modules : « Module 4 can be any course
+            # listed above... » creait un second M4 fantome dans les quatre
+            # orientations du MScM.
+            if not deux_points and not ECTS_ENTETE.search(label):
+                continue
+
+            k = fold(kind)
+            is_sub = k.startswith('sous') or k.startswith('sub')
+            code = ('SM' if is_sub else 'M') + code_brut
+
+            e = ECTS_ENTETE.search(label)
+            ects = float(e.group(1).replace(',', '.')) if e else 0.0
+            if ects == int(ects):
+                ects = int(ects)
+
+            # Le parent se lit dans le code lui meme, ce qui gere les deux
+            # niveaux : « 3.1 » depend de « M3 », « 3.2.1 » de « SM3.2 ». Ses
+            # credits sont DEJA comptes dans le parent ; sans ce lien, le MScIS
             # totalise 120 ECTS au lieu de 90.
-            parent = 'M' + re.match(r'\d+', code[2:]).group(0) if is_sub else None
+            parent = None
+            if is_sub:
+                bouts = code_brut.split('.')
+                if len(bouts) > 2:
+                    parent = 'SM' + '.'.join(bouts[:-1])
+                else:
+                    parent = 'M' + re.match(r'\d+', code_brut).group(0)
             current = {
                 'code': code,
                 'parent': parent,
-                'label': f'{kind.title()} {m.group(2)}',
-                'minEcts': int(ects),
+                'label': f'{kind.title()} {code_brut}',
+                'minEcts': ects,
                 # l'ordre compte : « Master thesis (compulsory) » porte les deux
                 # mots, et tester « obligatoire » en premier en faisait un module
                 # de cours obligatoires au lieu du memoire
@@ -130,6 +174,12 @@ def parse_plan(pdf_path, slug):
                         else 'free_choice',
                 'note': re.sub(r'\s+', ' ', label).strip(' -–—:'),
             }
+            # « MODULE 3: Choose the submodule of your orientation » : l'etudiant
+            # en prend UN, pas les trois. Sans cette marque, le site accepterait
+            # un plan qui pioche dans deux orientations a la fois.
+            if re.search(r'choose the sub-?module|choisir le sous-?module', fold(label)):
+                current['choisirUn'] = True
+
             avg = re.search(r'([\d.]+)\s*\)', label)
             if re.search(r'moyenne|average', fold(label)) and avg:
                 current['avgMin'] = float(avg.group(1))

@@ -451,17 +451,62 @@ export function Planificateur({
 
         <div className="mt-8 grid gap-10">
           {regles.modules
-            .filter((m) => parModule.has(m.code))
+            /*
+             * Un module parent n'a souvent aucun cours en propre : au MScF, le
+             * Module 3 ne fait que porter le seuil de 21 credits et la consigne
+             * de choisir son orientation. Le masquer faisait disparaitre cette
+             * consigne, et les trois orientations flottaient sans en-tete.
+             */
+            .filter((m) => {
+              if (parModule.has(m.code)) return true;
+              const descendants = (code: string): string[] => {
+                const fils = regles.modules.filter((x) => x.parent === code);
+                return fils.flatMap((f) => [f.code, ...descendants(f.code)]);
+              };
+              return descendants(m.code).some((c) => parModule.has(c));
+            })
             .map((m) => {
-              const cours = parModule.get(m.code)!;
+              /*
+               * La profondeur se lit en remontant les parents, et non au
+               * nombre de points du code : elle sert a decaler les
+               * sous-modules vers la droite pour que la hierarchie du plan se
+               * voie. Le MScF en a trois niveaux, son sous-module 3.2 se
+               * divisant lui meme en obligatoire et electif.
+               */
+              let profondeur = 0;
+              let parent = m.parent;
+              while (parent && profondeur < 4) {
+                profondeur += 1;
+                parent = regles.modules.find((x) => x.code === parent)?.parent ?? null;
+              }
+              const cours = parModule.get(m.code) ?? [];
               return (
-                <section key={m.code}>
+                <section
+                  key={m.code}
+                  className={
+                    profondeur === 0
+                      ? ""
+                      : profondeur === 1
+                        ? "border-l border-line pl-4 sm:pl-6"
+                        : "border-l border-line pl-4 sm:pl-12"
+                  }
+                >
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <h2 className="font-display text-[22px] tracking-[-0.02em] text-ink">
+                    <h2
+                      className={`font-display tracking-[-0.02em] text-ink ${
+                        profondeur === 0 ? "text-[22px]" : "text-[17px]"
+                      }`}
+                    >
                       {nomModule(m, langue)}
                     </h2>
                     <p className="tnum font-mono text-[11.5px] text-muted">
-                      {resultat.parModule[m.code] ?? 0} / {m.minEcts} ECTS
+                      {/*
+                        Un module dont le plan ne chiffre aucun seuil affiche ce
+                        qu'il totalise, sans barre : annoncer « 6 / 0 » serait
+                        faux, le seuil vivant sur le module parent.
+                      */}
+                      {resultat.parModule[m.code] ?? 0}
+                      {m.minEcts > 0 ? ` / ${m.minEcts}` : ""} ECTS
                       {m.kind === "all_required" ? T.obligatoire : ""}
                     </p>
                   </div>
@@ -470,7 +515,7 @@ export function Planificateur({
                   )}
 
                   <ul className="mt-4 grid gap-1.5">
-                    {cours.map((c) => {
+                    {(cours ?? []).map((c) => {
                       const pris = selection.has(c.id);
                       return (
                         <li key={c.id}>

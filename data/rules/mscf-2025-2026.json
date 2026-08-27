@@ -9,7 +9,7 @@
    "label": "Module 1",
    "minEcts": 30,
    "kind": "all_required",
-   "note": "Average set (≥4.0) of compulsory courses",
+   "note": "Average set (≥4.0) of compulsory courses - 30 credits ECTS",
    "avgMin": 4.0
   },
   {
@@ -18,7 +18,7 @@
    "label": "Module 2",
    "minEcts": 18,
    "kind": "all_required",
-   "note": "Average set (≥4.0) of compulsory courses",
+   "note": "Average set (≥4.0) of compulsory courses - 18 credits ECTS",
    "avgMin": 4.0
   },
   {
@@ -27,7 +27,48 @@
    "label": "Module 3",
    "minEcts": 21,
    "kind": "all_required",
-   "note": "Choose the submodule of your orientation, compulsory courses"
+   "note": "Choose the submodule of your orientation, compulsory courses - 21 credits ECTS",
+   "choisirUn": true
+  },
+  {
+   "code": "SM3.1",
+   "parent": "M3",
+   "label": "Submodule 3.1",
+   "minEcts": 0,
+   "kind": "free_choice",
+   "note": "Asset and Risk Management"
+  },
+  {
+   "code": "SM3.2",
+   "parent": "M3",
+   "label": "Submodule 3.2",
+   "minEcts": 0,
+   "kind": "free_choice",
+   "note": "Corporate Finance"
+  },
+  {
+   "code": "SM3.2.1",
+   "parent": "SM3.2",
+   "label": "Sub-Submodule 3.2.1",
+   "minEcts": 9,
+   "kind": "all_required",
+   "note": "Corporate Finance (Compulsory) - 9 credits ECTS"
+  },
+  {
+   "code": "SM3.2.2",
+   "parent": "SM3.2",
+   "label": "Sub-Submodule 3.2.2",
+   "minEcts": 12,
+   "kind": "free_choice",
+   "note": "Corporate Finance (Elective) - 12 credits ECTS"
+  },
+  {
+   "code": "SM3.3",
+   "parent": "M3",
+   "label": "Submodule 3.3",
+   "minEcts": 0,
+   "kind": "free_choice",
+   "note": "Financial Entrepreneurship and Data Science"
   },
   {
    "code": "M4",
@@ -35,7 +76,7 @@
    "label": "Module 4",
    "minEcts": 21,
    "kind": "free_choice",
-   "note": "Optional courses"
+   "note": "Optional courses - 21 credits ECTS"
   },
   {
    "code": "M5",
@@ -43,7 +84,7 @@
    "label": "Module 5",
    "minEcts": 30,
    "kind": "thesis",
-   "note": "Master thesis",
+   "note": "Master thesis - 30 credits ECTS",
    "unlockedBy": {
     "ectsFrom": [
      "M1",

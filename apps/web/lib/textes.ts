@@ -131,6 +131,8 @@ const fr = {
       `Total : ${total} crédits sur ${requis}. Il t'en manque ${requis - total}.`,
     planValide: (total: number) =>
       `Plan complet et conforme. ${total} crédits, tous les modules satisfaits.`,
+    orientations: (nom: string, n: number) =>
+      `${nom} : tu prends des cours dans ${n} orientations à la fois. Le plan demande d'en choisir une seule.`,
     externesMax: (nom: string, pris: number, max: number) =>
       `${nom} : ${pris} crédits pris hors du plan, le maximum est de ${max}.`,
     externesAccord: (nom: string, pris: number) =>
@@ -286,6 +288,8 @@ const en: Textes = {
       `Total: ${total} credits out of ${requis}. You are ${requis - total} short.`,
     planValide: (total: number) =>
       `Plan complete and compliant. ${total} credits, every module satisfied.`,
+    orientations: (nom: string, n: number) =>
+      `${nom}: you are picking from ${n} orientations at once. The plan asks you to choose one.`,
     externesMax: (nom: string, pris: number, max: number) =>
       `${nom}: ${pris} credits taken outside the plan, the maximum is ${max}.`,
     externesAccord: (nom: string, pris: number) =>
