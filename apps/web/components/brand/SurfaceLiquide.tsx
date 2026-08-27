@@ -97,6 +97,7 @@ function compiler(gl: WebGLRenderingContext, type: number, src: string) {
 
 export function SurfaceLiquide({ cible }: { cible: React.RefObject<HTMLElement | null> }) {
   const canevas = useRef<HTMLCanvasElement | null>(null);
+  const [actif, setActif] = useState(false);
   /*
    * Un contexte WebGL peut etre repris par le systeme : onglet longtemps en
    * arriere plan, pilote qui redemarre, memoire graphique sous tension. Sans
@@ -112,7 +113,7 @@ export function SurfaceLiquide({ cible }: { cible: React.RefObject<HTMLElement |
 
     const surPerte = (e: Event) => {
       e.preventDefault(); // sans quoi le contexte ne sera jamais restaure
-      cv.style.opacity = "0";
+      setActif(false);
     };
     const surRetour = () => setGeneration((g) => g + 1);
     cv.addEventListener("webglcontextlost", surPerte);
@@ -122,17 +123,38 @@ export function SurfaceLiquide({ cible }: { cible: React.RefObject<HTMLElement |
       cv.removeEventListener("webglcontextrestored", surRetour);
     };
 
+    /*
+     * Un effet qui ne demarre pas doit dire pourquoi. Sans message, il est
+     * indistinguable d'un effet casse, et le degrade de repli est assez
+     * presentable pour que personne ne remarque la difference.
+     */
+    const renoncer = (raison: string) => {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn(`[MYP] surface liquide inactive : ${raison}`);
+      }
+      return detacherContexte;
+    };
+
     const gl = cv.getContext("webgl", { antialias: false, alpha: false });
-    if (!gl || gl.isContextLost()) return detacherContexte;
+    if (!gl) return renoncer("ce navigateur n'expose pas WebGL");
+    if (gl.isContextLost()) return renoncer("le contexte WebGL est perdu");
 
     const prog = gl.createProgram();
     const vs = compiler(gl, gl.VERTEX_SHADER, VS);
     const fs = compiler(gl, gl.FRAGMENT_SHADER, FS);
-    if (!prog || !vs || !fs) return detacherContexte;
+    if (!prog || !vs || !fs) return renoncer("shader non cree");
+    if (!gl.getShaderParameter(vs, gl.COMPILE_STATUS)) {
+      return renoncer(`sommet : ${gl.getShaderInfoLog(vs)}`);
+    }
+    if (!gl.getShaderParameter(fs, gl.COMPILE_STATUS)) {
+      return renoncer(`fragment : ${gl.getShaderInfoLog(fs)}`);
+    }
     gl.attachShader(prog, vs);
     gl.attachShader(prog, fs);
     gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return detacherContexte;
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      return renoncer(`edition de liens : ${gl.getProgramInfoLog(prog)}`);
+    }
     gl.useProgram(prog);
 
     const buf = gl.createBuffer();
@@ -148,7 +170,7 @@ export function SurfaceLiquide({ cible }: { cible: React.RefObject<HTMLElement |
     const uTilt = gl.getUniformLocation(prog, "u_tilt");
     const uSlosh = gl.getUniformLocation(prog, "u_slosh");
 
-    cv.style.opacity = "1";
+    setActif(true);
 
     const calme = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -265,7 +287,8 @@ export function SurfaceLiquide({ cible }: { cible: React.RefObject<HTMLElement |
        * Opaque seulement une fois le contexte obtenu : sans WebGL, le canevas
        * reste transparent et le degrade du bouton s'affiche a travers.
        */
-      className="pointer-events-none absolute inset-0 block size-full opacity-0 transition-opacity duration-500"
+      className={`pointer-events-none absolute inset-0 block size-full
+        transition-opacity duration-500 ${actif ? "opacity-100" : "opacity-0"}`}
     />
   );
 }

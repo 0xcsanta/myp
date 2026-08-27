@@ -14,12 +14,20 @@ export default async function Accueil({
 
   return (
     <div className="flex min-h-dvh flex-col bg-white">
-      <SiteHeader langue={lang} hrefAutreLangue={`/${autreLangue(lang)}`} />
+      {/*
+        L'en-tete et le hero forment un premier ecran a part entiere.
+        `flex-1` ne suffisait pas : il ne distribue de l'espace que s'il en
+        reste, or le pied de page est haut, la page depassait donc deja la
+        fenetre et `main` gardait sa hauteur naturelle. Le pied de page
+        remontait alors dans le premier ecran, ce qui n'arrive plus ici.
+      */}
+      <div className="flex min-h-dvh flex-col">
+        <SiteHeader langue={lang} hrefAutreLangue={`/${autreLangue(lang)}`} />
 
-      <main className="flex-1">
-        <section className="shell pt-[clamp(40px,5vw,88px)]">
+        <main className="flex flex-1 flex-col">
+          <section className="shell flex flex-1 flex-col pt-[clamp(40px,5vw,88px)]">
           <h1
-            className="text-center font-display leading-[0.9] text-black"
+            className="shrink-0 text-center font-display leading-[0.9] text-black"
             /*
              * Le titre remplit la gouttiere, comme dans la maquette de
              * reference. La borne haute de 262 pixels s'enclenche vers 1850
@@ -36,11 +44,17 @@ export default async function Accueil({
             Master Your Plan
           </h1>
 
-          <div className="mt-[clamp(36px,4.5vw,72px)]">
-            <HeroFrame />
-          </div>
-        </section>
-      </main>
+            {/*
+              Sur telephone le visuel est cale vers le bas de l'ecran, comme sur
+              la maquette : `mt-auto` mange l'espace libre au dessus de lui.
+              Au dela, il reprend sa marge fixe et le hero sa hauteur naturelle.
+            */}
+            <div className="mt-auto pb-[4dvh] pt-[clamp(28px,5vw,48px)] sm:mt-[clamp(36px,4.5vw,72px)] sm:pb-0 sm:pt-0">
+              <HeroFrame />
+            </div>
+          </section>
+        </main>
+      </div>
 
       <SiteFooter langue={lang} />
     </div>

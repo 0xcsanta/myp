@@ -41,11 +41,11 @@ const SUR_TELEPHONE = "(max-width: 639px)";
 
 export function HeroFrame() {
   return (
-    <div className="relative w-full overflow-hidden aspect-[400/392] sm:aspect-[1200/560]">
+    <div className="relative w-full overflow-hidden aspect-[400/469] sm:aspect-[1200/560]">
       {/* le fond bleu */}
       <div
         className="absolute overflow-hidden rounded-[24px] sm:rounded-[30px]
-          left-[10.5%] right-[10.5%] top-[13%] h-[86%]
+          left-[6%] right-[6%] top-[13%] h-[85%]
           sm:inset-x-0 sm:top-[25.2%] sm:h-[64.6%]"
       >
         <picture className="block size-full">
@@ -68,14 +68,14 @@ export function HeroFrame() {
       */}
       <div
         className="absolute left-1/2 top-0 -translate-x-1/2 overflow-hidden bg-black
-          w-[59.5%] aspect-[238/382] rounded-[30px] p-[4px]
+          w-[73%] aspect-[238/382] rounded-[34px] p-[4px]
           shadow-[0_10px_30px_-12px_rgba(10,31,48,0.55)]
           sm:w-[75.6%] sm:aspect-[907/644] sm:rounded-[24px] sm:p-0
           sm:border-2 sm:border-b-0 sm:border-white/50
           sm:shadow-[0_-4px_20px_rgba(0,0,0,0.1)]"
       >
         <div
-          className="relative overflow-hidden size-full rounded-[26px]
+          className="relative overflow-hidden size-full rounded-[30px]
             sm:absolute sm:left-1/2 sm:size-auto sm:w-[95.9%] sm:-translate-x-1/2
             sm:rounded-[16px] sm:top-[2.56%] sm:aspect-[869.742/607.439]"
         >
