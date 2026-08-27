@@ -347,16 +347,6 @@
    "salle": "Anthropole/2013",
    "cadence": "hebdomadaire",
    "note": "7 dernières semaines du semestre"
-  },
-  {
-   "cours": "market-microstructure",
-   "semestre": "automne-2026",
-   "jour": "Jeudi",
-   "debut": "16:15",
-   "fin": "18:00",
-   "salle": "Internef/275",
-   "cadence": "hebdomadaire",
-   "note": "la fiche de cours et l'agenda ne donnent pas le même créneau, vérifie avant de t'inscrire"
   }
  ]
 }

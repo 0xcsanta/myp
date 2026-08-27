@@ -161,18 +161,6 @@
    "enseignant": "Ulrich Hoffrage, Guido Palazzo"
   },
   {
-   "master": "mscf",
-   "semestre": "automne-2026",
-   "jour": "Jeudi",
-   "debut": "16:15",
-   "fin": "18:00",
-   "titre": "Market Microstructure",
-   "salle": "Internef/275",
-   "cadence": "hebdomadaire",
-   "note": "la fiche de cours et l'agenda ne donnent pas le même créneau, vérifie avant de t'inscrire",
-   "enseignant": "Roxana Mihet"
-  },
-  {
    "master": "mscis",
    "semestre": "automne-2026",
    "jour": "Mardi",
@@ -695,27 +683,43 @@
    "enseignant": "Anne Drouin"
   }
  ],
- "divergences": [
-  {
+ "stabiliteDunAnneeALautre": {
+  "laquestion": "Un cours garde-t-il le meme horaire d'une annee a l'autre ? Clement l'a posee, elle decide de la confiance a accorder a un releve de 2025-2026 pour preparer 2026-2027.",
+  "cequonasous_la_main": [
+   {
+    "indice": "Six fiches de cours affichent l'horaire de 2025-2026 ET celui de 2026-2027, sur deux lignes. Les six portent exactement le meme jour, la meme heure et la meme salle.",
+    "sens": "stabilite",
+    "cours": [
+     "Contrôle stratégique",
+     "Droit de l'immobilier",
+     "International Tax Disputes & Investment Treaty Arbitration",
+     "Taxation of Multinational Enterprises and Transfer Pricing Policy",
+     "Digitalization and Taxation: Focus on Global Minimum",
+     "Fusions, acquisitions et régime des OPA"
+    ]
+   },
+   {
+    "indice": "Un seul cours se trouve a la fois sur une fiche 2025-2026 et dans un agenda 2026-2027 : Market Microstructure. Son jour, son heure, sa salle et sa cadence ont tous change.",
+    "sens": "changement",
+    "cours": [
+     "Market Microstructure"
+    ]
+   }
+  ],
+  "cequonnepeutpasfaire": "Les annuaires de cours existent pour deux annees sur cinq masters, mais ils ne portent ni jour ni heure, et Clement les a exportes semestre par semestre : l'annuaire 2025-2026 du Module 3 du MDE ne contient que des cours de printemps, celui de 2026-2027 que des cours d'automne. Ils ne repondent donc ni a la question des creneaux, ni meme a celle du semestre.",
+  "reponse": "Six cas de stabilite contre un cas de changement, sur sept observations. C'est trop peu pour donner un pourcentage, et les six viennent d'un seul master. Ce qu'on peut dire honnetement : la plupart des cours semblent garder leur creneau, et certains en changent, entierement. Le site continue donc d'afficher la date du releve et d'inviter a verifier sur le catalogue officiel avant de s'inscrire.",
+  "cequirenforceraitlareponse": "Comparer les agendas 2025-2026 et 2026-2027 d'un meme master, si les PDF de l'annee passee sont encore en ligne. Ce serait des centaines de creneaux au lieu de sept."
+ },
+ "quandLesDeuxSourcesSeCroisent": {
+  "constat": "Les fiches de cours capturees ici sont celles de 2025-2026. Les PDF d'agenda dont sort le reste du releve sont ceux de 2026-2027. Quand un cours figure dans les deux, ce n'est donc pas une contradiction entre deux sources : ce sont deux annees differentes, et c'est l'agenda qui fait foi, puisque le site prepare 2026-2027.",
+  "regle": "Aucun creneau de fiche n'est ajoute pour un cours que l'agenda couvre deja. Les fiches ne servent qu'a combler ce que l'agenda ne dit pas.",
+  "leseulcas": {
    "cours": "Market Microstructure",
    "master": "mscf",
-   "ficheDeCours": "Jeudi 16:15 à 18:00, Internef/275, hebdomadaire, semestre d'automne",
-   "agendaPdf": "Vendredi 13:15 à 17:00, Internef/272, tous les 15 jours, semestre d'automne",
-   "cequonfait": "Les deux sont affiches, et le creneau de la fiche porte une note qui invite a verifier. Trancher entre deux sources officielles sans element serait inventer une information ; les cacher toutes deux le serait aussi.",
-   "aeclaircir": "Demander a l'administration lequel fait foi, ou regarder si le cours a bien deux seances."
+   "fiche2025_2026": "Jeudi 16:15 a 18:00, Internef/275, hebdomadaire, semestre d'automne",
+   "agenda2026_2027": "Vendredi 13:15 a 17:00, Internef/272, tous les 15 jours, semestre d'automne",
+   "cequonafait": "Le creneau de la fiche a d'abord ete ajoute a cote de celui de l'agenda, et le site demandait a l'etudiant de choisir entre les deux. C'etait une erreur : il lui faisait arbitrer entre l'horaire de l'an dernier et le sien. Le creneau de la fiche a ete retire, seul celui de 2026-2027 reste.",
+   "cequecelaapprend": "Ce cours a change de jour, d'heure, de salle et de cadence entre les deux annees."
   }
- ],
- "stabiliteDunAnneeALautre": {
-  "constat": "Six fiches donnent l'horaire de 2025-2026 ET celui de 2026-2027. Les six portent exactement le meme jour, la meme heure et la meme salle.",
-  "cours": [
-   "Contrôle stratégique",
-   "Droit de l'immobilier",
-   "International Tax Disputes & Investment Treaty Arbitration",
-   "Taxation of Multinational Enterprises and Transfer Pricing Policy",
-   "Digitalization and Taxation: Focus on Global Minimum",
-   "Fusions, acquisitions et régime des OPA"
-  ],
-  "cequecelaveutdire": "Six sur six, c'est un indice serieux de stabilite, pas une preuve : ce sont six cours d'un seul master, et rien ne dit que les cours qui changent d'horaire figurent parmi ceux dont la fiche affiche deja l'annee suivante. Le site continue donc d'afficher la date du releve et d'inviter a verifier.",
-  "aNoter": "La fiche d'International Tax Disputes signale un changement d'enseignant en 2026-2027, S. Wuschka remplacant le professeur Danon, sans changement d'horaire."
  }
 }
