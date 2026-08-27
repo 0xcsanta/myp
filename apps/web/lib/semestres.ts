@@ -137,3 +137,19 @@ export function libelleColonnes(colonnes: number[], langue: Langue): string | nu
   if (saisons.length !== 1) return `${liste} ${sem}`;
   return `${liste} ${sem}, ${libelleSaison(saisons[0], langue)}`;
 }
+
+/** Le premier et le troisieme semestre tombent a l'automne, les autres au printemps. */
+export const saisonDuRang = (rang: number) => (rang % 2 === 1 ? "automne" : "printemps");
+
+/** « 1er semestre », pour les boutons de choix. */
+export function libelleRang(rang: number, langue: Langue): string {
+  const r = RANGS[rang]?.[idx(langue)] ?? String(rang);
+  return langue === "fr" ? `${r} semestre` : `${r} semester`;
+}
+
+/** Les rangs de semestre que couvrent ces cours, dans l'ordre du plan. */
+export function rangsDe(cours: Cours[]): number[] {
+  const s = new Set<number>();
+  for (const c of cours) for (const n of c.colonnes) if (n >= 1 && n <= 4) s.add(n);
+  return [...s].sort((a, b) => a - b);
+}

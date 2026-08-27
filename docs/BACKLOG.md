@@ -260,6 +260,18 @@ Ces crédits voyagent dans le lien de partage, écrits en clair après un tilde,
 qui n'appartient pas à l'alphabet base 64 et ne peut donc pas être confondu
 avec le champ de bits. Un ancien lien, sans tilde, reste lisible.
 
+## Un emploi du temps par semestre du plan
+
+Fait le 27 août. Le site affichait une grille par saison relevée, ce qui
+mélangeait le premier et le troisième semestre dans la même grille d'automne
+alors qu'ils sont à un an d'écart.
+
+Une seule grille désormais, et des boutons pour choisir son rang : « 1er
+semestre », « 2e », « 3e », « 4e ». Seuls les rangs que la sélection couvre sont
+proposés, sans quoi on ouvrirait une grille vide sans rien expliquer. Le titre
+donne le rang, le sous titre la saison et l'année académique. L'export suit,
+nom de fichier compris.
+
 ## Avant la mise en ligne
 
 - [x] **Plan du site et robots.txt.** Faits le 27 août. 24 adresses, chacune

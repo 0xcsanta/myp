@@ -79,6 +79,7 @@ const fr = {
     noteSansHoraires:
       "Aucun horaire n'est encore relevé pour ce master, donc les chevauchements ne sont pas détectés. Vérifie les créneaux sur le ",
     catalogueOfficiel: "catalogue officiel",
+    choixSemestre: "Choisir le semestre à afficher",
     orientationTitre: "Ton orientation",
     orientationAucune: "Pas encore choisie",
     orientationExplication:
@@ -241,6 +242,7 @@ const en: Textes = {
     noteSansHoraires:
       "No timetable has been read for this programme yet, so clashes are not detected. Check the slots on the ",
     catalogueOfficiel: "official course catalogue",
+    choixSemestre: "Choose which semester to show",
     orientationTitre: "Your orientation",
     orientationAucune: "Not chosen yet",
     orientationExplication:

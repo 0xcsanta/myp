@@ -89,6 +89,8 @@ export function dessinerHoraire(
   enConflit: Set<string>,
   langue: Langue = "fr",
   echelle = 2,
+  /** Ce qui s'ecrit sous le titre : le rang du semestre plutot que sa saison. */
+  sousTitre?: string,
 ): HTMLCanvasElement {
   const items = cours.flatMap((c) =>
     c.creneaux
@@ -128,7 +130,7 @@ export function dessinerHoraire(
   ctx.fillText(titreMaster, marge, marge);
   ctx.fillStyle = C.bleu;
   ctx.font = "600 15px system-ui, sans-serif";
-  ctx.fillText(libelleSemestre(semestre, langue), marge, marge + 34);
+  ctx.fillText(sousTitre ?? libelleSemestre(semestre, langue), marge, marge + 34);
 
   const x0 = marge + gouttiere;
   const y0 = enTete;

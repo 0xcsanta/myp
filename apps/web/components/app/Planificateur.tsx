@@ -8,7 +8,14 @@ import { textes } from "@/lib/textes";
 import { nomCourt } from "@/lib/nomMaster";
 import { evaluationDuCours, langueDuCours } from "@/lib/codes";
 import { libelleCreneaux } from "@/lib/creneaux";
-import { anneeAcademique, libelleColonnes, libelleSaison } from "@/lib/semestres";
+import {
+  anneeAcademique,
+  libelleColonnes,
+  libelleRang,
+  libelleSaison,
+  rangsDe,
+  saisonDuRang,
+} from "@/lib/semestres";
 import { ANNEE_VISEE } from "@/lib/annee";
 import {
   coursEnConflit,
@@ -362,14 +369,41 @@ export function Planificateur({
   );
   const semestres = useMemo(() => semestresDe(avecHoraire), [avecHoraire]);
 
+  /*
+   * Un seul emploi du temps a la fois, celui du semestre qu'on regarde.
+   *
+   * Le site en affichait un par saison relevee, ce qui melangeait le premier et
+   * le troisieme semestre dans la meme grille d'automne alors qu'ils sont a un
+   * an d'ecart. On choisit desormais son rang, et la grille ne montre que les
+   * cours de ce semestre la.
+   */
+  const rangs = useMemo(() => rangsDe(avecHoraire), [avecHoraire]);
+  const [rangVoulu, setRangVoulu] = useState<number | null>(null);
+  const rang = rangVoulu && rangs.includes(rangVoulu) ? rangVoulu : (rangs[0] ?? null);
+  const semestreDuRang = rang
+    ? (semestres.find((x) => x.startsWith(saisonDuRang(rang))) ?? null)
+    : null;
+  const coursDuRang = useMemo(
+    () => (rang ? avecHoraire.filter((c) => c.colonnes.includes(rang)) : avecHoraire),
+    [avecHoraire, rang],
+  );
+
   const dessine = (s: string) =>
-    dessinerHoraire(avecHoraire, s, nomCourt(master, langue), enConflit, langue);
+    dessinerHoraire(
+      coursDuRang,
+      s,
+      nomCourt(master, langue),
+      enConflit,
+      langue,
+      2,
+      rang ? `${libelleRang(rang, langue)} · ${libelleSemestre(s, langue)}` : undefined,
+    );
   /*
    * Le nom du fichier est translitteré plutôt que filtré : `\w` ignore les
    * accents, donc « Systèmes d'information » devenait « Systmes dinformation ».
    */
   const nomFichier = (s: string) =>
-    `MYP ${nomCourt(master, langue)} ${libelleSemestre(s, langue)}`
+    `MYP ${nomCourt(master, langue)} ${rang ? libelleRang(rang, langue) + " " : ""}${libelleSemestre(s, langue)}`
       .normalize("NFD")
       .replace(/[̀-ͯ]/g, "")
       .replace(/['’]/g, " ")
@@ -401,12 +435,12 @@ export function Planificateur({
         de la faire defiler dans son propre cadre.
       */}
       <div className="min-w-0">
-        {avecHoraire.length > 0 && (
-          <div className="mb-10 grid grid-cols-1 gap-6">
-            {semestres.map((s) => (
-              <div key={s} className="min-w-0">
+        {avecHoraire.length > 0 && semestreDuRang && rang && (
+          <div className="mb-10 grid grid-cols-1 gap-4">
+            <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+              <div className="min-w-0">
                 <h2 className="font-display text-[20px] tracking-[-0.02em] text-ink">
-                  {libelleSemestre(s, langue)}
+                  {libelleRang(rang, langue)}
                 </h2>
                 {/*
                   Une annee academique va de l'automne d'une annee civile au
@@ -416,44 +450,76 @@ export function Planificateur({
                   2026-2027 prenne ce printemps la pour le sien.
                 */}
                 <p
-                  className={`mb-3 mt-1 text-[11.5px] leading-relaxed ${
-                    anneeAcademique(s) === ANNEE_VISEE ? "text-muted" : "text-warn"
+                  className={`mt-1 text-[11.5px] leading-relaxed ${
+                    anneeAcademique(semestreDuRang) === ANNEE_VISEE
+                      ? "text-muted"
+                      : "text-warn"
                   }`}
                 >
-                  {anneeAcademique(s) === ANNEE_VISEE
-                    ? T.semestreAVenir(anneeAcademique(s))
-                    : T.semestrePasse(anneeAcademique(s), ANNEE_VISEE)}
+                  {libelleSemestre(semestreDuRang, langue)}
+                  {" · "}
+                  {anneeAcademique(semestreDuRang) === ANNEE_VISEE
+                    ? T.semestreAVenir(anneeAcademique(semestreDuRang))
+                    : T.semestrePasse(anneeAcademique(semestreDuRang), ANNEE_VISEE)}
                 </p>
-                <GrilleHoraire
-                  cours={avecHoraire}
-                  semestre={s}
-                  enConflit={enConflit}
-                  langue={langue}
-                />
               </div>
-            ))}
+
+              {/*
+                Le choix du semestre. Seuls les rangs que la selection couvre
+                sont proposes : offrir un quatrieme semestre a qui n'y a aucun
+                cours afficherait une grille vide sans rien expliquer.
+              */}
+              {rangs.length > 1 && (
+                <div className="flex flex-wrap gap-1.5" role="group" aria-label={T.choixSemestre}>
+                  {rangs.map((r) => {
+                    const actif = r === rang;
+                    return (
+                      <button
+                        key={r}
+                        type="button"
+                        onClick={() => setRangVoulu(r)}
+                        aria-pressed={actif}
+                        className={`rounded-lg border px-3 py-1.5 text-[12.5px] font-medium
+                          transition-colors duration-150 ease-[var(--ease-out-std)] ${
+                            actif
+                              ? "border-unil-400 bg-unil-100 text-unil-500"
+                              : "border-line-2 bg-white text-ink-2 hover:border-unil-400"
+                          }`}
+                      >
+                        {libelleRang(r, langue)}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            <div className="min-w-0">
+              <GrilleHoraire
+                cours={coursDuRang}
+                semestre={semestreDuRang}
+                enConflit={enConflit}
+                langue={langue}
+              />
+            </div>
 
             <div className="flex flex-wrap items-center gap-2">
-              {semestres.map((s) => (
-                <span key={s} className="contents">
-                  <button
-                    onClick={() => exporterPng(dessine(s), nomFichier(s))}
-                    className="rounded-lg border border-line-2 px-3 py-1.5 text-[12.5px] font-medium
-                      text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
-                      hover:border-unil-400 hover:text-unil-400"
-                  >
-                    PNG · {libelleSemestre(s, langue)}
-                  </button>
-                  <button
-                    onClick={() => exporterPdf(dessine(s), nomFichier(s))}
-                    className="rounded-lg border border-line-2 px-3 py-1.5 text-[12.5px] font-medium
-                      text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
-                      hover:border-unil-400 hover:text-unil-400"
-                  >
-                    PDF · {libelleSemestre(s, langue)}
-                  </button>
-                </span>
-              ))}
+              <button
+                onClick={() => exporterPng(dessine(semestreDuRang), nomFichier(semestreDuRang))}
+                className="rounded-lg border border-line-2 px-3 py-1.5 text-[12.5px] font-medium
+                  text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
+                  hover:border-unil-400 hover:text-unil-400"
+              >
+                PNG · {libelleRang(rang, langue)}
+              </button>
+              <button
+                onClick={() => exporterPdf(dessine(semestreDuRang), nomFichier(semestreDuRang))}
+                className="rounded-lg border border-line-2 px-3 py-1.5 text-[12.5px] font-medium
+                  text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
+                  hover:border-unil-400 hover:text-unil-400"
+              >
+                PDF · {libelleRang(rang, langue)}
+              </button>
             </div>
 
             {releve && (
