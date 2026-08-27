@@ -110,6 +110,11 @@ export function HeroFrame() {
                 <source media={SUR_TELEPHONE} srcSet="/hero/hero-portrait.jpg" />
               )}
               <source srcSet="/hero/hero-screen.webp" type="image/webp" />
+              {/*
+                L'image de repli reste celle en largeur : c'est celle du grand
+                ecran, et un navigateur qui ignore `picture` est de toute facon
+                un navigateur de bureau.
+              */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/hero/hero-screen.jpg"
