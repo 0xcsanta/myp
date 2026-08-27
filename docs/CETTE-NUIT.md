@@ -127,6 +127,40 @@ donc après une quarantaine de cours.
 **Le pied de page annonçait encore que les horaires n'étaient pas intégrés.**
 C'était vrai avant cette nuit.
 
+## Une découverte qui change ce que le site raconte
+
+Les deux relevés d'horaire **n'appartiennent pas à la même année académique**.
+
+| Semestre du relevé | Année | Statut |
+|---|---|---|
+| Automne 2026 | 2026-2027 | le semestre à venir, celui qui compte |
+| Printemps 2026 | **2025-2026** | déjà terminé, en mai dernier |
+
+Le printemps que tu vivras est **Printemps 2027**, que HEC n'a pas publié.
+
+Je ne l'ai pas supposé, je l'ai prouvé sur les données. Les PDF portent des
+mentions « Débute le 28 septembre », « Débute le 16 février ». Ces dates
+tombent sur le jour de la semaine annoncé si on les lit en 2026, et sur aucun
+autre jour si on les lit en 2027 : trente neuf sur quarante pour l'automne,
+sept sur sept pour le printemps.
+
+Le site affiche toujours les deux, parce qu'un horaire de printemps passé reste
+la meilleure indication disponible, les créneaux bougeant peu. Mais il l'écrit
+en ambre sous le titre du semestre, au lieu de laisser croire que c'est le
+tien.
+
+## Prêt pour la mise en ligne, quand tu le diras
+
+Plan du site et robots.txt : 24 adresses, chacune déclarant sa jumelle dans
+l'autre langue. Le domaine n'est pas tranché, donc tout lit une variable
+d'environnement ; la valeur par défaut est `myp.omniscient.swiss`, une
+supposition à confirmer.
+
+Accessibilité : l'audit du planificateur n'a trouvé qu'un vrai défaut, mais il
+portait sur l'essentiel. Les vérifications changent à chaque case cochée sans
+qu'un lecteur d'écran en dise rien, donc l'avertissement qui est la raison
+d'être du site passait inaperçu. Corrigé.
+
 ## Ce qui t'attend
 
 1. **Regarder ton propre master.** Coche ton plan réel sur `/app/fr/mscis` et
