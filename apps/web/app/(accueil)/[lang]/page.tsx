@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { HeroFrame } from "@/components/brand/HeroFrame";
+import { TitreMelange } from "@/components/brand/TitreMelange";
 import { autreLangue, estLangue } from "@/lib/langues";
+import { textes } from "@/lib/textes";
 
 export default async function Accueil({
   params,
@@ -11,6 +13,7 @@ export default async function Accueil({
 }) {
   const { lang } = await params;
   if (!estLangue(lang)) notFound();
+  const T = textes(lang);
 
   return (
     <div className="flex min-h-dvh flex-col bg-white">
@@ -31,7 +34,7 @@ export default async function Accueil({
         <SiteHeader langue={lang} hrefAutreLangue={`/${autreLangue(lang)}`} />
 
         <main className="flex flex-1 flex-col">
-          <section className="shell flex flex-1 flex-col pt-[clamp(40px,5vw,88px)]">
+          <section className="shell flex flex-1 flex-col overflow-x-clip pt-[clamp(40px,5vw,88px)]">
           <h1
             className="shrink-0 text-center font-display leading-[0.9] text-black"
             /*
@@ -41,13 +44,26 @@ export default async function Accueil({
              * est constant et le remplissage reste a 97 pour cent.
              *
              * Il n'est pas traduit : « Master Your Plan » est le nom du site.
+             *
+             * Il est en revanche cliquable : les deux moities du nom sont
+             * faites des memes lettres, et le clic les fait changer de place.
+             * Le titre reste un `h1` porteur du texte, le bouton n'est la que
+             * pour rendre le geste annonce au clavier comme a la souris.
+             */
+            /*
+             * Le suivi vaut -0,0486 em et non les -0,0425 em de la maquette :
+             * decouper le titre en lettres pour pouvoir les animer supprime le
+             * crenage, qui valait 17,8 pixels sur les 1117 du titre a 181 de
+             * corps, soit 0,0061 em par signe. On les reprend ici, et le titre
+             * retrouve exactement la largeur dessinee, 97 pour cent de la
+             * gouttiere.
              */
             style={{
               fontSize: "clamp(44px, 14.2vw, 262px)",
-              letterSpacing: "-0.0425em",
+              letterSpacing: "-0.0486em",
             }}
           >
-            Master Your Plan
+            <TitreMelange invite={T.accueil.inviteMelange} />
           </h1>
 
             {/*

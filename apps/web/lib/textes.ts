@@ -23,6 +23,7 @@ const fr = {
     titre: "MYP, Master Your Plan",
     description:
       "Compose ton plan d'études de master à HEC Lausanne, vérifie tes crédits par module et vois tes horaires.",
+    inviteMelange: "Clique sur le titre pour mélanger les lettres",
   },
 
   choix: {
@@ -270,6 +271,7 @@ const en: Textes = {
     titre: "MYP, Master Your Plan",
     description:
       "Build your master's study plan at HEC Lausanne, check your credits module by module and see your timetable.",
+    inviteMelange: "Click the title to scramble the letters",
   },
 
   choix: {
