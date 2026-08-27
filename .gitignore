@@ -2,8 +2,16 @@ node_modules/
 .next/
 out/
 dist/
+
+# Les secrets. Le motif attrape tout ce qui ressemble a un fichier
+# d'environnement, ou qu'il soit et quel que soit son prefixe : « .env »
+# seul laissait passer API_GEMMA_KEY.env, qui trainait a la racine, non
+# ignore, a un « git add . » de se retrouver dans un depot public.
 .env
-.env.local
+.env.*
+*.env
+**/.env
+**/*.env
 .DS_Store
 Thumbs.db
 *.log

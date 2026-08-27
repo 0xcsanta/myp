@@ -2,7 +2,6 @@
  "note": "Intitules de cours retablis a la main, quand le PDF du plan d'etudes est lui meme fautif. A ne pas confondre avec data/horaires/corrections.json, qui repare les intitules haches par la mise en page des grilles d'horaire : ici, le texte du PDF est deja faux avant toute lecture.",
  "regle": "Une correction porte le texte exact tel qu'il sort du PDF, dans « lu », et le texte retabli dans « titre ». Si « lu » ne se retrouve plus, l'outil le signale au lieu de l'appliquer en silence : une correction devenue caduque doit se voir, sinon elle survit a la source qu'elle corrigeait.",
  "etabliLe": "2026-08-27",
-
  "corrections": [
   {
    "master": "mscm-behaviour",
@@ -10,6 +9,49 @@
    "titre": "Behavior, Economics and Evolution Lectures Series (open to other orientations)",
    "enseignants": "Lehmann L./Efferson C.",
    "pourquoi": "Le flux de texte du PDF ne met ni parenthese fermante ni espace : « orientationsLehmann » est un seul mot dans le document, verifie par geometrie. Le nom de l'enseignant se retrouvait donc dans l'intitule, l'intitule perdait sa parenthese, et le releve d'horaire ne reconnaissait plus le cours. Le meme enseignement figure au plan du MScE sous « Behavior, Economics and Evolution Lecture Series », ce qui confirme la lecture."
+  },
+  {
+   "master": "mde",
+   "lu": "Séminaire de restucturation financière",
+   "titre": "Séminaire de restructuration financière",
+   "pourquoi": "Le PDF a perdu le r de restructuration. La fiche officielle UNIL du meme enseignement, tenu par G. Ambrosio, ecrit « Seminaire de restructuration financiere »."
+  },
+  {
+   "master": "msccf",
+   "lu": "Avanced Course in Governance and Corporate Finance",
+   "titre": "Advanced Course in Governance and Corporate Finance",
+   "pourquoi": "Le PDF a perdu le d de Advanced. La fiche officielle UNIL ecrit « Advanced course in Governance and Corporate Finance »."
+  },
+  {
+   "master": "msce",
+   "lu": "Adv. Topics in Industrial Organization",
+   "titre": "Advanced Topics in Industrial Organization",
+   "pourquoi": "Le plan abrege pour tenir dans sa colonne. La fiche officielle donne l'intitule entier, et le site n'a pas la contrainte de largeur du PDF."
+  },
+  {
+   "master": "mscis",
+   "lu": "Entreprise Data and Integration",
+   "titre": "Enterprise Data and Integration",
+   "pourquoi": "Faux ami : le plan ecrit le mot francais dans un intitule anglais. La fiche officielle du cours de T. Estier ecrit « Enterprise Data and Integration »."
+  },
+  {
+   "master": "mscm-behaviour",
+   "lu": "Human Decisions-Making and the SDGs",
+   "titre": "Human Decision-Making and the SDGs",
+   "pourquoi": "Un s de trop a Decision. La fiche officielle du cours de S. Vogt ecrit « Human Decision-Making and the SDGs »."
+  },
+  {
+   "master": "mscm-strategy",
+   "lu": "Human Decisions-Making and the SDGs",
+   "titre": "Human Decision-Making and the SDGs",
+   "pourquoi": "Meme cours, meme faute, dans le plan de l'orientation strategie."
+  },
+  {
+   "master": "mscm-marketing",
+   "lu": "Organizational Theory and Decision Making - SOL/BEE orientationGsrieder",
+   "titre": "Organizational Theory and Decision Making - SOL/BEE orientations",
+   "enseignants": "Grieder M.",
+   "pourquoi": "Meme defaut de flux que la serie Behavior, Economics and Evolution : le PDF colle le nom de l'enseignant a l'intitule et y perd une lettre au passage, « orientations » plus « Grieder » donnant « orientationGsrieder ». Le champ enseignant ne gardait plus que « M. ». La fiche officielle confirme l'intitule."
   }
  ]
 }
