@@ -235,6 +235,22 @@ def construire(slug):
                              'debut': l['debut'], 'fin': l['fin'], 'salle': l['salle'],
                              'cadence': l['cadence'], 'note': l['note']})
 
+    # Deux creneaux strictement identiques ne sont pas deux groupes : c'est le
+    # meme, lu deux fois. Cela arrive quand un bloc du PDF est decoupe en
+    # morceaux, ou quand plusieurs intitules haches sont rattaches au meme
+    # cours. Depuis que le site propose de choisir son groupe, ces doublons se
+    # faisaient passer pour un choix qui n'existe pas.
+    vus, uniques = set(), []
+    for c in creneaux:
+        cle = (c['cours'], c['semestre'], c['jour'], c['debut'], c['fin'], c['salle'])
+        if cle in vus:
+            continue
+        vus.add(cle)
+        uniques.append(c)
+    if len(uniques) != len(creneaux):
+        print(f"{'':26} {len(creneaux) - len(uniques)} doublon(s) exact(s) ecarte(s)")
+    creneaux = uniques
+
     sem = {}
     for c in creneaux:
         sem[c['semestre']] = sem.get(c['semestre'], 0) + 1

@@ -56,24 +56,38 @@ export function GrilleHoraire({
   semestre,
   enConflit,
   langue,
+  groupes = {},
 }: {
   cours: Cours[];
   semestre: string;
   enConflit: Set<string>;
   langue: Langue;
+  /** Le groupe retenu pour les cours donnes plusieurs fois dans le semestre. */
+  groupes?: Record<string, number>;
 }) {
   const T = textes(langue).grille;
-  const bruts = cours.flatMap((c) =>
-    c.creneaux
-      .filter((k) => k.semestre === semestre && Number.isFinite(k.debutMin))
+  const bruts = cours.flatMap((c) => {
+    /*
+     * Un cours donne en plusieurs groupes n'affiche que celui qu'on suit. Sans
+     * ce filtre, « Economie II » posait dix huit blocs sur la grille pour un
+     * seul cours, et l'emploi du temps devenait illisible.
+     */
+    const duSemestre = c.creneaux.filter((k) => k.semestre === semestre);
+    const retenu = groupes[c.id];
+    const garder =
+      duSemestre.length > 1 && retenu !== undefined && c.creneaux[retenu]
+        ? [c.creneaux[retenu]].filter((k) => k.semestre === semestre)
+        : duSemestre;
+    return garder
+      .filter((k) => Number.isFinite(k.debutMin))
       .map((k) => ({
         cours: c,
         jour: k.jour,
         debut: k.debutMin,
         fin: k.finMin,
         salle: k.salle,
-      })),
-  );
+      }));
+  });
   if (!bruts.length) return null;
 
   const blocs = disposer(bruts);

@@ -42,6 +42,7 @@ export type Diagnostic =
       titres: [string, string];
     }
   | { niveau: "info"; code: "horaire_inconnu"; sans: number; total: number }
+  | { niveau: "info"; code: "creneaux_multiples"; nombre: number }
   | { niveau: "erreur"; code: "externes_max"; module: string; pris: number; max: number }
   | { niveau: "erreur"; code: "orientations"; module: string; nombre: number }
   | { niveau: "info"; code: "externes_accord"; module: string; pris: number }
@@ -88,6 +89,14 @@ export function valider(
    * qu'on ne suivra jamais en meme temps que lui.
    */
   placements: Record<string, number> = {},
+  /*
+   * Le groupe retenu pour les cours donnes plusieurs fois dans le meme
+   * semestre, par identifiant de cours et index de creneau. « Economie II » au
+   * MDE en compte dix huit : ce sont des groupes paralleles, l'etudiant en suit
+   * un. Tant qu'il n'a pas choisi, aucun heurt n'est signale pour ce cours,
+   * puisqu'il lui reste le loisir d'en prendre un autre.
+   */
+  groupes: Record<string, number> = {},
 ): Resultat {
   const parId = new Map(catalogue.map((c) => [c.id, c]));
   const choisis = [...selection].map((id) => parId.get(id)).filter(Boolean) as Cours[];
@@ -273,8 +282,27 @@ export function valider(
    * est ecarte et signale a part.
    */
   const avecHoraire = choisis.filter((c) => c.horaireConnu);
+
+  /*
+   * Un cours donne en plusieurs groupes n'entre dans la comparaison que si l'on
+   * a dit lequel on suit. Sans cela, « Economie II » et ses dix huit creneaux
+   * se heurterait a presque tout l'horaire, alors qu'aucun de ces heurts n'est
+   * inevitable : il suffit de changer de groupe.
+   */
+  const parSemestre = (c: Cours) => {
+    const n: Record<string, number> = {};
+    for (const k of c.creneaux) n[k.semestre] = (n[k.semestre] ?? 0) + 1;
+    return n;
+  };
+  const groupeFixe = (c: Cours, k: Creneau) => {
+    const compte = parSemestre(c)[k.semestre] ?? 0;
+    if (compte <= 1) return true;
+    const i = groupes[c.id];
+    return i !== undefined && c.creneaux[i] === k;
+  };
+
   const creneaux: { c: Cours; k: Creneau }[] = avecHoraire.flatMap((c) =>
-    c.creneaux.map((k) => ({ c, k })),
+    c.creneaux.filter((k) => groupeFixe(c, k)).map((k) => ({ c, k })),
   );
   const reguliers = creneaux.filter(
     (x) => x.k.cadence === "hebdomadaire" || x.k.cadence === "quinzaine",
@@ -341,6 +369,20 @@ export function valider(
       module: externes.module,
       pris: horsPlan,
     });
+  }
+
+  /*
+   * Les cours a plusieurs creneaux dont on n'a pas dit lequel on suit. Ils sont
+   * ecartes de la comparaison, donc il faut le dire : sans cela, l'absence de
+   * chevauchement passerait pour une verification faite, alors qu'elle est
+   * seulement suspendue.
+   */
+  const enAttente = avecHoraire.filter((c) => {
+    const n = parSemestre(c);
+    return Object.values(n).some((v) => v > 1) && groupes[c.id] === undefined;
+  });
+  if (enAttente.length) {
+    d.push({ niveau: "info", code: "creneaux_multiples", nombre: enAttente.length });
   }
 
   const sansHoraire = choisis.filter((c) => !c.horaireConnu);
@@ -434,6 +476,8 @@ export function messageDiagnostic(
       return d.sans === d.total ? T.horaireAucun : T.horaireCertains(d.sans, d.total);
     case "orientations":
       return T.orientations(nom(d.module), d.nombre);
+    case "creneaux_multiples":
+      return T.creneauxMultiples(d.nombre);
     case "externes_max":
       return T.externesMax(nom(d.module), d.pris, d.max);
     case "externes_accord":

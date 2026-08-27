@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { Cours, Master, Regles } from "@/lib/donnees";
+import type { Cours, Creneau, Master, Regles } from "@/lib/donnees";
 import { libelleSemestre, semestresDe } from "@/lib/semestres";
 import type { Langue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
@@ -11,6 +11,7 @@ import { libelleCreneaux } from "@/lib/creneaux";
 import {
   anneeAcademique,
   libelleColonnes,
+  libelleJour,
   libelleRang,
   libelleSaison,
   rangEffectif,
@@ -90,11 +91,13 @@ export function assembler(
   externes: number,
   orientation: string | null,
   placements: string,
+  groupes: string,
 ): string {
-  if (!externes && !orientation && !placements) return bits;
+  if (!externes && !orientation && !placements && !groupes) return bits;
   const champs = [bits, String(externes || 0)];
-  if (orientation || placements) champs.push(orientation ?? "");
-  if (placements) champs.push(placements);
+  if (orientation || placements || groupes) champs.push(orientation ?? "");
+  if (placements || groupes) champs.push(placements);
+  if (groupes) champs.push(groupes);
   return champs.join("~");
 }
 
@@ -103,14 +106,16 @@ export function separer(code: string): {
   externes: number;
   orientation: string | null;
   placements: string;
+  groupes: string;
 } {
-  const [bits, ext, orient, plac] = code.split("~");
+  const [bits, ext, orient, plac, grp] = code.split("~");
   const n = Number.parseInt(ext ?? "", 10);
   return {
     bits: bits ?? "",
     externes: Number.isFinite(n) && n > 0 ? n : 0,
     orientation: orient || null,
     placements: plac ?? "",
+    groupes: grp ?? "",
   };
 }
 
@@ -124,6 +129,26 @@ function ecrirePlacements(
     if (r) morceaux.push(`${i}-${r}`);
   });
   return morceaux.join(".");
+}
+
+/* les groupes s'ecrivent comme les placements : rang du cours, puis index du creneau */
+function ecrireGroupes(groupes: Record<string, number>, catalogue: Cours[]): string {
+  const morceaux: string[] = [];
+  catalogue.forEach((c, i) => {
+    const g = groupes[c.id];
+    if (g !== undefined && g >= 0) morceaux.push(`${i}-${g}`);
+  });
+  return morceaux.join(".");
+}
+
+function lireGroupes(code: string, catalogue: Cours[]): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const bout of code.split(".")) {
+    const [i, g] = bout.split("-").map((x) => Number.parseInt(x, 10));
+    const c = catalogue[i];
+    if (c && g >= 0 && g < c.creneaux.length) out[c.id] = g;
+  }
+  return out;
 }
 
 function lirePlacements(code: string, catalogue: Cours[]): Record<string, number> {
@@ -226,6 +251,8 @@ export function Planificateur({
   const [orientation, setOrientation] = useState<string | null>(null);
   /* le semestre retenu pour les cours donnes a plusieurs, par identifiant */
   const [placements, setPlacements] = useState<Record<string, number>>({});
+  /* le groupe retenu pour les cours donnes plusieurs fois dans un semestre */
+  const [groupes, setGroupes] = useState<Record<string, number>>({});
   const [pret, setPret] = useState(false);
   /*
    * Un plan ouvert depuis un lien recu n'est pas encore le sien : tant que le
@@ -267,13 +294,20 @@ export function Planificateur({
     }
     const partage = partageInitial.current;
     const source = partage ?? window.localStorage.getItem(cle) ?? "";
-    const { bits, externes: horsPlan, orientation: orient, placements: plac } = separer(source);
+    const {
+      bits,
+      externes: horsPlan,
+      orientation: orient,
+      placements: plac,
+      groupes: grp,
+    } = separer(source);
     setSelection(decoder(bits, catalogue));
     setExternes(regles.externes ? horsPlan : 0);
     setOrientation(
       orient && regles.modules.some((m) => m.code === orient) ? orient : null,
     );
     setPlacements(lirePlacements(plac, catalogue));
+    setGroupes(lireGroupes(grp, catalogue));
     setRecu(Boolean(partage));
     setPret(true);
   }, [cle, catalogue]);
@@ -297,16 +331,18 @@ export function Planificateur({
           externes,
           orientation,
           ecrirePlacements(placements, catalogue),
+          ecrireGroupes(groupes, catalogue),
         ),
       );
     } catch {
       /* navigation privee : le stockage est refuse, tant pis */
     }
-  }, [selection, externes, orientation, placements, pret, modifie, cle, catalogue]);
+  }, [selection, externes, orientation, placements, groupes, pret, modifie, cle, catalogue]);
 
   const resultat = useMemo(
-    () => valider(selection, regles, catalogue, externes, orientation, placements),
-    [selection, externes, orientation, placements, regles, catalogue],
+    () =>
+      valider(selection, regles, catalogue, externes, orientation, placements, groupes),
+    [selection, externes, orientation, placements, groupes, regles, catalogue],
   );
 
   const basculer = (id: string) => {
@@ -327,6 +363,18 @@ export function Planificateur({
     setExternes(0);
     setOrientation(null);
     setPlacements({});
+    setGroupes({});
+  };
+
+  const choisirGroupe = (id: string, index: number) => {
+    setModifie(true);
+    setRecu(false);
+    setGroupes((g) => {
+      const n = { ...g };
+      if (index < 0) delete n[id];
+      else n[id] = index;
+      return n;
+    });
   };
 
   const placer = (id: string, rangChoisi: number) => {
@@ -360,6 +408,7 @@ export function Planificateur({
         externes,
         orientation,
         ecrirePlacements(placements, catalogue),
+        ecrireGroupes(groupes, catalogue),
       ),
     );
     try {
@@ -590,6 +639,7 @@ export function Planificateur({
                   semestre={semestreDuRang}
                   enConflit={enConflit}
                   langue={langue}
+                  groupes={groupes}
                 />
               </div>
             )}
@@ -832,13 +882,66 @@ export function Planificateur({
                                 coches, donc c'est le seul endroit ou l'on voit
                                 l'horaire d'un cours avant de le prendre.
                               */}
-                              <span
-                                className={`mt-1 block font-mono text-[11.5px] ${
-                                  libelleCreneaux(c, langue) ? "text-unil-400" : "text-muted"
-                                }`}
-                              >
-                                {libelleCreneaux(c, langue) ?? T.horaireNonReleve}
-                              </span>
+                              {(() => {
+                                /*
+                                  Un cours donne plusieurs fois dans le meme
+                                  semestre est offert en groupes paralleles :
+                                  « Economie II » au MDE en compte dix huit. On
+                                  n'en suit qu'un, donc les lister tous en
+                                  bloquerait la lecture et remplirait la grille.
+                                  Une liste deroulante plutot que des boutons,
+                                  precisement a cause de ces dix huit.
+                                */
+                                const parSem: Record<string, Creneau[]> = {};
+                                for (const k of c.creneaux) {
+                                  (parSem[k.semestre] ??= []).push(k);
+                                }
+                                const multiples = Object.values(parSem).some(
+                                  (v) => v.length > 1,
+                                );
+                                if (!pris || !multiples) {
+                                  return (
+                                    <span
+                                      className={`mt-1 block font-mono text-[11.5px] ${
+                                        libelleCreneaux(c, langue)
+                                          ? "text-unil-400"
+                                          : "text-muted"
+                                      }`}
+                                    >
+                                      {libelleCreneaux(c, langue) ?? T.horaireNonReleve}
+                                    </span>
+                                  );
+                                }
+                                return (
+                                  <span className="mt-1.5 block">
+                                    <select
+                                      aria-label={T.choixDuGroupe}
+                                      value={groupes[c.id] ?? -1}
+                                      onClick={(e) => e.stopPropagation()}
+                                      onChange={(e) => {
+                                        e.stopPropagation();
+                                        choisirGroupe(c.id, Number(e.target.value));
+                                      }}
+                                      className="w-full max-w-[30rem] rounded-lg border border-line-2 bg-white
+                                        px-2 py-1 font-mono text-[11.5px] text-unil-400 outline-none
+                                        transition-colors duration-150 ease-[var(--ease-out-std)]
+                                        focus:border-unil-400"
+                                    >
+                                      <option value={-1}>
+                                        {T.groupePasChoisi(c.creneaux.length)}
+                                      </option>
+                                      {c.creneaux.map((k, i) => (
+                                        <option key={`${k.semestre}-${i}`} value={i}>
+                                          {libelleJour(k.jour, langue)} {k.debut}
+                                          {" "}
+                                          {langue === "fr" ? "à" : "to"} {k.fin}
+                                          {k.salle ? ` · ${k.salle}` : ""}
+                                        </option>
+                                      ))}
+                                    </select>
+                                  </span>
+                                );
+                              })()}
                             </span>
                             <span className="tnum shrink-0 font-mono text-[13px] font-semibold text-ink">
                               {c.ects}

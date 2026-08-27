@@ -81,6 +81,8 @@ const fr = {
     catalogueOfficiel: "catalogue officiel",
     choixSemestre: "Choisir le semestre à afficher",
     choixDuSemestreDuCours: "À quel semestre suis tu ce cours",
+    choixDuGroupe: "Quel créneau suis tu",
+    groupePasChoisi: (n: number) => `${n} créneaux, dis lequel tu suis`,
     semestreSansHoraire:
       "Aucun horaire n'est relevé pour ce semestre. Le relevé de ce master ne couvre que l'autre saison, donc ces cours existent bien, mais leurs créneaux ne sont pas encore connus.",
     semestreSansHoraireCourt: "horaire non relevé",
@@ -131,6 +133,10 @@ const fr = {
       `Chevauchement le ${jour} en ${semestre} : ${a} et ${b}.`,
     horaireAucun:
       "Aucun horaire n'est encore relevé pour ce master, donc les chevauchements ne sont pas vérifiés.",
+    creneauxMultiples: (n: number) =>
+      n === 1
+        ? "1 cours a plusieurs créneaux relevés. Dis lequel tu suis pour que ses chevauchements soient vérifiés : le plan ne dit pas s'il s'agit de groupes au choix ou de plusieurs séances."
+        : `${n} cours ont plusieurs créneaux relevés. Dis lesquels tu suis pour que leurs chevauchements soient vérifiés : le plan ne dit pas s'il s'agit de groupes au choix ou de plusieurs séances.`,
     horaireCertains: (sans: number, total: number) =>
       sans === 1
         ? `1 cours sur ${total} n'a pas d'horaire relevé : ses chevauchements ne sont pas vérifiés.`
@@ -248,6 +254,8 @@ const en: Textes = {
     catalogueOfficiel: "official course catalogue",
     choixSemestre: "Choose which semester to show",
     choixDuSemestreDuCours: "Which semester you take this course in",
+    choixDuGroupe: "Which slot you attend",
+    groupePasChoisi: (n: number) => `${n} slots, tell me which one you attend`,
     semestreSansHoraire:
       "No timetable has been read for this semester. This programme's record only covers the other season, so these courses do exist, but their slots are not known yet.",
     semestreSansHoraireCourt: "timetable not on record",
@@ -298,6 +306,10 @@ const en: Textes = {
       `Clash on ${jour} in ${semestre}: ${a} and ${b}.`,
     horaireAucun:
       "No timetable has been read for this programme yet, so clashes are not checked.",
+    creneauxMultiples: (n: number) =>
+      n === 1
+        ? "1 course has several slots on record. Tell me which one you attend so its clashes get checked: the plan does not say whether these are parallel groups or several sessions."
+        : `${n} courses have several slots on record. Tell me which ones you attend so their clashes get checked: the plan does not say whether these are parallel groups or several sessions.`,
     horaireCertains: (sans: number, total: number) =>
       sans === 1
         ? `1 course out of ${total} has no timetable on record: its clashes are not checked.`
