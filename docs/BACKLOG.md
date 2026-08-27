@@ -142,6 +142,30 @@ transitions de vue ; quand il ne l'intercepte pas, faute de JavaScript, le clic
 reste natif et la transition de vue prend le relais. Le logotype qui morphe
 devient donc un repli, pas l'effet principal.
 
+**La vague doit couvrir dès la première image.** C'est ce qui a demandé le
+plus de soin. Posée par React, elle n'arrivait qu'après l'hydratation : le
+navigateur avait déjà peint la page, on la voyait une fraction de seconde,
+puis la vague la recouvrait. L'effet était détruit, puisqu'il repose justement
+sur le fait de ne jamais voir la coupure. Deux corrections :
+
+- Un **script synchrone** en tête du corps du document lit par où la page
+  précédente a fait entrer la vague et le pose sur la balise `html`, où la
+  feuille de style l'attend. Il s'exécute avant React, avant l'hydratation, et
+  avant que l'élément lui même soit analysé.
+- L'élément de la vague est placé **avant le contenu**, pas après. Le
+  navigateur peint sans attendre la fin de l'analyse du document : en fin de
+  corps, la vague risquait de n'exister qu'après une première peinture. Son
+  empilement ne dépend pas de cet ordre, elle est en position fixe.
+
+React ne pilote donc plus que le départ, qui part d'un clic et n'a pas ce
+problème.
+
+**Les deux phases sont exactement symétriques**, 760 ms chacune, avec des
+courbes miroir : `cubic-bezier(0.16, 1, 0.3, 1)` est le reflet de
+`cubic-bezier(0.7, 0, 0.84, 0)`, chaque point `(x, y)` devenant `(1 - x, 1 - y)`
+dans l'ordre inverse. Le retrait est le film de l'arrivée joué à l'envers, pas
+une seconde animation qui lui ressemblerait.
+
 **Trois gardes, qui comptent autant que l'effet :**
 
 - Si la navigation échoue, l'écran resterait bleu et la page inutilisable. La

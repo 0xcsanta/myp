@@ -5,64 +5,41 @@ import { useEffect, useState } from "react";
 /**
  * La vague qui couvre l'ecran entre l'accueil et l'application.
  *
- * Le principe tient en une phrase : au clic, la vague couvre l'ecran, la
- * navigation part quand il est plein, et la page suivante la fait se retirer
- * par ou elle est venue, comme une vague sur une plage. Le sens voyage d'une
- * page a l'autre par le stockage de session, la seule chose qui survive a un
- * changement de document sans serveur.
+ * Au clic, la vague couvre l'ecran ; la navigation part quand il est plein ; la
+ * page suivante la fait se retirer par ou elle est venue, comme une vague sur
+ * une plage. Le sens voyage d'une page a l'autre par le stockage de session, la
+ * seule chose qui survive a un changement de document sans passer par le
+ * serveur.
  *
- * Pourquoi ce mecanisme plutot que la transition de vue posee dans globals.css :
- * une transition de vue croise deux captures, elle ne peut pas retenir la
- * navigation le temps qu'une masse de couleur traverse l'ecran. Les deux
- * cohabitent sans se marcher dessus. Quand ce composant intercepte le clic, il
- * navigue par script, ce qui n'active pas les transitions de vue. Quand il ne
- * l'intercepte pas, faute de JavaScript ou par preference d'animation reduite,
- * le clic reste natif et la transition de vue prend le relais. Aucun des deux
- * chemins ne laisse l'utilisateur sans reponse.
+ * Ce composant ne s'occupe que du depart. Le retrait est declenche par le
+ * script synchrone de la mise en page racine, et ce partage n'est pas
+ * arbitraire : un composant React n'agit qu'apres l'hydratation, donc apres la
+ * premiere peinture. On voyait la page une fraction de seconde avant que la
+ * vague ne la recouvre, ce qui detruisait l'effet, celui ci reposant justement
+ * sur le fait de ne jamais voir la coupure. Le depart, lui, part d'un clic :
+ * React est la depuis longtemps.
  *
- * Le filet de securite compte autant que l'effet. Si la navigation echoue,
- * l'ecran resterait bleu et la page inutilisable : la vague se retire donc
- * d'elle meme au bout de deux secondes.
+ * Pourquoi pas la transition de vue de globals.css : elle croise deux captures
+ * et ne peut pas retenir la navigation le temps qu'une masse de couleur
+ * traverse l'ecran. Les deux cohabitent sans se gener. Quand ce composant
+ * intercepte le clic il navigue par script, ce qui n'active pas les
+ * transitions de vue ; quand il ne l'intercepte pas, faute de JavaScript, le
+ * clic reste natif et la transition prend le relais.
  */
 
-const DUREE_DEPART = 560;
+/** Aussi long que le retrait : les deux phases sont exactement symetriques. */
+const DUREE_DEPART = 760;
 const CLE = "myp:vague";
 
 type Sens = "monte" | "descend";
-type Etat = { phase: "depart" | "arrivee"; sens: Sens } | null;
+type Depart = { sens: Sens } | null;
 
 const lireSens = (v: string | null): Sens | null =>
   v === "monte" || v === "descend" ? v : null;
 
 export function Vague() {
-  const [etat, setEtat] = useState<Etat>(null);
+  const [depart, setDepart] = useState<Depart>(null);
 
-  /* l'arrivee : poursuivre le mouvement commence par la page precedente */
-  useEffect(() => {
-    const reprendre = () => {
-      let sens: Sens | null = null;
-      try {
-        sens = lireSens(sessionStorage.getItem(CLE));
-        if (sens) sessionStorage.removeItem(CLE);
-      } catch {
-        /* navigation privee, stockage refuse : pas de vague, pas de drame */
-      }
-      if (sens) setEtat({ phase: "arrivee", sens });
-    };
-    reprendre();
-
-    /*
-     * Au retour arriere, la page peut revenir telle quelle de la memoire du
-     * navigateur, avec la vague figee en plein ecran. On la remet au repos.
-     */
-    const surRetour = (e: PageTransitionEvent) => {
-      if (e.persisted) setEtat(null);
-    };
-    window.addEventListener("pageshow", surRetour);
-    return () => window.removeEventListener("pageshow", surRetour);
-  }, []);
-
-  /* le depart : couvrir, puis naviguer */
   useEffect(() => {
     const surClic = (e: MouseEvent) => {
       if (e.defaultPrevented || e.button !== 0) return;
@@ -93,9 +70,9 @@ export function Vague() {
       try {
         sessionStorage.setItem(CLE, sens);
       } catch {
-        /* sans stockage, la page d'arrivee n'aura pas de vague de sortie */
+        /* sans stockage, la page d'arrivee n'aura pas de retrait */
       }
-      setEtat({ phase: "depart", sens });
+      setDepart({ sens });
       window.setTimeout(() => {
         window.location.href = href;
       }, DUREE_DEPART);
@@ -105,21 +82,33 @@ export function Vague() {
     return () => document.removeEventListener("click", surClic);
   }, []);
 
+  /*
+   * Au retour arriere, la page revient parfois telle quelle de la memoire du
+   * navigateur, avec la vague figee en plein ecran, et le script synchrone ne
+   * se rejoue pas. On remet tout au repos.
+   */
+  useEffect(() => {
+    const surRetour = (e: PageTransitionEvent) => {
+      if (!e.persisted) return;
+      setDepart(null);
+      document.documentElement.removeAttribute("data-vague");
+    };
+    window.addEventListener("pageshow", surRetour);
+    return () => window.removeEventListener("pageshow", surRetour);
+  }, []);
+
   /* le filet : jamais d'ecran bleu bloque si la navigation ne vient pas */
   useEffect(() => {
-    if (!etat) return;
-    const t = window.setTimeout(() => setEtat(null), 2000);
+    if (!depart) return;
+    const t = window.setTimeout(() => setDepart(null), DUREE_DEPART + 1600);
     return () => window.clearTimeout(t);
-  }, [etat]);
-
-  if (!etat) return <div className="vague" aria-hidden="true" />;
+  }, [depart]);
 
   return (
     <div
       className="vague"
       aria-hidden="true"
-      data-phase={etat.phase}
-      data-sens={etat.sens}
+      {...(depart ? { "data-phase": "depart", "data-sens": depart.sens } : {})}
     />
   );
 }

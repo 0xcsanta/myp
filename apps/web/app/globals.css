@@ -254,20 +254,35 @@ body {
     linear-gradient(180deg, #0000c2 0%, #0037eb 55%, #0037eb 100%);
 }
 
+/*
+   Les deux phases durent le meme temps et suivent des courbes exactement
+   miroir. `cubic-bezier(0.16, 1, 0.3, 1)` est le reflet de
+   `cubic-bezier(0.7, 0, 0.84, 0)` : chaque point (x, y) devient (1 - x, 1 - y)
+   et l'ordre s'inverse. Le retrait est donc le film de l'arrivee joue a
+   l'envers, et non une seconde animation qui lui ressemblerait.
+*/
 .vague[data-phase="depart"][data-sens="monte"] {
-  animation: vague-depart-monte 560ms cubic-bezier(0.7, 0, 0.84, 0) both;
-}
-
-.vague[data-phase="arrivee"][data-sens="monte"] {
-  animation: vague-arrivee-monte 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: vague-depart-monte 760ms cubic-bezier(0.7, 0, 0.84, 0) both;
 }
 
 .vague[data-phase="depart"][data-sens="descend"] {
-  animation: vague-depart-descend 560ms cubic-bezier(0.7, 0, 0.84, 0) both;
+  animation: vague-depart-descend 760ms cubic-bezier(0.7, 0, 0.84, 0) both;
 }
 
-.vague[data-phase="arrivee"][data-sens="descend"] {
-  animation: vague-arrivee-descend 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+/*
+   L'arrivee est commandee par un attribut pose sur la balise html par un
+   script synchrone, avant meme que cet element soit analyse. C'est le seul
+   moyen que la vague couvre des la premiere image : posee par React, elle
+   n'arriverait qu'apres l'hydratation, et le navigateur aurait deja peint la
+   page. On voyait donc la page, puis la vague la recouvrir, ce qui detruisait
+   l'effet au lieu de le produire.
+*/
+html[data-vague="monte"] .vague {
+  animation: vague-arrivee-monte 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+html[data-vague="descend"] .vague {
+  animation: vague-arrivee-descend 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* le bord d'attaque est en haut : la vague monte */
