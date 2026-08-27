@@ -68,10 +68,14 @@ npm run test:rules
 
 ## Licence
 
-Le code et les données n'ont pas le même statut, et la distinction compte :
-voir **[LICENSE.md](LICENSE.md)**. En bref, aucune licence de réutilisation
-n'est accordée sur le code à ce jour, et les données relevées des documents de
-l'UNIL ne nous appartiennent pas, donc nous ne les licencions pas.
+Le code et les données n'ont pas le même statut, et la distinction compte.
+
+Le **code** est sous licence MIT : voir [LICENSE](LICENSE). Reprenez le,
+y compris pour une autre faculté ou une autre université.
+
+Les **données** de `data/` sont relevées des documents officiels de HEC
+Lausanne et ne nous appartiennent pas : la licence MIT ne s'y étend pas. Le
+détail est dans [NOTICE.md](NOTICE.md).
 
 Si vous êtes de l'UNIL et que quelque chose vous gêne, écrivez : ce sera
 corrigé ou retiré.
