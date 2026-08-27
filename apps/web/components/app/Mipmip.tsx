@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { Mascotte } from "@/components/brand/Mascotte";
 import type { Langue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
 
@@ -24,6 +23,40 @@ type Tour = {
   texte: string;
   cours?: { titre: string; source: string | null }[];
 };
+
+/*
+ * Le portrait de Mipmip, et non le trace anime de la marque.
+ *
+ * La mascotte du site se dessine toute seule quand la page s'ouvre, ce qui est
+ * juste a cet endroit la, une fois, en grand. Sur un bouton qui reste affiche
+ * en permanence dans un coin, un trait qui s'anime attire l'oeil sans rien
+ * dire, et se remet en marche a chaque ouverture du panneau. Ici on veut une
+ * tete, immobile, qu'on reconnait du premier coup.
+ *
+ * Le fichier fait deux kilos et demi : quatre aplats, une palette, un fond
+ * detoure par remplissage depuis les bords pour ne pas percer les yeux ni les
+ * dents, qui sont blancs eux aussi.
+ */
+function Visage({ taille, className = "" }: { taille: number; className?: string }) {
+  return (
+    /*
+     * `next/image` optimiserait une image de deux kilos et demi, et Vercel
+     * facture cette optimisation. Le rapport est mauvais : le fichier est deja
+     * en palette, deja a la bonne taille, et servi tel quel il coute un aller
+     * retour de rien du tout.
+     */
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/mipmip.png"
+      srcSet="/mipmip.png 1x, /mipmip@2x.png 2x"
+      alt=""
+      width={taille}
+      height={Math.round((taille * 117) / 128)}
+      className={className}
+      draggable={false}
+    />
+  );
+}
 
 export function Mipmip({ master, langue }: { master: string; langue: Langue }) {
   const T = textes(langue).mipmip;
@@ -95,7 +128,7 @@ export function Mipmip({ master, langue }: { master: string; langue: Langue }) {
           focus-visible:outline-2 focus-visible:outline-offset-2
           focus-visible:outline-[var(--color-unil-400)]"
       >
-        <Mascotte taille={30} epaisseur={20} className="text-[var(--color-unil-400)]" />
+        <Visage taille={30} />
         {ouvert ? T.fermer : T.bouton}
       </button>
 
@@ -108,7 +141,7 @@ export function Mipmip({ master, langue }: { master: string; langue: Langue }) {
             shadow-[0_18px_50px_rgba(10,31,48,0.22)]"
         >
           <div className="flex items-start gap-3 border-b border-line px-4 py-3">
-            <Mascotte taille={34} epaisseur={20} className="mt-0.5 shrink-0 text-[var(--color-unil-400)]" />
+            <Visage taille={36} className="mt-0.5 shrink-0" />
             <p className="text-[12.5px] leading-relaxed text-muted">{T.cadre}</p>
           </div>
 

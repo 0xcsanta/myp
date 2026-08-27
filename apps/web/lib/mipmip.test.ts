@@ -11,7 +11,10 @@ import { filtrerReponse, RAPPEL, REFUS } from "./mipmip-verrou.ts";
  * pourrait rendre s'il cedait a une consigne glissee dans la question, et le
  * point de chacun est qu'aucune ne franchit le filtre.
  *
- *     node --test --experimental-strip-types apps/web/lib/mipmip.test.ts
+ *     npm test
+ *
+ * L'import porte son extension « .ts » parce que node l'exige pour lire du
+ * TypeScript sans le compiler, d'ou allowImportingTsExtensions dans tsconfig.
  */
 
 const CATALOGUE = new Set([
