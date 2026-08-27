@@ -134,7 +134,8 @@ export function Arbitrage({
             const c = parId.get(id);
             if (!c) return null;
             const { total, pires } = consequences(id);
-            const module = regles.modules.find((x) => x.code === c.module);
+            /* pas `module` : le nom est reserve par l'empaqueteur */
+            const bloc = regles.modules.find((x) => x.code === c.module);
 
             return (
               <div
@@ -146,7 +147,7 @@ export function Arbitrage({
                     {c.titre}
                   </p>
                   <p className="mt-1 tnum font-mono text-[11.5px] text-muted">
-                    {c.ects} ECTS · {module ? nomModule(module, langue) : c.module}
+                    {c.ects} ECTS · {bloc ? nomModule(bloc, langue) : c.module}
                   </p>
                   <p className="mt-2 text-[12px] leading-relaxed text-muted">
                     {[

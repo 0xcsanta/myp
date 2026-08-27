@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 
 import type { Langue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
@@ -43,39 +43,63 @@ function poser(f: Fond) {
   else document.documentElement.dataset.fond = f;
 }
 
+/*
+ * Le fond est une donnee du navigateur, pas de React : il vit dans le stockage
+ * local, il survit au rechargement, et le serveur ne peut pas le connaitre.
+ * `useSyncExternalStore` est fait pour exactement cela. Il demande trois
+ * choses : de quoi prevenir React quand la valeur change, de quoi la lire, et
+ * ce qu'il faut repondre au serveur, ou il n'y a pas de stockage.
+ *
+ * La lecture doit rendre deux fois la meme reference tant que rien n'a bouge,
+ * sans quoi React reafficherait sans fin : d'ou le souvenir garde ici.
+ */
+const abonnes = new Set<() => void>();
+let souvenir: Fond | null = null;
+
+const sabonner = (prevenir: () => void) => {
+  abonnes.add(prevenir);
+  return () => {
+    abonnes.delete(prevenir);
+  };
+};
+
+const lire = (): Fond => {
+  if (souvenir) return souvenir;
+  let retenu: string | null = null;
+  try {
+    retenu = window.localStorage.getItem(CLE);
+  } catch {
+    /* navigation privee : le choix vaut pour la session */
+  }
+  souvenir = (FONDS as readonly string[]).includes(retenu ?? "")
+    ? (retenu as Fond)
+    : "blanc";
+  return souvenir;
+};
+
+const ecrire = (f: Fond) => {
+  souvenir = f;
+  try {
+    window.localStorage.setItem(CLE, f);
+  } catch {
+    /* rien a garder, le choix vaut pour la session */
+  }
+  abonnes.forEach((prevenir) => prevenir());
+};
+
 export function ChoixDeFond({ langue }: { langue: Langue }) {
   const T = textes(langue).plan;
-  const [fond, setFond] = useState<Fond>("blanc");
-
   /*
-   * Le fond est relu au montage, pas rendu par le serveur : le serveur ne sait
-   * pas ce que ce navigateur a choisi, et pretendre le savoir ferait diverger
-   * le rendu de l'hydratation. La page s'ouvre donc blanche et se teinte, ce
-   * que la transition de la feuille de style adoucit.
+   * Le serveur repond toujours « blanc » : il ne sait pas ce que ce navigateur
+   * a choisi, et pretendre le savoir ferait diverger le rendu de l'hydratation.
+   * La page s'ouvre donc blanche et se teinte, ce que la transition de la
+   * feuille de style adoucit.
    */
-  useEffect(() => {
-    let retenu: string | null = null;
-    try {
-      retenu = window.localStorage.getItem(CLE);
-    } catch {
-      /* navigation privee : le choix vaut pour la session */
-    }
-    const f = (FONDS as readonly string[]).includes(retenu ?? "")
-      ? (retenu as Fond)
-      : "blanc";
-    setFond(f);
-    poser(f);
-  }, []);
+  const fond = useSyncExternalStore(sabonner, lire, () => "blanc" as Fond);
 
-  const choisir = (f: Fond) => {
-    setFond(f);
-    poser(f);
-    try {
-      window.localStorage.setItem(CLE, f);
-    } catch {
-      /* rien a garder, le choix vaut pour la session */
-    }
-  };
+  useEffect(() => {
+    poser(fond);
+  }, [fond]);
 
   return (
     <div className="mt-6 border-t border-line pt-5">
@@ -89,7 +113,7 @@ export function ChoixDeFond({ langue }: { langue: Langue }) {
               type="button"
               aria-pressed={actif}
               title={T.fondNom(f)}
-              onClick={() => choisir(f)}
+              onClick={() => ecrire(f)}
               className={`h-7 w-7 rounded-full border transition-[box-shadow,border-color] duration-150
                 ease-[var(--ease-out-std)] ${
                   actif
