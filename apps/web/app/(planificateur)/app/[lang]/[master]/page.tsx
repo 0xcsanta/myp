@@ -96,7 +96,7 @@ export default async function PageMaster({
   }
 
   return (
-    <div className="fond-du-plan flex min-h-dvh flex-col">
+    <div className="flex min-h-dvh flex-col bg-white">
       <SiteHeader
         langue={lang}
         hrefAutreLangue={`/app/${autreLangue(lang)}/${slug}`}

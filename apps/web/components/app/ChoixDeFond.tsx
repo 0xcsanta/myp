@@ -6,12 +6,12 @@ import type { Langue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
 
 /**
- * Le choix du fond du plan.
+ * Le choix du fond du calendrier.
  *
  * Rien d'autre qu'un attribut pose sur la racine du document, que la feuille de
- * style traduit en degrade. Aucune donnee ne change, aucune verification n'en
- * depend : c'est la seule chose du site qui soit purement pour le plaisir de
- * celui qui compose.
+ * style traduit en degrade sur la grille horaire. Aucune donnee ne change,
+ * aucune verification n'en depend : c'est la seule chose du site qui soit
+ * purement pour le plaisir de celui qui compose.
  *
  * Le choix vit dans le navigateur, sous la meme cle pour tous les masters :
  * quelqu'un qui aime le papier l'aime aussi en finance et en droit.
@@ -25,18 +25,18 @@ const CLE = "myp:fond";
 /* l'apercu de chaque pastille, repris des degrades de la feuille de style */
 const APERCU: Record<Fond, string> = {
   blanc: "#ffffff",
-  bleu: "linear-gradient(135deg, #e8f0ff, #ffffff)",
-  papier: "linear-gradient(135deg, #fbf7ef, #ffffff)",
-  ardoise: "linear-gradient(135deg, #eef2f6, #ffffff)",
-  aube: "linear-gradient(135deg, #fdeef2, #f2f0fb)",
-  menthe: "linear-gradient(135deg, #e9f6f0, #ffffff)",
+  bleu: "linear-gradient(150deg, #d7e6ff, #f4f8ff)",
+  papier: "linear-gradient(150deg, #f8ecd8, #fdf9f2)",
+  ardoise: "linear-gradient(150deg, #dbe4ed, #f3f6f9)",
+  aube: "linear-gradient(150deg, #fbdce8, #ece9f9)",
+  menthe: "linear-gradient(150deg, #cfe9dd, #f1faf5)",
 };
 
 /*
  * L'attribut vit sur la racine du document et n'est jamais nettoye au
- * demontage. Ce serait inutile, la classe .fond-du-plan n'existant que sur la
- * page d'un master, et nuisible : passer d'un master a l'autre ferait clignoter
- * le fond en blanc entre les deux.
+ * demontage. Ce serait inutile, la classe .fond-du-calendrier n'existant que
+ * sur la grille horaire, et nuisible : passer d'un master a l'autre ferait
+ * clignoter le fond en blanc entre les deux.
  */
 function poser(f: Fond) {
   if (f === "blanc") delete document.documentElement.dataset.fond;

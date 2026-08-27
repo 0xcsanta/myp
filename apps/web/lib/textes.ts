@@ -100,8 +100,8 @@ const fr = {
         : "Voir le cours de l'autre orientation",
     replierAutres: (n: number) =>
       n > 1 ? `Masquer les ${n} cours des autres orientations` : "Masquer ce cours",
-    fondTitre: "Le fond de ton plan",
-    fondNote: "Gardé dans ton navigateur, pour toi seul. Ça ne change rien aux crédits.",
+    fondTitre: "Le fond de ton calendrier",
+    fondNote: "Gardé dans ton navigateur, pour toi seul. Ça ne change rien aux horaires.",
     fondNom: (f: string) =>
       ({
         blanc: "Blanc",
@@ -345,8 +345,8 @@ const en: Textes = {
       n > 1 ? `Show the ${n} courses from other tracks` : "Show the course from the other track",
     replierAutres: (n: number) =>
       n > 1 ? `Hide the ${n} courses from other tracks` : "Hide this course",
-    fondTitre: "Your plan's background",
-    fondNote: "Kept in your browser, for you alone. It changes nothing about the credits.",
+    fondTitre: "Your timetable's background",
+    fondNote: "Kept in your browser, for you alone. It changes nothing about the timetable.",
     fondNom: (f: string) =>
       ({
         blanc: "White",

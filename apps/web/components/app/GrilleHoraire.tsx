@@ -105,7 +105,10 @@ export function GrilleHoraire({
   }
 
   return (
-    <div className="overflow-x-auto rounded-2xl border border-line bg-white">
+    /* Le fond de la grille est choisi par l'etudiant : voir ChoixDeFond, qui
+       pose un attribut sur la racine du document que la feuille de style
+       traduit en degrade. Blanc par defaut. */
+    <div className="fond-du-calendrier overflow-x-auto rounded-2xl border border-line">
       <div className="min-w-[720px]">
         <div className="grid grid-cols-[58px_repeat(5,1fr)] border-b border-line">
           <div />
