@@ -65,6 +65,16 @@ export type CoursExternes = {
   citation: string;
 };
 
+/**
+ * Le module qui accueille les enseignements des orientations qu'on ne suit
+ * pas. Le MScF l'ecrit sur une ligne de son Module 4 : « Any compulsory
+ * courses in other tracks ».
+ */
+export type AutresOrientations = {
+  moduleDAccueil: string;
+  citation: string;
+};
+
 export type Regles = {
   programme: string;
   year: string;
@@ -73,6 +83,7 @@ export type Regles = {
   checks: string[];
   source: { document: string; page: string; checkedOn: string };
   externes?: CoursExternes;
+  autresOrientations?: AutresOrientations;
 };
 
 export type CoursBrut = {
@@ -157,6 +168,15 @@ const identifiant = (titre: string, i: number) =>
     .replace(/^-|-$/g, "")
     .slice(0, 46) || `cours-${i}`;
 
+type FicheAutresOrientations = {
+  regles: {
+    programmes: string[];
+    citation: string;
+    moduleDAccueil: string;
+    portee: "interne" | "externe";
+  }[];
+};
+
 type FicheExternes = {
   programmes: { programme: string; module: string; maxEcts: number | null; citation: string }[];
 };
@@ -171,9 +191,26 @@ export function reglesDe(slug: string): Regles {
    */
   const fiche = lire<FicheExternes>("cours-externes.json");
   const e = fiche.programmes.find((x) => x.programme === slug);
-  return e
+  const avecExternes = e
     ? { ...regles, externes: { module: e.module, maxEcts: e.maxEcts, citation: e.citation } }
     : regles;
+
+  /*
+   * Les orientations qu'on ne suit pas. Deux formes dans les plans, et seule
+   * la forme interne est traitee ici : celle du MScF, dont les orientations
+   * sont des sous-modules du meme plan. Celle du MScM, dont les orientations
+   * sont des masters distincts, demandera de charger d'autres catalogues.
+   */
+  const autres = lire<FicheAutresOrientations>("cours-autres-orientations.json");
+  const r = autres.regles.find(
+    (x) => x.portee === "interne" && x.programmes.includes(slug),
+  );
+  return r
+    ? {
+        ...avecExternes,
+        autresOrientations: { moduleDAccueil: r.moduleDAccueil, citation: r.citation },
+      }
+    : avecExternes;
 }
 
 const enMinutes = (t: string): number => {

@@ -284,3 +284,50 @@ porte l'exigence, avec son seuil à lui : « Module 3 : 21 / 21 ».
 
 En revanche **le catalogue les montre toutes**, puisque c'est là qu'on choisit
 la sienne. Les masquer rendrait le choix impossible.
+
+---
+
+## 11. Prendre les cours d'une autre orientation
+
+**Relu le 27 août 2026.** Deux masters l'écrivent, dans des termes différents,
+ce qui a d'ailleurs causé une erreur de relevé de ma part.
+
+| Master | Où | Ce que dit le plan |
+|---|---|---|
+| **MScF** | Dernière ligne du Module 4 | « Any compulsory courses in other tracks » |
+| **MScM**, les quatre orientations | Note du Module 4 | « Module 4 can be any course listed above and any course listed under Module 5 of other orientations (and are not listed below). Company projects for other orientations are not open unless otherwise stated in SOL and BEE curriculums. » |
+
+**Une correction de relevé.** Un premier passage avait conclu que le MScF ne
+disait rien. C'était faux : sa ligne emploie le mot « tracks », que ma recherche
+ne couvrait pas, alors que les MScM emploient « orientations ». Clément l'a vue
+dans le PDF. Un synonyme de plus aurait suffi, et il est désormais dans la liste.
+
+### Ce que ça implique pour le MScF
+
+Les orientations du MScF sont les sous-modules du Module 3. Les cours de
+l'orientation suivie comptent au Module 3 ; **ceux des autres comptent au
+Module 4**, où ils sont des enseignements à option comme les autres.
+
+Le site demande donc quelle orientation on suit, au lieu de la deviner. La
+deviner serait arbitraire dès qu'on prend des cours dans deux orientations, ce
+que le plan autorise précisément.
+
+Le choix est enregistré et voyage dans le lien de partage, après les crédits
+pris hors plan : `bits~externes~orientation`. Un lien écrit avant l'arrivée de
+ce champ reste lisible.
+
+### Le MScM reste à faire
+
+Ses quatre orientations sont des masters distincts dans notre découpage, chacun
+avec son plan. Importer les cours de leur Module 5 demande de charger d'autres
+catalogues, ce qui n'est pas encore fait. La règle et ses exclusions sont déjà
+relevées dans
+[data/cours-autres-orientations.json](../data/cours-autres-orientations.json).
+
+### Un bug trouvé au passage
+
+La remontée des crédits d'un module vers son parent ne franchissait **qu'un
+seul niveau**, parce qu'elle parcourait les modules dans l'ordre du plan : un
+parent était calculé avant ses propres enfants. Le MScF, seul master à compter
+trois niveaux, affichait « Module 3 : 0 / 21 » alors que son sous-sous-module
+3.2.1 était rempli. La remontée est désormais récursive.

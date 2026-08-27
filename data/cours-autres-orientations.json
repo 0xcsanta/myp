@@ -1,0 +1,36 @@
+{
+ "note": "Les masters dont un module peut accueillir les enseignements des autres orientations. Releve le 27 aout 2026 en relisant les dix plans. Deux formulations differentes, donc deux regles, mais la meme idee : ce qu'on ne prend pas au titre de son orientation peut se prendre en option.",
+ "correctionDeReleve": "Un premier passage avait conclu que le MScF ne disait rien. C'etait faux : sa ligne emploie le mot « tracks », que la recherche ne couvrait pas, alors que les quatre orientations du MScM emploient « orientations ». Clement l'a vue dans le PDF. Chercher un synonyme de plus aurait suffi, et c'est desormais fait.",
+ "etabliLe": "2026-08-27",
+
+ "regles": [
+  {
+   "programmes": ["mscf"],
+   "citation": "Any compulsory courses in other tracks",
+   "ou": "Derniere ligne du tableau du Module 4 « Optional courses - 21 credits ECTS », juste avant le Module 5.",
+   "moduleDAccueil": "M4",
+   "source": "les orientations du Module 3, c'est a dire les sous-modules 3.1, 3.2 avec ses deux niveaux, et 3.3",
+   "portee": "interne",
+   "lecture": "« Tracks » designe ici les orientations du Module 3, le seul endroit du plan ou le MScF en propose. Les cours de l'orientation qu'on suit comptent au Module 3 ; ceux des autres orientations comptent au Module 4, ou ils sont des enseignements a option comme les autres.",
+   "fichier": "allmaster/mscf--plan--2025-2026.pdf"
+  },
+  {
+   "programmes": ["mscm-behaviour", "mscm-business-analytics", "mscm-marketing", "mscm-strategy"],
+   "citation": "Module 4 can be any course listed above and any course listed under Module 5 of other orientations (and are not listed below). Company projects for other orientations are not open unless otherwise stated in SOL and BEE curriculums.",
+   "ou": "Note rattachee au Module 4 « Optional courses - 18 credits ECTS », dans les quatre plans, dans les memes termes.",
+   "moduleDAccueil": "M4",
+   "source": "le Module 5 des trois autres orientations du MSc Management",
+   "portee": "externe",
+   "lecture": "Contrairement au MScF, les orientations du MScM sont des masters distincts dans notre decoupage, chacun avec son propre plan. Les enseignements viennent donc d'un autre fichier.",
+   "ecarter": [
+    "Ceux qui figurent deja dans le plan de l'orientation, « and are not listed below ». Comparaison sur le titre.",
+    "Ceux dont l'intitule reserve le cours a une autre orientation, le plan les marquant lui meme « (for SOL orientation only) », « (for MKT orientation only) ».",
+    "Les projets d'entreprise, que la phrase exclut. Aucun ne se trouve dans un Module 5, ils sont tous au Module 3, donc cette exclusion ne retire rien aujourd'hui. Elle est appliquee quand meme, au cas ou un plan futur en placerait un."
+   ],
+   "cequonnesaitpas": "La phrase reserve le cas des cursus SOL et BEE, « unless otherwise stated ». Le site n'ouvre donc aucun projet d'entreprise de sa propre initiative : un etudiant concerne doit demander a l'administration.",
+   "fichier": "allmaster/mscm-*--plan--2025-2026.pdf"
+  }
+ ],
+
+ "lesautresmasters": "Le MDE, le MScAS, le MScCCF, le MScE et le MScIS ne disent rien de tel. Le site n'ouvre donc rien chez eux. Ne pas confondre avec l'autorisation de prendre des enseignements hors du plan, qui est un autre sujet et ne concerne que le MScCCF et le MScE : voir cours-externes.json."
+}

@@ -64,15 +64,29 @@ function encoder(selection: Set<string>, catalogue: Cours[]): string {
  * apres un tilde, qui n'appartient pas a l'alphabet base 64 et ne peut donc pas
  * etre confondu avec lui. Un ancien lien, sans tilde, reste lisible.
  */
-export function assembler(bits: string, externes: number): string {
-  return externes > 0 ? `${bits}~${externes}` : bits;
+export function assembler(
+  bits: string,
+  externes: number,
+  orientation: string | null,
+): string {
+  if (!externes && !orientation) return bits;
+  return `${bits}~${externes || 0}${orientation ? `~${orientation}` : ""}`;
 }
 
-export function separer(code: string): { bits: string; externes: number } {
-  const i = code.indexOf("~");
-  if (i < 0) return { bits: code, externes: 0 };
-  const n = Number.parseInt(code.slice(i + 1), 10);
-  return { bits: code.slice(0, i), externes: Number.isFinite(n) && n > 0 ? n : 0 };
+export function separer(code: string): {
+  bits: string;
+  externes: number;
+  orientation: string | null;
+} {
+  const [bits, ext, orient] = code.split("~");
+  const n = Number.parseInt(ext ?? "", 10);
+  return {
+    bits: bits ?? "",
+    externes: Number.isFinite(n) && n > 0 ? n : 0,
+    // un code ecrit avant l'arrivee de l'orientation n'en porte pas : c'est
+    // normal, et le lien reste lisible
+    orientation: orient || null,
+  };
 }
 
 function decoder(code: string, catalogue: Cours[]): Set<string> {
@@ -161,6 +175,8 @@ export function Planificateur({
   const [recherche, setRecherche] = useState("");
   /* les credits pris hors du plan, quand le plan l'autorise */
   const [externes, setExternes] = useState(0);
+  /* l'orientation suivie, quand le plan demande d'en choisir une */
+  const [orientation, setOrientation] = useState<string | null>(null);
   const [pret, setPret] = useState(false);
   /*
    * Un plan ouvert depuis un lien recu n'est pas encore le sien : tant que le
@@ -202,9 +218,12 @@ export function Planificateur({
     }
     const partage = partageInitial.current;
     const source = partage ?? window.localStorage.getItem(cle) ?? "";
-    const { bits, externes: horsPlan } = separer(source);
+    const { bits, externes: horsPlan, orientation: orient } = separer(source);
     setSelection(decoder(bits, catalogue));
     setExternes(regles.externes ? horsPlan : 0);
+    setOrientation(
+      orient && regles.modules.some((m) => m.code === orient) ? orient : null,
+    );
     setRecu(Boolean(partage));
     setPret(true);
   }, [cle, catalogue]);
@@ -221,15 +240,18 @@ export function Planificateur({
   useEffect(() => {
     if (!pret || !modifie) return;
     try {
-      window.localStorage.setItem(cle, assembler(encoder(selection, catalogue), externes));
+      window.localStorage.setItem(
+        cle,
+        assembler(encoder(selection, catalogue), externes, orientation),
+      );
     } catch {
       /* navigation privee : le stockage est refuse, tant pis */
     }
-  }, [selection, externes, pret, modifie, cle, catalogue]);
+  }, [selection, externes, orientation, pret, modifie, cle, catalogue]);
 
   const resultat = useMemo(
-    () => valider(selection, regles, catalogue, externes),
-    [selection, externes, regles, catalogue],
+    () => valider(selection, regles, catalogue, externes, orientation),
+    [selection, externes, orientation, regles, catalogue],
   );
 
   const basculer = (id: string) => {
@@ -248,6 +270,13 @@ export function Planificateur({
     setRecu(false);
     setSelection(new Set());
     setExternes(0);
+    setOrientation(null);
+  };
+
+  const changerOrientation = (code: string | null) => {
+    setModifie(true);
+    setRecu(false);
+    setOrientation(code);
   };
 
   const changerExternes = (n: number) => {
@@ -262,7 +291,10 @@ export function Planificateur({
    */
   const partager = async () => {
     const u = new URL(window.location.href);
-    u.searchParams.set("p", assembler(encoder(selection, catalogue), externes));
+    u.searchParams.set(
+      "p",
+      assembler(encoder(selection, catalogue), externes, orientation),
+    );
     try {
       await navigator.clipboard.writeText(u.toString());
       setCopie("copie");
@@ -615,6 +647,55 @@ export function Planificateur({
                   </ul>
 
                   {/*
+                    Le choix de l'orientation. Le deviner d'apres les cours
+                    coches serait arbitraire des qu'on en prend dans deux :
+                    or le plan accepte justement les cours des autres
+                    orientations au titre du module d'accueil, donc il faut
+                    savoir laquelle est la sienne pour compter juste.
+                  */}
+                  {m.choisirUn && (
+                    <div className="mt-4 rounded-xl border border-line-2 bg-surface-2 p-4">
+                      <h3 className="text-[13.5px] font-semibold text-ink">
+                        {T.orientationTitre}
+                      </h3>
+                      {regles.autresOrientations && (
+                        <p className="mt-1.5 text-[12px] leading-relaxed text-muted">
+                          {T.orientationSelonLePlan}{" "}
+                          <span className="italic">
+                            « {regles.autresOrientations.citation} »
+                          </span>
+                        </p>
+                      )}
+                      <p className="mt-1.5 text-[12px] leading-relaxed text-muted">
+                        {T.orientationExplication}
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {regles.modules
+                          .filter((x) => x.parent === m.code)
+                          .map((x) => {
+                            const actif = orientation === x.code;
+                            return (
+                              <button
+                                key={x.code}
+                                type="button"
+                                onClick={() => changerOrientation(actif ? null : x.code)}
+                                aria-pressed={actif}
+                                className={`rounded-lg border px-3 py-1.5 text-[12.5px] font-medium
+                                  transition-colors duration-150 ease-[var(--ease-out-std)] ${
+                                    actif
+                                      ? "border-unil-400 bg-unil-100 text-unil-500"
+                                      : "border-line-2 bg-white text-ink-2 hover:border-unil-400"
+                                  }`}
+                              >
+                                {x.note ? x.note.split(" - ")[0] : nomModule(x, langue)}
+                              </button>
+                            );
+                          })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/*
                     Le module que le plan autorise a completer hors de son
                     catalogue. Deux masters sur dix seulement : l'encart
                     n'apparait donc que la ou le document l'ecrit, avec sa
@@ -748,7 +829,7 @@ export function Planificateur({
             </p>
           )}
 
-          {(selection.size > 0 || externes > 0) && (
+          {(selection.size > 0 || externes > 0 || orientation) && (
             <div className="mt-6 grid gap-2">
               <button
                 onClick={partager}

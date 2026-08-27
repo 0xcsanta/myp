@@ -74,15 +74,51 @@ export function valider(
    * d'accueil sans passer par la selection.
    */
   creditsExternes = 0,
+  /*
+   * L'orientation suivie, quand le plan demande d'en choisir une. Les cours des
+   * autres orientations ne sont pas des erreurs : le MScF les accepte au titre
+   * de son Module 4, « Any compulsory courses in other tracks ». Il faut donc
+   * savoir laquelle est la sienne, et le deviner serait arbitraire.
+   */
+  orientation: string | null = null,
 ): Resultat {
   const parId = new Map(catalogue.map((c) => [c.id, c]));
   const choisis = [...selection].map((id) => parId.get(id)).filter(Boolean) as Cours[];
   const d: Diagnostic[] = [];
 
   /* ---------- credits par module ---------- */
+  const enfantsDe = (code: string) => regles.modules.filter((m) => m.parent === code);
+  const descendants = (code: string): string[] =>
+    enfantsDe(code).flatMap((f) => [f.code, ...descendants(f.code)]);
+
+  /*
+   * Ou compter chaque cours.
+   *
+   * Normalement, dans son module. Mais un cours pris dans une orientation
+   * qu'on ne suit pas compte au module qui les accueille, quand le plan le
+   * prevoit : il devient un enseignement a option comme un autre. Sans cette
+   * bascule, il gonflerait une orientation qui n'est pas la sienne et le plan
+   * paraitrait faux.
+   */
+  const choix = regles.modules.find((m) => m.choisirUn);
+  const accueil = regles.autresOrientations?.moduleDAccueil ?? null;
+  const branchesNonSuivies = new Set<string>();
+  if (choix && accueil && orientation) {
+    for (const b of enfantsDe(choix.code)) {
+      if (b.code === orientation) continue;
+      branchesNonSuivies.add(b.code);
+      for (const d of descendants(b.code)) branchesNonSuivies.add(d);
+    }
+  }
+  const moduleDe = (c: Cours) =>
+    branchesNonSuivies.has(c.module) && accueil ? accueil : c.module;
+
   const parModule: Record<string, number> = {};
   for (const m of regles.modules) parModule[m.code] = 0;
-  for (const c of choisis) parModule[c.module] = (parModule[c.module] ?? 0) + c.ects;
+  for (const c of choisis) {
+    const code = moduleDe(c);
+    parModule[code] = (parModule[code] ?? 0) + c.ects;
+  }
 
   const externes = regles.externes;
   const horsPlan = externes ? Math.max(0, creditsExternes) : 0;
@@ -94,14 +130,20 @@ export function valider(
    * Un module parent n'a pas de cours en propre : ses credits sont ceux de ses
    * sous-modules. Sans cette remontee, le Module 4 du MScIS reste a zero alors
    * que le memoire le remplit, et le total du diplome est compte deux fois.
+   *
+   * La remontee est recursive, et ce n'est pas un detail. En parcourant les
+   * modules dans l'ordre du plan, un parent etait calcule avant ses propres
+   * enfants : le Module 3 du MScF, seul a compter trois niveaux, restait a zero
+   * alors que son sous-sous-module 3.2.1 etait rempli.
    */
-  const enfantsDe = (code: string) => regles.modules.filter((m) => m.parent === code);
-  for (const m of regles.modules) {
-    const enfants = enfantsDe(m.code);
-    if (enfants.length) {
-      parModule[m.code] = somme(enfants.map((e) => parModule[e.code] ?? 0));
-    }
-  }
+  const feuilles = { ...parModule };
+  const totalDe = (code: string): number => {
+    const enfants = enfantsDe(code);
+    return enfants.length
+      ? somme(enfants.map((e) => totalDe(e.code)))
+      : (feuilles[code] ?? 0);
+  };
+  for (const m of regles.modules) parModule[m.code] = totalDe(m.code);
 
   /*
    * Les orientations qu'on ne suit pas.
@@ -112,15 +154,16 @@ export function valider(
    * qu'aucune n'est choisie, toutes dorment et c'est le module parent qui
    * porte l'exigence, avec son seuil a lui.
    */
-  const descendants = (code: string): string[] => {
-    const fils = regles.modules.filter((m) => m.parent === code);
-    return fils.flatMap((f) => [f.code, ...descendants(f.code)]);
-  };
   const enSommeil = new Set<string>();
   for (const m of regles.modules) {
     if (!m.choisirUn) continue;
     const branches = enfantsDe(m.code);
+    /*
+     * L'orientation annoncee fait foi. A defaut, on regarde ou des cours sont
+     * coches, ce qui suffit tant que l'etudiant ne pioche que dans une seule.
+     */
     const suivie = (b: Module) => {
+      if (orientation) return b.code === orientation;
       const codes = [b.code, ...descendants(b.code)];
       return choisis.some((c) => codes.includes(c.module));
     };
@@ -192,6 +235,12 @@ export function valider(
   /* ---------- une seule orientation a la fois ---------- */
   for (const m of regles.modules) {
     if (!m.choisirUn) continue;
+    /*
+     * Quand le plan accueille les cours des autres orientations, en prendre
+     * plusieurs n'est pas une faute : ils comptent ailleurs. L'avertissement ne
+     * vaut que pour les plans qui n'ouvrent pas cette porte.
+     */
+    if (accueil) continue;
     const enfants = enfantsDe(m.code);
     const garnis = enfants.filter((e) => {
       const sousEnfants = enfantsDe(e.code);

@@ -79,6 +79,11 @@ const fr = {
     noteSansHoraires:
       "Aucun horaire n'est encore relevé pour ce master, donc les chevauchements ne sont pas détectés. Vérifie les créneaux sur le ",
     catalogueOfficiel: "catalogue officiel",
+    orientationTitre: "Ton orientation",
+    orientationAucune: "Pas encore choisie",
+    orientationExplication:
+      "Les cours de ton orientation comptent ici. Ceux des autres orientations comptent en option, dans le module qui les accueille.",
+    orientationSelonLePlan: "Ce que dit le plan d'études :",
     externesTitre: "Un enseignement d'un autre master",
     externesChamp: "Crédits pris hors du plan",
     externesPlafond: (max: number) => `${max} crédits au maximum.`,
@@ -236,6 +241,11 @@ const en: Textes = {
     noteSansHoraires:
       "No timetable has been read for this programme yet, so clashes are not detected. Check the slots on the ",
     catalogueOfficiel: "official course catalogue",
+    orientationTitre: "Your orientation",
+    orientationAucune: "Not chosen yet",
+    orientationExplication:
+      "Courses from your orientation count here. Courses from the other orientations count as electives, in the module that takes them.",
+    orientationSelonLePlan: "What the study plan says:",
     externesTitre: "A course from another master's",
     externesChamp: "Credits taken outside the plan",
     externesPlafond: (max: number) => `${max} credits at most.`,
