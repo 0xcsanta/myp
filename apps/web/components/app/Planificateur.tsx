@@ -561,20 +561,38 @@ export function Planificateur({
       regles.autresOrientations?.portee === "interne" ? regles.autresOrientations : null;
     const choix = regles.modules.find((m) => m.choisirUn);
     const origine = new Map<string, string>();
+    /* les intitules deja presents dans l'orientation qu'on suit */
+    const dansLaSienne = new Set<string>();
     if (interne && choix && orientation) {
       const descendants = (code: string): string[] => {
         const fils = regles.modules.filter((x) => x.parent === code);
         return fils.flatMap((f) => [f.code, ...descendants(f.code)]);
       };
+      const sienne = new Set([orientation, ...descendants(orientation)]);
+      for (const c of catalogue) if (sienne.has(c.module)) dansLaSienne.add(c.titre);
+
       for (const b of regles.modules.filter((x) => x.parent === choix.code)) {
         if (b.code === orientation) continue;
         // la meme etiquette que le bouton de choix, pour qu'on la reconnaisse
         const nom = b.note ? b.note.split(" - ")[0] : nomModule(b, langue);
-        for (const code of [b.code, ...descendants(b.code)]) origine.set(code, nom);
+        for (const code of [b.code, ...descendants(b.code)]) {
+          /*
+           * « Any COMPULSORY courses in other tracks ». Le plan distingue les
+           * deux mots la ou ils comptent : le sous-module 3.2.1 s'appelle
+           * « Corporate Finance (Compulsory) » et le 3.2.2 « Corporate Finance
+           * (Elective) ». Les electifs d'une orientation qu'on ne suit pas ne
+           * sont donc pas ouverts par cette phrase, et les faire passer au
+           * Module 4 serait s'accorder trois cours que le plan ne donne pas.
+           */
+          const mod = regles.modules.find((x) => x.code === code);
+          if (mod && /\belectiv|\belectif/i.test(mod.note ?? "")) continue;
+          origine.set(code, nom);
+        }
       }
     }
 
     const groupes = new Map<string, Cours[]>();
+    const dejaVenus = new Set<string>();
     for (const c of catalogue) {
       if (
         q &&
@@ -585,6 +603,18 @@ export function Planificateur({
       )
         continue;
       const venu = origine.get(c.module);
+      /*
+       * Deux intitules figurent dans deux orientations a la fois : « Managing
+       * Risk in Financial Institutions » au 3.1 et au 3.2.1, « Private Equity &
+       * Venture Capital » au 3.2.2 et au 3.3. Celui qu'on a deja dans sa propre
+       * orientation ne bouge pas, et celui qui vient de deux autres ne se
+       * dedouble pas.
+       */
+      if (venu && interne) {
+        if (dansLaSienne.has(c.titre)) continue;
+        if (dejaVenus.has(c.titre)) continue;
+        dejaVenus.add(c.titre);
+      }
       const cours: Cours =
         venu && interne ? { ...c, module: interne.moduleDAccueil, venantDe: [venu] } : c;
       const l = groupes.get(cours.module) ?? [];
