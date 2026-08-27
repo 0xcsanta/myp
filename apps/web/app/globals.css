@@ -384,3 +384,45 @@ body .vague[data-phase="depart"][data-sens="descend"] {
     transition-duration: 0.01ms !important;
   }
 }
+
+/*
+ * Le fond du plan, au choix de l'etudiant.
+ *
+ * Il compose un document qu'il regardera des heures et qu'il partagera en
+ * capture d'ecran. Le laisser choisir son fond ne change rien aux donnees, et
+ * c'est justement pour cela que c'est agreable : aucune de ces variantes ne
+ * peut rendre une information fausse.
+ *
+ * Toutes sont claires, et ce n'est pas un gout mais une contrainte. Les fiches
+ * de cours et la colonne de droite sont blanches et opaques, mais les titres de
+ * module sont poses a meme le fond : un fond sombre les rendrait illisibles
+ * sans une reprise de toute l'interface.
+ *
+ * Le choix vit dans le navigateur du lecteur et nulle part ailleurs. Il
+ * s'applique apres l'hydratation, donc la page s'ouvre blanche puis se teinte :
+ * la transition rend ce passage doux au lieu de le faire clignoter.
+ */
+.fond-du-plan {
+  background: var(--fond, #ffffff);
+  transition: background 260ms var(--ease-out-std, ease-out);
+}
+
+:root[data-fond="bleu"] {
+  --fond: radial-gradient(120% 90% at 12% 0%, #e8f0ff 0%, #f6f9ff 46%, #ffffff 78%);
+}
+
+:root[data-fond="papier"] {
+  --fond: radial-gradient(130% 100% at 85% 0%, #fbf7ef 0%, #fdfbf7 52%, #ffffff 86%);
+}
+
+:root[data-fond="ardoise"] {
+  --fond: linear-gradient(178deg, #eef2f6 0%, #f7f9fb 44%, #ffffff 88%);
+}
+
+:root[data-fond="aube"] {
+  --fond: radial-gradient(120% 90% at 88% 4%, #fdeef2 0%, #f2f0fb 40%, #f8fbff 74%, #ffffff 96%);
+}
+
+:root[data-fond="menthe"] {
+  --fond: radial-gradient(120% 90% at 10% 2%, #e9f6f0 0%, #f4fbf8 48%, #ffffff 84%);
+}

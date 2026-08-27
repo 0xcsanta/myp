@@ -5,6 +5,7 @@ import type { Cours, Creneau, Master, Regles } from "@/lib/donnees";
 import { libelleSemestre, semestresDe } from "@/lib/semestres";
 import type { Langue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
+import { ChoixDeFond } from "./ChoixDeFond";
 import { bilanParSemestre, enHeures } from "@/lib/bilan";
 import { comparer } from "@/lib/comparer";
 import type { CalendrierAcademique } from "@/lib/ics";
@@ -1431,6 +1432,8 @@ export function Planificateur({
               )}
             </div>
           )}
+
+          <ChoixDeFond langue={langue} />
 
           {/*
             Les verifications changent a chaque case cochee. Sans region
