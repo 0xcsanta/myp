@@ -94,6 +94,12 @@ const fr = {
     choixDuSemestreDuCours: "À quel semestre suis tu ce cours",
     choixDuGroupe: "Quel créneau suis tu",
     ogAlt: "MYP, Master Your Plan. Compose ton plan d'études de master à HEC Lausanne.",
+    deplierAutres: (n: number) =>
+      n > 1
+        ? `Voir les ${n} cours des autres orientations`
+        : "Voir le cours de l'autre orientation",
+    replierAutres: (n: number) =>
+      n > 1 ? `Masquer les ${n} cours des autres orientations` : "Masquer ce cours",
     fondTitre: "Le fond de ton plan",
     fondNote: "Gardé dans ton navigateur, pour toi seul. Ça ne change rien aux crédits.",
     fondNom: (f: string) =>
@@ -329,6 +335,10 @@ const en: Textes = {
     choixDuSemestreDuCours: "Which semester you take this course in",
     choixDuGroupe: "Which slot you attend",
     ogAlt: "MYP, Master Your Plan. Build your HEC Lausanne master's study plan.",
+    deplierAutres: (n: number) =>
+      n > 1 ? `Show the ${n} courses from other tracks` : "Show the course from the other track",
+    replierAutres: (n: number) =>
+      n > 1 ? `Hide the ${n} courses from other tracks` : "Hide this course",
     fondTitre: "Your plan's background",
     fondNote: "Kept in your browser, for you alone. It changes nothing about the credits.",
     fondNom: (f: string) =>

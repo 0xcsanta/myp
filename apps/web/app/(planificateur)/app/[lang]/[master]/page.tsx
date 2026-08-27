@@ -58,11 +58,11 @@ export async function generateMetadata({
        * L'adresse est relative, metadataBase la rend absolue, ce qu'exige Open
        * Graph et ce qu'aucun lecteur de lien ne pardonne.
        */
-      images: [{ url: `/og/myp-${langue}.png`, width: 1200, height: 630, alt: textes(langue).plan.ogAlt }],
+      images: [{ url: "/og/myp.png", width: 1200, height: 630, alt: textes(langue).plan.ogAlt }],
     },
     twitter: {
       card: "summary_large_image",
-      images: [`/og/myp-${langue}.png`],
+      images: ["/og/myp.png"],
     },
   };
 }

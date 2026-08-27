@@ -262,6 +262,8 @@ export function Planificateur({
    * qui evite un second format a maintenir.
    */
   const [deCote, setDeCote] = useState<string | null>(null);
+  /* les modules dont la liste des cours venus d'ailleurs est depliee */
+  const [depliesParModule, setDeplies] = useState<Record<string, boolean>>({});
   /* les credits pris hors du plan, quand le plan l'autorise */
   const [externes, setExternes] = useState(0);
   /* l'orientation suivie, quand le plan demande d'en choisir une */
@@ -492,6 +494,9 @@ export function Planificateur({
     [catalogue, selection, placements, groupes],
   );
 
+  const deplier = (code: string, ouvert: boolean) =>
+    setDeplies((d) => ({ ...d, [code]: ouvert }));
+
   const codeActuel = () =>
     assembler(
       encoder(selection, catalogue),
@@ -667,6 +672,208 @@ export function Planificateur({
     const aDesEnfants = regles.modules.some((x) => x.parent === m.code);
     return aDesEnfants ? m.choisirUn === true : true;
   });
+
+  /*
+   * Une ligne de cours, sortie de la boucle pour servir deux fois : la liste
+   * du module, et celle des cours venus d'une autre orientation, que le module
+   * qui les accueille garde repliee.
+   */
+  const ligneDeCours = (c: Cours) => {
+                const pris = selection.has(c.id);
+                return (
+                  <li key={c.id}>
+                    <label
+                      className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3
+                        transition-colors duration-150 ease-[var(--ease-out-std)]
+                        ${
+                          pris
+                            ? "border-unil-400 bg-unil-100"
+                            : "border-line bg-white hover:border-line-2 hover:bg-surface-2"
+                        }`}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={pris}
+                        onChange={() => basculer(c.id)}
+                        className="mt-0.5 size-[17px] shrink-0 accent-[var(--color-unil-400)]"
+                      />
+                      <span className="min-w-0 flex-1">
+                        {/*
+                          La saison passe a cote du titre plutot qu'en
+                          bout de ligne : c'est la premiere chose qu'on
+                          cherche en composant un plan, et noyee dans la
+                          liste des metadonnees elle se lisait mal.
+                        */}
+                        <span className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                          <span className="text-[14.5px] font-medium leading-snug text-ink">
+                            {c.titre}
+                          </span>
+                          {/*
+                            Le rang du semestre, pas seulement la saison :
+                            un master de cent vingt credits compte deux
+                            automnes, et savoir lequel change tout.
+
+                            Quand le plan en propose plusieurs, la
+                            pastille devient un choix : le cours n'est
+                            suivi qu'une fois, et le montrer dans deux
+                            grilles laisserait croire le contraire. Le
+                            choix n'apparait qu'une fois le cours coche,
+                            sans quoi le catalogue se couvrirait de
+                            boutons avant meme qu'on ait rien decide.
+                          */}
+                          {pris && rangsAuChoix(c.colonnes).length ? (
+                            <span
+                              className="flex shrink-0 items-center gap-1"
+                              role="group"
+                              aria-label={T.choixDuSemestreDuCours}
+                            >
+                              {rangsAuChoix(c.colonnes).map((r) => {
+                                const actif =
+                                  rangEffectif(c.colonnes, placements[c.id]) === r;
+                                return (
+                                  <button
+                                    key={r}
+                                    type="button"
+                                    aria-pressed={actif}
+                                    onClick={(e) => {
+                                      // la ligne entiere est un label : sans
+                                      // cela, le clic cocherait la case
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      placer(c.id, r);
+                                    }}
+                                    className={`rounded-full border px-2 py-[1px] text-[10.5px] font-semibold uppercase tracking-[0.04em]
+                                      transition-colors duration-150 ease-[var(--ease-out-std)] ${
+                                        actif
+                                          ? "border-unil-400 bg-unil-100 text-unil-500"
+                                          : "border-line bg-white text-muted hover:border-unil-400"
+                                      }`}
+                                  >
+                                    {libelleRang(r, langue)}
+                                  </button>
+                                );
+                              })}
+                            </span>
+                          ) : (
+                            <span className="shrink-0 rounded-full border border-line bg-surface-2 px-2 py-[1px] text-[10.5px] font-semibold uppercase tracking-[0.04em] text-ink-2">
+                              {libelleColonnes(c.colonnes, langue) ?? T.semestreInconnu}
+                            </span>
+                          )}
+                          {/*
+                            Un cours venu d'une autre orientation le dit.
+                            Il est bien au programme, le plan l'accepte en
+                            option, mais l'etudiant qui va verifier le
+                            trouvera dans un autre plan que le sien.
+                          */}
+                          {c.venantDe?.length ? (
+                            <span
+                              title={T.venantDeExplique(c.venantDe)}
+                              className="shrink-0 rounded-full border border-unil-200 bg-unil-100 px-2 py-[1px]
+                                text-[10.5px] font-semibold uppercase tracking-[0.04em] text-unil-500"
+                            >
+                              {T.venantDe(c.venantDe)}
+                            </span>
+                          ) : null}
+                        </span>
+                        <span className="mt-1 block text-[12px] text-muted">
+                          {[
+                            c.enseignants,
+                            langueDuCours(c.langue, langue),
+                            evaluationDuCours(c.evaluation, langue),
+                            c.dureeExamen ? T.examenMinutes(c.dureeExamen) : null,
+                          ]
+                            .filter(Boolean)
+                            .join(" · ")}
+                        </span>
+                        {/*
+                          L'horaire aussi, meme s'il figure deja dans la
+                          grille : la grille ne montre que les cours
+                          coches, donc c'est le seul endroit ou l'on voit
+                          l'horaire d'un cours avant de le prendre.
+                        */}
+                        {(() => {
+                          /*
+                            Un cours donne plusieurs fois dans le meme
+                            semestre est offert en groupes paralleles :
+                            « Economie II » au MDE en compte dix huit. On
+                            n'en suit qu'un, donc les lister tous en
+                            bloquerait la lecture et remplirait la grille.
+                            Une liste deroulante plutot que des boutons,
+                            precisement a cause de ces dix huit.
+                          */
+                          const parSem: Record<string, Creneau[]> = {};
+                          for (const k of c.creneaux) {
+                            (parSem[k.semestre] ??= []).push(k);
+                          }
+                          const multiples = Object.values(parSem).some(
+                            (v) => v.length > 1,
+                          );
+                          /*
+                            Un cours enseigne dans plusieurs masters n'a
+                            qu'un horaire, et l'agenda de l'un comble le
+                            trou de l'autre. Le dire : ce n'est pas
+                            l'agenda de ce master la que le lecteur
+                            retrouvera s'il verifie.
+                          */
+                          const ailleurs = c.creneaux.find((k) => k.reprisDe)?.reprisDe;
+                          if (!pris || !multiples) {
+                            return (
+                              <>
+                                <span
+                                  className={`mt-1 block font-mono text-[11.5px] ${
+                                    libelleCreneaux(c, langue)
+                                      ? "text-unil-400"
+                                      : "text-muted"
+                                  }`}
+                                >
+                                  {libelleCreneaux(c, langue) ?? T.horaireNonReleve}
+                                </span>
+                                {ailleurs && (
+                                  <span className="mt-0.5 block text-[11px] text-muted">
+                                    {T.horaireReprisDe(ailleurs)}
+                                  </span>
+                                )}
+                              </>
+                            );
+                          }
+                          return (
+                            <span className="mt-1.5 block">
+                              <select
+                                aria-label={T.choixDuGroupe}
+                                value={groupes[c.id] ?? -1}
+                                onClick={(e) => e.stopPropagation()}
+                                onChange={(e) => {
+                                  e.stopPropagation();
+                                  choisirGroupe(c.id, Number(e.target.value));
+                                }}
+                                className="w-full max-w-[30rem] rounded-lg border border-line-2 bg-white
+                                  px-2 py-1 font-mono text-[11.5px] text-unil-400 outline-none
+                                  transition-colors duration-150 ease-[var(--ease-out-std)]
+                                  focus:border-unil-400"
+                              >
+                                <option value={-1}>
+                                  {T.groupePasChoisi(c.creneaux.length)}
+                                </option>
+                                {c.creneaux.map((k, i) => (
+                                  <option key={`${k.semestre}-${i}`} value={i}>
+                                    {libelleJour(k.jour, langue)} {k.debut}
+                                    {" "}
+                                    {langue === "fr" ? "à" : "to"} {k.fin}
+                                    {k.salle ? ` · ${k.salle}` : ""}
+                                  </option>
+                                ))}
+                              </select>
+                            </span>
+                          );
+                        })()}
+                      </span>
+                      <span className="tnum shrink-0 font-mono text-[13px] font-semibold text-ink">
+                        {c.ects}
+                      </span>
+                    </label>
+                  </li>
+                );
+  };
 
   return (
     <div className="shell grid gap-10 pb-[clamp(64px,8vw,128px)] lg:grid-cols-[1fr_340px] lg:items-start lg:gap-12">
@@ -865,6 +1072,14 @@ export function Planificateur({
                 parent = regles.modules.find((x) => x.code === parent)?.parent ?? null;
               }
               const cours = parModule.get(m.code) ?? [];
+              /*
+               * Les cours propres au module d'un cote, ceux qu'il accueille
+               * d'une autre orientation de l'autre. Le Module 4 du marketing
+               * en compte quarante six pour huit qui lui sont propres.
+               */
+              const siens = cours.filter((c) => !c.venantDe?.length);
+              const venus = cours.filter((c) => c.venantDe?.length);
+              const ouvert = Boolean(depliesParModule[m.code]) || q.length > 0;
               return (
                 <section
                   key={m.code}
@@ -921,203 +1136,40 @@ export function Planificateur({
                     })()}
 
                   <ul className="mt-4 grid gap-1.5">
-                    {(cours ?? []).map((c) => {
-                      const pris = selection.has(c.id);
-                      return (
-                        <li key={c.id}>
-                          <label
-                            className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3
-                              transition-colors duration-150 ease-[var(--ease-out-std)]
-                              ${
-                                pris
-                                  ? "border-unil-400 bg-unil-100"
-                                  : "border-line bg-white hover:border-line-2 hover:bg-surface-2"
-                              }`}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={pris}
-                              onChange={() => basculer(c.id)}
-                              className="mt-0.5 size-[17px] shrink-0 accent-[var(--color-unil-400)]"
-                            />
-                            <span className="min-w-0 flex-1">
-                              {/*
-                                La saison passe a cote du titre plutot qu'en
-                                bout de ligne : c'est la premiere chose qu'on
-                                cherche en composant un plan, et noyee dans la
-                                liste des metadonnees elle se lisait mal.
-                              */}
-                              <span className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                                <span className="text-[14.5px] font-medium leading-snug text-ink">
-                                  {c.titre}
-                                </span>
-                                {/*
-                                  Le rang du semestre, pas seulement la saison :
-                                  un master de cent vingt credits compte deux
-                                  automnes, et savoir lequel change tout.
-
-                                  Quand le plan en propose plusieurs, la
-                                  pastille devient un choix : le cours n'est
-                                  suivi qu'une fois, et le montrer dans deux
-                                  grilles laisserait croire le contraire. Le
-                                  choix n'apparait qu'une fois le cours coche,
-                                  sans quoi le catalogue se couvrirait de
-                                  boutons avant meme qu'on ait rien decide.
-                                */}
-                                {pris && rangsAuChoix(c.colonnes).length ? (
-                                  <span
-                                    className="flex shrink-0 items-center gap-1"
-                                    role="group"
-                                    aria-label={T.choixDuSemestreDuCours}
-                                  >
-                                    {rangsAuChoix(c.colonnes).map((r) => {
-                                      const actif =
-                                        rangEffectif(c.colonnes, placements[c.id]) === r;
-                                      return (
-                                        <button
-                                          key={r}
-                                          type="button"
-                                          aria-pressed={actif}
-                                          onClick={(e) => {
-                                            // la ligne entiere est un label : sans
-                                            // cela, le clic cocherait la case
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                            placer(c.id, r);
-                                          }}
-                                          className={`rounded-full border px-2 py-[1px] text-[10.5px] font-semibold uppercase tracking-[0.04em]
-                                            transition-colors duration-150 ease-[var(--ease-out-std)] ${
-                                              actif
-                                                ? "border-unil-400 bg-unil-100 text-unil-500"
-                                                : "border-line bg-white text-muted hover:border-unil-400"
-                                            }`}
-                                        >
-                                          {libelleRang(r, langue)}
-                                        </button>
-                                      );
-                                    })}
-                                  </span>
-                                ) : (
-                                  <span className="shrink-0 rounded-full border border-line bg-surface-2 px-2 py-[1px] text-[10.5px] font-semibold uppercase tracking-[0.04em] text-ink-2">
-                                    {libelleColonnes(c.colonnes, langue) ?? T.semestreInconnu}
-                                  </span>
-                                )}
-                                {/*
-                                  Un cours venu d'une autre orientation le dit.
-                                  Il est bien au programme, le plan l'accepte en
-                                  option, mais l'etudiant qui va verifier le
-                                  trouvera dans un autre plan que le sien.
-                                */}
-                                {c.venantDe?.length ? (
-                                  <span
-                                    title={T.venantDeExplique(c.venantDe)}
-                                    className="shrink-0 rounded-full border border-unil-200 bg-unil-100 px-2 py-[1px]
-                                      text-[10.5px] font-semibold uppercase tracking-[0.04em] text-unil-500"
-                                  >
-                                    {T.venantDe(c.venantDe)}
-                                  </span>
-                                ) : null}
-                              </span>
-                              <span className="mt-1 block text-[12px] text-muted">
-                                {[
-                                  c.enseignants,
-                                  langueDuCours(c.langue, langue),
-                                  evaluationDuCours(c.evaluation, langue),
-                                  c.dureeExamen ? T.examenMinutes(c.dureeExamen) : null,
-                                ]
-                                  .filter(Boolean)
-                                  .join(" · ")}
-                              </span>
-                              {/*
-                                L'horaire aussi, meme s'il figure deja dans la
-                                grille : la grille ne montre que les cours
-                                coches, donc c'est le seul endroit ou l'on voit
-                                l'horaire d'un cours avant de le prendre.
-                              */}
-                              {(() => {
-                                /*
-                                  Un cours donne plusieurs fois dans le meme
-                                  semestre est offert en groupes paralleles :
-                                  « Economie II » au MDE en compte dix huit. On
-                                  n'en suit qu'un, donc les lister tous en
-                                  bloquerait la lecture et remplirait la grille.
-                                  Une liste deroulante plutot que des boutons,
-                                  precisement a cause de ces dix huit.
-                                */
-                                const parSem: Record<string, Creneau[]> = {};
-                                for (const k of c.creneaux) {
-                                  (parSem[k.semestre] ??= []).push(k);
-                                }
-                                const multiples = Object.values(parSem).some(
-                                  (v) => v.length > 1,
-                                );
-                                /*
-                                  Un cours enseigne dans plusieurs masters n'a
-                                  qu'un horaire, et l'agenda de l'un comble le
-                                  trou de l'autre. Le dire : ce n'est pas
-                                  l'agenda de ce master la que le lecteur
-                                  retrouvera s'il verifie.
-                                */
-                                const ailleurs = c.creneaux.find((k) => k.reprisDe)?.reprisDe;
-                                if (!pris || !multiples) {
-                                  return (
-                                    <>
-                                      <span
-                                        className={`mt-1 block font-mono text-[11.5px] ${
-                                          libelleCreneaux(c, langue)
-                                            ? "text-unil-400"
-                                            : "text-muted"
-                                        }`}
-                                      >
-                                        {libelleCreneaux(c, langue) ?? T.horaireNonReleve}
-                                      </span>
-                                      {ailleurs && (
-                                        <span className="mt-0.5 block text-[11px] text-muted">
-                                          {T.horaireReprisDe(ailleurs)}
-                                        </span>
-                                      )}
-                                    </>
-                                  );
-                                }
-                                return (
-                                  <span className="mt-1.5 block">
-                                    <select
-                                      aria-label={T.choixDuGroupe}
-                                      value={groupes[c.id] ?? -1}
-                                      onClick={(e) => e.stopPropagation()}
-                                      onChange={(e) => {
-                                        e.stopPropagation();
-                                        choisirGroupe(c.id, Number(e.target.value));
-                                      }}
-                                      className="w-full max-w-[30rem] rounded-lg border border-line-2 bg-white
-                                        px-2 py-1 font-mono text-[11.5px] text-unil-400 outline-none
-                                        transition-colors duration-150 ease-[var(--ease-out-std)]
-                                        focus:border-unil-400"
-                                    >
-                                      <option value={-1}>
-                                        {T.groupePasChoisi(c.creneaux.length)}
-                                      </option>
-                                      {c.creneaux.map((k, i) => (
-                                        <option key={`${k.semestre}-${i}`} value={i}>
-                                          {libelleJour(k.jour, langue)} {k.debut}
-                                          {" "}
-                                          {langue === "fr" ? "à" : "to"} {k.fin}
-                                          {k.salle ? ` · ${k.salle}` : ""}
-                                        </option>
-                                      ))}
-                                    </select>
-                                  </span>
-                                );
-                              })()}
-                            </span>
-                            <span className="tnum shrink-0 font-mono text-[13px] font-semibold text-ink">
-                              {c.ects}
-                            </span>
-                          </label>
-                        </li>
-                      );
-                    })}
+                    {siens.map(ligneDeCours)}
                   </ul>
+
+                  {/*
+                    Les cours venus des autres orientations, replies.
+                  
+                    Le Module 4 du marketing en compte quarante six pour huit qui lui
+                    sont propres : les laisser deroules noyait le plan sous une liste
+                    qu'on ne parcourt pas, alors qu'on y va pour un cours precis. Une
+                    recherche en cours les deplie, sans quoi un cours cherche resterait
+                    cache derriere un bouton et le site paraitrait ne pas l'avoir.
+                  */}
+                  {venus.length > 0 && (
+                    <div className="mt-3">
+                      {/*
+                        Pas de bouton pendant une recherche : la liste est
+                        deroulee de force, donc le bouton serait la sans rien
+                        faire, ce qui est pire que son absence.
+                      */}
+                      {!q && (
+                        <button
+                          type="button"
+                          aria-expanded={ouvert}
+                          onClick={() => deplier(m.code, !depliesParModule[m.code])}
+                          className="w-full rounded-xl border border-dashed border-line-2 px-4 py-2.5
+                            text-[12.5px] font-medium text-ink-2 transition-colors duration-150
+                            ease-[var(--ease-out-std)] hover:border-unil-400 hover:text-unil-400"
+                        >
+                          {ouvert ? T.replierAutres(venus.length) : T.deplierAutres(venus.length)}
+                        </button>
+                      )}
+                      {ouvert && <ul className="mt-2 grid gap-1.5">{venus.map(ligneDeCours)}</ul>}
+                    </div>
+                  )}
 
                   {/*
                     Le choix de l'orientation. Le deviner d'apres les cours
