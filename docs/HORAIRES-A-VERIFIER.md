@@ -1,3 +1,49 @@
+# Les horaires relevés sur les fiches de cours
+
+**Complété le 27 août 2026.** Là où les PDF d'horaire ne donnaient rien, les
+créneaux ont été relevés un par un sur les **fiches de cours officielles** de
+l'UNIL, que Clément a capturées. Ils vivent dans
+[data/horaires/appoint.json](../data/horaires/appoint.json), séparés des relevés
+bruts, qui sont régénérés depuis les PDF et les effaceraient.
+
+| Master | Avant | Après |
+|---|---|---|
+| MScF | 21 créneaux, automne seul | **35**, dont 9 au printemps |
+| MScIS | 16 | **17** |
+
+Chaque ligne porte l'enseignant tel qu'il figure sur la fiche, ce qui permet de
+recouper l'attribution : un horaire saisi à la main est plus fragile qu'un
+horaire lu dans un PDF par géométrie.
+
+### Une divergence entre deux sources officielles
+
+**Market Microstructure**, au MScF, n'a pas le même créneau selon la source :
+
+| Source | Créneau |
+|---|---|
+| Fiche de cours | Jeudi 16:15 à 18:00, Internef/275, hebdomadaire |
+| Agenda (PDF) | Vendredi 13:15 à 17:00, Internef/272, tous les 15 jours |
+
+Les deux sont affichés, et celui de la fiche porte une note qui invite à
+vérifier. Trancher entre deux sources officielles sans élément serait inventer
+une information ; les cacher toutes deux le serait aussi. À éclaircir auprès de
+l'administration, ou en regardant si le cours a bien deux séances.
+
+### Ce qui manque encore au MScF
+
+Sept cours, dont deux qui n'ont probablement pas d'horaire fixe :
+
+- Fixed Income and Credit Risk (Karyampas D.)
+- Empirical Methods in Finance (Ielpo F.)
+- Asset Pricing (Bretscher L.)
+- Droit bancaire (Lombardini C.)
+- Strategy in Digital Markets, côté MScIS, est désormais couvert
+- CFA General Research Challenge et CFA Advanced Research Challenge, qui
+  renvoient à des informations générales plutôt qu'à un créneau
+- Le mémoire, qui n'en a pas par nature
+
+---
+
 # Les relevés qui ne couvrent qu'une saison
 
 **Constaté le 27 août 2026.** Trois masters n'ont d'horaire relevé que pour

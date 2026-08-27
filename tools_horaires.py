@@ -178,10 +178,39 @@ def corrections(slug):
     return out
 
 
+def appoint(slug):
+    """
+    Creneaux releves a la main sur les fiches de cours officielles.
+
+    Les PDF d'horaire ne couvrent pas tout : au MScF, tout le semestre de
+    printemps y manquait. Ces creneaux vivent dans leur propre fichier plutot
+    que dans les releves bruts, qui sont regeneres depuis les PDF et les
+    effaceraient a la premiere execution.
+    """
+    f = f'{SORTIE}/appoint.json'
+    if not os.path.exists(f):
+        return []
+    d = json.load(io.open(f, encoding='utf-8'))
+    out = []
+    for i, c in enumerate(d.get('creneaux', []), 1):
+        if c.get('master') != slug:
+            continue
+        out.append({'n': f'appoint {i}', 'semestre': c['semestre'],
+                    'jour': JOURS.get(fold(c['jour']), c['jour']),
+                    'debut': c['debut'], 'fin': c['fin'], 'titre': c['titre'],
+                    'salle': c.get('salle'), 'cadence': c.get('cadence', 'hebdomadaire'),
+                    'note': c.get('note', '')})
+    return out
+
+
 def construire(slug):
     chemin = f'{BRUT}/{slug}.txt'
     ids = catalogue(slug)
     lignes = lire_brut(chemin)
+    sup = appoint(slug)
+    if sup:
+        print(f"  {len(sup)} creneaux d'appoint, releves sur les fiches de cours")
+    lignes = lignes + sup
     corr = corrections(slug)
     for l in lignes:
         cle = (l['semestre'], l['jour'], l['debut'])

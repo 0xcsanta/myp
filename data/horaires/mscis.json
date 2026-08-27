@@ -1,29 +1,182 @@
 {
-  "programme": "mscis",
-  "source": {
-    "document": "Horaire type officiel du programme, relevé par capture d'écran de l'agenda UNIL",
-    "url": "https://applicationspub.unil.ch/interpub/noauth/php/Ud/index.php?v_ueid=173&v_langue=fr",
-    "releveLe": "2026-08-26",
-    "releveParUnHumain": true,
-    "note": "Transcription d'images. Les intitulés sont recoupés automatiquement avec le catalogue, mais les heures et les salles ne peuvent pas l'être : à vérifier sur l'horaire officiel avant de s'inscrire."
+ "programme": "mscis",
+ "source": {
+  "document": "Horaire type officiel du programme, relevé par capture d'écran de l'agenda UNIL",
+  "url": "https://applicationspub.unil.ch/interpub/noauth/php/Ud/index.php?v_ueid=173&v_langue=fr",
+  "releveLe": "2026-08-26",
+  "releveParUnHumain": true,
+  "note": "Extrait des PDF officiels par géométrie. Les heures sont calées automatiquement sur la grille du document. Les intitulés sont recoupés avec le catalogue ; ceux que la mise en page du PDF a hachés au point de les rendre méconnaissables sont exclus et listés dans rapport-<master>.json."
+ },
+ "creneaux": [
+  {
+   "cours": "software-architectures",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
   },
-  "creneaux": [
-    { "cours": "seminar-introduction-to-computer-science-resea", "semestre": "printemps-2026", "jour": "Lundi", "debut": "09:30", "fin": "12:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "interaction-design", "semestre": "printemps-2026", "jour": "Lundi", "debut": "14:15", "fin": "18:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "business-and-is-design", "semestre": "printemps-2026", "jour": "Mardi", "debut": "08:30", "fin": "12:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "management-of-ai-in-organizations-limited-to-8", "semestre": "printemps-2026", "jour": "Mardi", "debut": "14:15", "fin": "18:00", "salle": "Internef/126", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "seminar-introduction-to-is-research", "semestre": "printemps-2026", "jour": "Mercredi", "debut": "09:00", "fin": "12:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "cybersecurity", "semestre": "printemps-2026", "jour": "Mercredi", "debut": "14:15", "fin": "18:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "digital-innovation-and-design-thinking", "semestre": "printemps-2026", "jour": "Jeudi", "debut": "08:30", "fin": "12:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "cloud-and-advanced-analytics", "semestre": "printemps-2026", "jour": "Jeudi", "debut": "14:15", "fin": "18:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "audit-gouvernance-it", "semestre": "printemps-2026", "jour": "Vendredi", "debut": "08:30", "fin": "12:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "advanced-project-management-outsourcing-in-a-d", "semestre": "printemps-2026", "jour": "Vendredi", "debut": "13:15", "fin": "17:00", "salle": "Internef/123", "cadence": "hebdomadaire", "note": "" },
-
-    { "cours": "software-architectures", "semestre": "automne-2026", "jour": "Lundi", "debut": "08:30", "fin": "12:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "data-science-machine-learning", "semestre": "automne-2026", "jour": "Lundi", "debut": "14:15", "fin": "18:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "digital-innovation-week", "semestre": "automne-2026", "jour": "Mardi", "debut": "10:15", "fin": "12:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "Une semaine bloc s'ajoute à ce créneau, en novembre" },
-    { "cours": "entreprise-data-and-integration", "semestre": "automne-2026", "jour": "Mercredi", "debut": "08:30", "fin": "12:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "information-security-privacy", "semestre": "automne-2026", "jour": "Jeudi", "debut": "08:30", "fin": "12:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" },
-    { "cours": "digital-strategies-and-innovation", "semestre": "automne-2026", "jour": "Jeudi", "debut": "14:15", "fin": "18:00", "salle": "Internef/237", "cadence": "hebdomadaire", "note": "" }
-  ]
+  {
+   "cours": "data-science-machine-learning",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "digital-innovation-week",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": "Une semaine bloc s'ajoute à ce créneau, en novembre"
+  },
+  {
+   "cours": "entreprise-data-and-integration",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "information-security-privacy",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "digital-strategies-and-innovation",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "seminar-introduction-to-computer-science-resea",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "09:30",
+   "fin": "12:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "interaction-design",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "business-and-is-design",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "management-of-ai-in-organizations-limited-to-8",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/126",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "seminar-introduction-to-is-research",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "09:00",
+   "fin": "12:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "cybersecurity",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "digital-innovation-and-design-thinking",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "cloud-and-advanced-analytics",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "audit-gouvernance-it",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "advanced-project-management-outsourcing-in-a-d",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "13:15",
+   "fin": "17:00",
+   "salle": "Internef/123",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "strategy-in-digital-markets",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/125",
+   "cadence": "hebdomadaire",
+   "note": "sauf le 16 septembre"
+  }
+ ]
 }
