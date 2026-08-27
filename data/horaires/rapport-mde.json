@@ -14,7 +14,7 @@
   {
    "ligne": 27,
    "titre": "in and Machine Learning - Internef /",
-   "raison": "introuvable (meilleure similarite 0.50), proches : droit-des-marches-financiers, droit-de-l-union-europeenne, normes-comptables-internationales-ifrs"
+   "raison": "introuvable (meilleure similarite 0.47), proches : droit-des-marches-financiers, power-and-leadership, microeconomics-and-game-theory"
   },
   {
    "ligne": 28,
@@ -67,12 +67,6 @@
    "titre": "Normes comptables (IFRS)",
    "retenu": "normes-comptables-internationales-ifrs",
    "note": "MOTS COMMUNS 0.75"
-  },
-  {
-   "ligne": 62,
-   "titre": "Droit et éthique de la profession d'avocat·e",
-   "retenu": "xxdroit-et-ethique-de-la-profession-d-avocat",
-   "note": "SIMILARITE 0.95"
   }
  ]
 }

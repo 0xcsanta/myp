@@ -399,6 +399,16 @@
    "note": ""
   },
   {
+   "cours": "social-innovation-lab-limited-to-15-students",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Villanova",
+   "cadence": "hebdomadaire",
+   "note": "débute le 24 septembre"
+  },
+  {
    "cours": "corporate-sustainability-aut26",
    "semestre": "automne-2026",
    "jour": "Mardi",
@@ -430,6 +440,39 @@
    "cadence": "hebdomadaire",
    "note": "sauf le 16 septembre",
    "reprisDe": "mscis"
+  },
+  {
+   "cours": "strategy-of-innovation",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/125",
+   "cadence": "hebdomadaire",
+   "note": "débute le 25 septembre",
+   "reprisDe": "mde"
+  },
+  {
+   "cours": "strategy-of-innovation",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Internef/125",
+   "cadence": "hebdomadaire",
+   "note": "débute le 25 septembre",
+   "reprisDe": "mde"
+  },
+  {
+   "cours": "heuristic-decision-making-strategies",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/233",
+   "cadence": "hebdomadaire",
+   "note": "débute le 29 septembre",
+   "reprisDe": "mscm-marketing"
   },
   {
    "cours": "managerial-decision-making",

@@ -327,6 +327,48 @@
    "salle": "Internef/123",
    "cadence": "hebdomadaire",
    "note": ""
+  },
+  {
+   "cours": "global-marketing",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole/3032",
+   "cadence": "irregulier",
+   "note": "les 3, 17 et 31 octobre, les 7, 14 et 28 novembre, le 19 décembre"
+  },
+  {
+   "cours": "heuristic-decision-making-strategies",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/233",
+   "cadence": "hebdomadaire",
+   "note": "débute le 29 septembre"
+  },
+  {
+   "cours": "strategy-of-innovation",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/125",
+   "cadence": "hebdomadaire",
+   "note": "débute le 25 septembre",
+   "reprisDe": "mde"
+  },
+  {
+   "cours": "strategy-of-innovation",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Internef/125",
+   "cadence": "hebdomadaire",
+   "note": "débute le 25 septembre",
+   "reprisDe": "mde"
   }
  ]
 }

@@ -45,12 +45,12 @@ def nettoyer(t):
     sont glisses dans le titre.
     """
     t = re.sub(r'\s*/\s*$', '', t.strip())
-    t = re.sub(r'C\s*-\s*', ' ', t)                 # marqueur de type de cours
+    t = re.sub(r'\bC\s*-\s*', ' ', t)                 # marqueur de type de cours
     t = re.sub(r'(?<=[A-Za-zÀ-ÿ])-(?=[a-zà-ÿ])', '', t)  # « A-ccounting »
     # une suite de lettres isolees separees par des espaces se recolle
     t = re.sub(r'(?:(?<=\s)|^)((?:[A-Za-zÀ-ÿ]\s){2,}[A-Za-zÀ-ÿ]{1,3})(?=\s|$)',
                lambda m: m.group(1).replace(' ', ''), t)
-    t = re.sub(r'\s*[-–]\s*(Internef|Anthropole|Amphimax|Amphipôle|Synathlon|Cubotron|IDHEAP).*$',
+    t = re.sub(r'\s*[-–]\s*(Internef|Anthropole|Amphimax|Amphipôle|Synathlon|Cubotron|IDHEAP)\b.*$',
                '', t, flags=re.I)
     return re.sub(r'\s+', ' ', t).strip(' -–—/|')
 

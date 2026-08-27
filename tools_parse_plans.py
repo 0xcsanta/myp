@@ -264,7 +264,17 @@ def parse_plan(pdf_path, slug):
         # l'entreprise ». Sans ce nettoyage, le titre stocke ne correspond plus a
         # celui de l'agenda et l'horaire ne se rattache jamais au cours.
         title = re.sub(r"^[a-zA-Z]\s+(?=[A-ZÀ-Ý])", '', title)
-        title = re.sub(r"^[a-z](?=[A-ZÀ-Ý])", '', title)   # « bEconomie I », colle
+        # Le meme plan use aussi de symboles et de lettres redoublees :
+        # « #Strategy of Innovation », « °°°Contrôle stratégique »,
+        # « xxDroit et éthique ». Huit intitules du MDE les portaient, et un
+        # etudiant lisait « °°°Contrôle stratégique » a l'ecran. Pire, le
+        # marqueur brisait le rapprochement d'un master a l'autre : le MScM
+        # ecrit « Strategy of Innovation » sans diese, donc le meme cours ne se
+        # reconnaissait pas et son horaire ne circulait pas.
+        title = re.sub(r"^[#°*†‡§~]+\s*(?=[A-ZÀ-Ý0-9])", '', title)
+        # l'espace est facultatif : le PDF pose parfois le marqueur dans sa
+        # propre cellule, « xx Droit et éthique », parfois colle, « xxDroit »
+        title = re.sub(r"^([a-z])\1{0,2}\s*(?=[A-ZÀ-Ý])", '', title)   # « bEconomie I », « xx Droit »
         if not title or fold(title).startswith(('cours', 'courses')):
             continue
         # Une phrase du corps du texte n'est pas un cours. Le paragraphe du

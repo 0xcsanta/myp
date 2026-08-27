@@ -705,6 +705,54 @@
    "cadence": "hebdomadaire",
    "note": "",
    "enseignant": "Maissa Tamraz"
+  },
+  {
+   "master": "mscm-marketing",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "titre": "Global Marketing",
+   "salle": "Anthropole/3032",
+   "cadence": "irregulier",
+   "note": "les 3, 17 et 31 octobre, les 7, 14 et 28 novembre, le 19 décembre",
+   "enseignant": "Thilo Eckardt"
+  },
+  {
+   "master": "mscm-marketing",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "titre": "Heuristic Decision Making Strategies",
+   "salle": "Internef/233",
+   "cadence": "hebdomadaire",
+   "note": "débute le 29 septembre",
+   "enseignant": "Julian Marewski"
+  },
+  {
+   "master": "mscm-business-analytics",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "titre": "Risk Analytics",
+   "salle": "Internef/122",
+   "cadence": "hebdomadaire",
+   "note": "débute le 25 septembre",
+   "enseignant": "Frédéric Aviolat"
+  },
+  {
+   "master": "mscm-strategy",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "titre": "Social Innovation Lab (Limited to 15 students)",
+   "salle": "Villanova",
+   "cadence": "hebdomadaire",
+   "note": "débute le 24 septembre",
+   "enseignant": "Emilie Romon"
   }
  ],
  "stabiliteDunAnneeALautre": {

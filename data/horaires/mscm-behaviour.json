@@ -360,6 +360,17 @@
    "reprisDe": "mde"
   },
   {
+   "cours": "heuristic-decision-making-strategies",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/233",
+   "cadence": "hebdomadaire",
+   "note": "débute le 29 septembre",
+   "reprisDe": "mscm-marketing"
+  },
+  {
    "cours": "managerial-decision-making",
    "semestre": "automne-2026",
    "jour": "Mardi",
