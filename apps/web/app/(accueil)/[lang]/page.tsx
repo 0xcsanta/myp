@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { HeroFrame } from "@/components/brand/HeroFrame";
-import { TexteMagnetique } from "@/components/brand/TexteMagnetique";
 import { autreLangue, estLangue } from "@/lib/langues";
 
 export default async function Accueil({
@@ -48,19 +47,7 @@ export default async function Accueil({
               letterSpacing: "-0.0425em",
             }}
           >
-            {/*
-              « Master Your Plan » devient « Plan Your Master » sous le disque :
-              le premier et le dernier mot permutent, celui du milieu reste en
-              place. Le titre n'est pas traduit, c'est le nom du site, donc la
-              permutation vaut dans les deux langues.
-            */}
-            <TexteMagnetique
-              mots={[
-                { texte: "Master", revele: "Plan" },
-                { texte: "Your" },
-                { texte: "Plan", revele: "Master" },
-              ]}
-            />
+            Master Your Plan
           </h1>
 
             {/*
