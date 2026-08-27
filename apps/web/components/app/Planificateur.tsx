@@ -447,7 +447,14 @@ export function Planificateur({
             ))}
           </div>
 
-          <div className="mt-6 grid gap-2">
+          {/*
+            Les verifications changent a chaque case cochee. Sans region
+            annoncee, un lecteur d'ecran ne dit rien : l'etudiant coche, et
+            l'avertissement qui est la raison d'etre du site passe inapercu.
+            « polite » attend une pause plutot que de couper la lecture en
+            cours, ce qui convient a une liste qui se met a jour souvent.
+          */}
+          <div className="mt-6 grid gap-2" aria-live="polite" aria-atomic="false">
             {resultat.diagnostics.length === 0 && (
               <p className="text-[12.5px] text-muted">{T.cocheDesCours}</p>
             )}

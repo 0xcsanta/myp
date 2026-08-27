@@ -34,7 +34,17 @@
       rendu HTML vers image pèserait plusieurs centaines de kilooctets pour un
       résultat moins propre. Un bouton par semestre et par format.
       L'export sort dans la langue de la page, nom de fichier compris.
-      Reste l'export `.ics`, non fait.
+
+- [ ] **Export `.ics`. Bloqué, et pas par de la technique.** Un calendrier
+      place des événements à des dates réelles, là où une grille se contente
+      de cases. Il faut donc la date d'ouverture officielle du semestre, que
+      je n'ai pas. Les indices sont forts pour l'automne 2026, les PDF
+      mentionnant le 14 et le 15 septembre, mais **je refuse de générer
+      quatorze semaines d'événements à partir d'une date déduite** : une
+      erreur d'une semaine décalerait tout le calendrier de l'étudiant.
+      Il me faut le calendrier académique officiel de l'UNIL. Avec lui, c'est
+      une demi heure. Détail dans
+      [HORAIRES-A-VERIFIER.md](./HORAIRES-A-VERIFIER.md).
 
 - [ ] **Plusieurs styles de calendrier, avec fond personnalisable.**
       *À rediscuter avec Clément avant de construire.* Questions ouvertes :
@@ -42,6 +52,24 @@
       ce que le style choisi se retrouve dans l'export PNG, est ce qu'il se
       partage avec l'URL. Attention à ne pas rendre le calendrier illisible :
       la lisibilité prime sur la décoration.
+
+## Avant la mise en ligne
+
+- [x] **Plan du site et robots.txt.** Faits le 27 août. 24 adresses, chacune
+      déclarant sa jumelle dans l'autre langue, ce qui évite qu'un moteur
+      traite la version anglaise comme un doublon. Tout est ouvert aux
+      robots : MYP ne publie que du public remis en forme.
+- [ ] **Le domaine.** Pas tranché. Tout le code lit `NEXT_PUBLIC_SITE_URL`, et
+      la valeur par défaut est `https://myp.omniscient.swiss`, qui n'est
+      qu'une supposition. Une variable à changer le jour où tu décides.
+- [x] **Accessibilité du planificateur.** Vérifié le 27 août : toutes les cases
+      ont un libellé, aucun bouton muet, images et SVG annotés, hiérarchie de
+      titres correcte. Ajouté une région annoncée sur les vérifications, qui
+      changeaient en silence pour un lecteur d'écran alors qu'elles sont la
+      raison d'être du site.
+- [x] **Téléphone.** Le planificateur débordait de 350 pixels sur un écran de
+      390. Corrigé, et le compteur de crédits se colle en bas de l'écran tant
+      que le rail est hors champ.
 
 ## Décisions en attente
 

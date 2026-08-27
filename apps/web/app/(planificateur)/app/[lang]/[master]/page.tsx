@@ -15,6 +15,7 @@ import {
 import { LANGUES, autreLangue, estLangue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
 import { nomCourt } from "@/lib/nomMaster";
+import { SITE } from "@/lib/site";
 
 const LIEN_PLANS =
   "https://www.unil.ch/hec/fr/home/ressources/intranet/espace-etudiant/enseignement-master/plan-d-etudes-et-reglements.html";
@@ -36,6 +37,7 @@ export async function generateMetadata({
   const m = master(slug);
   if (!m) return { title: T.introuvable };
   return {
+    metadataBase: new URL(SITE),
     title: `${nomCourt(m, langue)} · MYP`,
     description: T.description(m.long, m.ects),
     alternates: {

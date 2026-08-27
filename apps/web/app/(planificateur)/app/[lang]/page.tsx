@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { coursDe, reglesDe, tousLesMasters } from "@/lib/donnees";
 import { autreLangue, estLangue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
+import { SITE } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -16,6 +17,7 @@ export async function generateMetadata({
   if (!estLangue(lang)) return {};
   const T = textes(lang).choix;
   return {
+    metadataBase: new URL(SITE),
     title: T.titre,
     description: T.description,
     alternates: {

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Racine } from "@/components/layout/Racine";
 import { LANGUES, estLangue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
+import { SITE } from "@/lib/site";
 
 export function generateStaticParams() {
   return LANGUES.map((lang) => ({ lang }));
@@ -18,6 +19,7 @@ export async function generateMetadata({
   if (!estLangue(lang)) return {};
   const T = textes(lang);
   return {
+    metadataBase: new URL(SITE),
     title: T.accueil.titre,
     description: T.accueil.description,
     applicationName: "MYP",
