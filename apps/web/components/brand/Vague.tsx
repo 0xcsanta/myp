@@ -7,29 +7,28 @@ import { useEffect, useState } from "react";
  *
  * Au clic, la vague couvre l'ecran ; la navigation part quand il est plein ; la
  * page suivante la fait se retirer par ou elle est venue, comme une vague sur
- * une plage. Le sens voyage d'une page a l'autre par le stockage de session, la
- * seule chose qui survive a un changement de document sans passer par le
- * serveur.
+ * une plage.
  *
- * Ce composant ne s'occupe que du depart. Le retrait est declenche par le
- * script synchrone de la mise en page racine, et ce partage n'est pas
- * arbitraire : un composant React n'agit qu'apres l'hydratation, donc apres la
- * premiere peinture. On voyait la page une fraction de seconde avant que la
- * vague ne la recouvre, ce qui detruisait l'effet, celui ci reposant justement
- * sur le fait de ne jamais voir la coupure. Le depart, lui, part d'un clic :
- * React est la depuis longtemps.
+ * Ce composant ne s'occupe que du depart, et ce partage n'est pas arbitraire.
+ * Le retrait doit commencer avant que la page soit peinte, sans quoi on la voit
+ * une fraction de seconde avant que la vague ne la recouvre, et l'effet est
+ * detruit : il repose justement sur le fait de ne jamais voir la coupure. Or un
+ * composant React n'agit qu'apres l'hydratation. Le sens du retrait voyage donc
+ * dans l'ancre de l'adresse, que la feuille de style lit avec `:target` des le
+ * premier rendu. Le depart, lui, part d'un clic : React est la depuis
+ * longtemps.
  *
  * Pourquoi pas la transition de vue de globals.css : elle croise deux captures
  * et ne peut pas retenir la navigation le temps qu'une masse de couleur
  * traverse l'ecran. Les deux cohabitent sans se gener. Quand ce composant
  * intercepte le clic il navigue par script, ce qui n'active pas les
  * transitions de vue ; quand il ne l'intercepte pas, faute de JavaScript, le
- * clic reste natif et la transition prend le relais.
+ * clic reste natif, l'ancre joue seule le retrait et la page s'ouvre sur une
+ * vague qui se retire.
  */
 
 /** Aussi long que le retrait : les deux phases sont exactement symetriques. */
 const DUREE_DEPART = 760;
-const CLE = "myp:vague";
 
 type Sens = "monte" | "descend";
 type Depart = { sens: Sens } | null;
@@ -67,11 +66,6 @@ export function Vague() {
       if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
 
       e.preventDefault();
-      try {
-        sessionStorage.setItem(CLE, sens);
-      } catch {
-        /* sans stockage, la page d'arrivee n'aura pas de retrait */
-      }
       setDepart({ sens });
       window.setTimeout(() => {
         window.location.href = href;
@@ -83,15 +77,42 @@ export function Vague() {
   }, []);
 
   /*
+   * L'ancre a fait son travail, on la retire de l'adresse. Attendre la fin de
+   * l'animation est indispensable : la retirer plus tot ferait cesser
+   * `:target` et couperait le retrait en plein vol.
+   */
+  useEffect(() => {
+    const surNettoyage = () => {
+      if (!location.hash.startsWith("#vague-")) return;
+      history.replaceState(null, "", location.pathname + location.search);
+    };
+    const surFin = (e: Event) => {
+      const cible = e.target as HTMLElement | null;
+      if (!cible?.classList?.contains("vague")) return;
+      surNettoyage();
+    };
+    document.addEventListener("animationend", surFin, true);
+
+    /*
+     * Un filet, car l'evenement de fin d'animation n'arrive pas toujours : un
+     * onglet passe en arriere plan pendant le chargement, par exemple, ne joue
+     * pas l'animation. L'ancre resterait alors dans l'adresse, et le prochain
+     * chargement de cette page rejouerait le retrait sans raison.
+     */
+    const filet = window.setTimeout(surNettoyage, DUREE_DEPART + 600);
+    return () => {
+      document.removeEventListener("animationend", surFin, true);
+      window.clearTimeout(filet);
+    };
+  }, []);
+
+  /*
    * Au retour arriere, la page revient parfois telle quelle de la memoire du
-   * navigateur, avec la vague figee en plein ecran, et le script synchrone ne
-   * se rejoue pas. On remet tout au repos.
+   * navigateur, avec la vague figee en plein ecran. On la remet au repos.
    */
   useEffect(() => {
     const surRetour = (e: PageTransitionEvent) => {
-      if (!e.persisted) return;
-      setDepart(null);
-      document.documentElement.removeAttribute("data-vague");
+      if (e.persisted) setDepart(null);
     };
     window.addEventListener("pageshow", surRetour);
     return () => window.removeEventListener("pageshow", surRetour);

@@ -141,7 +141,7 @@ export function SiteFooter({ langue }: { langue: Langue }) {
                   titre={T.mascotte}
                   className="text-unil-400"
                 />
-                <Wordmark size="clamp(30px, 2.6vw, 40px)" href={`/${langue}`} />
+                <Wordmark size="clamp(30px, 2.6vw, 40px)" href={`/${langue}#vague-descend`} />
               </div>
               <p className="order-3 w-full text-center text-[12.5px] text-muted sm:order-2 sm:w-auto">
                 © 2026 Omniscient · Lausanne

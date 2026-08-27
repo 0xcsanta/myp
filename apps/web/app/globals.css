@@ -261,28 +261,59 @@ body {
    et l'ordre s'inverse. Le retrait est donc le film de l'arrivee joue a
    l'envers, et non une seconde animation qui lui ressemblerait.
 */
-.vague[data-phase="depart"][data-sens="monte"] {
+/*
+   Le `body` en tete n'est pas decoratif : il donne au depart un poids
+   superieur a celui du retrait. Sans lui, une ancre encore presente dans
+   l'adresse imposait son animation par dessus celle du depart, et quitter la
+   page rejouait le retrait au lieu de couvrir l'ecran.
+*/
+body .vague[data-phase="depart"][data-sens="monte"] {
   animation: vague-depart-monte 760ms cubic-bezier(0.7, 0, 0.84, 0) both;
 }
 
-.vague[data-phase="depart"][data-sens="descend"] {
+body .vague[data-phase="depart"][data-sens="descend"] {
   animation: vague-depart-descend 760ms cubic-bezier(0.7, 0, 0.84, 0) both;
 }
 
 /*
-   L'arrivee est commandee par un attribut pose sur la balise html par un
-   script synchrone, avant meme que cet element soit analyse. C'est le seul
-   moyen que la vague couvre des la premiere image : posee par React, elle
-   n'arriverait qu'apres l'hydratation, et le navigateur aurait deja peint la
-   page. On voyait donc la page, puis la vague la recouvrir, ce qui detruisait
-   l'effet au lieu de le produire.
+   L'arrivee ne passe par aucun JavaScript : le sens est porte par l'ancre de
+   l'adresse, et `:target` la lit des le premier rendu.
+
+   C'est ce qui a demande le plus de detours. Il faut que la vague couvre des
+   la premiere image, sans quoi on voit la page une fraction de seconde avant
+   qu'elle ne la recouvre, et l'effet est detruit. Un composant React n'agit
+   qu'apres l'hydratation, donc trop tard. Un script pose en clair dans le
+   corps fonctionnait mais faisait mentir le HTML rendu par React, qui s'en
+   plaignait. Et la strategie `beforeInteractive` de Next n'ecrit pas de balise
+   executable : elle depose un lien de prechargement et une file d'attente que
+   son propre runtime traite plus tard, donc apres la peinture.
+
+   L'ancre n'a aucun de ces defauts. Elle fait partie de l'adresse demandee,
+   le navigateur l'applique avant de peindre quoi que ce soit, et rien n'est
+   ajoute au document apres coup : il n'y a donc rien qui puisse diverger.
 */
-html[data-vague="monte"] .vague {
+/*
+   `[id="..."]` plutot que `#...` : le selecteur vise le meme element, mais il
+   pese comme un attribut et non comme un identifiant. Un identifiant l'aurait
+   emporte sur n'importe quel nombre de classes, donc sur la regle du depart,
+   et l'ecran aurait rejoue le retrait au moment de quitter la page.
+*/
+[id="vague-monte"]:target ~ .vague {
   animation: vague-arrivee-monte 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-html[data-vague="descend"] .vague {
+[id="vague-descend"]:target ~ .vague {
   animation: vague-arrivee-descend 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/*
+   Les deux ancres ne servent qu'a `:target`. Sans hauteur ni contenu, elles ne
+   deplacent rien, et placees en tete du corps elles ne provoquent pas de saut
+   de defilement quand le navigateur va les chercher.
+*/
+.ancre-vague {
+  display: block;
+  height: 0;
 }
 
 /* le bord d'attaque est en haut : la vague monte */

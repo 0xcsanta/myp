@@ -60,33 +60,21 @@ export function Racine({
     >
       <body className="antialiased">
         {/*
-          Ce script doit s'executer avant que la page soit peinte, donc avant
-          React, avant l'hydratation, et avant meme que l'element de la vague
-          soit analyse. C'est la seule facon que l'ecran soit deja couvert a la
-          premiere image : pose par React, l'etat de la vague n'arrivait
-          qu'apres l'hydratation, et l'on voyait la page une fraction de
-          seconde avant que la vague ne la recouvre. L'effet etait detruit,
-          puisqu'il repose sur le fait de ne jamais voir la coupure.
+          Les deux ancres du retrait. Le sens de la vague voyage dans l'adresse
+          plutot que dans un stockage, et `:target` le lit avant que la page
+          soit peinte, ce qu'aucun JavaScript ne sait faire ici : un composant
+          React n'agit qu'apres l'hydratation, et la strategie
+          `beforeInteractive` de Next ne pose pas de balise executable mais une
+          file d'attente que son runtime traite plus tard. Rien n'etant ajoute
+          au document apres coup, il n'y a rien non plus qui puisse diverger de
+          ce que React a rendu.
 
-          Il ne fait qu'une chose : lire par ou la page precedente a fait
-          entrer la vague, et le poser sur la balise html, ou la feuille de
-          style l'attend. Le nettoyage se fait a la fin de l'animation, avec un
-          filet si celle ci ne se declenche pas, sans quoi l'attribut resterait
-          et figerait la vague hors champ.
+          Elles viennent avant la vague, la regle du retrait les liant par le
+          combinateur de freres.
         */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var r=document.documentElement;try{var s=sessionStorage.getItem("myp:vague");if(s!=="monte"&&s!=="descend")return;sessionStorage.removeItem("myp:vague");if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;r.setAttribute("data-vague",s);}catch(e){return}var fini=function(){r.removeAttribute("data-vague")};document.addEventListener("animationend",function(e){if(e.target&&e.target.classList&&e.target.classList.contains("vague"))fini()},true);setTimeout(fini,3000)})();`,
-          }}
-        />
-        {/*
-          La vague vient avant le contenu, pas apres. Le navigateur peint sans
-          attendre la fin de l'analyse du document : placee en fin de corps,
-          elle risquait de n'exister qu'apres une premiere peinture de la page,
-          exactement le defaut que le script ci dessus corrige. Son empilement
-          ne depend pas de cet ordre, elle est en position fixe avec un
-          z-index qui la met au dessus de tout.
-        */}
+        <span id="vague-monte" className="ancre-vague" aria-hidden="true" />
+        <span id="vague-descend" className="ancre-vague" aria-hidden="true" />
+
         <Vague />
         {children}
       </body>

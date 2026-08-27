@@ -142,23 +142,42 @@ transitions de vue ; quand il ne l'intercepte pas, faute de JavaScript, le clic
 reste natif et la transition de vue prend le relais. Le logotype qui morphe
 devient donc un repli, pas l'effet principal.
 
-**La vague doit couvrir dès la première image.** C'est ce qui a demandé le
-plus de soin. Posée par React, elle n'arrivait qu'après l'hydratation : le
-navigateur avait déjà peint la page, on la voyait une fraction de seconde,
-puis la vague la recouvrait. L'effet était détruit, puisqu'il repose justement
-sur le fait de ne jamais voir la coupure. Deux corrections :
+**La vague doit couvrir dès la première image**, sans quoi on voit la page une
+fraction de seconde avant qu'elle ne la recouvre, et l'effet est détruit : il
+repose justement sur le fait de ne jamais voir la coupure. C'est ce qui a
+demandé le plus de détours, et trois pistes ont été écartées avant la bonne.
 
-- Un **script synchrone** en tête du corps du document lit par où la page
-  précédente a fait entrer la vague et le pose sur la balise `html`, où la
-  feuille de style l'attend. Il s'exécute avant React, avant l'hydratation, et
-  avant que l'élément lui même soit analysé.
-- L'élément de la vague est placé **avant le contenu**, pas après. Le
-  navigateur peint sans attendre la fin de l'analyse du document : en fin de
-  corps, la vague risquait de n'exister qu'après une première peinture. Son
-  empilement ne dépend pas de cet ordre, elle est en position fixe.
+| Piste | Pourquoi elle échoue |
+|---|---|
+| Un état React | Un composant n'agit qu'après l'hydratation, donc après la première peinture. C'était le défaut d'origine. |
+| Un `<script>` écrit dans le corps | Fonctionne, mais fait mentir le HTML rendu par React, qui émet deux avertissements en développement. |
+| `next/script` en `beforeInteractive` | **N'écrit pas de balise exécutable.** Next dépose un lien de préchargement et une file d'attente que son propre runtime traite plus tard, donc après la peinture. Le nom induit en erreur : c'est avant l'hydratation, pas avant l'affichage. |
 
-React ne pilote donc plus que le départ, qui part d'un clic et n'a pas ce
-problème.
+**La solution retenue n'utilise aucun JavaScript.** Le sens du retrait voyage
+dans **l'ancre de l'adresse**, et le CSS la lit avec `:target`. L'ancre fait
+partie de la requête, le navigateur l'applique avant de peindre quoi que ce
+soit, et rien n'est ajouté au document après coup : il n'y a donc rien qui
+puisse diverger de ce que React a rendu. Console vide.
+
+L'élément de la vague est aussi placé **avant le contenu** : le navigateur
+peint sans attendre la fin de l'analyse du document, donc en fin de corps il
+risquait de n'exister qu'après une première peinture.
+
+React ne pilote plus que le départ, qui part d'un clic et n'a pas ce problème.
+
+**Deux pièges de spécificité, trouvés en testant :**
+
+- Le sélecteur d'arrivée s'écrit `[id="vague-monte"]:target`, jamais
+  `#vague-monte:target`. Il vise le même élément, mais pèse comme un attribut
+  et non comme un identifiant. Avec l'identifiant, il l'emportait sur la règle
+  du départ : quitter la page rejouait le retrait au lieu de couvrir l'écran.
+- Les règles de départ portent `body` en tête, pour passer devant celle du
+  retrait quelle que soit l'ordre du fichier.
+
+L'ancre est retirée de l'adresse à la fin de l'animation, jamais avant, sinon
+`:target` cesserait de s'appliquer et couperait le retrait en plein vol. Un
+filet par délai prend le relais si l'événement de fin n'arrive pas, ce qui
+survient quand l'onglet passe en arrière plan pendant le chargement.
 
 **Les deux phases sont exactement symétriques**, 760 ms chacune, avec des
 courbes miroir : `cubic-bezier(0.16, 1, 0.3, 1)` est le reflet de

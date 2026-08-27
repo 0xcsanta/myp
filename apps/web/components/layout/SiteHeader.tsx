@@ -49,7 +49,7 @@ export function SiteHeader({
       <div className="shell grid grid-cols-[auto_auto] items-center gap-4 lg:grid-cols-[1fr_auto_1fr]">
         <div className="justify-self-start">
           <Wordmark
-            href={`/${langue}`}
+            href={`/${langue}#vague-descend`}
             persistant
             size={
               dansLApp ? "clamp(28px, 3vw, 40px)" : "clamp(38px, 4.6vw, 64px)"
@@ -64,7 +64,7 @@ export function SiteHeader({
 
         <div className="flex items-center gap-2 justify-self-end sm:gap-3">
           <BasculeLangue langue={langue} href={hrefAutreLangue} />
-          {!dansLApp && <LaunchButton href={`/app/${langue}`} />}
+          {!dansLApp && <LaunchButton href={`/app/${langue}#vague-monte`} />}
         </div>
       </div>
     </header>
