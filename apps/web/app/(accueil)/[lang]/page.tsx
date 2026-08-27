@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { HeroFrame } from "@/components/brand/HeroFrame";
+import { TexteMagnetique } from "@/components/brand/TexteMagnetique";
 import { autreLangue, estLangue } from "@/lib/langues";
+import { textes } from "@/lib/textes";
 
 export default async function Accueil({
   params,
@@ -11,6 +13,7 @@ export default async function Accueil({
 }) {
   const { lang } = await params;
   if (!estLangue(lang)) notFound();
+  const T = textes(lang).accueil;
 
   return (
     <div className="flex min-h-dvh flex-col bg-white">
@@ -47,7 +50,7 @@ export default async function Accueil({
               letterSpacing: "-0.0425em",
             }}
           >
-            Master Your Plan
+            <TexteMagnetique texte="Master Your Plan" texteSurvol={T.titreSurvol} />
           </h1>
 
             {/*

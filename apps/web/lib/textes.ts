@@ -23,6 +23,8 @@ const fr = {
     titre: "MYP, Master Your Plan",
     description:
       "Compose ton plan d'études de master à HEC Lausanne, vérifie tes crédits par module et vois tes horaires.",
+    /* Ce que le titre révèle sous le curseur. À changer librement. */
+    titreSurvol: "Compose ton master",
   },
 
   choix: {
@@ -167,6 +169,7 @@ const en: Textes = {
     titre: "MYP, Master Your Plan",
     description:
       "Build your master's study plan at HEC Lausanne, check your credits module by module and see your timetable.",
+    titreSurvol: "Build your master",
   },
 
   choix: {
