@@ -8,7 +8,7 @@ import { textes } from "@/lib/textes";
 import { nomCourt } from "@/lib/nomMaster";
 import { evaluationDuCours, langueDuCours } from "@/lib/codes";
 import { libelleCreneaux } from "@/lib/creneaux";
-import { anneeAcademique, libelleSaison } from "@/lib/semestres";
+import { anneeAcademique, libelleColonnes, libelleSaison } from "@/lib/semestres";
 import { ANNEE_VISEE } from "@/lib/annee";
 import {
   coursEnConflit,
@@ -605,12 +605,13 @@ export function Planificateur({
                                 <span className="text-[14.5px] font-medium leading-snug text-ink">
                                   {c.titre}
                                 </span>
+                                {/*
+                                  Le rang du semestre, pas seulement la saison :
+                                  un master de cent vingt credits compte deux
+                                  automnes, et savoir lequel change tout.
+                                */}
                                 <span className="shrink-0 rounded-full border border-line bg-surface-2 px-2 py-[1px] text-[10.5px] font-semibold uppercase tracking-[0.04em] text-ink-2">
-                                  {c.saisons.length
-                                    ? c.saisons
-                                        .map((x) => libelleSaison(x, langue))
-                                        .join(langue === "fr" ? " ou " : " or ")
-                                    : T.semestreInconnu}
+                                  {libelleColonnes(c.colonnes, langue) ?? T.semestreInconnu}
                                 </span>
                               </span>
                               <span className="mt-1 block text-[12px] text-muted">

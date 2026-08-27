@@ -331,3 +331,36 @@ seul niveau**, parce qu'elle parcourait les modules dans l'ordre du plan : un
 parent était calculé avant ses propres enfants. Le MScF, seul master à compter
 trois niveaux, affichait « Module 3 : 0 / 21 » alors que son sous-sous-module
 3.2.1 était rempli. La remontée est désormais récursive.
+
+---
+
+## 12. Les quatre colonnes de semestre
+
+**Signalé par Clément le 27 août 2026.** Un master de 120 crédits compte quatre
+semestres : automne, printemps, automne, printemps. Le plan porte donc quatre
+colonnes, et chaque cours a un point dans la sienne.
+
+Le site n'affichait que la saison. « Automne » ne disait pas s'il s'agissait du
+premier ou du troisième semestre, soit un an d'écart. Le badge donne désormais
+le rang : « Blockchain and Crypto Economy » est au **2e sem, printemps** et
+« Advanced Data Analysis » au **3e sem, automne**, exactement comme le plan.
+
+Quand un cours occupe plusieurs colonnes, elles sont toutes données : « 1er ou
+3e sem, automne » au MDE, très fréquent chez lui. La saison n'est dite que si
+toutes les colonnes tombent dans la même, sinon seuls les rangs le sont.
+
+### La conséquence sur les chevauchements
+
+C'est le point important. Deux cours ne se heurtent que si l'on peut les suivre
+en même temps. Un cours du premier semestre et un du troisième tombent tous
+deux à l'automne, et l'agenda officiel les place au même créneau, mais
+l'étudiant les suit **à un an d'intervalle**.
+
+Le site les comparait quand même. Sur les dix relevés d'horaire, cela produisait
+**48 faux conflits sur 264**, presque un sur cinq. Par exemple, au MScAS,
+« Insurance Economics » du 1er semestre contre « Time Series » du 3e, tous deux
+le lundi à 12h30.
+
+Deux cours doivent maintenant partager au moins une colonne du plan pour être
+comparés. Quand le plan ne dit rien, ils sont comparés quand même : mieux vaut
+signaler un chevauchement de trop que d'en taire un vrai.

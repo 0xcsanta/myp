@@ -94,3 +94,46 @@ export function anneeAcademique(cle: string): string {
   if (!saison || !Number.isFinite(n)) return cle;
   return saison === "automne" ? `${n}-${n + 1}` : `${n - 1}-${n}`;
 }
+
+/*
+ * Les colonnes de semestre du plan.
+ *
+ * Un master de cent vingt credits en compte quatre : automne, printemps,
+ * automne, printemps. Deux cours d'automne peuvent donc etre au premier et au
+ * troisieme semestre, soit a un an d'ecart. N'afficher que la saison, comme le
+ * site le faisait, revenait a perdre cette information : « Blockchain and
+ * Crypto Economy » est au deuxieme semestre et « Advanced Data Analysis » au
+ * troisieme, et rien ne le disait.
+ */
+const RANGS: Record<number, [string, string]> = {
+  1: ["1er", "1st"],
+  2: ["2e", "2nd"],
+  3: ["3e", "3rd"],
+  4: ["4e", "4th"],
+};
+
+const SAISON_DE: Record<number, string> = {
+  1: "automne",
+  2: "printemps",
+  3: "automne",
+  4: "printemps",
+};
+
+/** « 1er ou 3e sem, automne ». Rien du tout si le plan ne dit rien. */
+export function libelleColonnes(colonnes: number[], langue: Langue): string | null {
+  const rangs = [...new Set(colonnes)].filter((n) => RANGS[n]).sort((a, b) => a - b);
+  if (!rangs.length) return null;
+
+  const ou = langue === "fr" ? " ou " : " or ";
+  const nums = rangs.map((n) => RANGS[n][idx(langue)]);
+  const liste =
+    nums.length === 1
+      ? nums[0]
+      : `${nums.slice(0, -1).join(", ")}${ou}${nums[nums.length - 1]}`;
+  const sem = langue === "fr" ? "sem" : "sem";
+
+  // la saison n'est dite que si toutes les colonnes tombent dans la meme
+  const saisons = [...new Set(rangs.map((n) => SAISON_DE[n]))];
+  if (saisons.length !== 1) return `${liste} ${sem}`;
+  return `${liste} ${sem}, ${libelleSaison(saisons[0], langue)}`;
+}

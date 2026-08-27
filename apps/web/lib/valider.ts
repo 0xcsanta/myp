@@ -273,12 +273,31 @@ export function valider(
     (x) => x.k.cadence === "hebdomadaire" || x.k.cadence === "quinzaine",
   );
 
+  /*
+   * Deux cours ne se heurtent que si l'on peut les suivre en meme temps.
+   *
+   * Un master de cent vingt credits compte quatre semestres, dont deux
+   * automnes. Un cours du premier semestre et un cours du troisieme tombent
+   * tous deux a l'automne, et l'agenda officiel les place au meme creneau,
+   * mais l'etudiant les suit a un an d'intervalle : ce n'est pas un conflit.
+   * Ils doivent donc partager au moins une colonne du plan.
+   *
+   * Un plan qui ne dit rien ne permet pas de trancher : dans ce cas on compare
+   * quand meme, quitte a signaler un chevauchement de trop plutot que d'en
+   * taire un vrai.
+   */
+  const memeMoment = (x: Cours, y: Cours) => {
+    if (!x.colonnes.length || !y.colonnes.length) return true;
+    return x.colonnes.some((n) => y.colonnes.includes(n));
+  };
+
   for (let i = 0; i < reguliers.length; i++) {
     for (let j = i + 1; j < reguliers.length; j++) {
       const a = reguliers[i];
       const b = reguliers[j];
       if (a.c.id === b.c.id) continue;
       if (a.k.semestre !== b.k.semestre || a.k.jour !== b.k.jour) continue;
+      if (!memeMoment(a.c, b.c)) continue;
       if (a.k.debutMin >= b.k.finMin || b.k.debutMin >= a.k.finMin) continue;
       d.push({
         niveau: "erreur",
