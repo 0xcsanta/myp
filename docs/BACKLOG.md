@@ -35,7 +35,11 @@
       résultat moins propre. Un bouton par semestre et par format.
       L'export sort dans la langue de la page, nom de fichier compris.
 
-- [ ] **Export `.ics`. Bloqué, et pas par de la technique.** Un calendrier
+- [ ] **Export `.ics`. Mis de côté, décision de Clément le 27 août :** les
+      calendriers sont hebdomadaires, et pour le reste les étudiants iront sur
+      le site de HEC. Ce qui suit reste vrai si on y revient un jour.
+
+      **Bloqué, et pas par de la technique.** Un calendrier
       place des événements à des dates réelles, là où une grille se contente
       de cases. Il faut donc la date d'ouverture officielle du semestre, que
       je n'ai pas. Les indices sont forts pour l'automne 2026, les PDF
@@ -52,6 +56,27 @@
       ce que le style choisi se retrouve dans l'export PNG, est ce qu'il se
       partage avec l'URL. Attention à ne pas rendre le calendrier illisible :
       la lisibilité prime sur la décoration.
+
+## Demandé le 27 août, construit le jour même
+
+- [x] **La saison et l'horaire à côté du nom du cours.** La saison passe en
+      pastille contre le titre, là où elle se lit, plutôt qu'en bout de ligne
+      noyée dans les métadonnées. L'horaire vient dessous, en bleu :
+      « Vendredi 12:30 à 16:00 · Anthropole/2064 ». Il figure déjà dans la
+      grille, mais la grille ne montre que les cours cochés, donc c'est le seul
+      endroit où on voit l'horaire d'un cours **avant** de le prendre. Un cours
+      sans relevé écrit « horaire non relevé » plutôt que rien.
+- [x] **Le rail de crédits défile tout seul.** Collé en haut, sa fin restait
+      hors de portée dès qu'un master avait beaucoup de modules : il fallait
+      descendre toute la page. Il a maintenant sa propre hauteur et sa propre
+      barre, et la roulette n'emporte plus la page quand on arrive en bas.
+- [x] **L'arbitrage des chevauchements.** Chaque chevauchement porte un bouton
+      « Choisir lequel garder » qui ouvre la comparaison des deux cours, avec
+      pour chacun ce que son retrait coûterait : les modules qui tomberaient
+      sous leur minimum, et le total après coup. Le calcul n'est pas une
+      estimation, on rejoue le moteur de règles sur la sélection privée du
+      cours : c'est la même vérité que le rail. Le site ne tranche pas à la
+      place de l'étudiant, il lui montre le prix de chaque renoncement.
 
 ## Avant la mise en ligne
 

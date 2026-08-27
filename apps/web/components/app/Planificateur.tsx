@@ -7,11 +7,19 @@ import type { Langue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
 import { nomCourt } from "@/lib/nomMaster";
 import { evaluationDuCours, langueDuCours } from "@/lib/codes";
+import { libelleCreneaux } from "@/lib/creneaux";
 import { anneeAcademique, libelleSaison } from "@/lib/semestres";
 import { ANNEE_VISEE } from "@/lib/annee";
-import { coursEnConflit, messageDiagnostic, nomModule, valider } from "@/lib/valider";
+import {
+  coursEnConflit,
+  messageDiagnostic,
+  nomModule,
+  valider,
+  type Diagnostic,
+} from "@/lib/valider";
 import { Mascotte } from "@/components/brand/Mascotte";
 import { GrilleHoraire } from "./GrilleHoraire";
+import { Arbitrage } from "./Arbitrage";
 import { dessinerHoraire, exporterPdf, exporterPng } from "@/lib/exporter";
 
 /**
@@ -191,6 +199,11 @@ export function Planificateur({
    * visible. Elle disparait des qu'il arrive, ce qui evite de recouvrir le pied
    * de page et de dire deux fois la meme chose.
    */
+  /* le chevauchement en cours d'arbitrage, s'il y en a un */
+  const [arbitrage, setArbitrage] = useState<
+    Extract<Diagnostic, { code: "chevauchement" }> | null
+  >(null);
+
   const rail = useRef<HTMLElement | null>(null);
   const [railVu, setRailVu] = useState(true);
   useEffect(() => {
@@ -386,8 +399,23 @@ export function Planificateur({
                               className="mt-0.5 size-[17px] shrink-0 accent-[var(--color-unil-400)]"
                             />
                             <span className="min-w-0 flex-1">
-                              <span className="block text-[14.5px] font-medium leading-snug text-ink">
-                                {c.titre}
+                              {/*
+                                La saison passe a cote du titre plutot qu'en
+                                bout de ligne : c'est la premiere chose qu'on
+                                cherche en composant un plan, et noyee dans la
+                                liste des metadonnees elle se lisait mal.
+                              */}
+                              <span className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                                <span className="text-[14.5px] font-medium leading-snug text-ink">
+                                  {c.titre}
+                                </span>
+                                <span className="shrink-0 rounded-full border border-line bg-surface-2 px-2 py-[1px] text-[10.5px] font-semibold uppercase tracking-[0.04em] text-ink-2">
+                                  {c.saisons.length
+                                    ? c.saisons
+                                        .map((x) => libelleSaison(x, langue))
+                                        .join(langue === "fr" ? " ou " : " or ")
+                                    : T.semestreInconnu}
+                                </span>
                               </span>
                               <span className="mt-1 block text-[12px] text-muted">
                                 {[
@@ -395,14 +423,22 @@ export function Planificateur({
                                   langueDuCours(c.langue, langue),
                                   evaluationDuCours(c.evaluation, langue),
                                   c.dureeExamen ? T.examenMinutes(c.dureeExamen) : null,
-                                  c.saisons.length
-                                    ? c.saisons
-                                        .map((x) => libelleSaison(x, langue))
-                                        .join(langue === "fr" ? " ou " : " or ")
-                                    : T.semestreInconnu,
                                 ]
                                   .filter(Boolean)
                                   .join(" · ")}
+                              </span>
+                              {/*
+                                L'horaire aussi, meme s'il figure deja dans la
+                                grille : la grille ne montre que les cours
+                                coches, donc c'est le seul endroit ou l'on voit
+                                l'horaire d'un cours avant de le prendre.
+                              */}
+                              <span
+                                className={`mt-1 block font-mono text-[11.5px] ${
+                                  libelleCreneaux(c, langue) ? "text-unil-400" : "text-muted"
+                                }`}
+                              >
+                                {libelleCreneaux(c, langue) ?? T.horaireNonReleve}
                               </span>
                             </span>
                             <span className="tnum shrink-0 font-mono text-[13px] font-semibold text-ink">
@@ -426,7 +462,18 @@ export function Planificateur({
       </div>
 
       {/* ---------------- le rail de credits ---------------- */}
-      <aside ref={rail} className="min-w-0 lg:sticky lg:top-6">
+      {/*
+        Le rail est plus haut que la fenetre des qu'un master a beaucoup de
+        modules : colle en haut, sa fin restait hors de portee et il fallait
+        descendre toute la page pour la voir. Il defile donc dans sa propre
+        hauteur. `overscroll-contain` evite qu'arrive en bas du rail, la roulette
+        emporte la page entiere.
+      */}
+      <aside
+        ref={rail}
+        className="min-w-0 lg:sticky lg:top-6 lg:max-h-[calc(100dvh-3rem)]
+          lg:overflow-y-auto lg:overscroll-contain lg:pr-1"
+      >
         <div className="rounded-2xl border border-line bg-white p-6 shadow-[0_1px_2px_rgba(10,31,48,0.05),0_14px_40px_-28px_rgba(10,31,48,0.5)]">
           <div className="flex items-baseline justify-between">
             <span className="text-[12.5px] text-muted">{T.tonPlan}</span>
@@ -459,7 +506,7 @@ export function Planificateur({
               <p className="text-[12.5px] text-muted">{T.cocheDesCours}</p>
             )}
             {resultat.diagnostics.map((x, i) => (
-              <p
+              <div
                 key={`${x.code}-${i}`}
                 className={`rounded-lg px-3 py-2 text-[12.5px] leading-snug ${
                   x.niveau === "erreur"
@@ -470,7 +517,24 @@ export function Planificateur({
                 }`}
               >
                 {messageDiagnostic(x, regles, langue)}
-              </p>
+                {/*
+                  Un chevauchement ne se resout pas tout seul : il faut
+                  renoncer a l'un des deux cours. Le bouton ouvre la comparaison
+                  plutot que de trancher a la place de l'etudiant, car le choix
+                  depend de ce que chaque renoncement coute en credits.
+                */}
+                {x.code === "chevauchement" && (
+                  <button
+                    type="button"
+                    onClick={() => setArbitrage(x)}
+                    className="mt-1.5 block font-medium underline underline-offset-2
+                      transition-opacity duration-150 ease-[var(--ease-out-std)] hover:opacity-70
+                      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warn"
+                  >
+                    {T.resoudre}
+                  </button>
+                )}
+              </div>
             ))}
           </div>
 
@@ -521,6 +585,21 @@ export function Planificateur({
           .
         </p>
       </aside>
+
+      {arbitrage && (
+        <Arbitrage
+          chevauchement={arbitrage}
+          catalogue={catalogue}
+          regles={regles}
+          selection={selection}
+          langue={langue}
+          onEnlever={(id) => {
+            basculer(id);
+            setArbitrage(null);
+          }}
+          onFermer={() => setArbitrage(null)}
+        />
+      )}
 
       {/* ---------------- le resume colle en bas, sur petit ecran ---------------- */}
       <div

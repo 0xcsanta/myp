@@ -76,6 +76,18 @@ const fr = {
     langueOfficielle:
       "Les intitulés de cours et les notes de module restent dans la langue où HEC les publie, donc certains sont en anglais.",
     semestreAVenir: (annee: string) => `année ${annee}`,
+    creneau: (jour: string, debut: string, fin: string) => `${jour} ${debut} à ${fin}`,
+    horaireNonReleve: "horaire non relevé",
+    resoudre: "Choisir lequel garder",
+    arbitrageTitre: "Deux cours au même moment",
+    arbitrageIntro: (jour: string, semestre: string) =>
+      `Le ${jour} en ${semestre}, ces deux cours se donnent en même temps. Tu ne peux pas suivre les deux.`,
+    siTuLEnleves: "Si tu l'enlèves :",
+    aucuneConsequence: "Aucun module ne passe sous son minimum.",
+    totalApres: (n: number, requis: number) => `Ton total passerait à ${n} sur ${requis}.`,
+    enleverCeCours: "Enlever ce cours",
+    garderLesDeux: "Garder les deux pour l'instant",
+    fermer: "Fermer",
     semestrePasse: (annee: string, aVenir: string) =>
       `relevé de l'année ${annee}, la dernière publiée. HEC n'a pas encore publié ce semestre pour ${aVenir}, donc ces créneaux sont indicatifs.`,
   },
@@ -202,6 +214,18 @@ const en: Textes = {
     langueOfficielle:
       "Course titles and module notes stay in the language HEC publishes them in, so some of them are in French.",
     semestreAVenir: (annee: string) => `${annee} academic year`,
+    creneau: (jour: string, debut: string, fin: string) => `${jour} ${debut} to ${fin}`,
+    horaireNonReleve: "timetable not on record",
+    resoudre: "Choose which one to keep",
+    arbitrageTitre: "Two courses at the same time",
+    arbitrageIntro: (jour: string, semestre: string) =>
+      `On ${jour} in ${semestre}, these two courses run at the same time. You cannot take both.`,
+    siTuLEnleves: "If you remove it:",
+    aucuneConsequence: "No module falls below its minimum.",
+    totalApres: (n: number, requis: number) => `Your total would go to ${n} out of ${requis}.`,
+    enleverCeCours: "Remove this course",
+    garderLesDeux: "Keep both for now",
+    fermer: "Close",
     semestrePasse: (annee: string, aVenir: string) =>
       `read from the ${annee} academic year, the latest published. HEC has not published this semester for ${aVenir} yet, so these slots are indicative.`,
   },

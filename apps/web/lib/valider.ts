@@ -1,6 +1,6 @@
 import type { Cours, Creneau, Module, Regles } from "./donnees";
 import type { Langue } from "./langues";
-import { libelleJour, libelleSemestre } from "./semestres";
+import { dansUnePhrase, libelleJour, libelleSemestre } from "./semestres";
 import { textes } from "./textes";
 
 /**
@@ -245,8 +245,8 @@ export function messageDiagnostic(
       );
     case "chevauchement":
       return T.chevauchement(
-        libelleJour(d.jour, langue).toLowerCase(),
-        libelleSemestre(d.semestre, langue).toLowerCase(),
+        dansUnePhrase(libelleJour(d.jour, langue), langue),
+        dansUnePhrase(libelleSemestre(d.semestre, langue), langue),
         d.titres[0],
         d.titres[1],
       );

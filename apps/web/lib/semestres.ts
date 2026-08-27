@@ -51,6 +51,18 @@ export function libelleSaison(saison: string, langue: Langue = "fr"): string {
   return (SAISONS[saison]?.[idx(langue)] ?? saison).toLowerCase();
 }
 
+/**
+ * La casse d'un nom propre glisse dans une phrase.
+ *
+ * Le francais ecrit « le jeudi en automne 2026 » en minuscules, l'anglais
+ * ecrit « on Thursday in Autumn 2026 » avec des majuscules. Mettre en
+ * minuscules dans l'appelant marchait en francais et fabriquait de l'anglais
+ * fautif : la regle appartient a la langue, pas au composant.
+ */
+export function dansUnePhrase(mot: string, langue: Langue): string {
+  return langue === "fr" ? mot.toLowerCase() : mot;
+}
+
 /** Les semestres presents dans un releve, du plus ancien au plus recent. */
 export function semestresDe(cours: Cours[]): string[] {
   const s = new Set<string>();
