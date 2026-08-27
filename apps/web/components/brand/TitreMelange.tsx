@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useLayoutEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 /**
  * Le titre qui se relit a l'envers.
@@ -70,13 +70,22 @@ const bruit = (n: number) => {
 const DUREE = 1150;
 const RETOMBEE = "cubic-bezier(0.22, 0.9, 0.24, 1)";
 
+/*
+ * Le titre se retourne aussi tout seul, trois secondes apres le dernier vol,
+ * qu'il ait ete declenche par un clic ou par le minuteur precedent. Le delai
+ * se compte depuis la derniere bascule et non depuis le chargement : sans
+ * cela, un clic pourrait etre suivi d'un retournement automatique un dixieme
+ * de seconde plus tard.
+ */
+const RESPIRATION = 3000;
+
 export function TitreMelange({ invite }: { invite: string }) {
   const [etat, setEtat] = useState(0);
   const lettres = useRef(new Map<number, HTMLSpanElement>());
   const bouton = useRef<HTMLButtonElement>(null);
   const avant = useRef<Map<number, DOMRect> | null>(null);
 
-  const basculer = () => {
+  const basculer = useCallback(() => {
     const mesures = new Map<number, DOMRect>();
     lettres.current.forEach((n, id) => mesures.set(id, n.getBoundingClientRect()));
     /*
@@ -89,7 +98,36 @@ export function TitreMelange({ invite }: { invite: string }) {
     lettres.current.forEach((n) => n.getAnimations().forEach((a) => a.cancel()));
     avant.current = mesures;
     setEtat((e) => (e === 0 ? 1 : 0));
-  };
+  }, []);
+
+  /*
+   * Deux refus, et ils ne sont pas des details.
+   *
+   * Un titre qui bouge sans qu'on le lui ait demande est exactement ce que le
+   * reglage « moins d'animations » du systeme existe pour eteindre. On ne
+   * l'attenue donc pas ici, on ne lance rien du tout.
+   *
+   * Et rien ne tourne dans un onglet cache : le navigateur y ralentit les
+   * minuteurs sans les arreter, et faire travailler la machine de quelqu'un
+   * pour une page qu'il ne regarde pas ne se justifie jamais.
+   */
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let minuteur = 0;
+    const armer = () => {
+      minuteur = window.setTimeout(() => {
+        // Onglet cache : on ne bascule pas, mais on se rearme. Sans ce
+        // rearmement le minuteur mourait la, et le titre restait fige au
+        // retour puisque rien ne relance cet effet tant que l'etat ne change
+        // pas. Le defaut ne se serait vu qu'apres un aller-retour d'onglet.
+        if (document.visibilityState !== "visible") return armer();
+        basculer();
+      }, RESPIRATION);
+    };
+    armer();
+    return () => window.clearTimeout(minuteur);
+  }, [etat, basculer]);
 
   useLayoutEffect(() => {
     const depart = avant.current;
