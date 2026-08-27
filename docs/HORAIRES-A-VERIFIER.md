@@ -1,3 +1,32 @@
+# Les relevés qui ne couvrent qu'une saison
+
+**Constaté le 27 août 2026.** Trois masters n'ont d'horaire relevé que pour
+l'automne : leurs PDF de printemps n'ont pas été fournis.
+
+| Master | Automne | Printemps |
+|---|---|---|
+| **MScF** | 21 créneaux | **aucun** |
+| **MScAS** | 31 créneaux | **aucun** |
+| **MScE** | 24 créneaux | **aucun** |
+| MDE | 53 | 47 |
+| MScCCF | 23 | 9 |
+| MScIS | 6 | 10 |
+| MScM comportement | 35 | 11 |
+| MScM business analytics | 25 | 10 |
+| MScM marketing | 21 | 11 |
+| MScM stratégie | 25 | 14 |
+
+Conséquence à l'écran : au MScF, les 12 cours du 2e semestre et les 2 du 4e
+n'ont aucun créneau. Le sélecteur les propose quand même et explique que le
+relevé ne couvre pas cette saison, plutôt que de faire disparaître le bouton
+sans un mot.
+
+**Pour compléter**, il suffit de déposer les PDF d'horaire de printemps de ces
+trois masters dans `horaires/` et de relancer `tools_pdf_horaires.py` puis
+`tools_horaires.py`.
+
+---
+
 # Ce que l'année des relevés implique
 
 **Trouvé le 27 août 2026, en croisant les dates portées par les PDF avec le

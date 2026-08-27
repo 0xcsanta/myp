@@ -377,7 +377,14 @@ export function Planificateur({
    * an d'ecart. On choisit desormais son rang, et la grille ne montre que les
    * cours de ce semestre la.
    */
-  const rangs = useMemo(() => rangsDe(avecHoraire), [avecHoraire]);
+  /*
+   * Les rangs proposes viennent de tous les cours retenus, pas seulement de
+   * ceux dont l'horaire est releve. Les tirer des seuls cours horaires faisait
+   * disparaitre le bouton d'un semestre entier : le releve du MScF ne couvre
+   * que l'automne, donc ses deuxieme et quatrieme semestres s'evanouissaient
+   * sans un mot. Mieux vaut proposer le semestre et dire qu'on n'en sait rien.
+   */
+  const rangs = useMemo(() => rangsDe(retenus), [retenus]);
   const [rangVoulu, setRangVoulu] = useState<number | null>(null);
   const rang = rangVoulu && rangs.includes(rangVoulu) ? rangVoulu : (rangs[0] ?? null);
   const semestreDuRang = rang
@@ -387,6 +394,8 @@ export function Planificateur({
     () => (rang ? avecHoraire.filter((c) => c.colonnes.includes(rang)) : avecHoraire),
     [avecHoraire, rang],
   );
+  /* le semestre est propose, mais son horaire n'est peut-etre pas releve */
+  const rangSansHoraire = rang !== null && coursDuRang.length === 0;
 
   const dessine = (s: string) =>
     dessinerHoraire(
@@ -435,7 +444,7 @@ export function Planificateur({
         de la faire defiler dans son propre cadre.
       */}
       <div className="min-w-0">
-        {avecHoraire.length > 0 && semestreDuRang && rang && (
+        {retenus.length > 0 && rang && (
           <div className="mb-10 grid grid-cols-1 gap-4">
             <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
               <div className="min-w-0">
@@ -449,19 +458,25 @@ export function Planificateur({
                   l'annee precedente. Le dire evite qu'un etudiant qui prepare
                   2026-2027 prenne ce printemps la pour le sien.
                 */}
-                <p
-                  className={`mt-1 text-[11.5px] leading-relaxed ${
-                    anneeAcademique(semestreDuRang) === ANNEE_VISEE
-                      ? "text-muted"
-                      : "text-warn"
-                  }`}
-                >
-                  {libelleSemestre(semestreDuRang, langue)}
-                  {" · "}
-                  {anneeAcademique(semestreDuRang) === ANNEE_VISEE
-                    ? T.semestreAVenir(anneeAcademique(semestreDuRang))
-                    : T.semestrePasse(anneeAcademique(semestreDuRang), ANNEE_VISEE)}
-                </p>
+                {semestreDuRang && !rangSansHoraire ? (
+                  <p
+                    className={`mt-1 text-[11.5px] leading-relaxed ${
+                      anneeAcademique(semestreDuRang) === ANNEE_VISEE
+                        ? "text-muted"
+                        : "text-warn"
+                    }`}
+                  >
+                    {libelleSemestre(semestreDuRang, langue)}
+                    {" · "}
+                    {anneeAcademique(semestreDuRang) === ANNEE_VISEE
+                      ? T.semestreAVenir(anneeAcademique(semestreDuRang))
+                      : T.semestrePasse(anneeAcademique(semestreDuRang), ANNEE_VISEE)}
+                  </p>
+                ) : (
+                  <p className="mt-1 text-[11.5px] leading-relaxed text-muted">
+                    {libelleSaison(saisonDuRang(rang), langue)}
+                  </p>
+                )}
               </div>
 
               {/*
@@ -494,15 +509,22 @@ export function Planificateur({
               )}
             </div>
 
-            <div className="min-w-0">
-              <GrilleHoraire
-                cours={coursDuRang}
-                semestre={semestreDuRang}
-                enConflit={enConflit}
-                langue={langue}
-              />
-            </div>
+            {rangSansHoraire || !semestreDuRang ? (
+              <p className="rounded-2xl border border-dashed border-line-2 bg-surface-2 px-4 py-6 text-[13px] leading-relaxed text-muted">
+                {T.semestreSansHoraire}
+              </p>
+            ) : (
+              <div className="min-w-0">
+                <GrilleHoraire
+                  cours={coursDuRang}
+                  semestre={semestreDuRang}
+                  enConflit={enConflit}
+                  langue={langue}
+                />
+              </div>
+            )}
 
+            {semestreDuRang && !rangSansHoraire && (
             <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={() => exporterPng(dessine(semestreDuRang), nomFichier(semestreDuRang))}
@@ -521,6 +543,7 @@ export function Planificateur({
                 PDF · {libelleRang(rang, langue)}
               </button>
             </div>
+            )}
 
             {releve && (
               <p className="text-[11.5px] leading-relaxed text-muted">
