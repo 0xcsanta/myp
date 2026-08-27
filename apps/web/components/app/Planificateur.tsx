@@ -834,6 +834,27 @@ export function Planificateur({
                   {m.note && (
                     <p className="mt-1 max-w-[70ch] text-[12.5px] text-muted">{m.note}</p>
                   )}
+                  {/*
+                    Le module qui accueille les cours des autres orientations
+                    dit pourquoi ils sont la, et cite le plan. Sans cette
+                    phrase, un etudiant en marketing trouve quarante six cours
+                    qu'il ne reconnait pas et ne sait pas s'il a le droit de les
+                    prendre.
+                  */}
+                  {regles.autresOrientations?.portee === "externe" &&
+                    m.code === regles.autresOrientations.moduleDAccueil &&
+                    (() => {
+                      const n = (cours ?? []).filter((c) => c.venantDe?.length).length;
+                      if (!n) return null;
+                      return (
+                        <p className="mt-1.5 max-w-[70ch] text-[12px] leading-relaxed text-muted">
+                          {T.autresOrientationsTitre(n)}{" "}
+                          <span className="italic">
+                            « {regles.autresOrientations!.citation} »
+                          </span>
+                        </p>
+                      );
+                    })()}
 
                   <ul className="mt-4 grid gap-1.5">
                     {(cours ?? []).map((c) => {
@@ -917,6 +938,21 @@ export function Planificateur({
                                     {libelleColonnes(c.colonnes, langue) ?? T.semestreInconnu}
                                   </span>
                                 )}
+                                {/*
+                                  Un cours venu d'une autre orientation le dit.
+                                  Il est bien au programme, le plan l'accepte en
+                                  option, mais l'etudiant qui va verifier le
+                                  trouvera dans un autre plan que le sien.
+                                */}
+                                {c.venantDe?.length ? (
+                                  <span
+                                    title={T.venantDeExplique(c.venantDe)}
+                                    className="shrink-0 rounded-full border border-unil-200 bg-unil-100 px-2 py-[1px]
+                                      text-[10.5px] font-semibold uppercase tracking-[0.04em] text-unil-500"
+                                  >
+                                    {T.venantDe(c.venantDe)}
+                                  </span>
+                                ) : null}
                               </span>
                               <span className="mt-1 block text-[12px] text-muted">
                                 {[

@@ -2,10 +2,11 @@
  "note": "Les masters dont un module peut accueillir les enseignements des autres orientations. Releve le 27 aout 2026 en relisant les dix plans. Deux formulations differentes, donc deux regles, mais la meme idee : ce qu'on ne prend pas au titre de son orientation peut se prendre en option.",
  "correctionDeReleve": "Un premier passage avait conclu que le MScF ne disait rien. C'etait faux : sa ligne emploie le mot « tracks », que la recherche ne couvrait pas, alors que les quatre orientations du MScM emploient « orientations ». Clement l'a vue dans le PDF. Chercher un synonyme de plus aurait suffi, et c'est desormais fait.",
  "etabliLe": "2026-08-27",
-
  "regles": [
   {
-   "programmes": ["mscf"],
+   "programmes": [
+    "mscf"
+   ],
    "citation": "Any compulsory courses in other tracks",
    "ou": "Derniere ligne du tableau du Module 4 « Optional courses - 21 credits ECTS », juste avant le Module 5.",
    "moduleDAccueil": "M4",
@@ -15,7 +16,12 @@
    "fichier": "allmaster/mscf--plan--2025-2026.pdf"
   },
   {
-   "programmes": ["mscm-behaviour", "mscm-business-analytics", "mscm-marketing", "mscm-strategy"],
+   "programmes": [
+    "mscm-behaviour",
+    "mscm-business-analytics",
+    "mscm-marketing",
+    "mscm-strategy"
+   ],
    "citation": "Module 4 can be any course listed above and any course listed under Module 5 of other orientations (and are not listed below). Company projects for other orientations are not open unless otherwise stated in SOL and BEE curriculums.",
    "ou": "Note rattachee au Module 4 « Optional courses - 18 credits ECTS », dans les quatre plans, dans les memes termes.",
    "moduleDAccueil": "M4",
@@ -28,9 +34,10 @@
     "Les projets d'entreprise, que la phrase exclut. Aucun ne se trouve dans un Module 5, ils sont tous au Module 3, donc cette exclusion ne retire rien aujourd'hui. Elle est appliquee quand meme, au cas ou un plan futur en placerait un."
    ],
    "cequonnesaitpas": "La phrase reserve le cas des cursus SOL et BEE, « unless otherwise stated ». Le site n'ouvre donc aucun projet d'entreprise de sa propre initiative : un etudiant concerne doit demander a l'administration.",
-   "fichier": "allmaster/mscm-*--plan--2025-2026.pdf"
+   "fichier": "allmaster/mscm-*--plan--2025-2026.pdf",
+   "moduleSource": "M5",
+   "moduleSourceNote": "Le code du module chez l'autre orientation. Ses sous-modules comptent avec lui : deux orientations sur quatre n'ont aucun cours directement sous M5, tout est range sous SM5.1, SM5.2, SM5.3."
   }
  ],
-
  "lesautresmasters": "Le MDE, le MScAS, le MScCCF, le MScE et le MScIS ne disent rien de tel. Le site n'ouvre donc rien chez eux. Ne pas confondre avec l'autorisation de prendre des enseignements hors du plan, qui est un autre sujet et ne concerne que le MScCCF et le MScE : voir cours-externes.json."
 }

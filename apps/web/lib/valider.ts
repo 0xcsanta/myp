@@ -117,7 +117,16 @@ export function valider(
    * paraitrait faux.
    */
   const choix = regles.modules.find((m) => m.choisirUn);
-  const accueil = regles.autresOrientations?.moduleDAccueil ?? null;
+  /*
+   * La bascule ne vaut que pour la forme interne. Chez le MScM, les cours des
+   * autres orientations sont deja importes au module d'accueil par coursDe :
+   * les rebasculer ici n'aurait aucun effet, mais la garde evite qu'un plan
+   * futur portant les deux formes se compte deux fois.
+   */
+  const accueil =
+    regles.autresOrientations?.portee === "interne"
+      ? regles.autresOrientations.moduleDAccueil
+      : null;
   const branchesNonSuivies = new Set<string>();
   if (choix && accueil && orientation) {
     for (const b of enfantsDe(choix.code)) {

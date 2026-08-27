@@ -93,6 +93,14 @@ const fr = {
     choixSemestre: "Choisir le semestre à afficher",
     choixDuSemestreDuCours: "À quel semestre suis tu ce cours",
     choixDuGroupe: "Quel créneau suis tu",
+    autresOrientationsTitre: (n: number) =>
+      `${n} de ces cours viennent du Module 5 des trois autres orientations. Selon le plan :`,
+    venantDe: (o: string[]) =>
+      o.length === 1 ? `orientation ${o[0]}` : "autres orientations",
+    venantDeExplique: (o: string[]) =>
+      o.length === 1
+        ? `Cours du Module 5 de l'orientation ${o[0]}. Ton plan l'accepte en option.`
+        : `Cours du Module 5 des orientations ${o.join(" et ")}. Ton plan l'accepte en option.`,
     horaireReprisDe: (master: string) =>
       `horaire relevé sur l'agenda du master en ${master}, où le même cours est donné`,
     groupePasChoisi: (n: number) => `${n} créneaux, dis lequel tu suis`,
@@ -279,6 +287,13 @@ const en: Textes = {
     choixSemestre: "Choose which semester to show",
     choixDuSemestreDuCours: "Which semester you take this course in",
     choixDuGroupe: "Which slot you attend",
+    autresOrientationsTitre: (n: number) =>
+      `${n} of these courses come from Module 5 of the three other tracks. According to the plan:`,
+    venantDe: (o: string[]) => (o.length === 1 ? `${o[0]} track` : "other tracks"),
+    venantDeExplique: (o: string[]) =>
+      o.length === 1
+        ? `Course from Module 5 of the ${o[0]} track. Your plan accepts it as an option.`
+        : `Course from Module 5 of the ${o.join(" and ")} tracks. Your plan accepts it as an option.`,
     horaireReprisDe: (master: string) =>
       `slot read from the ${master} timetable, where the same course is taught`,
     groupePasChoisi: (n: number) => `${n} slots, tell me which one you attend`,

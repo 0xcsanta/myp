@@ -77,6 +77,15 @@ export type CoursExternes = {
 export type AutresOrientations = {
   moduleDAccueil: string;
   citation: string;
+  /*
+   * « interne » : les orientations sont des sous-modules du meme plan, et un
+   * cours qu'on ne prend pas au titre de son orientation bascule simplement au
+   * module d'accueil. C'est le MScF.
+   *
+   * « externe » : les orientations sont des plans distincts, et les cours sont
+   * importes dans le catalogue par coursDe. C'est le MScM.
+   */
+  portee: "interne" | "externe";
 };
 
 export type Regles = {
@@ -119,6 +128,18 @@ export type Cours = {
    */
   creneaux: Creneau[];
   horaireConnu: boolean;
+  /*
+   * Les orientations d'ou vient ce cours, quand ce n'est pas celle qu'on
+   * consulte. Les quatre orientations du MSc Management ouvrent leur Module 4
+   * au Module 5 des trois autres : ces cours la sont bien au programme, mais
+   * ils viennent d'un autre plan, et l'etudiant doit le savoir avant de s'y
+   * inscrire.
+   *
+   * Une liste, et pas un nom : le meme cours figure souvent au Module 5 de deux
+   * orientations. N'en nommer qu'une, la premiere rencontree, serait un hasard
+   * d'ordre alphabetique presente comme un fait.
+   */
+  venantDe?: string[];
 };
 
 export type Creneau = {
@@ -185,6 +206,8 @@ type FicheAutresOrientations = {
     programmes: string[];
     citation: string;
     moduleDAccueil: string;
+    /** Le module d'ou viennent les cours, chez l'autre programme. Forme externe seulement. */
+    moduleSource?: string;
     portee: "interne" | "externe";
   }[];
 };
@@ -217,12 +240,28 @@ export function reglesDe(slug: string): Regles {
   const r = autres.regles.find(
     (x) => x.portee === "interne" && x.programmes.includes(slug),
   );
-  return r
+  const externe = autres.regles.find(
+    (x) => x.portee === "externe" && x.programmes.includes(slug),
+  );
+  const ouverture = r ?? externe;
+  return ouverture
     ? {
         ...avecExternes,
-        autresOrientations: { moduleDAccueil: r.moduleDAccueil, citation: r.citation },
+        autresOrientations: {
+          moduleDAccueil: ouverture.moduleDAccueil,
+          citation: ouverture.citation,
+          portee: ouverture.portee,
+        },
       }
     : avecExternes;
+}
+
+/** La regle externe d'un master, s'il en a une : les cours viennent d'un autre plan. */
+function regleExterne(slug: string) {
+  const autres = lire<FicheAutresOrientations>("cours-autres-orientations.json");
+  return autres.regles.find(
+    (x) => x.portee === "externe" && x.programmes.includes(slug),
+  );
 }
 
 const enMinutes = (t: string): number => {
@@ -258,7 +297,7 @@ export function coursDe(slug: string, langue: Langue = "fr"): Cours[] {
   const vus = new Map<string, number>();
   const horaires = horairesDe(slug);
 
-  return brut.courses.map((c, i) => {
+  const base = brut.courses.map((c, i) => {
     let id = identifiant(c.title, i);
     const n = vus.get(id) ?? 0;
     if (n) id = `${id}-${n + 1}`;
@@ -278,7 +317,9 @@ export function coursDe(slug: string, langue: Langue = "fr"): Cours[] {
       creneaux: [],
       horaireConnu: false,
     };
-  }).map((c) => {
+  });
+
+  const siens = base.map((c) => {
     if (!horaires) return c;
     const noms = new Map(tousLesMasters().map((m) => [m.slug, nomCourt(m, langue)]));
     const siens = horaires.creneaux
@@ -291,6 +332,116 @@ export function coursDe(slug: string, langue: Langue = "fr"): Cours[] {
       }));
     return siens.length ? { ...c, creneaux: siens, horaireConnu: true } : c;
   });
+
+  return [...siens, ...coursDesAutresOrientations(slug, siens, langue)];
+}
+
+/*
+ * Les enseignements que le plan va chercher dans les autres orientations.
+ *
+ * « Module 4 can be any course listed above and any course listed under Module
+ * 5 of other orientations (and are not listed below). » Les quatre orientations
+ * du MSc Management portent cette phrase dans les memes termes. Contrairement
+ * au MScF, dont les orientations sont des sous-modules du meme plan, celles du
+ * MScM sont des masters distincts dans notre decoupage : les cours viennent
+ * donc d'autres fichiers, avec leurs propres horaires.
+ *
+ * Trois exclusions, toutes tirees de la phrase elle meme :
+ *   - « and are not listed below », donc ce que le plan d'accueil propose deja ;
+ *   - les intitules qui se reservent a une orientation, le plan les marquant
+ *     lui meme « (for SOL orientation only) » ;
+ *   - les projets d'entreprise, que la phrase exclut. Aucun n'est aujourd'hui
+ *     dans un Module 5, ils sont tous au Module 3 : l'exclusion ne retire donc
+ *     rien, elle est appliquee au cas ou un plan futur en placerait un.
+ */
+function coursDesAutresOrientations(slug: string, siens: Cours[], langue: Langue): Cours[] {
+  const r = regleExterne(slug);
+  if (!r) return [];
+
+  const dejaLa = new Set(siens.map((c) => c.titre.toLowerCase()));
+  /*
+   * « Management, Business analytics » devient « Business analytics ». Les
+   * quatre orientations partagent le mot Management, qui ne distingue rien :
+   * garder l'etiquette entiere donnait « ORIENTATION MANAGEMENT, BUSINESS
+   * ANALYTICS » sur une pastille de dix pixels de haut.
+   */
+  const noms = new Map(
+    tousLesMasters().map((m) => {
+      const n = nomCourt(m, langue);
+      const i = n.indexOf(", ");
+      return [m.slug, i > 0 ? n.slice(i + 2) : n];
+    }),
+  );
+  const venus: Cours[] = [];
+  const parTitre = new Map<string, Cours>();
+
+  for (const autre of r.programmes.filter((p) => p !== slug)) {
+    const regles = lire<Regles>(`rules/${autre}-${ANNEE}.json`);
+    /* « Module 5 » comprend ses sous-modules : deux orientations sur quatre
+     * n'ont aucun cours directement sous M5, tout est range dessous. */
+    const source = new Set<string>([r.moduleSource ?? "M5"]);
+    let bouge = true;
+    while (bouge) {
+      bouge = false;
+      for (const m of regles.modules) {
+        if (m.parent && source.has(m.parent) && !source.has(m.code)) {
+          source.add(m.code);
+          bouge = true;
+        }
+      }
+    }
+
+    const horaires = horairesDe(autre);
+    const brut = lire<{ courses: CoursBrut[] }>(`programmes/${autre}-${ANNEE}.json`);
+    const vusChezLui = new Map<string, number>();
+
+    brut.courses.forEach((c, i) => {
+      let idSource = identifiant(c.title, i);
+      const n = vusChezLui.get(idSource) ?? 0;
+      if (n) idSource = `${idSource}-${n + 1}`;
+      vusChezLui.set(idSource, n + 1);
+
+      if (!source.has(c.module)) return;
+      const cle = c.title.toLowerCase();
+      if (dejaLa.has(cle)) return;
+      // deja vu chez une autre orientation : on ne le double pas, on ajoute
+      // seulement la provenance
+      const deja = parTitre.get(cle);
+      if (deja) {
+        const nom = noms.get(autre) ?? autre;
+        if (!deja.venantDe?.includes(nom)) deja.venantDe?.push(nom);
+        return;
+      }
+      if (/orientation only|\(for [A-Z]{2,4}( orientation)? only\)/i.test(c.title)) return;
+      if (/company project|projet d'entreprise/i.test(c.title)) return;
+
+      const creneaux = (horaires?.creneaux ?? [])
+        .filter((x) => x.cours === idSource)
+        .map((x) => ({ ...x, debutMin: enMinutes(x.debut), finMin: enMinutes(x.fin) }));
+
+      const cours: Cours = {
+        id: `${autre}--${idSource}`,
+        titre: c.title,
+        enseignants: c.teachers || null,
+        module: r.moduleDAccueil,
+        ects: c.ects,
+        colonnes: c.semesters,
+        saisons: [...new Set(c.semesters.map((x) => SAISON[x]).filter(Boolean))],
+        langue: c.language,
+        evaluation: c.evalType,
+        dureeExamen: c.examMinutes,
+        creneaux,
+        horaireConnu: creneaux.length > 0,
+        venantDe: [noms.get(autre) ?? autre],
+      };
+      parTitre.set(cle, cours);
+      venus.push(cours);
+    });
+  }
+
+  /* l'ordre du plan d'accueil d'abord, puis ceux ci : le code de partage est
+   * positionnel, donc tout ce qui s'ajoute doit s'ajouter a la fin */
+  return venus.sort((a, b) => a.titre.localeCompare(b.titre, "fr"));
 }
 
 /**
