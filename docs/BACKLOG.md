@@ -202,6 +202,44 @@ la bonne durée, la navigation est retardée, le sens arrive dans la page
 suivante, le stockage est vidé, et le filet remet la vague au repos. Vérifié
 dans les deux sens.
 
+## Le bouton liquide
+
+Le bouton « Launch app » porte une surface d'eau : elle ondule seule, s'incline
+sous le curseur, s'enfonce d'un coup au clic. L'effet vient d'une démonstration
+que Clément a envoyée, mais **pas son emballage**.
+
+Le composant fourni enferme le bouton dans un `iframe` en
+`sandbox="allow-scripts"`, sans `allow-top-navigation`. Un clic dedans ne peut
+donc pas faire naviguer la page : ce serait un bouton « Launch app » qui ne
+lance rien. Il perdrait aussi la vague de transition, le focus clavier,
+l'ouverture dans un nouvel onglet et son existence pour un moteur de recherche,
+et il chargerait Tailwind, GSAP et Iconify depuis trois CDN pour un seul
+bouton. Pour le bouton qui fait entrer dans l'application, chacun de ces points
+est rédhibitoire.
+
+Le shader a donc été extrait et posé sur un canevas **dans** l'ancre : même
+mouvement, aucune dépendance, et le lien reste un lien. Les couleurs sont
+celles de la marque, pas le cyan de la démonstration.
+
+**Ce qui compte autant que l'effet :**
+
+- Sans WebGL, le canevas reste transparent et le dégradé du bouton s'affiche
+  dessous. Le bouton n'est jamais un rectangle noir. *Vérifié pour de vrai :
+  le navigateur du banc d'essai perd son contexte WebGL, et le bouton reste
+  parfaitement présentable.*
+- **La perte de contexte est traitée.** Un onglet longtemps en arrière plan ou
+  un pilote qui redémarre reprend le contexte ; sans `preventDefault` sur
+  `webglcontextlost`, il n'est jamais restauré, et le canevas resterait noir
+  par dessus le bouton. On revient au dégradé, et l'effet se remonte au retour.
+- L'animation s'arrête dès que le bouton quitte l'écran ou que l'onglet passe
+  en arrière plan. Une boucle de rendu permanente pour un bouton d'en tête
+  viderait la batterie d'un téléphone pour rien.
+- `prefers-reduced-motion` donne une surface calme et figée, pas une absence
+  de surface.
+- **Le shader ne contient que de l'ASCII, commentaires compris.** GLSL ES ne
+  garantit rien au delà, et un accent dans un commentaire peut faire échouer
+  la compilation sur certains pilotes, donc l'effet entier, sans message.
+
 ## Avant la mise en ligne
 
 - [x] **Plan du site et robots.txt.** Faits le 27 août. 24 adresses, chacune
