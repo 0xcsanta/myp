@@ -306,6 +306,14 @@ def construire() -> tuple[dict, Counter]:
 
 
 def main() -> None:
+    if "--lot" in sys.argv:
+        imprimer_lot(int(sys.argv[sys.argv.index("--lot") + 1]))
+        return
+    if "--reste" in sys.argv:
+        reste = a_rediger()
+        print(f"{len(reste)} fiches attendent encore un resume")
+        return
+
     fiches, manques, approches = construire()
     rapport = "--rapport" in sys.argv
 
@@ -335,6 +343,66 @@ def main() -> None:
         for k, n in manques.most_common():
             print(f"  {n:4}  {k}")
 
+
+
+# --------------------------------------------------------------------- lots
+#
+# Les résumés ne sont pas produits par une machine appelée à l'exécution : ils
+# sont écrits une fois, relus, et livrés en dur. Ce mode imprime la matière
+# d'un lot de fiches, sans le décor de la page, pour qu'on puisse la lire et
+# rédiger. Chaque fiche est identifiée par son numéro d'enseignement UNIL, qui
+# sert de clef dans data/cours-resumes.json.
+#
+#     python tools_fiches.py --lot 0        le premier paquet de 30
+#     python tools_fiches.py --reste        combien il en manque encore
+
+TAILLE_DU_LOT = 30
+RESUMES = os.path.join(ICI, "data", "cours-resumes.json")
+
+
+def charger_resumes() -> dict:
+    if not os.path.exists(RESUMES):
+        return {}
+    with open(RESUMES, encoding="utf-8") as f:
+        return json.load(f).get("resumes", {})
+
+
+def a_rediger() -> list[dict]:
+    """Les fiches décrites qui n'ont pas encore de résumé, dans un ordre stable."""
+    with open(SORTIE, encoding="utf-8") as f:
+        fiches = json.load(f)
+    faits = charger_resumes()
+    reste = [
+        v
+        for k, v in sorted(fiches.items())
+        if k not in faits
+        and any(v.get(lg, {}).get("contenu") or v.get(lg, {}).get("objectif") for lg in ("fr", "en"))
+    ]
+    return reste
+
+
+def imprimer_lot(n: int) -> None:
+    reste = a_rediger()
+    lot = reste[n * TAILLE_DU_LOT : (n + 1) * TAILLE_DU_LOT]
+    print(f"LOT {n} — {len(lot)} fiches, {len(reste)} restantes en tout\n")
+    for v in lot:
+        print("=" * 72)
+        print(f"CLEF {v['id']} | {v['titre']}")
+        if v.get("langues"):
+            print(f"langue : {v['langues']}")
+        if v.get("credits"):
+            print(f"credits : {v['credits']}")
+        for lg in ("fr", "en"):
+            bloc = v.get(lg, {})
+            for champ in ("objectif", "contenu", "prerequis"):
+                t = bloc.get(champ)
+                if not t:
+                    continue
+                # au delà, c'est du remplissage : le résumé n'en a pas besoin
+                print(f"\n[{lg}.{champ}] {t[:1400]}")
+            if bloc.get("objectif") or bloc.get("contenu"):
+                break  # une seule langue suffit à écrire les deux résumés
+        print()
 
 if __name__ == "__main__":
     main()
