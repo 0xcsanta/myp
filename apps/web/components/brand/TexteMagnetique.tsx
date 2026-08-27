@@ -60,6 +60,12 @@ export function TexteMagnetique({
   const courant = useRef({ x: 0, y: 0 });
 
   const [arme, setArme] = useState(false);
+  /*
+   * Le calque revele reproduit une ligne unique. Si le titre en occupe deux, il
+   * n'y a plus de correspondance possible entre un mot et celui qu'il remplace,
+   * donc l'effet se desarme plutot que de s'afficher de travers.
+   */
+  const [uneSeuleLigne, setUneSeuleLigne] = useState(true);
   const [survole, setSurvole] = useState(false);
   const [devoile, setDevoile] = useState(false);
   const [taille, setTaille] = useState({ w: 0, h: 0 });
@@ -83,8 +89,23 @@ export function TexteMagnetique({
   /* le calque revele est cale sur le conteneur, il lui faut donc sa mesure */
   useEffect(() => {
     const el = conteneur.current;
-    if (!el || !arme) return;
-    const mesurer = () => setTaille({ w: el.offsetWidth, h: el.offsetHeight });
+    if (!el) return;
+    const mesurer = () => {
+      setTaille({ w: el.offsetWidth, h: el.offsetHeight });
+      /*
+       * Le nombre de lignes se compte sur le texte lui meme, par le nombre de
+       * rectangles qu'il occupe. Comparer une hauteur a l'interligne ne marche
+       * pas : sur un element en ligne, `offsetHeight` mesure la boite des
+       * glyphes, ascendantes et descendantes comprises, et non la hauteur de
+       * ligne. Le titre passait ainsi pour etre sur deux lignes alors qu'il
+       * tenait sur une seule, et l'effet ne s'armait jamais.
+       */
+      const texte = Array.from(el.childNodes).find((n) => n.nodeType === 3);
+      if (!texte) return;
+      const portee = document.createRange();
+      portee.selectNodeContents(texte);
+      setUneSeuleLigne(portee.getClientRects().length <= 1);
+    };
     mesurer();
     const ro = new ResizeObserver(mesurer);
     ro.observe(el);
@@ -138,7 +159,13 @@ export function TexteMagnetique({
     setSurvole(true);
   }, []);
 
-  if (!arme) return <span className={className}>{phrase}</span>;
+  if (!arme || !uneSeuleLigne) {
+    return (
+      <span ref={conteneur} className={className}>
+        {phrase}
+      </span>
+    );
+  }
 
   const cote = `${diametre}em`;
 
@@ -176,7 +203,13 @@ export function TexteMagnetique({
               willChange: "transform",
             }}
           >
-            <span>
+            {/*
+              `whitespace-nowrap` est ce qui empeche le calque de se replier.
+              Il doit reproduire la ligne du titre exactement : replie, les mots
+              se retrouvaient a une autre hauteur que ceux qu'ils remplacent, et
+              l'echange devenait illisible.
+            */}
+            <span className="whitespace-nowrap">
               {mots.map((m, i) => (
                 <span key={`${m.texte}-${i}`}>
                   {i > 0 && " "}
