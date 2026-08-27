@@ -5,6 +5,7 @@ import type { Cours, Creneau, Master, Regles } from "@/lib/donnees";
 import { libelleSemestre, semestresDe } from "@/lib/semestres";
 import type { Langue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
+import { bilanParSemestre, enHeures } from "@/lib/bilan";
 import type { CalendrierAcademique } from "@/lib/ics";
 import { fabriquerIcs } from "@/lib/ics";
 import { nomCourt } from "@/lib/nomMaster";
@@ -471,6 +472,15 @@ export function Planificateur({
     });
     window.setTimeout(() => setExport(null), 9000);
   };
+
+  /*
+   * Le bilan par semestre. Le site comptait les credits par module, ce que
+   * demande le reglement, et jamais par semestre, ce que vit l'etudiant.
+   */
+  const bilan = useMemo(
+    () => bilanParSemestre(catalogue.filter((c) => selection.has(c.id)), placements, groupes),
+    [catalogue, selection, placements, groupes],
+  );
 
   const q = recherche.trim().toLowerCase();
   const parModule = useMemo(() => {
@@ -1187,6 +1197,92 @@ export function Planificateur({
               />
             ))}
           </div>
+
+          {/*
+            Le meme plan, vu autrement. Les jauges ci dessus disent si le
+            reglement est satisfait ; celles ci disent a quoi ressemblera
+            l'annee. Un plan peut etre parfaitement valide et poser trente
+            quatre credits a un semestre contre huit au suivant.
+          */}
+          {bilan.length > 0 && (
+            <div className="mt-6 border-t border-line pt-5">
+              <h2 className="text-[12.5px] font-semibold text-ink">{T.bilanTitre}</h2>
+              {/*
+                Le desequilibre ne se signale que sur un plan presque complet.
+                Un plan en cours de composition est toujours desequilibre : le
+                dire des le deuxieme cours coche serait du bruit, et le bruit
+                fait ignorer l'avertissement le jour ou il compte.
+              */}
+              {(() => {
+                if (resultat.total < regles.totalEcts * 0.8 || bilan.length < 2) return null;
+                const fort = bilan.reduce((a, b) => (b.ects > a.ects ? b : a));
+                const faible = bilan.reduce((a, b) => (b.ects < a.ects ? b : a));
+                if (fort.ects - faible.ects < 12) return null;
+                return (
+                  <p className="mt-2 rounded-lg bg-warn-soft px-3 py-2 text-[11.5px] leading-snug text-warn">
+                    {T.bilanDesequilibre(
+                      `${libelleRang(fort.rang, langue)}, ${T.bilanCredits(fort.ects)}`,
+                      `${libelleRang(faible.rang, langue)}, ${T.bilanCredits(faible.ects)}`,
+                    )}
+                  </p>
+                );
+              })()}
+
+              <div className="mt-3 grid gap-3">
+                {bilan.map((b) => {
+                  const heures = enHeures(b.minutesParSemaine, langue);
+                  const nExamens = b.examens.reduce((n, x) => n + x.nombre, 0);
+                  const minutesExamens = b.examens.reduce((n, x) => n + x.minutes, 0);
+                  return (
+                    <div key={b.rang} className="rounded-lg bg-surface-2 px-3 py-2.5">
+                      <div className="flex items-baseline justify-between gap-2">
+                        <span className="text-[12px] font-semibold text-ink-2">
+                          {libelleRang(b.rang, langue)}
+                        </span>
+                        <span className="tnum font-mono text-[13px] font-semibold text-ink">
+                          {T.bilanCredits(b.ects)}
+                        </span>
+                      </div>
+                      <p className="mt-0.5 text-[11.5px] leading-snug text-muted">
+                        {[
+                          T.bilanCours(b.cours),
+                          heures ? T.bilanHeures(heures) : null,
+                          nExamens ? T.bilanExamens(nExamens) : null,
+                        ]
+                          .filter(Boolean)
+                          .join(" · ")}
+                      </p>
+                      {nExamens > 0 && (
+                        <p className="mt-0.5 text-[11.5px] leading-snug text-muted">
+                          {b.examens
+                            .map((x) =>
+                              T.bilanDetailExamen(
+                                x.nombre,
+                                evaluationDuCours(x.code, langue) ?? x.code,
+                              ),
+                            )
+                            .join(" · ")}
+                          {minutesExamens > 0
+                            ? ` · ${T.bilanDuree(enHeures(minutesExamens, langue) ?? "")}`
+                            : ""}
+                        </p>
+                      )}
+                      {(b.coursSansHoraire > 0 || b.coursIrreguliers > 0) && (
+                        <p className="mt-0.5 text-[11px] leading-snug text-muted italic">
+                          {[
+                            b.coursSansHoraire ? T.bilanSansHoraire(b.coursSansHoraire) : null,
+                            b.coursIrreguliers ? T.bilanIrreguliers(b.coursIrreguliers) : null,
+                          ]
+                            .filter(Boolean)
+                            .join(" · ")}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {/*
             Les verifications changent a chaque case cochee. Sans region

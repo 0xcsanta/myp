@@ -93,6 +93,23 @@ const fr = {
     choixSemestre: "Choisir le semestre à afficher",
     choixDuSemestreDuCours: "À quel semestre suis tu ce cours",
     choixDuGroupe: "Quel créneau suis tu",
+    bilanTitre: "Ton plan, semestre par semestre",
+    bilanCredits: (n: number) => `${n} ECTS`,
+    bilanCours: (n: number) => (n > 1 ? `${n} cours` : "1 cours"),
+    bilanHeures: (h: string) => `${h} de cours par semaine`,
+    bilanSansHoraire: (n: number) =>
+      n > 1
+        ? `${n} cours sans horaire relevé, la charge est donc sous estimée`
+        : "1 cours sans horaire relevé, la charge est donc sous estimée",
+    bilanIrreguliers: (n: number) =>
+      n > 1
+        ? `${n} cours à rythme irrégulier, hors du compte hebdomadaire`
+        : "1 cours à rythme irrégulier, hors du compte hebdomadaire",
+    bilanExamens: (n: number) => (n > 1 ? `${n} évaluations` : "1 évaluation"),
+    bilanDetailExamen: (n: number, quoi: string) => `${n} × ${quoi}`,
+    bilanDuree: (h: string) => `${h} d'examen`,
+    bilanDesequilibre: (fort: string, faible: string) =>
+      `Tes semestres sont déséquilibrés : ${fort} d'un côté, ${faible} de l'autre. Rien ne l'interdit, mais ça se vit.`,
     autresOrientationsTitre: (n: number) =>
       `${n} de ces cours viennent du Module 5 des trois autres orientations. Selon le plan :`,
     venantDe: (o: string[]) =>
@@ -287,6 +304,23 @@ const en: Textes = {
     choixSemestre: "Choose which semester to show",
     choixDuSemestreDuCours: "Which semester you take this course in",
     choixDuGroupe: "Which slot you attend",
+    bilanTitre: "Your plan, semester by semester",
+    bilanCredits: (n: number) => `${n} ECTS`,
+    bilanCours: (n: number) => (n > 1 ? `${n} courses` : "1 course"),
+    bilanHeures: (h: string) => `${h} of class per week`,
+    bilanSansHoraire: (n: number) =>
+      n > 1
+        ? `${n} courses have no timetable read, so the load is understated`
+        : "1 course has no timetable read, so the load is understated",
+    bilanIrreguliers: (n: number) =>
+      n > 1
+        ? `${n} courses run irregularly, outside the weekly count`
+        : "1 course runs irregularly, outside the weekly count",
+    bilanExamens: (n: number) => (n > 1 ? `${n} assessments` : "1 assessment"),
+    bilanDetailExamen: (n: number, quoi: string) => `${n} × ${quoi}`,
+    bilanDuree: (h: string) => `${h} of exams`,
+    bilanDesequilibre: (fort: string, faible: string) =>
+      `Your semesters are lopsided: ${fort} on one side, ${faible} on the other. Nothing forbids it, but you will feel it.`,
     autresOrientationsTitre: (n: number) =>
       `${n} of these courses come from Module 5 of the three other tracks. According to the plan:`,
     venantDe: (o: string[]) => (o.length === 1 ? `${o[0]} track` : "other tracks"),
