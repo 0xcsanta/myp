@@ -368,16 +368,30 @@ def charger_resumes() -> dict:
 
 
 def a_rediger() -> list[dict]:
-    """Les fiches décrites qui n'ont pas encore de résumé, dans un ordre stable."""
+    """
+    Les cours décrits qui n'ont pas encore de résumé, dans un ordre stable.
+
+    Un même cours a plusieurs fiches, une par programme qui l'accueille, et
+    elles portent des numéros différents pour un titre identique. On compte
+    donc par titre : écrire deux fois le même résumé serait du travail perdu,
+    et le site n'affiche de toute façon qu'une entrée par titre.
+    """
     with open(SORTIE, encoding="utf-8") as f:
         fiches = json.load(f)
     faits = charger_resumes()
-    reste = [
-        v
-        for k, v in sorted(fiches.items())
-        if k not in faits
-        and any(v.get(lg, {}).get("contenu") or v.get(lg, {}).get("objectif") for lg in ("fr", "en"))
-    ]
+    couverts = {v["titre"] for k, v in fiches.items() if k in faits}
+
+    reste, vus = [], set()
+    for k, v in sorted(fiches.items()):
+        titre = v["titre"]
+        if k in faits or titre in couverts or titre in vus:
+            continue
+        if not any(
+            v.get(lg, {}).get("contenu") or v.get(lg, {}).get("objectif") for lg in ("fr", "en")
+        ):
+            continue
+        vus.add(titre)
+        reste.append(v)
     return reste
 
 
@@ -399,7 +413,7 @@ def imprimer_lot(n: int) -> None:
                 if not t:
                     continue
                 # au delà, c'est du remplissage : le résumé n'en a pas besoin
-                print(f"\n[{lg}.{champ}] {t[:1400]}")
+                print(f"\n[{lg}.{champ}] {t[:520]}")
             if bloc.get("objectif") or bloc.get("contenu"):
                 break  # une seule langue suffit à écrire les deux résumés
         print()
