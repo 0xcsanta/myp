@@ -387,6 +387,17 @@
    "salle": "Internef/232",
    "cadence": "hebdomadaire",
    "note": "premier cours le 25 février"
+  },
+  {
+   "cours": "game-theory",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "13:45",
+   "fin": "17:30",
+   "salle": "Extranef/109",
+   "cadence": "hebdomadaire",
+   "note": "sauf le 5 mai, à Internef/121",
+   "reprisDe": "mscas"
   }
  ]
 }

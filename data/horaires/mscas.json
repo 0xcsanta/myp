@@ -339,6 +339,26 @@
    "note": ""
   },
   {
+   "cours": "game-theory",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "13:45",
+   "fin": "17:30",
+   "salle": "Extranef/109",
+   "cadence": "hebdomadaire",
+   "note": "sauf le 5 mai, à Internef/121"
+  },
+  {
+   "cours": "simulation-methods-in-finance-and-insurance",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Internef/231",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
    "cours": "blockchain-and-crypto-economy",
    "semestre": "printemps-2026",
    "jour": "Lundi",

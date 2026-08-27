@@ -681,6 +681,30 @@
    "cadence": "hebdomadaire",
    "note": "",
    "enseignant": "Anne Drouin"
+  },
+  {
+   "master": "mscas",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "13:45",
+   "fin": "17:30",
+   "titre": "Game Theory",
+   "salle": "Extranef/109",
+   "cadence": "hebdomadaire",
+   "note": "sauf le 5 mai, à Internef/121",
+   "enseignant": "Bettina Klaus"
+  },
+  {
+   "master": "mscas",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "titre": "Simulation Methods in Finance and Insurance",
+   "salle": "Internef/231",
+   "cadence": "hebdomadaire",
+   "note": "",
+   "enseignant": "Maissa Tamraz"
   }
  ],
  "stabiliteDunAnneeALautre": {
