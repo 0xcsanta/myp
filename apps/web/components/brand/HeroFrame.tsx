@@ -14,12 +14,16 @@ import path from "node:path";
  *                   les cotes, aucune en bas puisqu'il sort du cadre
  *   ecran interieur 869.742 x 607.439, rayon 16, cale a 16.5 du haut
  *
- * Sur telephone, un contour d'iPhone : appareil debout, coins largement
- * arrondis, ilot et barre d'etat. Le fond bleu deborde de chaque cote et
- * l'appareil le depasse par le haut, comme sur la maquette.
+ * Sur telephone, les cotes du Figma mobile : appareil de 248,11 sur 521,76,
+ * soit un rapport de 0,475, celui d'un vrai telephone. Le fond bleu fait 137
+ * pour cent de sa largeur et 78 pour cent de sa hauteur, cale a 13,7 pour cent
+ * du haut.
  *
- * Tout est exprime en pourcentages du conteneur, jamais en pixels : c'est ce
- * qui permet au meme montage de tenir de 320 a 1600 pixels de large.
+ * La difference qui compte entre les deux : sur grand ecran l'appareil est
+ * dimensionne par la largeur disponible, sur telephone par la hauteur. Un
+ * appareil aussi elance cale sur la largeur depasserait le bas de l'ecran des
+ * qu'il est un peu court, et se retrouverait coupe. Sa hauteur est donc bornee
+ * par ce qui reste sous le titre, et sa largeur en decoule.
  */
 
 /*
@@ -39,121 +43,141 @@ const aPortraitWebp = fs.existsSync(path.join(dossierHero, "hero-portrait.webp")
 
 const SUR_TELEPHONE = "(max-width: 639px)";
 
+/*
+ * Ce qu'il faut retrancher a la fenetre pour connaitre la place laissee a
+ * l'appareil : l'en-tete, le titre, et un peu d'air en dessous. La borne de
+ * 522 pixels est la cote du Figma, que l'appareil ne depasse jamais meme sur
+ * un grand telephone.
+ */
+const HAUTEUR_APPAREIL = "min(522px, calc(100dvh - 200px))";
+
 export function HeroFrame() {
   return (
-    <div className="relative w-full overflow-hidden aspect-[400/469] sm:aspect-[1200/560]">
-      {/* le fond bleu */}
+    <div className="flex w-full justify-center sm:relative sm:block sm:aspect-[1200/560]">
+      {/* la scene : sur telephone elle epouse l'appareil, sur grand ecran elle
+          occupe toute la largeur et c'est l'appareil qui s'y place */}
       <div
-        className="absolute overflow-hidden rounded-[24px] sm:rounded-[30px]
-          left-[6%] right-[6%] top-[13%] h-[85%]
-          sm:inset-x-0 sm:top-[25.2%] sm:h-[64.6%]"
+        className="relative aspect-[248/522] sm:absolute sm:inset-0 sm:aspect-auto sm:h-auto"
+        style={{ height: HAUTEUR_APPAREIL }}
       >
-        <picture className="block size-full">
-          <source srcSet="/hero/hero-backdrop.webp" type="image/webp" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/hero/hero-backdrop.jpg"
-            alt=""
-            width={2400}
-            height={1018}
-            className="size-full object-cover"
-            fetchPriority="high"
-          />
-        </picture>
-      </div>
-
-      {/*
-        L'appareil. Sur telephone il est debout et cerne d'un liseré noir, sur
-        grand ecran il est couche, borde de blanc, et sort du cadre par le bas.
-      */}
-      <div
-        className="absolute left-1/2 top-0 -translate-x-1/2 overflow-hidden bg-black
-          w-[73%] aspect-[238/382] rounded-[34px] p-[4px]
-          shadow-[0_10px_30px_-12px_rgba(10,31,48,0.55)]
-          sm:w-[75.6%] sm:aspect-[907/644] sm:rounded-[24px] sm:p-0
-          sm:border-2 sm:border-b-0 sm:border-white/50
-          sm:shadow-[0_-4px_20px_rgba(0,0,0,0.1)]"
-      >
+        {/* le fond bleu */}
         <div
-          className="relative overflow-hidden size-full rounded-[30px]
-            sm:absolute sm:left-1/2 sm:size-auto sm:w-[95.9%] sm:-translate-x-1/2
-            sm:rounded-[16px] sm:top-[2.56%] sm:aspect-[869.742/607.439]"
+          className="absolute overflow-hidden rounded-[24px]
+            -left-[18.5%] -right-[18.5%] top-[13.7%] h-[78%]
+            sm:left-0 sm:right-0 sm:top-[25.2%] sm:h-[64.6%] sm:rounded-[30px]"
         >
           <picture className="block size-full">
-            {aPortraitWebp && (
-              <source
-                media={SUR_TELEPHONE}
-                srcSet="/hero/hero-portrait.webp"
-                type="image/webp"
-              />
-            )}
-            {aPortrait && <source media={SUR_TELEPHONE} srcSet="/hero/hero-portrait.jpg" />}
-            <source srcSet="/hero/hero-screen.webp" type="image/webp" />
+            <source srcSet="/hero/hero-backdrop.webp" type="image/webp" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/hero/hero-screen.jpg"
-              alt="Les lettres MYP en verre posées sur une grille horaire, devant le campus de l'UNIL et le Léman"
-              width={1800}
-              height={1279}
+              src="/hero/hero-backdrop.jpg"
+              alt=""
+              width={2400}
+              height={1018}
               className="size-full object-cover"
               fetchPriority="high"
             />
           </picture>
-          {/*
-           * Le Figma porte bien un remplissage noir a 25 pour cent sur cet
-           * ecran, mais son calque est masque : l'icone de la ligne est un oeil
-           * barre, et le rendu de reference est clair. On ne l'applique donc
-           * pas. Le remettre assombrirait sensiblement le ciel et le Leman.
-           */}
+        </div>
 
-          {/*
-            L'ilot et la barre d'etat, sur telephone seulement. Purement
-            decoratifs, donc caches aux lecteurs d'ecran : annoncer une fausse
-            heure a quelqu'un qui ne voit pas l'image n'aurait aucun sens.
-          */}
+        {/*
+          L'appareil. Sur telephone il remplit la scene, cerne d'un lisere noir.
+          Sur grand ecran il est couche, borde de blanc, et sort du cadre par le
+          bas.
+        */}
+        <div
+          className="absolute inset-0 overflow-hidden bg-black rounded-[38px] p-[4px]
+            shadow-[0_14px_36px_-14px_rgba(10,31,48,0.6)]
+            sm:inset-auto sm:left-1/2 sm:top-0 sm:w-[75.6%] sm:-translate-x-1/2
+            sm:aspect-[907/644] sm:rounded-[24px] sm:p-0
+            sm:border-2 sm:border-b-0 sm:border-white/50
+            sm:shadow-[0_-4px_20px_rgba(0,0,0,0.1)]"
+        >
           <div
-            aria-hidden="true"
-            className="absolute left-1/2 top-[2.4%] h-[3.4%] w-[30%] -translate-x-1/2
-              rounded-full bg-black sm:hidden"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-[7%] top-[1.9%] flex items-center justify-between
-              text-[9px] font-semibold text-white/95 sm:hidden"
-            style={{ textShadow: "0 1px 2px rgba(0,0,0,0.35)" }}
+            className="relative size-full overflow-hidden rounded-[34px]
+              sm:absolute sm:left-1/2 sm:size-auto sm:w-[95.9%] sm:-translate-x-1/2
+              sm:rounded-[16px] sm:top-[2.56%] sm:aspect-[869.742/607.439]"
           >
-            <span className="tnum">9:41</span>
-            <span className="flex items-center gap-[3px]">
-              {/* reseau, wifi, batterie, redessines plutot qu'importes */}
-              <svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor">
-                <rect x="0" y="6" width="2" height="2" rx="0.5" />
-                <rect x="3.2" y="4.4" width="2" height="3.6" rx="0.5" />
-                <rect x="6.4" y="2.4" width="2" height="5.6" rx="0.5" />
-                <rect x="9.6" y="0.4" width="2" height="7.6" rx="0.5" />
-              </svg>
-              <svg width="11" height="8" viewBox="0 0 11 8" fill="none" stroke="currentColor">
-                <path d="M0.9 2.5a7 7 0 0 1 9.2 0" strokeWidth="1.1" strokeLinecap="round" />
-                <path d="M2.9 4.6a4 4 0 0 1 5.2 0" strokeWidth="1.1" strokeLinecap="round" />
-                <circle cx="5.5" cy="6.8" r="0.9" fill="currentColor" stroke="none" />
-              </svg>
-              <svg width="16" height="8" viewBox="0 0 16 8" fill="none">
-                <rect
-                  x="0.5"
-                  y="0.5"
-                  width="12.6"
-                  height="7"
-                  rx="2.2"
+            <picture className="block size-full">
+              {aPortraitWebp && (
+                <source
+                  media={SUR_TELEPHONE}
+                  srcSet="/hero/hero-portrait.webp"
+                  type="image/webp"
+                />
+              )}
+              {aPortrait && (
+                <source media={SUR_TELEPHONE} srcSet="/hero/hero-portrait.jpg" />
+              )}
+              <source srcSet="/hero/hero-screen.webp" type="image/webp" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/hero/hero-screen.jpg"
+                alt="Les lettres MYP en verre posées sur une grille horaire, devant le campus de l'UNIL et le Léman"
+                width={1800}
+                height={1279}
+                className="size-full object-cover"
+                fetchPriority="high"
+              />
+            </picture>
+            {/*
+             * Le Figma porte bien un remplissage noir a 25 pour cent sur cet
+             * ecran, mais son calque est masque : l'icone de la ligne est un
+             * oeil barre, et le rendu de reference est clair. On ne l'applique
+             * donc pas. Le remettre assombrirait le ciel et le Leman.
+             */}
+
+            {/*
+              L'ilot et la barre d'etat, sur telephone seulement. Purement
+              decoratifs, donc caches aux lecteurs d'ecran : annoncer une fausse
+              heure a quelqu'un qui ne voit pas l'image n'aurait aucun sens.
+            */}
+            <div
+              aria-hidden="true"
+              className="absolute left-1/2 top-[1.8%] h-[2.5%] w-[30%] -translate-x-1/2
+                rounded-full bg-black sm:hidden"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-[7%] top-[1.5%] flex items-center justify-between
+                text-[9px] font-semibold text-white/95 sm:hidden"
+              style={{ textShadow: "0 1px 2px rgba(0,0,0,0.35)" }}
+            >
+              <span className="tnum">9:41</span>
+              <span className="flex items-center gap-[3px]">
+                {/* reseau, wifi, batterie, redessines plutot qu'importes */}
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor">
+                  <rect x="0" y="6" width="2" height="2" rx="0.5" />
+                  <rect x="3.2" y="4.4" width="2" height="3.6" rx="0.5" />
+                  <rect x="6.4" y="2.4" width="2" height="5.6" rx="0.5" />
+                  <rect x="9.6" y="0.4" width="2" height="7.6" rx="0.5" />
+                </svg>
+                <svg
+                  width="11"
+                  height="8"
+                  viewBox="0 0 11 8"
+                  fill="none"
                   stroke="currentColor"
-                  strokeOpacity="0.6"
-                />
-                <rect x="2" y="2" width="9" height="4" rx="1.2" fill="currentColor" />
-                <path
-                  d="M14.4 3v2a1.6 1.6 0 0 0 0-2Z"
-                  fill="currentColor"
-                  fillOpacity="0.6"
-                />
-              </svg>
-            </span>
+                >
+                  <path d="M0.9 2.5a7 7 0 0 1 9.2 0" strokeWidth="1.1" strokeLinecap="round" />
+                  <path d="M2.9 4.6a4 4 0 0 1 5.2 0" strokeWidth="1.1" strokeLinecap="round" />
+                  <circle cx="5.5" cy="6.8" r="0.9" fill="currentColor" stroke="none" />
+                </svg>
+                <svg width="16" height="8" viewBox="0 0 16 8" fill="none">
+                  <rect
+                    x="0.5"
+                    y="0.5"
+                    width="12.6"
+                    height="7"
+                    rx="2.2"
+                    stroke="currentColor"
+                    strokeOpacity="0.6"
+                  />
+                  <rect x="2" y="2" width="9" height="4" rx="1.2" fill="currentColor" />
+                  <path d="M14.4 3v2a1.6 1.6 0 0 0 0-2Z" fill="currentColor" fillOpacity="0.6" />
+                </svg>
+              </span>
+            </div>
           </div>
         </div>
       </div>
