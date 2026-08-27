@@ -48,6 +48,12 @@ const fr = {
 
   plan: {
     tonPlan: "Ton plan",
+    toutDecocher: "Tout décocher",
+    partager: "Copier le lien de ce plan",
+    lienCopie: "Lien copié",
+    lienEchec: "La copie a échoué, copie l'adresse à la main",
+    planRecu:
+      "Tu regardes un plan qu'on t'a partagé. Il ne remplace le tien que si tu y touches.",
     rechercher: "Rechercher un cours",
     recherchePlaceholder: "Rechercher un cours, un enseignant, un type d'évaluation…",
     obligatoire: " · obligatoire",
@@ -186,6 +192,12 @@ const en: Textes = {
 
   plan: {
     tonPlan: "Your plan",
+    toutDecocher: "Clear all",
+    partager: "Copy the link to this plan",
+    lienCopie: "Link copied",
+    lienEchec: "Copying failed, copy the address by hand",
+    planRecu:
+      "You are looking at a plan someone shared with you. It only replaces yours if you change something.",
     rechercher: "Search for a course",
     recherchePlaceholder: "Search a course, a teacher, a type of assessment…",
     obligatoire: " · compulsory",

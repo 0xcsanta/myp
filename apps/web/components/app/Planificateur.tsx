@@ -132,43 +132,106 @@ export function Planificateur({
   const [selection, setSelection] = useState<Set<string>>(new Set());
   const [recherche, setRecherche] = useState("");
   const [pret, setPret] = useState(false);
+  /*
+   * Un plan ouvert depuis un lien recu n'est pas encore le sien : tant que le
+   * lecteur n'y touche pas, il ne remplace pas ce qu'il avait enregistre.
+   */
+  const [recu, setRecu] = useState(false);
+  const [modifie, setModifie] = useState(false);
+  const [copie, setCopie] = useState<"copie" | "echec" | null>(null);
+  const partageInitial = useRef<string | null | undefined>(undefined);
   const cle = `myp:${master.slug}`;
 
-  /* reprise : l'adresse d'abord, le stockage local ensuite */
+  /*
+   * Reprise. Un plan passe dans l'adresse l'emporte, c'est un lien qu'on a
+   * recu ; sinon on reprend celui du navigateur.
+   *
+   * L'adresse est ensuite nettoyee, et ce n'est pas cosmetique. La selection y
+   * etait autrefois reecrite a chaque case cochee : il suffisait de copier
+   * l'adresse de la barre pour envoyer son propre plan a quelqu'un qui voulait
+   * partir de zero. Le partage est desormais un geste, pas un effet de bord.
+   */
   useEffect(() => {
-    const url = new URLSearchParams(window.location.search).get("p");
-    const source = url ?? window.localStorage.getItem(cle) ?? "";
+    /*
+     * Le plan recu est lu une fois pour toutes, et retenu.
+     *
+     * React execute cet effet deux fois en mode strict. En lisant l'adresse a
+     * chaque passage, le premier trouvait le plan puis nettoyait l'adresse, et
+     * le second ne trouvait plus rien et remettait tout a zero : le lien recu
+     * s'annulait lui meme. La reference survit aux deux passages, donc la
+     * lecture n'a lieu qu'une fois et le nettoyage ne detruit plus la reprise.
+     */
+    if (partageInitial.current === undefined) {
+      const u = new URL(window.location.href);
+      const p = u.searchParams.get("p");
+      partageInitial.current = p;
+      if (p) {
+        u.searchParams.delete("p");
+        window.history.replaceState(null, "", u);
+      }
+    }
+    const partage = partageInitial.current;
+    const source = partage ?? window.localStorage.getItem(cle) ?? "";
     setSelection(decoder(source, catalogue));
+    setRecu(Boolean(partage));
     setPret(true);
   }, [cle, catalogue]);
 
-  /* sauvegarde */
+  /*
+   * Sauvegarde, dans le navigateur et nulle part ailleurs : la selection ne
+   * part sur aucun serveur, il n'y a ni compte ni identifiant. Chaque
+   * navigateur a son propre stockage, donc deux personnes sont isolees l'une
+   * de l'autre sans que le site ait a savoir qui elles sont.
+   *
+   * On n'ecrit qu'apres une action, sans quoi ouvrir le lien d'un camarade
+   * ecraserait son propre plan avant meme de l'avoir regarde.
+   */
   useEffect(() => {
-    if (!pret) return;
-    const code = encoder(selection, catalogue);
+    if (!pret || !modifie) return;
     try {
-      window.localStorage.setItem(cle, code);
+      window.localStorage.setItem(cle, encoder(selection, catalogue));
     } catch {
-      /* navigation privee : tant pis, l'adresse suffit */
+      /* navigation privee : le stockage est refuse, tant pis */
     }
-    const u = new URL(window.location.href);
-    if (code) u.searchParams.set("p", code);
-    else u.searchParams.delete("p");
-    window.history.replaceState(null, "", u);
-  }, [selection, pret, cle, catalogue]);
+  }, [selection, pret, modifie, cle, catalogue]);
 
   const resultat = useMemo(
     () => valider(selection, regles, catalogue),
     [selection, regles, catalogue],
   );
 
-  const basculer = (id: string) =>
+  const basculer = (id: string) => {
+    setModifie(true);
+    setRecu(false);
     setSelection((s) => {
       const n = new Set(s);
       if (n.has(id)) n.delete(id);
       else n.add(id);
       return n;
     });
+  };
+
+  const toutDecocher = () => {
+    setModifie(true);
+    setRecu(false);
+    setSelection(new Set());
+  };
+
+  /*
+   * Le lien de partage se fabrique a la demande et ne touche pas l'adresse de
+   * la page. C'est tout l'interet : on partage quand on le decide.
+   */
+  const partager = async () => {
+    const u = new URL(window.location.href);
+    u.searchParams.set("p", encoder(selection, catalogue));
+    try {
+      await navigator.clipboard.writeText(u.toString());
+      setCopie("copie");
+    } catch {
+      setCopie("echec");
+    }
+    window.setTimeout(() => setCopie(null), 2600);
+  };
 
   const q = recherche.trim().toLowerCase();
   const parModule = useMemo(() => {
@@ -538,15 +601,35 @@ export function Planificateur({
             ))}
           </div>
 
+          {recu && (
+            <p className="mt-6 rounded-lg bg-unil-100 px-3 py-2 text-[12px] leading-snug text-unil-500">
+              {T.planRecu}
+            </p>
+          )}
+
           {selection.size > 0 && (
-            <button
-              onClick={() => setSelection(new Set())}
-              className="mt-6 w-full rounded-lg border border-line-2 py-2 text-[13px]
-                font-medium text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
-                hover:border-muted hover:bg-surface-2"
-            >
-              Tout décocher
-            </button>
+            <div className="mt-6 grid gap-2">
+              <button
+                onClick={partager}
+                className="w-full rounded-lg border border-line-2 py-2 text-[13px]
+                  font-medium text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
+                  hover:border-unil-400 hover:text-unil-400"
+              >
+                {copie === "copie"
+                  ? T.lienCopie
+                  : copie === "echec"
+                    ? T.lienEchec
+                    : T.partager}
+              </button>
+              <button
+                onClick={toutDecocher}
+                className="w-full rounded-lg border border-line-2 py-2 text-[13px]
+                  font-medium text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
+                  hover:border-muted hover:bg-surface-2"
+              >
+                {T.toutDecocher}
+              </button>
+            </div>
           )}
         </div>
 
