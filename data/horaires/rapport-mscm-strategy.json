@@ -1,0 +1,67 @@
+{
+ "programme": "mscm-strategy",
+ "nonResolus": [
+  {
+   "ligne": 7,
+   "titre": "Simple for managing people in face of adversity: Practical skills for difficult situations",
+   "raison": "introuvable (meilleure similarite 0.45), proches : simple-rules-for-leadership-and-strategy-a-pra, managing-contractual-relationship, statistical-methods-for-management-all-orienta"
+  },
+  {
+   "ligne": 15,
+   "titre": "Strategy & Development Modes",
+   "raison": "introuvable (meilleure similarite 0.61), proches : strategy-development-project-for-sol-orientati, strategy-in-digital-markets, leadership-development"
+  },
+  {
+   "ligne": 20,
+   "titre": "Decision Intelligence for Managers",
+   "raison": "introuvable (meilleure similarite 0.46), proches : heuristic-decision-making-strategies, data-science-methods-for-management-ba-orienta, unethical-decision-making-advanced"
+  },
+  {
+   "ligne": 36,
+   "titre": "Methods",
+   "raison": "ambigu : data-science-methods-for-management-ba-orienta, optimization-methods-for-management-ba-orienta, statistical-methods-for-management-all-orienta"
+  },
+  {
+   "ligne": 37,
+   "titre": "The iRcissk, Reputation /",
+   "raison": "introuvable (meilleure similarite 0.51), proches : the-management-of-risk-reputation-and-legitima, strategic-marketing-mkt-orientation, strategy-of-innovation"
+  },
+  {
+   "ligne": 43,
+   "titre": "Neuro Economie",
+   "raison": "introuvable (meilleure similarite 0.50), proches : managerial-decision-making, heuristic-decision-making-strategies, unethical-decision-making-advanced"
+  }
+ ],
+ "rapprochesParSimilarite": [
+  {
+   "ligne": 22,
+   "titre": "Normes comptables (IFRS)",
+   "retenu": "normes-comptables-internationales-ifrs",
+   "note": "MOTS COMMUNS 0.75"
+  },
+  {
+   "ligne": 24,
+   "titre": "Social Norms, Culture, Organizations and Climate Change: Mechanisms of Behavioral Change",
+   "retenu": "social-norms-and-social-tipping-mechanisms-of-",
+   "note": "MOTS COMMUNS 0.62"
+  },
+  {
+   "ligne": 27,
+   "titre": "Human Decision- Making and the SDGs",
+   "retenu": "human-decisions-making-and-the-sdgs",
+   "note": "SIMILARITE 0.99"
+  },
+  {
+   "ligne": 31,
+   "titre": "Human Decision- Making and the SDGs",
+   "retenu": "human-decisions-making-and-the-sdgs",
+   "note": "SIMILARITE 0.99"
+  },
+  {
+   "ligne": 41,
+   "titre": "Innovation Strategy Project (for SOL orientations only)",
+   "retenu": "innovation-strategy-project-for-sol-orientatio",
+   "note": "SIMILARITE 0.99"
+  }
+ ]
+}

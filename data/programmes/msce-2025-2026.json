@@ -419,11 +419,13 @@
    "raw": "1h E O 15 SUPP CORE"
   },
   {
-   "title": "th e A n th r op o c e n e",
+   "title": "Situating Humans in Time: From the Beginning of Life to the Anthropocene",
    "teachers": "Alvarez N.",
    "module": "M2",
    "ects": 2,
-   "semesters": [],
+   "semesters": [
+    2
+   ],
    "language": "E",
    "evalType": "E",
    "examMinutes": null,
@@ -467,17 +469,6 @@
    "evalType": "E",
    "examMinutes": null,
    "raw": "E E M N/A"
-  },
-  {
-   "title": "from the list of SUPP courses. For those taking the BEE specialization,",
-   "teachers": "there is an additional",
-   "module": "M3",
-   "ects": 4,
-   "semesters": [],
-   "language": null,
-   "evalType": "E",
-   "examMinutes": null,
-   "raw": "of SUPP courses are from courses offered by the School of Bi"
   },
   {
    "title": "Applied Environmental and Resource Economics",

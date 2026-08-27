@@ -1,0 +1,89 @@
+{
+ "programme": "mscm-behaviour",
+ "nonResolus": [
+  {
+   "ligne": 7,
+   "titre": "Simple for managing people in face of adversity: Practical skills for difficult situations",
+   "raison": "introuvable (meilleure similarite 0.39), proches : statistical-methods-for-management-all-orienta, data-science-methods-for-management-ba-orienta, optimization-methods-for-management-ba-orienta"
+  },
+  {
+   "ligne": 9,
+   "titre": "Simple for managing people in face of adversity: Practical skills for difficult situations",
+   "raison": "introuvable (meilleure similarite 0.39), proches : statistical-methods-for-management-all-orienta, data-science-methods-for-management-ba-orienta, optimization-methods-for-management-ba-orienta"
+  },
+  {
+   "ligne": 26,
+   "titre": "Decision Intelligence for Managers",
+   "raison": "introuvable (meilleure similarite 0.46), proches : heuristic-decision-making-strategies, data-science-methods-for-management-ba-orienta, unethical-decision-making-advanced"
+  },
+  {
+   "ligne": 28,
+   "titre": "Decision Intelligence for Managers",
+   "raison": "introuvable (meilleure similarite 0.46), proches : heuristic-decision-making-strategies, data-science-methods-for-management-ba-orienta, unethical-decision-making-advanced"
+  },
+  {
+   "ligne": 47,
+   "titre": "Methods",
+   "raison": "ambigu : data-science-methods-for-management-ba-orienta, experimental-methods, optimization-methods-for-management-ba-orienta, statistical-methods-for-management-all-orienta"
+  },
+  {
+   "ligne": 48,
+   "titre": "The iRcissk, Reputation /",
+   "raison": "introuvable (meilleure similarite 0.46), proches : strategic-marketing-mkt-orientation, organizational-theory-and-decision-making-bee-, marketing-science-mkt-orientation"
+  },
+  {
+   "ligne": 56,
+   "titre": "Simple Rules for Leadership and Strategy: a Practical Approach",
+   "raison": "introuvable (meilleure similarite 0.39), proches : sustainability-strategy-project, grand-challenges-strategy-project, statistical-methods-for-management-all-orienta"
+  },
+  {
+   "ligne": 57,
+   "titre": "S - Behavior, Economics, and Evolution Lecture Series",
+   "raison": "introuvable (meilleure similarite 0.72), proches : behavior-economics-and-evolution-lectures-seri, human-behavior-and-evolutionary-inference, genes-populations-and-evolution-bee-orientatio"
+  }
+ ],
+ "rapprochesParSimilarite": [
+  {
+   "ligne": 15,
+   "titre": "Strategic Management - SOL/BEE orientations",
+   "retenu": "strategic-management-bee-sol-orientations",
+   "note": "SIMILARITE 0.90"
+  },
+  {
+   "ligne": 27,
+   "titre": "Organizational Theory and Decision Making - SOL/BEE orientations",
+   "retenu": "organizational-theory-and-decision-making-bee-",
+   "note": "SIMILARITE 0.94"
+  },
+  {
+   "ligne": 30,
+   "titre": "Organizational Theory and Decision Making - SOL/BEE orientations",
+   "retenu": "organizational-theory-and-decision-making-bee-",
+   "note": "SIMILARITE 0.94"
+  },
+  {
+   "ligne": 36,
+   "titre": "Human Decision- Making and the SDGs",
+   "retenu": "human-decisions-making-and-the-sdgs",
+   "note": "SIMILARITE 0.99"
+  },
+  {
+   "ligne": 38,
+   "titre": "Human Decision- Making and the SDGs",
+   "retenu": "human-decisions-making-and-the-sdgs",
+   "note": "SIMILARITE 0.99"
+  },
+  {
+   "ligne": 40,
+   "titre": "Human Decision-Making and the SDGs",
+   "retenu": "human-decisions-making-and-the-sdgs",
+   "note": "SIMILARITE 0.99"
+  },
+  {
+   "ligne": 42,
+   "titre": "Human Decision-Making and the SDGs",
+   "retenu": "human-decisions-making-and-the-sdgs",
+   "note": "SIMILARITE 0.99"
+  }
+ ]
+}

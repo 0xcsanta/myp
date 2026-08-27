@@ -1,0 +1,64 @@
+{
+ "programme": "mscas",
+ "nonResolus": [
+  {
+   "ligne": 5,
+   "titre": "Data Science Methods for Management - BA orientation",
+   "raison": "introuvable (meilleure similarite 0.47), proches : data-science-for-non-life-insurance, asset-and-liability-management-for-actuaries, computational-tools-for-actuaries"
+  },
+  {
+   "ligne": 6,
+   "titre": "Data Science Methods for Management - BA orientation",
+   "raison": "introuvable (meilleure similarite 0.47), proches : data-science-for-non-life-insurance, asset-and-liability-management-for-actuaries, computational-tools-for-actuaries"
+  },
+  {
+   "ligne": 13,
+   "titre": "Introduction to Data Science",
+   "raison": "ambigu : introduction-to-data-science-i, introduction-to-data-science-ii"
+  },
+  {
+   "ligne": 20,
+   "titre": "Quantitative Asset and Risk Management II",
+   "raison": "introuvable (meilleure similarite 0.56), proches : asset-and-liability-management-for-actuaries, mathematiques-des-caisses-de-pension, simulation-methods-in-finance-and-insurance"
+  },
+  {
+   "ligne": 21,
+   "titre": "Quantitative Asset and Risk Management II",
+   "raison": "introuvable (meilleure similarite 0.56), proches : asset-and-liability-management-for-actuaries, mathematiques-des-caisses-de-pension, simulation-methods-in-finance-and-insurance"
+  },
+  {
+   "ligne": 36,
+   "titre": "Applied AI & Deep Learning for Managers: From Fundamentals to Business Applications",
+   "raison": "introuvable (meilleure similarite 0.39), proches : asset-and-liability-management-for-actuaries, prevoyance-professionnelle, mathematics-of-compound-interest"
+  },
+  {
+   "ligne": 37,
+   "titre": "Applied AI & Deep Learning for Managers: From Fundamentals to Business Applications",
+   "raison": "introuvable (meilleure similarite 0.39), proches : asset-and-liability-management-for-actuaries, prevoyance-professionnelle, mathematics-of-compound-interest"
+  },
+  {
+   "ligne": 39,
+   "titre": "Strategic Pricing",
+   "raison": "introuvable (meilleure similarite 0.38), proches : probability-and-stochastic-processes, prevoyance-professionnelle, introduction-to-data-science-i"
+  },
+  {
+   "ligne": 40,
+   "titre": "Strategic Pricing",
+   "raison": "introuvable (meilleure similarite 0.38), proches : probability-and-stochastic-processes, prevoyance-professionnelle, introduction-to-data-science-i"
+  }
+ ],
+ "rapprochesParSimilarite": [
+  {
+   "ligne": 14,
+   "titre": "PrévoyanceC - professionnelle",
+   "retenu": "prevoyance-professionnelle",
+   "note": "SIMILARITE 0.98"
+  },
+  {
+   "ligne": 16,
+   "titre": "PrévoyanceC - professionnelle",
+   "retenu": "prevoyance-professionnelle",
+   "note": "SIMILARITE 0.98"
+  }
+ ]
+}

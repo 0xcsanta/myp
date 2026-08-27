@@ -1,0 +1,23 @@
+# mscis : releve repris des captures de l'agenda officiel.
+# Reconstruit une fois depuis le JSON, pour que ce master passe par le
+# meme pipeline que les autres. Modifiable a la main.
+
+@semestre automne-2026
+Lundi | 08:30 | 12:00 | Software Architectures | Internef/237 | hebdomadaire | 
+Lundi | 14:15 | 18:00 | Data Science & Machine Learning | Internef/237 | hebdomadaire | 
+Mardi | 10:15 | 12:00 | Digital Innovation week | Internef/237 | hebdomadaire | Une semaine bloc s'ajoute à ce créneau, en novembre
+Mercredi | 08:30 | 12:00 | Entreprise Data and Integration | Internef/237 | hebdomadaire | 
+Jeudi | 08:30 | 12:00 | Information Security & Privacy | Internef/237 | hebdomadaire | 
+Jeudi | 14:15 | 18:00 | Digital Strategies and Innovation | Internef/237 | hebdomadaire | 
+
+@semestre printemps-2026
+Lundi | 09:30 | 12:00 | Seminar: Introduction to Computer Science Research | Internef/237 | hebdomadaire | 
+Lundi | 14:15 | 18:00 | Interaction Design | Internef/237 | hebdomadaire | 
+Mardi | 08:30 | 12:00 | Business and IS Design | Internef/237 | hebdomadaire | 
+Mardi | 14:15 | 18:00 | Management of AI in Organizations (limited to 80 students) | Internef/126 | hebdomadaire | 
+Mercredi | 09:00 | 12:00 | Seminar: Introduction to IS Research | Internef/237 | hebdomadaire | 
+Mercredi | 14:15 | 18:00 | Cybersecurity | Internef/237 | hebdomadaire | 
+Jeudi | 08:30 | 12:00 | Digital Innovation and Design Thinking | Internef/237 | hebdomadaire | 
+Jeudi | 14:15 | 18:00 | Cloud and Advanced Analytics | Internef/237 | hebdomadaire | 
+Vendredi | 08:30 | 12:00 | Audit & Gouvernance IT | Internef/237 | hebdomadaire | 
+Vendredi | 13:15 | 17:00 | Advanced Project Management & Outsourcing in a Digital Era | Internef/123 | hebdomadaire | 

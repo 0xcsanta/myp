@@ -1,0 +1,48 @@
+# MScCCF, comptabilité contrôle et finance
+# Relevé des captures de l'agenda officiel, 26 août 2026.
+# Modules 1 et 2 puis modules 3 et 4.
+#
+# Deux ecarts constates entre l'agenda et le plan d'etudes, laisses tels quels :
+#   - le plan officiel ecrit « Avanced Course in Governance and Corporate
+#     Finance », sans le d. On epouse son orthographe, c'est lui la reference.
+#   - « Seminar in Accounting Research » et « Sustainability Governance »
+#     figurent a l'agenda de l'automne 2026 mais pas au plan 2025-2026. Ils
+#     sont mis de cote plutot qu'inventes.
+
+@semestre printemps-2026
+Lundi    | 12:30 | 16:00 | Bank Accounting and Reporting | Internef/272 | hebdomadaire | Débute le 16 février
+Lundi    | 12:30 | 16:00 | Gestion du risque (MSc) | Internef/272 | hebdomadaire | Débute le 23 février
+Mardi    | 12:30 | 14:00 | Avanced Course in Governance and Corporate Finance | Anthropole/2106 | hebdomadaire |
+Mardi    | 14:15 | 18:00 | Advanced Management Accounting | Anthropole/2106 | quinzaine | Débute le 24 février, puis toutes les 2 semaines
+Mardi    | 14:15 | 18:00 | Audit des systèmes d'information de gestion | Anthropole/2106 | quinzaine | Débute le 17 février, puis toutes les 2 semaines
+Mercredi | 08:30 | 12:00 | Avanced Course in Governance and Corporate Finance | Anthropole/2064 | hebdomadaire |
+Mercredi | 14:15 | 18:00 | Advanced Financial Analysis | Internef/272 | hebdomadaire | Débute le 18 février
+Mercredi | 14:15 | 18:00 | Corporate Sustainability Reporting | Internef/272 | hebdomadaire | Débute le 25 février
+Jeudi    | 12:30 | 16:00 | Fiscalité directe II & Fiscalité indirecte (TVA) | Anthropole/2106 | hebdomadaire | Premier cours dans la salle C du Génopode
+
+@semestre automne-2026
+Lundi    | 13:15 | 15:00 | Fiscalité de l'entreprise - impôts directs | Internef/271 | hebdomadaire |
+Lundi    | 15:15 | 19:00 | Accounting for Financial Instruments | Anthropole/2106 | hebdomadaire |
+Lundi    | 15:15 | 19:00 | IA en comptabilité, contrôle et finance | Anthropole/2106 | hebdomadaire |
+Mardi    | 12:15 | 14:00 | Séminaire de restructuration financière | Internef/272 | hebdomadaire |
+Mardi    | 14:15 | 18:00 | Contrôle stratégique | Internef/272 | hebdomadaire |
+Jeudi    | 12:30 | 16:00 | Advanced Group Accounting | Anthropole/2106 | hebdomadaire |
+Jeudi    | 12:30 | 16:00 | Normes comptables internationales (IFRS) | Anthropole/2106 | hebdomadaire |
+Vendredi | 12:30 | 16:00 | Audit externe | Anthropole/2064 | hebdomadaire |
+Lundi    | 08:30 | 12:00 | Entrepreneurship, Innovation and Control Systems | Anthropole/3021 | quinzaine | Débute le 28 septembre
+Lundi    | 08:30 | 12:00 | Research Seminar in Management Control | Anthropole/3021 | hebdomadaire | Débute le 14 septembre
+Lundi    | 13:15 | 17:00 | Audit des institutions financières | Internef/275 | quinzaine | 12 et 26 octobre, 2, 23 et 30 novembre, 7 décembre
+Lundi    | 14:15 | 18:00 | Advanced issues in International and European Tax Law | Synathlon/2420 | hebdomadaire | Trimestre 2, Prof. Chand en remplacement du Prof. Danon
+Lundi    | 14:15 | 18:00 | Analyse financière appliquée | Internef/275 | quinzaine | 14 et 28 septembre, 5 octobre, 9 et 16 novembre, 14 décembre
+Mardi    | 14:15 | 18:00 | International Tax Disputes & Investment Treaty Arbitration | Internef/275 | hebdomadaire | Trimestre 1, S. Wuschka en remplacement du Prof. Danon
+Mercredi | 08:30 | 12:00 | Empirical Research in Accounting and Control | Anthropole/3120 | hebdomadaire |
+# ABSENT DU PLAN 2025-2026, a reprendre quand HEC publiera 2026-2027 : Mercredi | 08:30 | 12:00 | Seminar in Accounting Research | Anthropole/3120 | hebdomadaire |
+Mercredi | 12:30 | 16:00 | Recherche en gouvernance d'entreprise II | Anthropole/4144 | hebdomadaire |
+Mercredi | 12:30 | 16:00 | Research in Fair Value and Bank Accounting | Anthropole/4144 | hebdomadaire |
+Mercredi | 16:15 | 18:00 | Comptabilité comparée : RPC-IFRS | Anthropole/2106 | hebdomadaire |
+Jeudi    | 08:30 | 12:00 | Research in Sustainability Accounting | Internef/232 | quinzaine | 24 septembre, 8, 22 et 29 octobre, 12 et 26 novembre, 10 décembre
+Jeudi    | 08:30 | 12:00 | Systèmes de contrôle de gestion appliqués | Internef/232 | quinzaine | 17 septembre, 1, 15 octobre, 5 et 19 novembre, 3 et 17 décembre
+Jeudi    | 14:15 | 18:00 | Capital Markets Research in Accounting | Amphipôle/340 | quinzaine |
+Jeudi    | 14:15 | 18:00 | Recherche en gouvernance d'entreprise I | Anthropole/4144 | quinzaine | À partir de la deuxième semaine
+# ABSENT DU PLAN 2025-2026, a reprendre quand HEC publiera 2026-2027 : Vendredi | 08:30 | 12:00 | Sustainability Governance | Anthropole/5196 | hebdomadaire |
+Vendredi | 12:30 | 16:00 | Séminaire d'audit | Anthropole/3174 | hebdomadaire |

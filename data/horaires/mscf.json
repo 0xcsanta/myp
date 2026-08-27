@@ -1,0 +1,362 @@
+{
+ "programme": "mscf",
+ "source": {
+  "document": "Horaire type officiel du programme, relevé par capture d'écran de l'agenda UNIL",
+  "url": "https://applicationspub.unil.ch/interpub/noauth/php/Ud/index.php?v_ueid=173&v_langue=fr",
+  "releveLe": "2026-08-26",
+  "releveParUnHumain": true,
+  "note": "Extrait des PDF officiels par géométrie. Les heures sont calées automatiquement sur la grille du document. Les intitulés sont recoupés avec le catalogue ; ceux que la mise en page du PDF a hachés au point de les rendre méconnaissables sont exclus et listés dans rapport-<master>.json."
+ },
+ "creneaux": [
+  {
+   "cours": "advanced-data-analysis",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/126",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "international-finance",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/125",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "datascience-and-advanced-programming",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Internef/263",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "alternative-investments",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/122",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "mergers-acquisitions-and-corporate-structuring",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Anthropole/2024",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "advanced-data-analysis",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "16:30",
+   "fin": "18:00",
+   "salle": "Anthropole/3185",
+   "cadence": "irregulier",
+   "note": ""
+  },
+  {
+   "cours": "financial-accounting",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Synathlon/1216",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "international-finance",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Amphipôle/315.1",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "quantitative-asset-and-risk-management-ii",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Amphimax/413",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "corporate-finance",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "15:15",
+   "fin": "19:00",
+   "salle": "Internef/263",
+   "cadence": "hebdomadaire",
+   "note": "Sauf le 15 septembre et 17 novembre à Génopode C"
+  },
+  {
+   "cours": "investments",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Internef/273",
+   "cadence": "quinzaine",
+   "note": "Exercises"
+  },
+  {
+   "cours": "mathematics-for-economics-and-finance",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/273",
+   "cadence": "hebdomadaire",
+   "note": "Exercises"
+  },
+  {
+   "cours": "private-equity-venture-capital",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Internef/273",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "private-equity-venture-capital-2",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Internef/273",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "managing-risk-in-financial-institutions",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "16:15",
+   "fin": "20:00",
+   "salle": "Internef/272",
+   "cadence": "quinzaine",
+   "note": ""
+  },
+  {
+   "cours": "managing-risk-in-financial-institutions-2",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "16:15",
+   "fin": "20:00",
+   "salle": "Internef/272",
+   "cadence": "quinzaine",
+   "note": ""
+  },
+  {
+   "cours": "investments",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Synathlon/1216",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "cfa-general-research-challenge-see-general-inf",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Anthropole/2055",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "mathematics-for-economics-and-finance",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Amphimax/410",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "market-microstructure",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "13:15",
+   "fin": "17:00",
+   "salle": "Internef/272",
+   "cadence": "quinzaine",
+   "note": ""
+  },
+  {
+   "cours": "optimization-methods-for-management",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/275",
+   "cadence": "hebdomadaire",
+   "note": "First week dedicated to projects - lecture starts 25th of September"
+  },
+  {
+   "cours": "blockchain-and-crypto-economy",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Amphipôle/340",
+   "cadence": "hebdomadaire",
+   "note": "27 avril en ligne"
+  },
+  {
+   "cours": "blockchain-and-crypto-economy",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "12:30",
+   "fin": "18:00",
+   "salle": "Amphipôle/340",
+   "cadence": "hebdomadaire",
+   "note": "27 avril en ligne"
+  },
+  {
+   "cours": "derivatives",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Internef/263",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "sustainability-aware-asset-management",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Amphimax/351",
+   "cadence": "hebdomadaire",
+   "note": "sauf le 24 février, salle 412 à Amphimax"
+  },
+  {
+   "cours": "valuation",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/275",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-des-marches-financiers",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/232",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "financial-analysis",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/271",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "international-strategy",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Amphimax/415",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "real-estate-investments",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Synathlon/1216",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "entrepreneurship-and-strategy",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/125",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "entrepreneurship-and-strategy",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Internef/232",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "unethical-decision-making-basics",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": "24 septembre à Amphipôle A, 8 et 29 octobre"
+  },
+  {
+   "cours": "unethical-decision-making-advanced",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole/2013",
+   "cadence": "hebdomadaire",
+   "note": "7 dernières semaines du semestre"
+  },
+  {
+   "cours": "market-microstructure",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "16:15",
+   "fin": "18:00",
+   "salle": "Internef/275",
+   "cadence": "hebdomadaire",
+   "note": "la fiche de cours et l'agenda ne donnent pas le même créneau, vérifie avant de t'inscrire"
+  }
+ ]
+}

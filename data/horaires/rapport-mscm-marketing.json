@@ -1,0 +1,50 @@
+{
+ "programme": "mscm-marketing",
+ "nonResolus": [
+  {
+   "ligne": 7,
+   "titre": "Simple for managing people in face of adversity: Practical skills for difficult situations",
+   "raison": "introuvable (meilleure similarite 0.39), proches : statistical-methods-for-management-all-orienta, data-science-methods-for-management-ba-orienta, optimization-methods-for-management-ba-orienta"
+  },
+  {
+   "ligne": 15,
+   "titre": "Luxury Marketing",
+   "raison": "introuvable (meilleure similarite 0.69), proches : global-marketing, datascience-for-marketing, digital-marketing-strategy"
+  },
+  {
+   "ligne": 31,
+   "titre": "d-o TmCh of and- - 2120",
+   "raison": "introuvable (meilleure similarite 0.34), proches : strategy-of-innovation, digital-strategies-and-innovation, developing-behavioral-insights-and-nudging"
+  },
+  {
+   "ligne": 34,
+   "titre": "Neuro Economie",
+   "raison": "introuvable (meilleure similarite 0.44), proches : heuristic-decision-making-strategies, integrated-marketing-communications, genes-populations-and-evolution-bee-orientatio"
+  },
+  {
+   "ligne": 39,
+   "titre": "Simple Rules for Leadership and Strategy: a Practical Approach",
+   "raison": "introuvable (meilleure similarite 0.39), proches : sustainability-strategy-project, grand-challenges-strategy-project, brand-strategic-project-for-mkt-orientation-on"
+  }
+ ],
+ "rapprochesParSimilarite": [
+  {
+   "ligne": 10,
+   "titre": "Integrated Marketing Communication (MScM)",
+   "retenu": "integrated-marketing-communications",
+   "note": "SIMILARITE 0.95"
+  },
+  {
+   "ligne": 19,
+   "titre": "Organizational Theory and Decision Making - SOL/BEE orientations",
+   "retenu": "organizational-theory-and-decision-making-sol-",
+   "note": "SIMILARITE 0.95"
+  },
+  {
+   "ligne": 21,
+   "titre": "Organizational Theory and Decision Making - SOL/BEE orientations",
+   "retenu": "organizational-theory-and-decision-making-sol-",
+   "note": "SIMILARITE 0.95"
+  }
+ ]
+}

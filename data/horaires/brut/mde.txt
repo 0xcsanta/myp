@@ -1,0 +1,113 @@
+# mde : releve automatique des PDF d'horaire officiels.
+# Genere par tools_pdf_horaires.py, ne pas editer a la main sans raison.
+
+@semestre automne-2026
+Lundi | 08:30 | 12:00 | Sociétés de capitaux et financement d'entreprise | Internef/275 | hebdomadaire | 
+Lundi | 08:30 | 12:00 | Innovation and Control Systems | Anthropole 3 | quinzaine | Débute le 28 septembre 0 2 1 - D a vi la Antonio
+Lundi | 08:30 | 12:00 | r s h ip , P r o p ri été | Synathlon/2420 | irregulier | /
+Lundi | 08:30 | 12:00 | Taxation o f e enterprises and t ransfer e pricing policy | Internef/121 | irregulier | 
+Lundi | 10:15 | 12:00 | ne E and Machine Learning |  | irregulier | 
+Lundi | 13:15 | 15:00 | Fiscalité de l'entreprise - impôts directs | Internef/271 | hebdomadaire | Automne
+Lundi | 14:15 | 18:00 | Leadership Development | Amphimax/412 | hebdomadaire | Débute le 28 septembre
+Lundi | 14:15 | 17:00 | Entraide judiciaire internationale en matière pénale | Internef/233 | hebdomadaire | Trimestre 2
+Lundi | 14:15 | 18:00 | Advanced issues in International and European Tax Law | Synathlon/2420 | hebdomadaire | Prof. (en rempl. du Prof. Danon) Trimestre 2
+Lundi | 15:15 | 17:00 | Séminaire de droit des affaires | Anthropole/3021 | hebdomadaire | 
+Lundi | 15:15 | 19:00 | IA en comptabilité, contrôle et finance | Anthropole/2106 | hebdomadaire | 
+Mardi | 08:30 | 12:00 | Comptabilité et analyse des états financiers | Anthropole/2013 | hebdomadaire | 
+Mardi | 08:30 | 12:00 | Corporate | Anthropole 4021 | irregulier | 
+Mardi | 08:30 | 12:00 | Procédure juridiction | Internef/272 | irregulier | 
+Mardi | 09:15 | 12:00 | e-s Arbitrage en droit sport | Cubotron/I | irregulier | gradin
+Mardi | 10:15 | 12:00 | Droit des obligations | Anthropole/3021 | hebdomadaire | 
+Mardi | 10:15 | 12:00 | c i v ile e t c o m m e | Internef/126 | irregulier | Hebdomada
+Mardi | 12:15 | 14:00 | Séminaire de restructuration financière | Internef/272 | irregulier | 
+Mardi | 12:30 | 14:00 | Droit des obligations | Anthropole/3021 | hebdomadaire | 
+Mardi | 12:30 | 14:00 | Microeconomics and Game Theory | Internef/233 | hebdomadaire | 
+Mardi | 14:15 | 16:00 | Droit public | Internef/231 | hebdomadaire | 
+Mardi | 14:15 | 18:00 | Empirical Methods for Lawyers | Internef/233 | hebdomadaire | 
+Mardi | 14:15 | 16:00 | in and Machine Learning - Internef / |  | irregulier | 
+Mardi | 14:15 | 18:00 | T/ax Disputes & Investment Treaty Arbitration Wuschka (rempl. du Prof. Danon) | Internef/275 | irregulier | Trimestre 1
+Mardi | 15:15 | 19:00 | Corporate | Internef/263 | irregulier | F inance (MScF) / Sauf le 15 septembre et 17 novembre à Génopode / C
+Mercredi | 08:00 | 12:00 | à la finance | Amphimax/412 | irregulier | 
+Mercredi | 08:15 | 10:00 | Economie I |  | irregulier | Groupe B C - - Exercic e s - S t r a Amphipô le / d 'e D - Ayoubi - Charles, Gallea Quentin 412 - Hebdom ad a ir e M o n n
+Mercredi | 08:30 | 12:00 | B C - e s - S t r a tégie le | Amphimax/412 | irregulier | d 'e - Gallea ad a ir e M o n n ier Jérôme HebdomCad -a I / - A
+Mercredi | 08:30 | 10:00 | Foundations in Econometrics and Machine Learning |  | irregulier | Exercices
+Mercredi | 08:30 | 10:00 | Médiation civile et commerciale - 12C6 | Internef/et | irregulier | 
+Mercredi | 09:00 | 12:00 | 12C6 | IDHEAP/AC | irregulier | et Politiques Publiques
+Mercredi | 10:15 | 12:00 | a Eirceonomie I | Amphipôle/A | hebdomadaire | Groupe A - Exercices
+Mercredi | 10:15 | 14:00 | AC U- LDAroit de la Hcoenbsdoommmadaatiiroen et c l in ique | Internef/1 | hebdomadaire | 2 5
+Mercredi | 14:15 | 16:00 | Droit de l'Union européenne | Internef/272 | hebdomadaire | 
+Mercredi | 14:15 | 18:00 | Méthodes en droit des affaires | Internef/233 | hebdomadaire | 
+Mercredi | 14:15 | 18:00 | Droit fiscal du patrimoine | Internef/232 | hebdomadaire | 
+Mercredi | 17:15 | 19:00 | La recherche dans tous ses états (automne - 3 crédits) | Géopolis/1620 | hebdomadaire | 
+Jeudi | 08:30 | 10:00 | Droit de l'Union européenne | Internef/275 | hebdomadaire | 
+Jeudi | 08:30 | 12:00 | Droit de | Internef/121 | irregulier | 
+Jeudi | 08:30 | 12:00 | Droit pénal P. Meyer en du Prof. Métille | Géopolis/1 | irregulier | 6 2 8 H e b
+Jeudi | 08:30 | 12:00 | Fiscal Policy - H/EAP |  | irregulier | 003 1
+Jeudi | 10:15 | 12:00 | Regulatory E c o n o m i cs A u t o m n e | Anthropole 5136 | irregulier | Thoeni
+Jeudi | 12:30 | 16:00 | Advanced Group Accounting | Anthropole/2106 | hebdomadaire | 
+Jeudi | 12:30 | 16:00 | Normes comptables (IFRS) | Anthropole/2106 | hebdomadaire | 
+Jeudi | 13:30 | 15:00 | Droit pénal | Amphimax/412 | hebdomadaire | 
+Jeudi | 14:15 | 16:00 | Microeconomics and Game Theory | Internef/233 | hebdomadaire | 
+Jeudi | 14:15 | 18:00 | Procédure pénale | Internef/272 | hebdomadaire | 
+Vendredi | 08:15 | 10:00 | Economie I | Amphipôle/à | irregulier | Groupe anglais B - Ayoubi fi Charles, Galle a Quentin Hebdomadair e A
+Vendredi | 08:30 | 12:00 | / à la fi nance - a | Anthropole 3174 | irregulier | e A Fabio
+Vendredi | 08:30 | 12:00 | / | Anthropole 3174 | irregulier | Jérôme
+Vendredi | 08:30 | 12:00 | Procédure civile | Internef/272 | hebdomadaire | / /
+Vendredi | 08:30 | 12:00 | Propriété intellectuelle | Internef/122 | hebdomadaire | 
+Vendredi | 10:15 | 12:00 | Economie I | Amphimax/351 | hebdomadaire | Groupe A
+Vendredi | 12:30 | 14:00 | Economie C - I | Amphipôle/D | hebdomadaire | Groupe B A y o ub i d 'e n tr Charles, Gallea Quentin - 3185 - Jérôme
+Vendredi | 12:30 | 16:00 | Stratégie A y o ub i d 'e n tr eprise | Anthropole/3185 | hebdomadaire | 
+Vendredi | 12:30 | 16:00 | Audit externe | Anthropole/2064 | hebdomadaire | 
+Vendredi | 14:15 | 16:00 | Economie I | Internef/263 | hebdomadaire | Groupe anglais - Exercices
+Vendredi | 14:15 | 16:00 | Droit et éthique de la profession d'avocat·e |  | irregulier | Présence contrôlée pour l'accès à l'examen
+Vendredi | 14:15 | 18:00 | Droit des assurances privées | Internef/121 | hebdomadaire | 
+
+@semestre printemps-2026
+Lundi | 08:30 | 10:00 | Rédaction de contrats | Internef/232 | hebdomadaire | 
+Lundi | 08:30 | 12:30 | International Corporate and Individual Taxation – International and European Perspective | Internef/231 | hebdomadaire | En commun avec HEC C - Droit é c o n o m iq - C u b o tr on / III
+Lundi | 10:15 | 12:00 | Droit des maCr c-h financiers - Interinnetfe 232 - Richa |  | hebdomadaire | 
+Lundi | 10:15 | 14:00 | c-h Dérsoit /rnational | Cubotron/III | hebdomadaire | C - outils
+Lundi | 10:15 | 14:00 | Droit é c o n o m iq - C u b o tr on |  | irregulier | III C - du
+Lundi | 12:30 | 14:00 | Entreprenariat : outils et atelier | Internef/121 | hebdomadaire | 
+Mardi | 08:30 | 12:00 | Droit pénal | Internef/275 | irregulier | 
+Mardi | 08:30 | 12:00 | C Interna t i o n F i n a r c ia d r o Arbitration Prof. - bloc Anthrop o le 9 a u 3032 1 2 1 F a v r C o u |  | irregulier | 
+Mardi | 10:15 | 12:00 | Droit des m a r c h é s p u b l i c s - In t e r n e f |  | irregulier | 232 Hebdomada
+Mardi | 13:15 | 16:15 | Politique économique et budgets publics en Suisse | IDHEAP/AULA | hebdomadaire | 
+Mercredi | 08:30 | 12:00 | Valuation | Internef/275 | hebdomadaire | 
+Mercredi | 10:15 | 12:00 | Economie II | Amphipôle/A | hebdomadaire | Groupe B
+Mercredi | 10:15 | 12:00 | Economie II | Amphipôle/A | hebdomadaire | Groupe B
+Mercredi | 12:30 | 14:00 | Economie II | Amphipôle/C | hebdomadaire | Groupe A
+Mercredi | 12:30 | 14:00 | Economie II | Amphipôle/C | hebdomadaire | Groupe A
+Mercredi | 14:15 | 16:00 | Procédure fiscale | Internef - | irregulier | sauf le 27 mai à la salle 123 à Anthropole / 2106 - Danon
+Mercredi | 14:15 | 18:00 | Advanced Financial Analysis | Internef/272 | hebdomadaire | Débute le 18 février
+Mercredi | 14:15 | 18:00 | International Strategy | Amphimax/415 | hebdomadaire | 
+Jeudi | 08:15 | 10:00 | Economie II | Amphipôle/A | hebdomadaire | Groupe A
+Jeudi | 08:15 | 10:00 | Economie II | Amphipôle/A | hebdomadaire | Groupe A
+Jeudi | 08:30 | 12:00 | Droit bancaire | Internef/271 | hebdomadaire | 
+Jeudi | 08:30 | 12:00 | Droit bancaire | Internef/271 | hebdomadaire | 
+Jeudi | 08:30 | 12:00 | Droit pénal informatique | Géopolis/1628 | hebdomadaire | 
+Jeudi | 08:30 | 12:00 | Simple Rules for Leadership and Strategy: a Practical Approach | Internef - | irregulier | Sauf le 1er mai dans la salle 129 à Internef / 233 - M a r ew s k i J u li a n H e b d o m a d aire
+Jeudi | 10:15 | 12:00 | Economie II | Amphipôle/A | hebdomadaire | Groupe A - Exercices
+Jeudi | 10:15 | 12:00 | Economie II | Amphipôle/A | hebdomadaire | Groupe A - Exercices
+Jeudi | 12:30 | 16:00 | Fiscalité directe II & Fiscalité indirecte (TVA) | Anthropole/2106 | hebdomadaire | 1er cours dans la salle C du Génopode
+Jeudi | 13:15 | 17:00 | Analyse économique du droit | Internef/272 | hebdomadaire | 
+Jeudi | 14:15 | 16:00 | Economie II | Amphipôle/D | hebdomadaire | Groupe anglais - Exercices
+Jeudi | 14:15 | 16:00 | Economie II | Amphipôle/B | hebdomadaire | Groupe B
+Jeudi | 14:15 | 16:00 | Economie II | Amphipôle/D | hebdomadaire | Groupe anglais - Exercices
+Jeudi | 14:15 | 16:00 | Economie II | Amphipôle/B | hebdomadaire | Groupe B
+Jeudi | 16:15 | 20:00 | Political and Institutional Economics | Internef/125 | hebdomadaire | 
+Vendredi | 08:30 | 12:00 | Droit du travail | Internef/275 | hebdomadaire | 
+Vendredi | 08:30 | 12:00 | Political and Institutional Economics | Internef/233 | hebdomadaire | 
+Vendredi | 10:15 | 12:00 | Droit des poursuites et faillites | Internef/272 | hebdomadaire | 
+Vendredi | 10:15 | 12:00 | Economie II | Amphipôle/D | hebdomadaire | Groupe anglais
+Vendredi | 10:15 | 12:00 | Droit des poursuites et faillites | Internef/272 | hebdomadaire | 
+Vendredi | 10:15 | 12:00 | Economie II | Amphipôle/D | hebdomadaire | Groupe anglais
+Vendredi | 13:15 | 15:00 | Droit des poursuites et faillites | Internef/272 | hebdomadaire | 
+Vendredi | 13:15 | 16:00 | Financial Institutions & Regulation | Internef 121 | hebdomadaire | le 20.2 / 20.03 / 22.05 de 17h à 20h salle Internef / 121 - Bruhin Adrian
+Vendredi | 13:15 | 17:00 | Advanced Project Management Outsourcing in a Digital Era | Internef/123 | hebdomadaire | 
+Vendredi | 13:15 | 17:00 | Droit de la concurrence suisse et européen | Internef/271 | hebdomadaire | 
+Vendredi | 13:15 | 15:00 | Droit des poursuites et faillites | Internef/272 | hebdomadaire | 
+Vendredi | 14:15 | 16:00 | Economie II | Amphipôle/D | hebdomadaire | Groupe anglais
+Vendredi | 14:15 | 16:00 | Economie II | Amphipôle/A | hebdomadaire | Groupe B - Exercices
+Vendredi | 14:15 | 16:00 | Economie II | Amphipôle/D | hebdomadaire | Groupe anglais
+Vendredi | 14:15 | 16:00 | Economie II | Amphipôle/A | hebdomadaire | Groupe B - Exercices

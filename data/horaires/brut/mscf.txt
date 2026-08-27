@@ -1,0 +1,23 @@
+# mscf : releve automatique des PDF d'horaire officiels.
+# Genere par tools_pdf_horaires.py, ne pas editer a la main sans raison.
+
+@semestre automne-2026
+Lundi | 10:15 | 12:00 | Advanced Data Analysis | Internef/126 | hebdomadaire | 
+Lundi | 10:15 | 12:00 | International Finance | Internef/125 | hebdomadaire | 
+Lundi | 12:30 | 16:00 | Datascience and Advanced Programming | Internef/263 | hebdomadaire | 
+Lundi | 14:15 | 18:00 | Alternative Investments | Internef/122 | hebdomadaire | 
+Lundi | 14:15 | 18:00 | Mergers, Acquisitions and Corporate Structurings | Anthropole/2024 | hebdomadaire | 
+Lundi | 16:30 | 18:00 | Advanced Data Analysis | Anthropole/3185 | irregulier | 
+Mardi | 08:30 | 12:00 | Financial Accounting | Synathlon/1216 | hebdomadaire | 
+Mardi | 10:15 | 12:00 | International Finance | Amphipôle/315.1 | hebdomadaire | 
+Mardi | 12:30 | 16:00 | Quantitative Asset and Risk Management II | Amphimax/413 | hebdomadaire | 
+Mardi | 15:15 | 19:00 | Corporate Finance (MScF) | Internef/263 | hebdomadaire | Sauf le 15 septembre et 17 novembre à Génopode C
+Mercredi | 08:30 | 10:00 | Investments | Internef/273 | quinzaine | Exercises
+Mercredi | 10:15 | 12:00 | Mathematics for Economics and Finance | Internef/273 | hebdomadaire | Exercises
+Mercredi | 12:30 | 16:00 | Private Equity & Venture Capital | Internef/273 | hebdomadaire | 
+Mercredi | 16:15 | 20:00 | Managing Risk in Financial Institutions | Internef/272 | quinzaine | 
+Jeudi | 08:30 | 12:00 | Investments | Synathlon/1216 | hebdomadaire | 
+Jeudi | 12:30 | 14:00 | CFA General Research Challenge | Anthropole/2055 | hebdomadaire | 
+Vendredi | 12:30 | 16:00 | Mathematics for Economics and Finance | Amphimax/410 | hebdomadaire | 
+Vendredi | 13:15 | 17:00 | Market Microstructure | Internef/272 | quinzaine | 
+Vendredi | 14:15 | 18:00 | Optimization Methods for Management - BA orientation | Internef/275 | hebdomadaire | First week dedicated to projects - lecture starts 25th of September

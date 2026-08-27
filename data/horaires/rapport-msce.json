@@ -1,0 +1,31 @@
+{
+ "programme": "msce",
+ "nonResolus": [
+  {
+   "ligne": 6,
+   "titre": "Foundations in Econometrics and Machine Learning",
+   "raison": "introuvable (meilleure similarite 0.56), proches : topics-in-structural-econometrics-and-impact-e, mathematics-for-economics-and-finance, foundations-and-research-frontiers-in-labor-ec"
+  },
+  {
+   "ligne": 13,
+   "titre": "Foundations in Econometrics and Machine Learning",
+   "raison": "introuvable (meilleure similarite 0.56), proches : topics-in-structural-econometrics-and-impact-e, mathematics-for-economics-and-finance, foundations-and-research-frontiers-in-labor-ec"
+  },
+  {
+   "ligne": 14,
+   "titre": "Foundations in Econometrics and Machine Learning",
+   "raison": "introuvable (meilleure similarite 0.56), proches : topics-in-structural-econometrics-and-impact-e, mathematics-for-economics-and-finance, foundations-and-research-frontiers-in-labor-ec"
+  },
+  {
+   "ligne": 24,
+   "titre": "to Cb e- Ocorngfainrmizeadti o-nal Theory and Decision AMmapkhinimg a-x /O 4L1/0B E-E S orientations",
+   "raison": "introuvable (meilleure similarite 0.57), proches : organizational-theory-and-decision-making, behavior-economics-and-evolution-lecture-serie, economic-forecasting-for-decision-making"
+  },
+  {
+   "ligne": 27,
+   "titre": "Business Cycles",
+   "raison": "introuvable (meilleure similarite 0.34), proches : neuro-economie, international-trade, international-trade-ii"
+  }
+ ],
+ "rapprochesParSimilarite": []
+}

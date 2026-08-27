@@ -1,0 +1,47 @@
+# mscm-business-analytics : releve automatique des PDF d'horaire officiels.
+# Genere par tools_pdf_horaires.py, ne pas editer a la main sans raison.
+
+@semestre automne-2026
+Lundi | 08:00 | 10:00 | Data Science Methods for Management - BA orientation | Amphipôle/B | hebdomadaire | First week dedicated to projects - lecture starts 28th of September
+Lundi | 08:30 | 12:00 | Innovation and Control Systems | Anthropole/3021 | quinzaine | Débute le 28 septembre
+Lundi | 09:00 | 12:00 | The Art of Writing a Master's Thesis | Anthropole 2106 | irregulier | lundi 14 septembre de 9h à 12h - salle / Mardi 1 5 s e p tembre d e 9 h à 12h - salle Anthropole 2106 /
+Lundi | 10:15 | 12:00 | Data Science Methods for Management - BA orientation | Amphimax/412 | hebdomadaire | First week dedicated to projects - lecture starts 28th of September
+Lundi | 10:15 | 12:00 | Advanced Data Analysis | Internef/126 | hebdomadaire | K ar y a m pas D im it r io s
+Lundi | 12:30 | 16:00 | and Advanced | Internef/263 | irregulier | 
+Lundi | 14:15 | 18:00 | Strategic Management - SOL/BEE orientations | Internef/273 | hebdomadaire | First week dedicated to projects - lecture starts 28th of September
+Lundi | 16:30 | 18:00 | /anced D a t a A n a lysis - i | Anthropole 3185 | irregulier | 
+Mardi | 08:30 | 12:00 | Sustainable Choice Models | Anthropole/3059 | hebdomadaire | Débute le 22 septembre
+Mardi | 12:30 | 16:00 | Statistical Methods for Management - all orientations | Synathlon/1216 | hebdomadaire | First week dedicated to projects - lecture starts 22nd of September
+Mercredi | 08:30 | 12:00 | Software and Tools for Business Analytics | Internef/272 | hebdomadaire | Durant les 7 dernières semaines du semestre
+Mercredi | 12:30 | 16:00 | Marketing Science - MKT orientation | Internef/271 | hebdomadaire | First week dedicated to projects - lecture starts 23rd of September
+Mercredi | 14:15 | 18:00 | Demand and Supply Management | Internef/121 | irregulier | 
+Mercredi | 17:15 | 19:00 | La recherche dans tous ses états (automne - 3 crédits) - G é o po l is |  | hebdomadaire | 1 6 2 0 - P r e is sm a n n D e l p h i ne
+Jeudi | 08:30 | 12:00 | Data and Code Management: From Collection to Application | Anthropole/3032 | hebdomadaire | Débute le 25 septembre
+Jeudi | 10:15 | 12:00 | Organizational Theory and Decision Making - SOL/BEE orientations | Internef 273 | hebdomadaire | First week dedicated to projects - lecture starts 24th of September - except 19 nov in and 3 déc in ? room to be confirmed - Amphimax / 410 - Grieder Manuel
+Jeudi | 12:30 | 14:00 | Organizational Theory and Decision Making - SOL/BEE orientations | Internef 273 | hebdomadaire | First week dedicated to projects - lecture starts 24th of September - except 19 nov in and 3 déc in ? room to be confirmed - Amphimax / 410 - Grieder Manuel
+Jeudi | 12:30 | 16:00 | Normes comptables internationales (IFRS) | Anthropole/2106 | hebdomadaire | 
+Jeudi | 14:15 | 18:00 | Strategic Purchasing and Supply M a n a g e m e n t | Anthropole/3032 | hebdomadaire | Dé b u t e l e 2 5 septembre
+Jeudi | 16:15 | 18:00 | Genes, Populations and Evolution - BEE orientation | Internef/122 | hebdomadaire | First week dedicated to projects - lecture starts 24th of September
+Vendredi | 08:00 | 12:00 | Strategic Marketing - MKT orientation | Amphimax/415 | hebdomadaire | First week dedicated to projects - lecture starts 25th of September
+Vendredi | 08:30 | 12:00 | Applied AI & Deep Learning for Managers: From Fundamentals to Business Applications | Anthropole/3 | hebdomadaire | 2-9-30 oct / 20-27 nov / 11 déc 0 7 7 - Vatter Th i b a u lt
+Vendredi | 08:30 | 12:00 | Generative AI for Intelligent Information Extraction | Anthropole/3077 | hebdomadaire | 25 sept - 16-23 oct / 6-13 nov / 4-18 déc
+Vendredi | 10:15 | 12:00 | Strategic Pricing | Anthropole/3032 | irregulier | D é b u t e le 2 5 se p t e m b re Christen
+Vendredi | 12:30 | 14:00 | Genes, Populations and Evolution - BEE orientation | Internef/122 | hebdomadaire | First week dedicated to projects - lecture starts 25th of September
+Vendredi | 14:15 | 18:00 | Optimization Methods for Management - BA orientation | Internef/275 | hebdomadaire | First week dedicated to projects - lecture starts 25th of September
+
+@semestre printemps-2026
+Lundi | 08:30 | 12:00 | Machine Learning In Business Analytics | Anthropole/3021 | hebdomadaire | 
+Lundi | 10:15 | 14:00 | Methods | Internef/122 | irregulier | Pause de 12h à 12h30
+Lundi | 12:30 | 14:00 | CTh -e MaSnuasgteamineanbtle of RLiosgk,istics Rep-utation andAnthropole |  | irregulier | Leg4it1i6m5a -cy - AntGhraojdpaole /
+Lundi | 14:15 | 17:00 | Crisis Management | Anthropole/3185 | hebdomadaire | 16 février uniquement
+Lundi | 14:15 | 18:00 | Power and Leadership | Anthropole/3021 | hebdomadaire | 
+Mardi | 08:30 | 12:00 | Production Planning and Scheduling | Anthropole/5081 | hebdomadaire | 
+Mardi | 14:15 | 18:00 | Neuro Economie | Internef/233 | hebdomadaire | Printemps
+Mercredi | 08:30 | 12:00 | Supply Chain Network Design and Planning | Géopolis/1620 | hebdomadaire | 
+Jeudi | 08:30 | 12:00 | Simple Rules for Leadership and Strategy: a Practical Approach | Internef - | hebdomadaire | Sauf le 1er mai dans la salle 129 à Internef / 233 - Marewski Julian
+Vendredi | 08:30 | 12:00 | Analytics in Action: Operations Management through Simulation (for BA orientation only) | Anthropole/4021 | irregulier | Pour les étudiant.es de l'orientation BA uniquement Hayek
+Vendredi | 08:30 | 12:00 | Social Well Being - Génopode |  | hebdomadaire | C - Clergue Valentina
+Vendredi | 10:30 | 12:00 | Analytics in Action: Business Intelligence with Real Data (for BA orientation |  | irregulier | 
+Vendredi | 12:30 | 14:00 | Analytics in Action: Business Intelligence with Real Data (for BA onlyC) -/ orientation étudianPtr.oejsect Pour les de |  | irregulier | 
+Vendredi | 13:15 | 17:00 | / Advanced - u-tsourcing in a Digital C - Era - Inte rn e f |  | hebdomadaire | D e ci s 123 - Bie n z D u rant Pius V du
+Vendredi | 14:15 | 18:00 | Multicriteria rn e f | Anthropole/5021 | hebdomadaire | D e ci s ion Analysis / n z D u rant les 7 premières semaines du semestre

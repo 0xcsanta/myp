@@ -1,0 +1,33 @@
+# msce : releve automatique des PDF d'horaire officiels.
+# Genere par tools_pdf_horaires.py, ne pas editer a la main sans raison.
+
+@semestre automne-2026
+Lundi | 08:30 | 12:00 | Macroeconomic Policy | Anthropole/3128 | hebdomadaire | 
+Lundi | 10:15 | 12:00 | Foundations in Econometrics and Machine Learning | Anthropole/2013 | hebdomadaire | 
+Lundi | 10:15 | 12:00 | Advanced Data Analysis | Internef/126 | hebdomadaire | 
+Lundi | 12:30 | 16:00 | Datascience and Advanced Programming | Internef/263 | hebdomadaire | 
+Lundi | 14:15 | 18:00 | Leadership Development | Amphimax/412 | hebdomadaire | Débute le 28 septembre
+Lundi | 16:15 | 18:00 | Health Economics | Anthropole/3128 | hebdomadaire | 
+Lundi | 16:30 | 18:00 | Advanced Data Analysis | Anthropole/3185 | hebdomadaire | 
+Mardi | 12:30 | 16:00 | Development Economics | Géopolis/1620 | hebdomadaire | 
+Mardi | 14:15 | 16:00 | Foundations in Econometrics and Machine Learning | Internef/122 | hebdomadaire | 
+Mercredi | 08:30 | 10:00 | Foundations in Econometrics and Machine Learning | Anthropole/5196 | hebdomadaire | Exercices
+Mercredi | 08:30 | 12:00 | Economic Forecasting for Decision Making | Anthropole/5033 | hebdomadaire | Automne
+Mercredi | 10:15 | 12:00 | Mathematics for Economics | Internef/126 | hebdomadaire | 
+Mercredi | 10:15 | 12:00 | Mathematics for Economics and Finance | Internef/273 | hebdomadaire | Exercises
+Mercredi | 14:15 | 16:00 | Macroeconomics | Anthropole/3174 | quinzaine | 
+Mercredi | 14:15 | 16:00 | Microeconomics | Anthropole/3174 | quinzaine | 
+Mercredi | 14:15 | 18:00 | Human Behavior and Evolutionary Inference | Internef/129 | hebdomadaire | Débute le 23 septembre
+Jeudi | 08:30 | 12:00 | Macroeconomics | Anthropole/2055 | hebdomadaire | 
+Jeudi | 10:15 | 12:00 | Organizational Theory and Decision Making - SOL/BEE orientations |  | irregulier | First week dedicated to projects - lecture starts 24th of September
+Jeudi | 10:15 | 12:00 | Regulatory Economics | Anthropole/5136 | hebdomadaire | Automne
+Jeudi | 12:30 | 14:00 | to Cb e- Ocorngfainrmizeadti o-nal Theory and Decision AMmapkhinimg a-x /O 4L1/0B E-E S orientations | Internef 273 | hebdomadaire | First week Gderidediceart Meda ntou eplrojects - lecture starts 24th Hofe bSdeopmteamdabireer - except 19 nov in and 3 déc in ? room to be confirmed - Amphimax / 410 - Grieder Manuel
+Jeudi | 14:15 | 16:00 | Microeconomics | Internef/126 | hebdomadaire | 
+Jeudi | 14:15 | 18:00 | Behavioral Economics | Internef/121 | hebdomadaire | Débute le 24 septembre
+Jeudi | 14:15 | 18:00 | Business Cycles | Anthropole/3028 | hebdomadaire | 
+Jeudi | 16:15 | 18:00 | Genes, Populations and Evolution - BEE orientation | Internef/122 | hebdomadaire | First week dedicated to projects - lecture starts 24th of September
+Vendredi | 10:15 | 12:00 | Microeconomics | Internef/232 | hebdomadaire | 
+Vendredi | 12:30 | 14:00 | Genes, Populations and Evolution - BEE orientation | Internef/122 | hebdomadaire | First week dedicated to projects - lecture starts 25th of September
+Vendredi | 12:30 | 16:00 | Development Economics | Anthropole/5033 | hebdomadaire | / Trimestre 1
+Vendredi | 12:30 | 16:00 | Mathematics for Economics and Finance | Amphimax/410 | hebdomadaire | 
+Vendredi | 16:15 | 18:00 | Health Economics | Internef/233 | hebdomadaire | 

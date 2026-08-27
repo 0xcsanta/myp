@@ -1,0 +1,342 @@
+{
+ "programme": "mscas",
+ "source": {
+  "document": "Horaire type officiel du programme, relevé par capture d'écran de l'agenda UNIL",
+  "url": "https://applicationspub.unil.ch/interpub/noauth/php/Ud/index.php?v_ueid=173&v_langue=fr",
+  "releveLe": "2026-08-26",
+  "releveParUnHumain": true,
+  "note": "Extrait des PDF officiels par géométrie. Les heures sont calées automatiquement sur la grille du document. Les intitulés sont recoupés avec le catalogue ; ceux que la mise en page du PDF a hachés au point de les rendre méconnaissables sont exclus et listés dans rapport-<master>.json."
+ },
+ "creneaux": [
+  {
+   "cours": "dependence-modelling",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/123",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "insurance-economics",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "time-series",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Internef/129",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "computational-tools-for-actuaries",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef -",
+   "cadence": "quinzaine",
+   "note": "Sauf le 15 septembre dans la salle 275 à Internef / 121 - Zucchinetti Giovanni"
+  },
+  {
+   "cours": "prevoyance-professionnelle",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Anthropole/205-5",
+   "cadence": "hebdomadaire",
+   "note": "1216"
+  },
+  {
+   "cours": "financial-accounting",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Synathlon/1216",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "asset-and-liability-management-for-actuaries",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/231",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "mathematics-of-compound-interest",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Internef/123",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "investments",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Internef/273",
+   "cadence": "quinzaine",
+   "note": "Exercises"
+  },
+  {
+   "cours": "asset-and-liability-management-for-actuaries",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/123",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "life-contingencies-ii",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Internef/231",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "mathematiques-des-caisses-de-pension",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Extranef -",
+   "cadence": "hebdomadaire",
+   "note": "Salle 126 à"
+  },
+  {
+   "cours": "investments",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Synathlon/1216",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "credibility-theory",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "life-contingencies-ii",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/129",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "probability-and-stochastic-processes",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Internef/232",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "probability-and-stochastic-processes",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/121",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "dependence-modelling",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Internef/231",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "mathematiques-des-caisses-de-pension",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Internef/233",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "introduction-to-data-science-i",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "10:15",
+   "fin": "14:00",
+   "salle": "Internef/122",
+   "cadence": "hebdomadaire",
+   "note": "sauf les 16 septembre, 11, 18 et 25 novembre, 2, 9 et 16 décembre"
+  },
+  {
+   "cours": "introduction-to-data-science-ii",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Internef/123",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "principles-of-finance",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Internef/273",
+   "cadence": "quinzaine",
+   "note": "exercices"
+  },
+  {
+   "cours": "principles-of-finance",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Internef/121",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "principles-of-finance",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Internef/123",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "life-contingencies-i",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "11:10",
+   "fin": "13:00",
+   "salle": "Internef/121",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "life-contingencies-i",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Internef/122",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "loss-models",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "09:00",
+   "fin": "11:00",
+   "salle": "Internef/121",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "loss-models",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/123",
+   "cadence": "hebdomadaire",
+   "note": "sauf les 23 et 30 avril, de 8:30 à 10:00 à Internef/121"
+  },
+  {
+   "cours": "data-science-for-non-life-insurance",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/231",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "data-science-for-non-life-insurance",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "13:00",
+   "fin": "15:00",
+   "salle": "Internef/231",
+   "cadence": "irregulier",
+   "note": "les 20 et 27 février, le 6 mars et le 8 mai"
+  },
+  {
+   "cours": "risk-theory",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "13:00",
+   "fin": "15:00",
+   "salle": "Internef/231",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "risk-theory",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Internef/121",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "social-insurance",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/121",
+   "cadence": "hebdomadaire",
+   "note": ""
+  }
+ ]
+}

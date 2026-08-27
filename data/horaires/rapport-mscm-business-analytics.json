@@ -1,0 +1,55 @@
+{
+ "programme": "mscm-business-analytics",
+ "nonResolus": [
+  {
+   "ligne": 23,
+   "titre": "Strategic Purchasing and Supply M a n a g e m e n t",
+   "raison": "introuvable (meilleure similarite 0.54), proches : strategic-pricing, demand-management, strategic-marketing-mkt-orientation"
+  },
+  {
+   "ligne": 34,
+   "titre": "Methods",
+   "raison": "ambigu : data-science-methods-for-management-ba-orienta, optimization-methods-for-management-ba-orienta, statistical-methods-for-management-all-orienta"
+  },
+  {
+   "ligne": 35,
+   "titre": "CTh -e MaSnuasgteamineanbtle of RLiosgk,istics Rep-utation andAnthropole",
+   "raison": "introuvable (meilleure similarite 0.37), proches : advanced-issues-in-international-and-european-, sustainable-logistics, data-and-code-management-from-collection-to-ap"
+  },
+  {
+   "ligne": 37,
+   "titre": "Power and Leadership",
+   "raison": "introuvable (meilleure similarite 0.48), proches : projects-in-demand-forecasting, software-and-tools-for-business-analytics, datascience-and-advanced-programming"
+  },
+  {
+   "ligne": 39,
+   "titre": "Neuro Economie",
+   "raison": "introuvable (meilleure similarite 0.36), proches : genes-populations-and-evolution-bee-orientatio, entrepreneurship-innovation-and-control-system, multicriteria-decision-analysis"
+  },
+  {
+   "ligne": 41,
+   "titre": "Simple Rules for Leadership and Strategy: a Practical Approach",
+   "raison": "introuvable (meilleure similarite 0.39), proches : software-and-tools-for-business-analytics, applied-ai-deep-learning-for-managers-from-fun, statistical-methods-for-management-all-orienta"
+  }
+ ],
+ "rapprochesParSimilarite": [
+  {
+   "ligne": 17,
+   "titre": "Demand and Supply Management",
+   "retenu": "demand-management",
+   "note": "MOTS COMMUNS 0.67"
+  },
+  {
+   "ligne": 42,
+   "titre": "Analytics in Action: Operations Management through Simulation (for BA orientation only)",
+   "retenu": "analytics-in-action-operations-management-thro",
+   "note": "SIMILARITE 0.92"
+  },
+  {
+   "ligne": 44,
+   "titre": "Analytics in Action: Business Intelligence with Real Data (for BA orientation",
+   "retenu": "analytics-in-action-business-intelligence-with",
+   "note": "SIMILARITE 0.92"
+  }
+ ]
+}

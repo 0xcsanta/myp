@@ -25,5 +25,8 @@ __pycache__/
 sources-brutes/
 shot-*.png
 
-# captures d'ecran des horaires, lourdes et remplacees par data/horaires
-horaires/
+# captures d'ecran des horaires, lourdes et remplacees par data/horaires.
+# La barre initiale n'est pas decorative : sans elle, le motif attrape TOUT
+# dossier nomme « horaires », donc data/horaires, que l'application lit au
+# build. Un clone neuf se serait deploye sans un seul horaire.
+/horaires/

@@ -29,16 +29,33 @@ def fold(s):
 # ---------------------------------------------------------------- extraction
 
 def rows_of(pdf_path):
-    """Toutes les lignes du PDF, sous forme (y, [(x, mot), ...]), page par page."""
+    """
+    Toutes les lignes du PDF, sous forme (y, [(x, mot), ...]), page par page.
+
+    Deux mots colles sont recolles. Certains titres sont composes lettre par
+    lettre, chacune posee separement, et pdfplumber rend alors un jeton par
+    glyphe : « Situating Humans » sortait en « S it u a t in g H u m a n s ».
+    L'ecart le dit sans ambiguite, mesure sur le plan du MScE : a l'interieur
+    d'un mot les glyphes se touchent, l'ecart vaut 0,03 point ; entre deux mots
+    il vaut 1,3. Un demi point tranche largement, une espace typographique a
+    cette taille en faisant environ deux.
+    """
     out = []
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
             buckets = collections.OrderedDict()
             for w in page.extract_words():
                 key = next((k for k in buckets if abs(k - w['top']) < 3.5), round(w['top'], 1))
-                buckets.setdefault(key, []).append((round(w['x0'], 1), w['text']))
+                buckets.setdefault(key, []).append((w['x0'], w['x1'], w['text']))
             for y in sorted(buckets):
-                out.append((y, sorted(buckets[y])))
+                mots = []
+                for x0, x1, t in sorted(buckets[y]):
+                    if mots and x0 - mots[-1][1] < 0.5:
+                        g, d, txt = mots[-1]
+                        mots[-1] = (g, max(d, x1), txt + t)
+                    else:
+                        mots.append((x0, x1, t))
+                out.append((y, [(round(x0, 1), t) for x0, _, t in mots]))
     return out
 
 def header_columns(rows):
@@ -114,6 +131,20 @@ ECTS_ENTETE = re.compile(
     r'(?:select(?:\s+at\s+least)?\s*)?(\d+(?:[.,]\d+)?)\s*(?:credits?|crédits?)?\s*ECTS',
     re.I)
 
+# Les mots par lesquels une phrase commence, et jamais un intitule de cours.
+# Volontairement courte : elle n'est la que pour ecarter la prose, pas pour
+# juger des titres. « The Evolution of Cooperation » commence par « the » et
+# doit passer, donc « the » n'y figure pas ; le rejet vient alors de la
+# virgule finale ou de rien du tout.
+AMORCES_DE_PHRASE = {
+    'from', 'and', 'or', 'is', 'are', 'was', 'were', 'that', 'which', 'who',
+    'this', 'these', 'those', 'there', 'they', 'it', 'we', 'you', 'if',
+    'when', 'while', 'because', 'however', 'therefore',
+    'et', 'ou', 'qui', 'que', 'dont', 'ce', 'cette', 'ces', 'il', 'elle',
+    'ils', 'elles', 'nous', 'vous', 'si', 'lorsque', 'donc', 'car',
+}
+
+
 def parse_plan(pdf_path, slug):
     rows = rows_of(pdf_path)
     cols, hdr_y = header_columns(rows)
@@ -123,10 +154,26 @@ def parse_plan(pdf_path, slug):
     sem_x = semester_columns(rows, cols.get('prof', 200), cols['ects'])
     modules, courses = [], []
     current = None
+    # Un intitule trop long pour la colonne passe a la ligne, et la ligne du
+    # dessus ne porte alors ni credits ni puce. Elle etait purement perdue :
+    # « Situating Humans in Time: From the Beginning of Life to / the
+    # Anthropocene » entrait au catalogue sous le seul mot « the Anthropocene »,
+    # que le releve d'horaire ne pouvait plus reconnaitre.
+    #
+    # On garde donc la ligne precedente quand elle tient entierement dans la
+    # colonne des intitules. Mais elle n'est recollee que si le cours qui suit
+    # commence par une minuscule : c'est ce qui distingue la fin d'une phrase
+    # coupee d'un vrai debut de titre. Sans cette condition, les intertitres
+    # « Concours juridiques », « B. Economic Policy », « Pre-approved courses »
+    # se collaient au premier cours de leur section, et « Cours FGSE » y faisait
+    # meme disparaitre le cours, le filtre des lignes « Cours... » l'ecartant
+    # ensuite tout entier.
+    debut_titre = None
 
     for y, cells in rows:
         line = ' '.join(t for _, t in cells).strip()
         if not line:
+            debut_titre = None
             continue
 
         m = MODULE_RE.match(line)
@@ -184,16 +231,34 @@ def parse_plan(pdf_path, slug):
             if re.search(r'moyenne|average', fold(label)) and avg:
                 current['avgMin'] = float(avg.group(1))
             modules.append(current)
+            debut_titre = None
             continue
 
         # une ligne de cours porte un nombre de credits dans la colonne ECTS
         ects_cell = [t for x, t in cells if cols['ects'] - 6 <= x <= cols['ects'] + 22]
         ects = next((int(t) for t in ects_cell if t.isdigit()), None)
+        x_prof = cols.get('prof', 200) - 4
         if ects is None or current is None:
+            # Sans credits, la ligne peut etre le debut d'un intitule coupe.
+            # Elle ne porte alors que du texte dans la colonne des intitules,
+            # et parfois les puces de semestre : le plan du MScE met la puce
+            # sur la premiere ligne et les credits sur la seconde.
+            reste = [t for x, t in cells if x >= x_prof and t.strip() not in ('•', '●', '·')]
+            debut_titre = cells if (current is not None and cells and not reste) else None
             continue
 
-        left = [(x, t) for x, t in cells if x < cols.get('prof', 200) - 4]
+        left = [(x, t) for x, t in cells if x < x_prof]
         title = re.sub(r'\s+', ' ', ' '.join(t for _, t in left)).strip()
+
+        # Le debut du titre precede la suite, quelle que soit son abscisse : les
+        # deux lignes commencent a la meme, et les trier ensemble entrelacait
+        # « Situating the Anthropocene Humans in Time ».
+        if debut_titre and title[:1].islower():
+            tete = ' '.join(t for x, t in debut_titre if x < x_prof)
+            if tete:
+                title = re.sub(r'\s+', ' ', f'{tete} {title}').strip()
+                cells = debut_titre + cells
+        debut_titre = None
         # Le plan du Droit et Economie porte des marqueurs de note dans la marge,
         # une lettre seule collee devant l'intitule : « f Fiscalite de
         # l'entreprise ». Sans ce nettoyage, le titre stocke ne correspond plus a
@@ -201,6 +266,17 @@ def parse_plan(pdf_path, slug):
         title = re.sub(r"^[a-zA-Z]\s+(?=[A-ZÀ-Ý])", '', title)
         title = re.sub(r"^[a-z](?=[A-ZÀ-Ý])", '', title)   # « bEconomie I », colle
         if not title or fold(title).startswith(('cours', 'courses')):
+            continue
+        # Une phrase du corps du texte n'est pas un cours. Le paragraphe du
+        # MScE « ...12 ECTS from the list of SUPP courses. For those taking the
+        # BEE specialization, » portait un « 4 » tombe dans la colonne ECTS et
+        # entrait au catalogue comme un enseignement de 4 credits du Module 3.
+        # Deux marques suffisent a le reconnaitre, et aucun des intitules des
+        # dix plans ne les porte : une virgule finale, ou un premier mot qui ne
+        # commence pas un titre.
+        if re.search(r'[,;]$', title):
+            continue
+        if fold(title).split(' ')[0] in AMORCES_DE_PHRASE:
             continue
 
         prof = ' '.join(

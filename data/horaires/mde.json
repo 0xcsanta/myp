@@ -1,0 +1,1022 @@
+{
+ "programme": "mde",
+ "source": {
+  "document": "Horaire type officiel du programme, relevé par capture d'écran de l'agenda UNIL",
+  "url": "https://applicationspub.unil.ch/interpub/noauth/php/Ud/index.php?v_ueid=173&v_langue=fr",
+  "releveLe": "2026-08-26",
+  "releveParUnHumain": true,
+  "note": "Extrait des PDF officiels par géométrie. Les heures sont calées automatiquement sur la grille du document. Les intitulés sont recoupés avec le catalogue ; ceux que la mise en page du PDF a hachés au point de les rendre méconnaissables sont exclus et listés dans rapport-<master>.json."
+ },
+ "creneaux": [
+  {
+   "cours": "propriete-intellectuelle",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/275",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "entrepreneurship-innovation-and-control-system",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole 3",
+   "cadence": "quinzaine",
+   "note": "Débute le 28 septembre 0 2 1 - D a vi la Antonio"
+  },
+  {
+   "cours": "propriete-intellectuelle",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Synathlon/2420",
+   "cadence": "irregulier",
+   "note": "/"
+  },
+  {
+   "cours": "propriete-intellectuelle",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/121",
+   "cadence": "irregulier",
+   "note": ""
+  },
+  {
+   "cours": "fiscalite-de-l-entreprise-impots-directs",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "13:15",
+   "fin": "15:00",
+   "salle": "Internef/271",
+   "cadence": "hebdomadaire",
+   "note": "Automne"
+  },
+  {
+   "cours": "leadership-development",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Amphimax/412",
+   "cadence": "hebdomadaire",
+   "note": "Débute le 28 septembre"
+  },
+  {
+   "cours": "entraide-judiciaire-internationale-en-matiere-",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "17:00",
+   "salle": "Internef/233",
+   "cadence": "hebdomadaire",
+   "note": "Trimestre 2"
+  },
+  {
+   "cours": "advanced-issues-in-international-european-tax-",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Synathlon/2420",
+   "cadence": "hebdomadaire",
+   "note": "Prof. (en rempl. du Prof. Danon) Trimestre 2"
+  },
+  {
+   "cours": "methodes-en-droit-des-affaires",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "15:15",
+   "fin": "17:00",
+   "salle": "Anthropole/3021",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "ia-en-comptabilite-controle-et-finance",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "15:15",
+   "fin": "19:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "comptabilite-et-analyse-des-etats-financiers",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole/2013",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "corporate-sustainability-aut26",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole 4021",
+   "cadence": "irregulier",
+   "note": ""
+  },
+  {
+   "cours": "arbitrage-en-droit-du-sport",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "09:15",
+   "fin": "12:00",
+   "salle": "Cubotron/I",
+   "cadence": "irregulier",
+   "note": "gradin"
+  },
+  {
+   "cours": "droit-des-obligations",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Anthropole/3021",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "mediation-civile-et-commerciale",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/126",
+   "cadence": "irregulier",
+   "note": "Hebdomada"
+  },
+  {
+   "cours": "seminaire-de-restucturation-financiere",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "12:15",
+   "fin": "14:00",
+   "salle": "Internef/272",
+   "cadence": "irregulier",
+   "note": ""
+  },
+  {
+   "cours": "droit-des-obligations",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Anthropole/3021",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "microeconomics-and-game-theory",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Internef/233",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-public",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Internef/231",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "empirical-methods-for-lawyers",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/233",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "corporate-sustainability-aut26",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "15:15",
+   "fin": "19:00",
+   "salle": "Internef/263",
+   "cadence": "irregulier",
+   "note": "F inance (MScF) / Sauf le 15 septembre et 17 novembre à Génopode / C"
+  },
+  {
+   "cours": "introduction-a-la-finance",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "08:00",
+   "fin": "12:00",
+   "salle": "Amphimax/412",
+   "cadence": "irregulier",
+   "note": ""
+  },
+  {
+   "cours": "economie-i",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "08:15",
+   "fin": "10:00",
+   "salle": null,
+   "cadence": "irregulier",
+   "note": "Groupe B C - - Exercic e s - S t r a Amphipô le / d 'e D - Ayoubi - Charles, Gallea Quentin 412 - Hebdom ad a ir e M o n n"
+  },
+  {
+   "cours": "strategie-d-entreprise",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Amphimax/412",
+   "cadence": "irregulier",
+   "note": "d 'e - Gallea ad a ir e M o n n ier Jérôme HebdomCad -a I / - A"
+  },
+  {
+   "cours": "strategie-d-entreprise",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": null,
+   "cadence": "irregulier",
+   "note": "Exercices"
+  },
+  {
+   "cours": "mediation-civile-et-commerciale",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Internef/et",
+   "cadence": "irregulier",
+   "note": ""
+  },
+  {
+   "cours": "droit-de-la-consommation",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Amphipôle/A",
+   "cadence": "hebdomadaire",
+   "note": "Groupe A - Exercices"
+  },
+  {
+   "cours": "droit-de-la-consommation",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "10:15",
+   "fin": "14:00",
+   "salle": "Internef/1",
+   "cadence": "hebdomadaire",
+   "note": "2 5"
+  },
+  {
+   "cours": "droit-de-l-union-europeenne",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "methodes-en-droit-des-affaires",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/233",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-fiscal-du-patrimoine",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/232",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "la-recherche-dans-tous-ses-etats",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "17:15",
+   "fin": "19:00",
+   "salle": "Géopolis/1620",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-de-l-union-europeenne",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Internef/275",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-penal",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Géopolis/1",
+   "cadence": "irregulier",
+   "note": "6 2 8 H e b"
+  },
+  {
+   "cours": "fiscal-policy",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": null,
+   "cadence": "irregulier",
+   "note": "003 1"
+  },
+  {
+   "cours": "regulatory-economics",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Anthropole 5136",
+   "cadence": "irregulier",
+   "note": "Thoeni"
+  },
+  {
+   "cours": "advanced-group-accounting",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "normes-comptables-internationales-ifrs",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-penal",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "13:30",
+   "fin": "15:00",
+   "salle": "Amphimax/412",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "microeconomics-and-game-theory",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Internef/233",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "procedure-penale-dpa",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "economie-i",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "08:15",
+   "fin": "10:00",
+   "salle": "Amphipôle/à",
+   "cadence": "irregulier",
+   "note": "Groupe anglais B - Ayoubi fi Charles, Galle a Quentin Hebdomadair e A"
+  },
+  {
+   "cours": "introduction-a-la-finance",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole 3174",
+   "cadence": "irregulier",
+   "note": "e A Fabio"
+  },
+  {
+   "cours": "procedure-civile",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": "/ /"
+  },
+  {
+   "cours": "propriete-intellectuelle",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/122",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "economie-i",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Amphimax/351",
+   "cadence": "hebdomadaire",
+   "note": "Groupe A"
+  },
+  {
+   "cours": "strategie-d-entreprise",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Amphipôle/D",
+   "cadence": "hebdomadaire",
+   "note": "Groupe B A y o ub i d 'e n tr Charles, Gallea Quentin - 3185 - Jérôme"
+  },
+  {
+   "cours": "strategie-d-entreprise",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Anthropole/3185",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "audit-externe",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Anthropole/2064",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "economie-i",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Internef/263",
+   "cadence": "hebdomadaire",
+   "note": "Groupe anglais - Exercices"
+  },
+  {
+   "cours": "xxdroit-et-ethique-de-la-profession-d-avocat",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": null,
+   "cadence": "irregulier",
+   "note": "Présence contrôlée pour l'accès à l'examen"
+  },
+  {
+   "cours": "droit-des-assurances-privees",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/121",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "redaction-de-contrats",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Internef/232",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "international-corporate-and-individual-taxatio",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:30",
+   "salle": "Internef/231",
+   "cadence": "hebdomadaire",
+   "note": "En commun avec HEC C - Droit é c o n o m iq - C u b o tr on / III"
+  },
+  {
+   "cours": "droit-international-economique",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": null,
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-international-economique",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "10:15",
+   "fin": "14:00",
+   "salle": "Cubotron/III",
+   "cadence": "hebdomadaire",
+   "note": "C - outils"
+  },
+  {
+   "cours": "droit-international-economique",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "10:15",
+   "fin": "14:00",
+   "salle": null,
+   "cadence": "irregulier",
+   "note": "III C - du"
+  },
+  {
+   "cours": "entreprenariat-outils-et-atelier",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Internef/121",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-penal",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/275",
+   "cadence": "irregulier",
+   "note": ""
+  },
+  {
+   "cours": "international-commercial-arbitration",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": null,
+   "cadence": "irregulier",
+   "note": ""
+  },
+  {
+   "cours": "droit-des-marches-publics-p26-p28",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": null,
+   "cadence": "irregulier",
+   "note": "232 Hebdomada"
+  },
+  {
+   "cours": "politique-economique-et-budgets-publics-en-sui",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "13:15",
+   "fin": "16:15",
+   "salle": "IDHEAP/AULA",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "economie-ii",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Amphipôle/A",
+   "cadence": "hebdomadaire",
+   "note": "Groupe B"
+  },
+  {
+   "cours": "economie-ii",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Amphipôle/C",
+   "cadence": "hebdomadaire",
+   "note": "Groupe A"
+  },
+  {
+   "cours": "procedure-fiscale",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Internef -",
+   "cadence": "irregulier",
+   "note": "sauf le 27 mai à la salle 123 à Anthropole / 2106 - Danon"
+  },
+  {
+   "cours": "advanced-financial-analysis",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": "Débute le 18 février"
+  },
+  {
+   "cours": "international-strategy",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Amphimax/415",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "economie-ii",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "08:15",
+   "fin": "10:00",
+   "salle": "Amphipôle/A",
+   "cadence": "hebdomadaire",
+   "note": "Groupe A"
+  },
+  {
+   "cours": "droit-bancaire",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/271",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-penal-informatique",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Géopolis/1628",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "simple-rules-for-leadership-and-strategy-a-pra",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef -",
+   "cadence": "irregulier",
+   "note": "Sauf le 1er mai dans la salle 129 à Internef / 233 - M a r ew s k i J u li a n H e b d o m a d aire"
+  },
+  {
+   "cours": "economie-ii",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Amphipôle/A",
+   "cadence": "hebdomadaire",
+   "note": "Groupe A - Exercices"
+  },
+  {
+   "cours": "fiscalite-directe-ii-fiscalite-indirecte-tva",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": "1er cours dans la salle C du Génopode"
+  },
+  {
+   "cours": "analyse-economique-du-droit",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "13:15",
+   "fin": "17:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "economie-ii",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Amphipôle/D",
+   "cadence": "hebdomadaire",
+   "note": "Groupe anglais - Exercices"
+  },
+  {
+   "cours": "economie-ii",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Amphipôle/B",
+   "cadence": "hebdomadaire",
+   "note": "Groupe B"
+  },
+  {
+   "cours": "political-and-institutional-economics",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "16:15",
+   "fin": "20:00",
+   "salle": "Internef/125",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-du-travail",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/275",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "political-and-institutional-economics",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/233",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-des-poursuites-et-faillites",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "economie-ii",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Amphipôle/D",
+   "cadence": "hebdomadaire",
+   "note": "Groupe anglais"
+  },
+  {
+   "cours": "droit-des-poursuites-et-faillites",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "13:15",
+   "fin": "15:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "financial-institutions-regulation",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "13:15",
+   "fin": "16:00",
+   "salle": "Internef 121",
+   "cadence": "hebdomadaire",
+   "note": "le 20.2 / 20.03 / 22.05 de 17h à 20h salle Internef / 121 - Bruhin Adrian"
+  },
+  {
+   "cours": "advanced-project-management-outsourcing-in-a-d",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "13:15",
+   "fin": "17:00",
+   "salle": "Internef/123",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-de-la-concurrence-suisse-et-europeen",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "13:15",
+   "fin": "17:00",
+   "salle": "Internef/271",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "economie-ii",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Amphipôle/D",
+   "cadence": "hebdomadaire",
+   "note": "Groupe anglais"
+  },
+  {
+   "cours": "economie-ii",
+   "semestre": "printemps-2026",
+   "jour": "Vendredi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": "Amphipôle/A",
+   "cadence": "hebdomadaire",
+   "note": "Groupe B - Exercices"
+  },
+  {
+   "cours": "controle-strategique",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-de-l-immobilier",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/121",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "international-tax-disputes-investment-treaty-a",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/275",
+   "cadence": "hebdomadaire",
+   "note": "en 2026-2027, S. Wuschka remplace le professeur Danon"
+  },
+  {
+   "cours": "managerial-decision-making",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": "sauf le 16 septembre"
+  },
+  {
+   "cours": "seminaire-de-fiscalite",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Extranef/109",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "strategy-of-innovation",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/125",
+   "cadence": "hebdomadaire",
+   "note": "débute le 25 septembre"
+  },
+  {
+   "cours": "strategy-of-innovation",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Internef/125",
+   "cadence": "hebdomadaire",
+   "note": "débute le 25 septembre"
+  },
+  {
+   "cours": "taxation-of-multinational-enterprises-and-tran",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/121",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "unethical-decision-making-advanced",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole/2013",
+   "cadence": "hebdomadaire",
+   "note": "7 dernières semaines du semestre"
+  },
+  {
+   "cours": "unethical-decision-making-basics",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": "24 septembre à Amphipôle A, 8 et 29 octobre"
+  },
+  {
+   "cours": "digitalization-and-taxation-focus-on-global-mi",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "13:15",
+   "fin": "15:00",
+   "salle": "Internef/129",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-penal-economique-dpa",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/275",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "fusions-acquisitions-et-regime-des-opa",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/273",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "power-and-leadership",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Anthropole/3021",
+   "cadence": "hebdomadaire",
+   "note": ""
+  }
+ ]
+}

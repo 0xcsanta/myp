@@ -1,0 +1,78 @@
+{
+ "programme": "mde",
+ "nonResolus": [
+  {
+   "ligne": 9,
+   "titre": "ne E and Machine Learning",
+   "raison": "introuvable (meilleure similarite 0.49), proches : power-and-leadership, analyse-economique-du-droit, microeconomics-and-game-theory"
+  },
+  {
+   "ligne": 18,
+   "titre": "Procédure juridiction",
+   "raison": "introuvable (meilleure similarite 0.69), proches : procedure-et-juridiction-administratives, procedure-civile, procedure-fiscale"
+  },
+  {
+   "ligne": 27,
+   "titre": "in and Machine Learning - Internef /",
+   "raison": "introuvable (meilleure similarite 0.50), proches : droit-des-marches-financiers, droit-de-l-union-europeenne, normes-comptables-internationales-ifrs"
+  },
+  {
+   "ligne": 28,
+   "titre": "T/ax Disputes & Investment Treaty Arbitration Wuschka (rempl. du Prof. Danon)",
+   "raison": "introuvable (meilleure similarite 0.68), proches : international-tax-disputes-investment-treaty-a, advanced-issues-in-international-european-tax-, vienna-moot-court-willem-c-vis-international-c"
+  },
+  {
+   "ligne": 35,
+   "titre": "12C6",
+   "raison": "introuvable (meilleure similarite 0.14), proches : economie-i, economie-ii, droit-public"
+  },
+  {
+   "ligne": 43,
+   "titre": "Droit de",
+   "raison": "ambigu : droit-de-l-immobilier, droit-de-l-union-europeenne, droit-de-la-concurrence-suisse-et-europeen, droit-de-la-consommation"
+  },
+  {
+   "ligne": 76,
+   "titre": "Valuation",
+   "raison": "introuvable (meilleure similarite 0.46), proches : droit-fiscal-du-patrimoine, advanced-group-accounting, droit-des-obligations"
+  }
+ ],
+ "rapprochesParSimilarite": [
+  {
+   "ligne": 13,
+   "titre": "Advanced issues in International and European Tax Law",
+   "retenu": "advanced-issues-in-international-european-tax-",
+   "note": "SIMILARITE 0.96"
+  },
+  {
+   "ligne": 14,
+   "titre": "Séminaire de droit des affaires",
+   "retenu": "methodes-en-droit-des-affaires",
+   "note": "MOTS COMMUNS 0.67"
+  },
+  {
+   "ligne": 19,
+   "titre": "e-s Arbitrage en droit sport",
+   "retenu": "arbitrage-en-droit-du-sport",
+   "note": "SIMILARITE 0.89"
+  },
+  {
+   "ligne": 22,
+   "titre": "Séminaire de restructuration financière",
+   "retenu": "seminaire-de-restucturation-financiere",
+   "note": "SIMILARITE 0.99"
+  },
+  {
+   "ligne": 48,
+   "titre": "Normes comptables (IFRS)",
+   "retenu": "normes-comptables-internationales-ifrs",
+   "note": "MOTS COMMUNS 0.75"
+  },
+  {
+   "ligne": 62,
+   "titre": "Droit et éthique de la profession d'avocat·e",
+   "retenu": "xxdroit-et-ethique-de-la-profession-d-avocat",
+   "note": "SIMILARITE 0.95"
+  }
+ ]
+}

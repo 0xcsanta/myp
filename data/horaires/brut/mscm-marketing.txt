@@ -1,0 +1,43 @@
+# mscm-marketing : releve automatique des PDF d'horaire officiels.
+# Genere par tools_pdf_horaires.py, ne pas editer a la main sans raison.
+
+@semestre automne-2026
+Lundi | 08:00 | 10:00 | Data Science Methods for Management - BA orientation | Amphipôle/B | hebdomadaire | First week dedicated to projects - lecture starts 28th of September
+Lundi | 08:30 | 12:00 | Innovation and Control Systems | Anthropole/3021 | quinzaine | Débute le 28 septembre
+Lundi | 08:30 | 12:00 | Simple for managing people in face of adversity: Practical skills for difficult situations | Internef/233 | hebdomadaire | Débute le 28 Septembre
+Lundi | 09:00 | 12:00 | The Art of Writing a Master's Thesis | Anthropole 2106 | irregulier | lundi 14 septembre de 9h à 12h - salle / Mardi 15 septembre de 9h à 12h - salle Anthropole 2106 /
+Lundi | 10:15 | 12:00 | Data Science Methods for Management - BA orientation | Amphimax/412 | hebdomadaire | First week dedicated to projects - lecture starts 28th of September
+Lundi | 12:30 | 16:00 | Integrated Marketing Communication (MScM) | Internef/123 | hebdomadaire | Débute le 28 septembre
+Lundi | 14:15 | 18:00 | Advanced issues in International and European Tax Law | Synathlon/2420 | hebdomadaire | Prof. Chand (en rempl. du Prof. Danon) / Trimestre 2
+Lundi | 14:15 | 18:00 | Strategic Management - SOL/BEE orientations | Internef/273 | hebdomadaire | First week dedicated to projects - lecture starts 28th of September
+Mardi | 08:00 | 12:00 | Datascience for Marketing | Cubotron/II | hebdomadaire | Débute le 22 septembre
+Mardi | 12:30 | 16:00 | Statistical Methods for Management - all orientations | Synathlon/1216 | hebdomadaire | First week dedicated to projects - lecture starts 22nd of September
+Mercredi | 08:30 | 12:00 | Luxury Marketing | Internef/122 | hebdomadaire | Débute le 23 septembre
+Mercredi | 12:30 | 16:00 | Marketing Science - MKT orientation | Internef/271 | hebdomadaire | First week dedicated to projects - lecture starts 23rd of September
+Mercredi | 14:15 | 18:00 | Business Case en Marketing | Anthropole/2097 | hebdomadaire | Débute le 23 septembre
+Mercredi | 17:15 | 19:00 | La recherche dans tous ses états (automne - 3 crédits) | Géopolis/1620 | hebdomadaire | 
+Jeudi | 10:15 | 12:00 | Organizational Theory and Decision Making - SOL/BEE orientations | Internef 273 | hebdomadaire | First week dedicated to projects - lecture starts 24th of September - except 19 nov in and 3 déc in ? room to be confirmed - Amphimax / 410 - Grieder Manuel
+Jeudi | 12:30 | 16:00 | Normes comptables internationales (IFRS) | Anthropole/2106 | hebdomadaire | 
+Jeudi | 12:30 | 14:00 | Organizational Theory and Decision Making - SOL/BEE orientations | Internef 273 | hebdomadaire | First week dedicated to projects - lecture starts 24th of September - except 19 nov in and 3 déc in ? room to be confirmed - Amphimax / 410 - Grieder Manuel
+Jeudi | 14:15 | 18:00 | Digital Strategies and Innovation | Internef/237 | hebdomadaire | Automne
+Jeudi | 16:15 | 18:00 | Genes, Populations and Evolution - BEE orientation | Internef/122 | hebdomadaire | First week dedicated to projects - lecture starts 24th of September
+Vendredi | 08:00 | 12:00 | Strategic Marketing - MKT orientation | Amphimax/415 | hebdomadaire | First week dedicated to projects - lecture starts 25th of September
+Vendredi | 10:15 | 12:00 | Strategic Pricing | Anthropole/3032 | hebdomadaire | Débute le 25 septembre
+Vendredi | 12:30 | 14:00 | Genes, Populations and Evolution - BEE orientation | Internef/122 | hebdomadaire | First week dedicated to projects - lecture starts 25th of September
+Vendredi | 14:15 | 18:00 | Optimization Methods for Management - BA orientation | Internef/275 | hebdomadaire | First week dedicated to projects - lecture starts 25th of September
+
+@semestre printemps-2026
+Lundi | 08:30 | 12:00 | Distribution Management | Internef/233 | hebdomadaire | 
+Lundi | 12:30 | 14:00 | d-o TmCh of and- - 2120 |  | irregulier | 
+Lundi | 14:15 | 17:00 | e Crisis 16 février | Anthropole 3185 | irregulier | 
+Lundi | 14:15 | 18:00 | Power and L e a dership t / | Anthropole 3021 | irregulier | 
+Mardi | 14:15 | 18:00 | Neuro Economie | Internef/233 | hebdomadaire | Printemps
+Mardi | 14:15 | 18:00 | Sustainability Strategy Project | Amphimax 413 | hebdomadaire | En priorité pour les étudiant.es SOL, puis Marketing et BEE - sauf le 26 mai dans la salle Cubotron / 407 - Aeschlimann Steve, Fischer Christophe
+Mercredi | 08:30 | 12:00 | Grand Challenges Strategy Project | Internef/233 | hebdomadaire | 
+Mercredi | 12:30 | 16:00 | Digital Marketing Strategy | Internef/129 | hebdomadaire | 
+Jeudi | 08:30 | 12:00 | Developing Behavioral Insights and Nudging | Anthropole/3174 | hebdomadaire | 
+Jeudi | 08:30 | 12:00 | Simple Rules for Leadership and Strategy: a Practical Approach | Internef - | hebdomadaire | Sauf le 1er mai dans la salle 129 à Internef / 233 - Marewski Julian
+Jeudi | 14:15 | 18:00 | Brand Strategic Project (for MKT orientation only) | Internef 121 | hebdomadaire | Pour les étudiant.es de l'orientation Marketing uniquement - sauf le 28 mai à Amphipôle / 201 - Morhart Felicitas
+Vendredi | 08:30 | 12:00 | Company Project in Marketing (for MKT orientation only) | Anthropole/4030 | hebdomadaire | Pour les étudiant.es de l'orientation Marketing uniquement
+Vendredi | 08:30 | 12:00 | Social Well Being - Génopode |  | hebdomadaire | C - Clergue Valentina
+Vendredi | 13:15 | 17:00 | Advanced Project Management & Outsourcing in a Digital Era | Internef/123 | hebdomadaire | 

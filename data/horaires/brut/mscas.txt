@@ -1,0 +1,44 @@
+# mscas : releve automatique des PDF d'horaire officiels.
+# Genere par tools_pdf_horaires.py, ne pas editer a la main sans raison.
+
+@semestre automne-2026
+Lundi | 08:00 | 10:00 | Data Science Methods for Management - BA orientation | Amphipôle/B | hebdomadaire | First week dedicated to projects - lecture starts 28th of September
+Lundi | 10:15 | 12:00 | Data Science Methods for Management - BA orientation | Amphimax/412 | hebdomadaire | First week dedicated to projects - lecture starts 28th of September
+Lundi | 10:15 | 12:00 | Dependence Modelling | Internef/123 | hebdomadaire | 
+Lundi | 10:15 | 12:00 | Dependence Modelling | Internef/123 | hebdomadaire | 
+Lundi | 12:30 | 14:00 | Insurance Economics | Anthropole/2106 | hebdomadaire | 
+Lundi | 12:30 | 14:00 | Time Series | Internef/129 | hebdomadaire | 
+Lundi | 12:30 | 14:00 | Time Series | Internef/129 | hebdomadaire | 
+Mardi | 08:30 | 12:00 | Computational Tools for Actuaries | Internef - | quinzaine | Sauf le 15 septembre dans la salle 275 à Internef / 121 - Zucchinetti Giovanni
+Mardi | 08:30 | 12:00 | Introduction to Data Science | Internef/121 | quinzaine | 
+Mardi | 08:30 | 10:00 | PrévoyanceC - professionnelle | Anthropole/205-5 | hebdomadaire | 1216
+Mardi | 08:30 | 12:00 | Financial A-ccounting | Synathlon/1216 | hebdomadaire | 
+Mardi | 08:30 | 10:00 | PrévoyanceC - professionnelle | Anthropole/205-5 | hebdomadaire | 1216
+Mardi | 08:30 | 12:00 | Financial A-ccounting | Synathlon/1216 | hebdomadaire | 
+Mardi | 10:15 | 12:00 | Asset and Liability Management for Actuaries | Internef/231 | hebdomadaire | 
+Mardi | 10:15 | 12:00 | Asset and Liability Management for Actuaries | Internef/231 | hebdomadaire | 
+Mardi | 12:30 | 16:00 | Quantitative Asset and Risk Management II | Amphimax/413 | hebdomadaire | 
+Mardi | 12:30 | 16:00 | Quantitative Asset and Risk Management II | Amphimax/413 | hebdomadaire | 
+Mardi | 14:15 | 16:00 | Mathematics of Compound Interest | Internef/123 | hebdomadaire | 
+Mercredi | 08:30 | 10:00 | Investments | Internef/273 | quinzaine | Exercises
+Mercredi | 10:15 | 12:00 | Asset and Liability Management for Actuaries | Internef/123 | hebdomadaire | 
+Mercredi | 10:15 | 12:00 | Asset and Liability Management for Actuaries | Internef/123 | hebdomadaire | 
+Mercredi | 12:30 | 14:00 | Life Contingencies II | Internef/231 | hebdomadaire | 
+Mercredi | 12:30 | 14:00 | Life Contingencies II | Internef/231 | hebdomadaire | 
+Mercredi | 14:15 | 16:00 | Mathématiques des caisses de pension | Extranef - | hebdomadaire | Salle 126 à
+Mercredi | 14:15 | 16:00 | Mathématiques des caisses de pension | Extranef - | hebdomadaire | Salle 126 à
+Jeudi | 08:30 | 12:00 | Investments | Synathlon/1216 | hebdomadaire | 
+Jeudi | 08:30 | 10:00 | Credibility Theory | Internef/272 | hebdomadaire | 
+Jeudi | 08:30 | 10:00 | Credibility Theory | Internef/272 | hebdomadaire | 
+Jeudi | 10:15 | 12:00 | Life Contingencies II | Internef/129 | hebdomadaire | 
+Jeudi | 10:15 | 12:00 | Life Contingencies II | Internef/129 | hebdomadaire | 
+Jeudi | 14:15 | 16:00 | Probability and Stochastic Processes | Internef/232 | hebdomadaire | 
+Vendredi | 08:30 | 12:00 | Applied AI & Deep Learning for Managers: From Fundamentals to Business Applications | Anthropole/3077 | hebdomadaire | 2-9-30 oct / 20-27 nov / 11 déc
+Vendredi | 08:30 | 12:00 | Applied AI & Deep Learning for Managers: From Fundamentals to Business Applications | Anthropole/3077 | hebdomadaire | 2-9-30 oct / 20-27 nov / 11 déc
+Vendredi | 10:15 | 12:00 | Probability and Stochastic Processes | Internef/121 | hebdomadaire | 
+Vendredi | 10:15 | 12:00 | Strategic Pricing | Anthropole/3032 | hebdomadaire | Débute le 25 septembre
+Vendredi | 10:15 | 12:00 | Strategic Pricing | Anthropole/3032 | hebdomadaire | Débute le 25 septembre
+Vendredi | 12:30 | 14:00 | Dependence Modelling | Internef/231 | hebdomadaire | 
+Vendredi | 12:30 | 14:00 | Dependence Modelling | Internef/231 | hebdomadaire | 
+Vendredi | 14:15 | 16:00 | Mathématiques des caisses de pension | Internef/233 | hebdomadaire | 
+Vendredi | 14:15 | 16:00 | Mathématiques des caisses de pension | Internef/233 | hebdomadaire | 

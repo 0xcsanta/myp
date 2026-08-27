@@ -1,0 +1,23 @@
+{
+ "note": "Intitulés rétablis à la main, pour les blocs que la mise en page du PDF a hachés au point de les rendre illisibles. La clé est le créneau lui même (master, semestre, jour, début), pas un numéro de ligne : elle survit à une régénération du relevé. L'heure et la salle viennent du PDF et ne sont jamais touchées ici, seul le titre est rétabli, puis recoupé avec le catalogue comme tous les autres.",
+ "etabliLe": "2026-08-27",
+ "corrections": [
+  { "master": "mde", "semestre": "automne-2026", "jour": "Lundi", "debut": "08:30", "lu": "r s h ip , P r o p ri été", "titre": "Propriété intellectuelle" },
+  { "master": "mde", "semestre": "automne-2026", "jour": "Mardi", "debut": "10:15", "lu": "c i v ile e t c o m m e", "titre": "Médiation civile et commerciale" },
+  { "master": "mde", "semestre": "automne-2026", "jour": "Mercredi", "debut": "08:30", "lu": "B C - e s - S t r a tégie le", "titre": "Stratégie d'entreprise" },
+  { "master": "mde", "semestre": "automne-2026", "jour": "Mercredi", "debut": "10:15", "lu": "AC U- LDAroit de la Hcoenbsdoommmadaatiiroen et c l in ique", "titre": "Droit de la consommation" },
+  { "master": "mde", "semestre": "automne-2026", "jour": "Vendredi", "debut": "08:30", "lu": "/ à la fi nance - a", "titre": "Introduction à la finance" },
+  { "master": "mde", "semestre": "automne-2026", "jour": "Vendredi", "debut": "12:30", "lu": "Stratégie A y o ub i d 'e n tr eprise", "titre": "Stratégie d'entreprise" },
+  { "master": "mde", "semestre": "printemps-2026", "jour": "Lundi", "debut": "10:15", "lu": "Droit é c o n o m iq - C u b o tr on", "titre": "Droit international économique" },
+  { "master": "mde", "semestre": "printemps-2026", "jour": "Mardi", "debut": "08:30", "lu": "C Interna t i o n F i n a r c ia d r o Arbitration Prof.", "titre": "International Commercial Arbitration" },
+  { "master": "mde", "semestre": "printemps-2026", "jour": "Mardi", "debut": "10:15", "lu": "Droit des m a r c h é s p u b l i c s - In t e r n e f", "titre": "Droit des marchés publics P26/P28" },
+
+  { "master": "mscm-behaviour", "semestre": "printemps-2026", "jour": "Lundi", "debut": "14:15", "lu": "ta l C ri sis 16 février", "titre": "Crisis Management (limited to 17 students)" },
+  { "master": "mscm-marketing", "semestre": "printemps-2026", "jour": "Lundi", "debut": "14:15", "lu": "e Crisis 16 février", "titre": "Crisis Management (limited to 17 students)" },
+  { "master": "mscm-strategy", "semestre": "printemps-2026", "jour": "Lundi", "debut": "14:15", "lu": "Managing C o t /", "titre": "Managing Contractual Relationship" },
+
+  { "master": "mscm-business-analytics", "semestre": "automne-2026", "jour": "Lundi", "debut": "16:30", "lu": "/anced D a t a A n a lysis - i", "titre": "Advanced Data Analysis" },
+  { "master": "mscm-business-analytics", "semestre": "printemps-2026", "jour": "Vendredi", "debut": "13:15", "lu": "/ Advanced - u-tsourcing in a Digital C - Era", "titre": "Advanced Project Management & Outsourcing in a Digital Era" },
+  { "master": "mscm-business-analytics", "semestre": "printemps-2026", "jour": "Vendredi", "debut": "14:15", "lu": "Multicriteria rn e f", "titre": "Multicriteria Decision Analysis" }
+ ]
+}

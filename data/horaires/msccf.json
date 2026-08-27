@@ -1,0 +1,332 @@
+{
+ "programme": "msccf",
+ "source": {
+  "document": "Horaire type officiel du programme, relevé par capture d'écran de l'agenda UNIL",
+  "url": "https://applicationspub.unil.ch/interpub/noauth/php/Ud/index.php?v_ueid=173&v_langue=fr",
+  "releveLe": "2026-08-26",
+  "releveParUnHumain": true,
+  "note": "Extrait des PDF officiels par géométrie. Les heures sont calées automatiquement sur la grille du document. Les intitulés sont recoupés avec le catalogue ; ceux que la mise en page du PDF a hachés au point de les rendre méconnaissables sont exclus et listés dans rapport-<master>.json."
+ },
+ "creneaux": [
+  {
+   "cours": "bank-accounting-and-reporting",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": "Débute le 16 février"
+  },
+  {
+   "cours": "gestion-du-risque-msc",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": "Débute le 23 février"
+  },
+  {
+   "cours": "avanced-course-in-governance-and-corporate-fin",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "12:30",
+   "fin": "14:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "advanced-management-accounting",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Anthropole/2106",
+   "cadence": "quinzaine",
+   "note": "Débute le 24 février, puis toutes les 2 semaines"
+  },
+  {
+   "cours": "audit-des-systemes-d-information-de-gestion",
+   "semestre": "printemps-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Anthropole/2106",
+   "cadence": "quinzaine",
+   "note": "Débute le 17 février, puis toutes les 2 semaines"
+  },
+  {
+   "cours": "avanced-course-in-governance-and-corporate-fin",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole/2064",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "advanced-financial-analysis",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": "Débute le 18 février"
+  },
+  {
+   "cours": "corporate-sustainability-reporting",
+   "semestre": "printemps-2026",
+   "jour": "Mercredi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": "Débute le 25 février"
+  },
+  {
+   "cours": "fiscalite-directe-ii-fiscalite-indirecte-tva",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": "Premier cours dans la salle C du Génopode"
+  },
+  {
+   "cours": "fiscalite-de-l-entreprise-impots-directs",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "13:15",
+   "fin": "15:00",
+   "salle": "Internef/271",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "accounting-for-financial-instruments",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "15:15",
+   "fin": "19:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "ia-en-comptabilite-controle-et-finance",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "15:15",
+   "fin": "19:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "seminaire-de-restructuration-financiere",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "12:15",
+   "fin": "14:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "controle-strategique",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/272",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "advanced-group-accounting",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "normes-comptables-internationales-ifrs",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "audit-externe",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Anthropole/2064",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "entrepreneurship-innovation-and-control-system",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole/3021",
+   "cadence": "quinzaine",
+   "note": "Débute le 28 septembre"
+  },
+  {
+   "cours": "research-seminar-in-management-control",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole/3021",
+   "cadence": "hebdomadaire",
+   "note": "Débute le 14 septembre"
+  },
+  {
+   "cours": "audit-des-institutions-financieres",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "13:15",
+   "fin": "17:00",
+   "salle": "Internef/275",
+   "cadence": "quinzaine",
+   "note": "12 et 26 octobre, 2, 23 et 30 novembre, 7 décembre"
+  },
+  {
+   "cours": "advanced-issues-in-international-and-european-",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Synathlon/2420",
+   "cadence": "hebdomadaire",
+   "note": "Trimestre 2, Prof. Chand en remplacement du Prof. Danon"
+  },
+  {
+   "cours": "analyse-financiere-appliquee",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/275",
+   "cadence": "quinzaine",
+   "note": "14 et 28 septembre, 5 octobre, 9 et 16 novembre, 14 décembre"
+  },
+  {
+   "cours": "international-tax-disputes-investment-treaty-a",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/275",
+   "cadence": "hebdomadaire",
+   "note": "Trimestre 1, S. Wuschka en remplacement du Prof. Danon"
+  },
+  {
+   "cours": "empirical-research-in-accounting-and-control",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole/3120",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "recherche-en-gouvernance-d-entreprise-ii",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Anthropole/4144",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "research-in-fair-value-and-bank-accounting",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Anthropole/4144",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "comptabilite-comparee-rpc-ifrs",
+   "semestre": "automne-2026",
+   "jour": "Mercredi",
+   "debut": "16:15",
+   "fin": "18:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "research-in-sustainability-accounting",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/232",
+   "cadence": "quinzaine",
+   "note": "24 septembre, 8, 22 et 29 octobre, 12 et 26 novembre, 10 décembre"
+  },
+  {
+   "cours": "systemes-de-controle-de-gestion-appliques",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/232",
+   "cadence": "quinzaine",
+   "note": "17 septembre, 1, 15 octobre, 5 et 19 novembre, 3 et 17 décembre"
+  },
+  {
+   "cours": "capital-markets-research-in-accounting",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Amphipôle/340",
+   "cadence": "quinzaine",
+   "note": ""
+  },
+  {
+   "cours": "recherche-en-gouvernance-d-entreprise-i",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Anthropole/4144",
+   "cadence": "quinzaine",
+   "note": "À partir de la deuxième semaine"
+  },
+  {
+   "cours": "seminaire-d-audit",
+   "semestre": "automne-2026",
+   "jour": "Vendredi",
+   "debut": "12:30",
+   "fin": "16:00",
+   "salle": "Anthropole/3174",
+   "cadence": "hebdomadaire",
+   "note": ""
+  }
+ ]
+}
