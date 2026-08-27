@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { Mipmip } from "@/components/app/Mipmip";
 import { Planificateur } from "@/components/app/Planificateur";
 import {
   calendrierAcademique,
@@ -142,6 +143,12 @@ export default async function PageMaster({
           langue={lang}
         />
       </main>
+
+      {/*
+        Mipmip est pose ici et nulle part ailleurs : il ne sait repondre que
+        sur les cours d'un master, et c'est la seule page qui en designe un.
+      */}
+      <Mipmip master={slug} langue={lang} />
 
       <SiteFooter langue={lang} />
     </div>

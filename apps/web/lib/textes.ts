@@ -26,6 +26,24 @@ const fr = {
     inviteMelange: "Clique sur le titre pour mélanger les lettres",
   },
 
+  mipmip: {
+    bouton: "Discute avec Mipmip",
+    fermer: "Fermer",
+    cadre: "Mipmip ne connaît que les cours de ce master. Pour tout le reste, et pour ce qui fait foi, il y a unil.ch.",
+    accueil: "Pose ta question sur un cours de ce master.",
+    exemples: [
+      "De quoi parle Corporate Finance ?",
+      "Quels cours ont un examen oral ?",
+      "Lesquels se donnent en français ?",
+    ],
+    invite: "Ta question sur un cours",
+    envoyer: "Envoyer",
+    reflechit: "Mipmip cherche dans le plan d'études...",
+    fiche: "Fiche officielle :",
+    tropVite: "Doucement, une question à la fois. Réessaie dans une minute.",
+    panne: "Je n'arrive pas à répondre pour l'instant. La source officielle reste unil.ch.",
+  },
+
   choix: {
     titre: "Choisis ton master · MYP",
     description:
@@ -272,6 +290,24 @@ const en: Textes = {
     description:
       "Build your master's study plan at HEC Lausanne, check your credits module by module and see your timetable.",
     inviteMelange: "Click the title to scramble the letters",
+  },
+
+  mipmip: {
+    bouton: "Chat with Mipmip",
+    fermer: "Close",
+    cadre: "Mipmip only knows the courses in this master's programme. For everything else, and for what counts, there is unil.ch.",
+    accueil: "Ask about a course in this programme.",
+    exemples: [
+      "What is Corporate Finance about?",
+      "Which courses have an oral exam?",
+      "Which ones are taught in French?",
+    ],
+    invite: "Your question about a course",
+    envoyer: "Send",
+    reflechit: "Mipmip is looking through the study plan...",
+    fiche: "Official course sheet:",
+    tropVite: "Steady on, one question at a time. Try again in a minute.",
+    panne: "I cannot answer right now. The official source is still unil.ch.",
   },
 
   choix: {

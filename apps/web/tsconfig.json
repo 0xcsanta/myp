@@ -6,6 +6,9 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    /* le fichier d\'essai importe « ./mipmip-verrou.ts » avec son extension :
+       c\'est ce que node exige pour lire du TypeScript sans le compiler */
+    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
