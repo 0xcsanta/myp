@@ -153,3 +153,23 @@ export function rangsDe(cours: Cours[]): number[] {
   for (const c of cours) for (const n of c.colonnes) if (n >= 1 && n <= 4) s.add(n);
   return [...s].sort((a, b) => a - b);
 }
+
+/*
+ * Le semestre ou un cours est reellement suivi.
+ *
+ * Beaucoup de cours sont donnes a deux semestres, « 1er ou 3e sem, automne » :
+ * le plan les propose aux deux, l'etudiant n'en suit qu'un. A defaut de choix,
+ * le premier rang fait foi, ce qui est le cas le plus frequent et evite de
+ * montrer le meme cours dans deux grilles.
+ */
+export function rangEffectif(colonnes: number[], choisi?: number): number | null {
+  const dispo = [...new Set(colonnes)].filter((n) => n >= 1 && n <= 4).sort((a, b) => a - b);
+  if (!dispo.length) return null;
+  return choisi && dispo.includes(choisi) ? choisi : dispo[0];
+}
+
+/** Les rangs entre lesquels un cours laisse le choix. Un seul rang, aucun choix. */
+export function rangsAuChoix(colonnes: number[]): number[] {
+  const dispo = [...new Set(colonnes)].filter((n) => n >= 1 && n <= 4).sort((a, b) => a - b);
+  return dispo.length > 1 ? dispo : [];
+}

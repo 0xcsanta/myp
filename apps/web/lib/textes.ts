@@ -80,6 +80,7 @@ const fr = {
       "Aucun horaire n'est encore relevé pour ce master, donc les chevauchements ne sont pas détectés. Vérifie les créneaux sur le ",
     catalogueOfficiel: "catalogue officiel",
     choixSemestre: "Choisir le semestre à afficher",
+    choixDuSemestreDuCours: "À quel semestre suis tu ce cours",
     semestreSansHoraire:
       "Aucun horaire n'est relevé pour ce semestre. Le relevé de ce master ne couvre que l'autre saison, donc ces cours existent bien, mais leurs créneaux ne sont pas encore connus.",
     semestreSansHoraireCourt: "horaire non relevé",
@@ -246,6 +247,7 @@ const en: Textes = {
       "No timetable has been read for this programme yet, so clashes are not detected. Check the slots on the ",
     catalogueOfficiel: "official course catalogue",
     choixSemestre: "Choose which semester to show",
+    choixDuSemestreDuCours: "Which semester you take this course in",
     semestreSansHoraire:
       "No timetable has been read for this semester. This programme's record only covers the other season, so these courses do exist, but their slots are not known yet.",
     semestreSansHoraireCourt: "timetable not on record",

@@ -13,7 +13,8 @@ import {
   libelleColonnes,
   libelleRang,
   libelleSaison,
-  rangsDe,
+  rangEffectif,
+  rangsAuChoix,
   saisonDuRang,
 } from "@/lib/semestres";
 import { ANNEE_VISEE } from "@/lib/annee";
@@ -71,29 +72,68 @@ function encoder(selection: Set<string>, catalogue: Cours[]): string {
  * apres un tilde, qui n'appartient pas a l'alphabet base 64 et ne peut donc pas
  * etre confondu avec lui. Un ancien lien, sans tilde, reste lisible.
  */
+/*
+ * Le code d'un plan : `bits~externes~orientation~placements`.
+ *
+ * Les champs sont ajoutes au fil du temps et separes par un tilde, qui
+ * n'appartient pas a l'alphabet base 64. Un code ecrit avant l'arrivee d'un
+ * champ n'en porte pas, et reste lisible : c'est la raison de cette forme
+ * plutot qu'un objet encode.
+ *
+ * Les placements s'ecrivent par rang du catalogue plutot que par identifiant,
+ * « 3-1.7-3 » pour le quatrieme cours au premier semestre et le huitieme au
+ * troisieme. L'ordre du catalogue vient du plan et ne bouge pas dans l'annee,
+ * comme pour le champ de bits.
+ */
 export function assembler(
   bits: string,
   externes: number,
   orientation: string | null,
+  placements: string,
 ): string {
-  if (!externes && !orientation) return bits;
-  return `${bits}~${externes || 0}${orientation ? `~${orientation}` : ""}`;
+  if (!externes && !orientation && !placements) return bits;
+  const champs = [bits, String(externes || 0)];
+  if (orientation || placements) champs.push(orientation ?? "");
+  if (placements) champs.push(placements);
+  return champs.join("~");
 }
 
 export function separer(code: string): {
   bits: string;
   externes: number;
   orientation: string | null;
+  placements: string;
 } {
-  const [bits, ext, orient] = code.split("~");
+  const [bits, ext, orient, plac] = code.split("~");
   const n = Number.parseInt(ext ?? "", 10);
   return {
     bits: bits ?? "",
     externes: Number.isFinite(n) && n > 0 ? n : 0,
-    // un code ecrit avant l'arrivee de l'orientation n'en porte pas : c'est
-    // normal, et le lien reste lisible
     orientation: orient || null,
+    placements: plac ?? "",
   };
+}
+
+function ecrirePlacements(
+  placements: Record<string, number>,
+  catalogue: Cours[],
+): string {
+  const morceaux: string[] = [];
+  catalogue.forEach((c, i) => {
+    const r = placements[c.id];
+    if (r) morceaux.push(`${i}-${r}`);
+  });
+  return morceaux.join(".");
+}
+
+function lirePlacements(code: string, catalogue: Cours[]): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const bout of code.split(".")) {
+    const [i, r] = bout.split("-").map((x) => Number.parseInt(x, 10));
+    const c = catalogue[i];
+    if (c && r >= 1 && r <= 4) out[c.id] = r;
+  }
+  return out;
 }
 
 function decoder(code: string, catalogue: Cours[]): Set<string> {
@@ -184,6 +224,8 @@ export function Planificateur({
   const [externes, setExternes] = useState(0);
   /* l'orientation suivie, quand le plan demande d'en choisir une */
   const [orientation, setOrientation] = useState<string | null>(null);
+  /* le semestre retenu pour les cours donnes a plusieurs, par identifiant */
+  const [placements, setPlacements] = useState<Record<string, number>>({});
   const [pret, setPret] = useState(false);
   /*
    * Un plan ouvert depuis un lien recu n'est pas encore le sien : tant que le
@@ -225,12 +267,13 @@ export function Planificateur({
     }
     const partage = partageInitial.current;
     const source = partage ?? window.localStorage.getItem(cle) ?? "";
-    const { bits, externes: horsPlan, orientation: orient } = separer(source);
+    const { bits, externes: horsPlan, orientation: orient, placements: plac } = separer(source);
     setSelection(decoder(bits, catalogue));
     setExternes(regles.externes ? horsPlan : 0);
     setOrientation(
       orient && regles.modules.some((m) => m.code === orient) ? orient : null,
     );
+    setPlacements(lirePlacements(plac, catalogue));
     setRecu(Boolean(partage));
     setPret(true);
   }, [cle, catalogue]);
@@ -249,16 +292,21 @@ export function Planificateur({
     try {
       window.localStorage.setItem(
         cle,
-        assembler(encoder(selection, catalogue), externes, orientation),
+        assembler(
+          encoder(selection, catalogue),
+          externes,
+          orientation,
+          ecrirePlacements(placements, catalogue),
+        ),
       );
     } catch {
       /* navigation privee : le stockage est refuse, tant pis */
     }
-  }, [selection, externes, orientation, pret, modifie, cle, catalogue]);
+  }, [selection, externes, orientation, placements, pret, modifie, cle, catalogue]);
 
   const resultat = useMemo(
-    () => valider(selection, regles, catalogue, externes, orientation),
-    [selection, externes, orientation, regles, catalogue],
+    () => valider(selection, regles, catalogue, externes, orientation, placements),
+    [selection, externes, orientation, placements, regles, catalogue],
   );
 
   const basculer = (id: string) => {
@@ -278,6 +326,13 @@ export function Planificateur({
     setSelection(new Set());
     setExternes(0);
     setOrientation(null);
+    setPlacements({});
+  };
+
+  const placer = (id: string, rangChoisi: number) => {
+    setModifie(true);
+    setRecu(false);
+    setPlacements((p) => ({ ...p, [id]: rangChoisi }));
   };
 
   const changerOrientation = (code: string | null) => {
@@ -300,7 +355,12 @@ export function Planificateur({
     const u = new URL(window.location.href);
     u.searchParams.set(
       "p",
-      assembler(encoder(selection, catalogue), externes, orientation),
+      assembler(
+        encoder(selection, catalogue),
+        externes,
+        orientation,
+        ecrirePlacements(placements, catalogue),
+      ),
     );
     try {
       await navigator.clipboard.writeText(u.toString());
@@ -384,15 +444,25 @@ export function Planificateur({
    * que l'automne, donc ses deuxieme et quatrieme semestres s'evanouissaient
    * sans un mot. Mieux vaut proposer le semestre et dire qu'on n'en sait rien.
    */
-  const rangs = useMemo(() => rangsDe(retenus), [retenus]);
+  const rangs = useMemo(() => {
+    const s = new Set<number>();
+    for (const c of retenus) {
+      const r = rangEffectif(c.colonnes, placements[c.id]);
+      if (r) s.add(r);
+    }
+    return [...s].sort((a, b) => a - b);
+  }, [retenus, placements]);
   const [rangVoulu, setRangVoulu] = useState<number | null>(null);
   const rang = rangVoulu && rangs.includes(rangVoulu) ? rangVoulu : (rangs[0] ?? null);
   const semestreDuRang = rang
     ? (semestres.find((x) => x.startsWith(saisonDuRang(rang))) ?? null)
     : null;
   const coursDuRang = useMemo(
-    () => (rang ? avecHoraire.filter((c) => c.colonnes.includes(rang)) : avecHoraire),
-    [avecHoraire, rang],
+    () =>
+      rang
+        ? avecHoraire.filter((c) => rangEffectif(c.colonnes, placements[c.id]) === rang)
+        : avecHoraire,
+    [avecHoraire, rang, placements],
   );
   /* le semestre est propose, mais son horaire n'est peut-etre pas releve */
   const rangSansHoraire = rang !== null && coursDuRang.length === 0;
@@ -698,10 +768,53 @@ export function Planificateur({
                                   Le rang du semestre, pas seulement la saison :
                                   un master de cent vingt credits compte deux
                                   automnes, et savoir lequel change tout.
+
+                                  Quand le plan en propose plusieurs, la
+                                  pastille devient un choix : le cours n'est
+                                  suivi qu'une fois, et le montrer dans deux
+                                  grilles laisserait croire le contraire. Le
+                                  choix n'apparait qu'une fois le cours coche,
+                                  sans quoi le catalogue se couvrirait de
+                                  boutons avant meme qu'on ait rien decide.
                                 */}
-                                <span className="shrink-0 rounded-full border border-line bg-surface-2 px-2 py-[1px] text-[10.5px] font-semibold uppercase tracking-[0.04em] text-ink-2">
-                                  {libelleColonnes(c.colonnes, langue) ?? T.semestreInconnu}
-                                </span>
+                                {pris && rangsAuChoix(c.colonnes).length ? (
+                                  <span
+                                    className="flex shrink-0 items-center gap-1"
+                                    role="group"
+                                    aria-label={T.choixDuSemestreDuCours}
+                                  >
+                                    {rangsAuChoix(c.colonnes).map((r) => {
+                                      const actif =
+                                        rangEffectif(c.colonnes, placements[c.id]) === r;
+                                      return (
+                                        <button
+                                          key={r}
+                                          type="button"
+                                          aria-pressed={actif}
+                                          onClick={(e) => {
+                                            // la ligne entiere est un label : sans
+                                            // cela, le clic cocherait la case
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            placer(c.id, r);
+                                          }}
+                                          className={`rounded-full border px-2 py-[1px] text-[10.5px] font-semibold uppercase tracking-[0.04em]
+                                            transition-colors duration-150 ease-[var(--ease-out-std)] ${
+                                              actif
+                                                ? "border-unil-400 bg-unil-100 text-unil-500"
+                                                : "border-line bg-white text-muted hover:border-unil-400"
+                                            }`}
+                                        >
+                                          {libelleRang(r, langue)}
+                                        </button>
+                                      );
+                                    })}
+                                  </span>
+                                ) : (
+                                  <span className="shrink-0 rounded-full border border-line bg-surface-2 px-2 py-[1px] text-[10.5px] font-semibold uppercase tracking-[0.04em] text-ink-2">
+                                    {libelleColonnes(c.colonnes, langue) ?? T.semestreInconnu}
+                                  </span>
+                                )}
                               </span>
                               <span className="mt-1 block text-[12px] text-muted">
                                 {[

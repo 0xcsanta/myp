@@ -349,6 +349,15 @@ Quand un cours occupe plusieurs colonnes, elles sont toutes données : « 1er ou
 3e sem, automne » au MDE, très fréquent chez lui. La saison n'est dite que si
 toutes les colonnes tombent dans la même, sinon seuls les rangs le sont.
 
+**Et le plan propose, l'étudiant tranche.** Un cours donné au premier et au
+troisième semestre n'est suivi qu'une fois. Une fois coché, sa pastille devient
+un choix : « 1er semestre » ou « 3e semestre ». La grille ne le montre alors
+que là, au lieu de l'afficher dans les deux, et les chevauchements se calculent
+sur le semestre retenu. À défaut de choix, le premier rang fait foi.
+
+Ces choix sont enregistrés et voyagent dans le lien de partage, écrits par rang
+du catalogue : `0-3` place le premier cours au troisième semestre.
+
 ### La conséquence sur les chevauchements
 
 C'est le point important. Deux cours ne se heurtent que si l'on peut les suivre

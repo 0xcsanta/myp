@@ -1,6 +1,6 @@
 import type { Cours, Creneau, Module, Regles } from "./donnees";
 import type { Langue } from "./langues";
-import { dansUnePhrase, libelleJour, libelleSemestre } from "./semestres";
+import { dansUnePhrase, libelleJour, libelleSemestre, rangEffectif } from "./semestres";
 import { textes } from "./textes";
 
 /**
@@ -81,6 +81,13 @@ export function valider(
    * savoir laquelle est la sienne, et le deviner serait arbitraire.
    */
   orientation: string | null = null,
+  /*
+   * Le semestre choisi pour les cours donnes a plusieurs, par identifiant. Sans
+   * lui, un cours propose au premier et au troisieme semestre serait compare a
+   * tout ce qui tombe dans les deux, et signalerait des heurts avec des cours
+   * qu'on ne suivra jamais en meme temps que lui.
+   */
+  placements: Record<string, number> = {},
 ): Resultat {
   const parId = new Map(catalogue.map((c) => [c.id, c]));
   const choisis = [...selection].map((id) => parId.get(id)).filter(Boolean) as Cours[];
@@ -288,7 +295,9 @@ export function valider(
    */
   const memeMoment = (x: Cours, y: Cours) => {
     if (!x.colonnes.length || !y.colonnes.length) return true;
-    return x.colonnes.some((n) => y.colonnes.includes(n));
+    const rx = rangEffectif(x.colonnes, placements[x.id]);
+    const ry = rangEffectif(y.colonnes, placements[y.id]);
+    return rx !== null && ry !== null ? rx === ry : true;
   };
 
   for (let i = 0; i < reguliers.length; i++) {
