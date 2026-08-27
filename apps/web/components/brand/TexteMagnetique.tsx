@@ -3,36 +3,53 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 /**
- * Un texte qui en revele un autre sous un disque suivant le curseur.
+ * Un titre qui en revele un autre sous un disque suivant le curseur.
+ *
+ * L'echange se fait mot par mot, et c'est tout l'interet : « Master Your Plan »
+ * devient « Plan Your Master », donc le premier et le dernier mot permutent
+ * pendant que celui du milieu ne bouge pas. Passer le disque sur « Your » ne
+ * doit rien changer du tout.
+ *
+ * Pour que ce soit vrai a l'oeil, chaque mot revele occupe exactement la boite
+ * du mot qu'il remplace. Plutot que de mesurer les mots en JavaScript, le
+ * calque revele reprend le mot d'origine en le rendant invisible, ce qui lui
+ * reserve sa place au pixel, et pose le mot de remplacement centre par dessus.
+ * L'alignement est donc exact par construction, quelle que soit la fonte, le
+ * corps ou l'interlettrage, et il le reste si le titre passe a la ligne.
  *
  * La typographie est heritee, jamais imposee : le titre du hero a une taille
  * fluide reglee au pixel et une chasse negative, que ce composant ne doit pas
- * ecraser. Les deux textes partagent donc la meme fonte, le meme corps et le
- * meme interlettrage, ce qui est aussi ce qui rend la substitution credible.
+ * ecraser. C'est aussi ce partage exact qui rend la substitution credible.
  *
- * Quatre choses qui n'etaient pas dans la version d'origine.
+ * Trois precautions qui n'etaient pas dans la version d'origine.
  *
- * Le texte revele est cache aux lecteurs d'ecran et aux moteurs. Sans cela, la
- * page annoncerait deux titres, dont un que personne ne lit jamais.
+ * Le calque revele est cache aux lecteurs d'ecran, et n'entre dans la page
+ * qu'au premier survol : monte d'emblee, il donnait un titre en double, bien
+ * present pour un moteur qui execute le JavaScript.
  *
  * L'effet ne s'arme que sur un appareil qui a vraiment un curseur, et jamais
- * quand le lecteur demande moins d'animations. Sur telephone, le titre reste un
- * titre : rien n'est monte, rien ne tourne.
+ * quand le lecteur demande moins d'animations. Sur telephone rien n'est monte
+ * et rien ne tourne : le titre reste un titre.
  *
- * La boucle de rendu ne tourne que pendant le survol. Dans la version d'origine
- * elle tournait en permanence, du chargement de la page a sa fermeture, pour un
- * disque de taille nulle la plupart du temps.
- *
- * Le curseur reste visible. Le masquer sur un titre pleine largeur fait perdre
- * le pointeur a qui traverse la zone sans vouloir jouer avec.
+ * La boucle de rendu ne tourne que pendant le survol, alors qu'elle tournait
+ * en permanence, du chargement de la page a sa fermeture, pour un disque de
+ * taille nulle la plupart du temps.
  */
+
+export type MotMagnetique = {
+  texte: string;
+  /** Le mot qui le remplace sous le disque. Absent, le mot ne change pas. */
+  revele?: string;
+};
+
 export function TexteMagnetique({
-  texte,
-  texteSurvol,
+  mots,
+  /** Diametre du disque, en cadratins : il suit donc le corps du titre. */
+  diametre = 1.8,
   className = "",
 }: {
-  texte: string;
-  texteSurvol: string;
+  mots: MotMagnetique[];
+  diametre?: number;
   className?: string;
 }) {
   const conteneur = useRef<HTMLSpanElement | null>(null);
@@ -44,14 +61,10 @@ export function TexteMagnetique({
 
   const [arme, setArme] = useState(false);
   const [survole, setSurvole] = useState(false);
-  /*
-   * Le texte revele n'entre dans la page qu'au premier survol, et y reste
-   * ensuite. Monte d'emblee, il donnait un titre en double : cache aux lecteurs
-   * d'ecran, certes, mais bien present pour un moteur qui execute le
-   * JavaScript. Un titre doit rester un seul titre.
-   */
   const [devoile, setDevoile] = useState(false);
   const [taille, setTaille] = useState({ w: 0, h: 0 });
+
+  const phrase = mots.map((m) => m.texte).join(" ");
 
   /* l'effet n'existe que la ou il y a un curseur, et si on veut bien du mouvement */
   useEffect(() => {
@@ -67,12 +80,11 @@ export function TexteMagnetique({
     };
   }, []);
 
-  /* le texte revele est cale sur le conteneur, il lui faut donc sa mesure */
+  /* le calque revele est cale sur le conteneur, il lui faut donc sa mesure */
   useEffect(() => {
     const el = conteneur.current;
     if (!el || !arme) return;
-    const mesurer = () =>
-      setTaille({ w: el.offsetWidth, h: el.offsetHeight });
+    const mesurer = () => setTaille({ w: el.offsetWidth, h: el.offsetHeight });
     mesurer();
     const ro = new ResizeObserver(mesurer);
     ro.observe(el);
@@ -82,10 +94,10 @@ export function TexteMagnetique({
   /*
    * Le disque poursuit le curseur au lieu de le suivre : chaque image le
    * rapproche d'une fraction de la distance restante, ce qui donne une inertie
-   * douce plutot qu'un collage rigide. Le texte revele se deplace en sens
+   * douce plutot qu'un collage rigide. Le calque revele se deplace en sens
    * inverse et de la meme quantite, si bien qu'il reste immobile a l'ecran :
    * c'est ce qui donne l'illusion d'une fenetre ouverte sur un autre calque, et
-   * non d'une pastille qui promene un mot.
+   * non d'une pastille qui promene des mots.
    */
   useEffect(() => {
     if (!survole) return;
@@ -126,7 +138,9 @@ export function TexteMagnetique({
     setSurvole(true);
   }, []);
 
-  if (!arme) return <span className={className}>{texte}</span>;
+  if (!arme) return <span className={className}>{phrase}</span>;
+
+  const cote = `${diametre}em`;
 
   return (
     <span
@@ -136,15 +150,15 @@ export function TexteMagnetique({
       onPointerLeave={() => setSurvole(false)}
       className={`relative inline-block select-none ${className}`}
     >
-      {texte}
+      {phrase}
 
       <span
         ref={disque}
         aria-hidden="true"
         className="pointer-events-none absolute left-0 top-0 block overflow-hidden rounded-full bg-unil-400"
         style={{
-          width: survole ? 150 : 0,
-          height: survole ? 150 : 0,
+          width: survole ? cote : 0,
+          height: survole ? cote : 0,
           transition:
             "width 0.5s cubic-bezier(0.33, 1, 0.68, 1), height 0.5s cubic-bezier(0.33, 1, 0.68, 1)",
           willChange: "transform, width, height",
@@ -153,7 +167,7 @@ export function TexteMagnetique({
         {devoile && (
           <span
             ref={interieur}
-            className="absolute flex items-center justify-center"
+            className="absolute flex items-center justify-center text-white"
             style={{
               width: taille.w,
               height: taille.h,
@@ -162,7 +176,28 @@ export function TexteMagnetique({
               willChange: "transform",
             }}
           >
-            <span className="whitespace-nowrap text-white">{texteSurvol}</span>
+            <span>
+              {mots.map((m, i) => (
+                <span key={`${m.texte}-${i}`}>
+                  {i > 0 && " "}
+                  {m.revele ? (
+                    /*
+                     * Le mot d'origine reste la, invisible : il reserve sa
+                     * place au pixel pres, et le remplacement se centre
+                     * dessus. Aucune mesure, aucun decalage possible.
+                     */
+                    <span className="relative inline-block">
+                      <span className="invisible">{m.texte}</span>
+                      <span className="absolute inset-0 flex items-center justify-center">
+                        {m.revele}
+                      </span>
+                    </span>
+                  ) : (
+                    m.texte
+                  )}
+                </span>
+              ))}
+            </span>
           </span>
         )}
       </span>
