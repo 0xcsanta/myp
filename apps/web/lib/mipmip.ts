@@ -42,13 +42,18 @@ export type Details = {
 
 let cacheDetails: Record<string, Details> | null = null;
 
+/*
+ * Le fichier est relu a chaque appel en developpement, et garde en memoire
+ * une seule fois en production. Il est ecrit par tools_fiches_publier.py, donc
+ * il change pendant qu'on travaille : le retenir ferait mentir la page a
+ * chaque regeneration, et on chercherait le defaut ailleurs.
+ */
 export function detailsDesCours(): Record<string, Details> {
-  if (!cacheDetails) {
-    const f = path.join(RACINE, "cours-details.json");
-    cacheDetails = fs.existsSync(f)
-      ? (JSON.parse(fs.readFileSync(f, "utf8")) as Record<string, Details>)
-      : {};
-  }
+  if (cacheDetails && process.env.NODE_ENV === "production") return cacheDetails;
+  const f = path.join(RACINE, "cours-details.json");
+  cacheDetails = fs.existsSync(f)
+    ? (JSON.parse(fs.readFileSync(f, "utf8")) as Record<string, Details>)
+    : {};
   return cacheDetails;
 }
 

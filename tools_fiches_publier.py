@@ -134,13 +134,17 @@ def main() -> None:
         resume = resumes.get(ens)
         if not resume:
             sans_resume += 1
-            continue
 
+        # Une fiche sans resume est publiee quand meme. Le lien vers la page
+        # officielle est ce qui compte le plus, et le faire attendre qu'un
+        # resume soit ecrit priverait l'etudiant du seul document qui fasse
+        # foi. Les prerequis, les salles et l'evaluation sont dans le meme cas.
         entree = {
             "titre": fiche["titre"],
             "source": fiche["source"],
-            "resume": resume,
         }
+        if resume:
+            entree["resume"] = resume
         for champ in FAITS_COMMUNS:
             if fiche.get(champ):
                 entree[champ] = fiche[champ]
@@ -165,7 +169,22 @@ def main() -> None:
         if faits:
             entree["faits"] = faits
 
-        sortie[fiche["titre"]] = entree
+        # Un même cours a plusieurs fiches, une par programme qui l'accueille,
+        # et elles ne sont pas également remplies. Écraser à l'aveugle faisait
+        # perdre le résumé dès qu'une fiche plus pauvre passait après lui. On
+        # fusionne donc : le résumé l'emporte sur son absence, et chaque champ
+        # manquant se complète depuis l'autre fiche.
+        deja = sortie.get(fiche["titre"])
+        if deja is None:
+            sortie[fiche["titre"]] = entree
+            continue
+        for champ, valeur in entree.items():
+            if champ == "faits":
+                for langue, bloc in valeur.items():
+                    for nom, v in bloc.items():
+                        deja.setdefault("faits", {}).setdefault(langue, {}).setdefault(nom, v)
+            elif not deja.get(champ):
+                deja[champ] = valeur
 
     with io.open(SORTIE, "w", encoding="utf-8") as f:
         json.dump(sortie, f, ensure_ascii=False, indent=1, sort_keys=True)

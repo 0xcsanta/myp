@@ -110,3 +110,16 @@ test("un champ cours qui n'est pas une liste ne fait pas tomber le filtre", () =
   assert.equal(filtre('{"cours":[42,null],"reponse":"oui"}').reponse, REFUS.fr);
   assert.equal(filtre("null").reponse, REFUS.fr);
 });
+
+test("les citations sont plafonnees a six", () => {
+  const grand = new Set(Array.from({ length: 30 }, (_, i) => `Cours ${i}`));
+  const r = filtrerReponse(
+    JSON.stringify({
+      cours: [...grand],
+      reponse: "Voici tous les cours du master.",
+    }),
+    grand,
+    "fr",
+  );
+  assert.equal(r.cours.length, 6);
+});
