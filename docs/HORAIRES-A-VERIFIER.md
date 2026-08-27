@@ -1,3 +1,49 @@
+# Ce que l'année des relevés implique
+
+**Trouvé le 27 août 2026, en croisant les dates portées par les PDF avec le
+jour de la semaine du créneau.**
+
+Une année académique va de l'automne d'une année civile au printemps de la
+suivante. Le relevé du 26 août 2026 contient donc deux semestres qui
+n'appartiennent pas à la même année :
+
+| Semestre du relevé | Année académique | Statut |
+|---|---|---|
+| Automne 2026 | 2026-2027 | le semestre à venir, celui qui compte |
+| Printemps 2026 | **2025-2026** | déjà terminé, en mai 2026 |
+
+Le printemps que vivront les étudiants de 2026-2027 est **Printemps 2027**, que
+HEC n'a pas encore publié.
+
+**La preuve tient dans les données.** Les PDF portent des mentions « Débute le
+28 septembre », « Débute le 16 février ». Ces dates tombent sur le jour de la
+semaine annoncé si on les lit en 2026, et sur aucun autre jour si on les lit en
+2027 :
+
+```
+automne-2026     lu en 2026 : 39 concordent, 1 non
+automne-2026     lu en 2027 :  0 concordent, 40 non
+printemps-2026   lu en 2026 :  7 concordent, 0 non
+printemps-2026   lu en 2027 :  0 concordent, 7 non
+```
+
+**Ce que fait le site.** Il affiche les deux, parce qu'un horaire de printemps
+passé reste la meilleure indication disponible pour le printemps à venir, les
+créneaux bougeant peu d'une année à l'autre. Mais il l'écrit en toutes lettres,
+en ambre, sous le titre du semestre. Il ne fait pas passer un semestre terminé
+pour celui de l'étudiant.
+
+**Ce que ça bloque.** L'export `.ics` demande des dates réelles : un
+calendrier place des événements, pas des cases. Il faudrait la date d'ouverture
+officielle du semestre, que je n'ai pas. Les indices sont forts pour l'automne
+2026, les PDF mentionnant le 14 et le 15 septembre, mais **je ne veux pas
+générer quatorze semaines d'événements à partir d'une date déduite** : une
+erreur d'une semaine décalerait tout le calendrier de l'étudiant. Il faut le
+calendrier académique officiel de l'UNIL. Avec lui, c'est une demi heure de
+travail.
+
+---
+
 # Horaires : ce qui reste à vérifier
 
 Généré par `tools_horaires.py`. Ces créneaux **ne sont pas** dans le site : le

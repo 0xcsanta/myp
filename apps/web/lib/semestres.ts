@@ -61,3 +61,24 @@ export function semestresDe(cours: Cours[]): string[] {
     return aa === ab ? (sa === "printemps" ? -1 : 1) : Number(aa) - Number(ab);
   });
 }
+
+/**
+ * L'annee academique a laquelle appartient un semestre.
+ *
+ * Une annee academique va de l'automne d'une annee civile au printemps de la
+ * suivante : « automne-2026 » et « printemps-2027 » forment 2026-2027. Ce
+ * decalage n'est pas cosmetique. Le releve d'aout 2026 contient un automne
+ * 2026, qui est bien le semestre a venir, et un printemps 2026, qui appartient
+ * a l'annee precedente et s'est deja termine. Sans cette distinction, un
+ * etudiant qui prepare 2026-2027 prendrait le printemps affiche pour le sien.
+ *
+ * Verifie sur les donnees elles memes : les mentions « debute le 28 septembre »
+ * et « debute le 16 fevrier » portees par les PDF tombent sur le jour de la
+ * semaine annonce en 2026, et sur aucun autre jour en 2027.
+ */
+export function anneeAcademique(cle: string): string {
+  const [saison, an] = cle.split("-");
+  const n = Number(an);
+  if (!saison || !Number.isFinite(n)) return cle;
+  return saison === "automne" ? `${n}-${n + 1}` : `${n - 1}-${n}`;
+}

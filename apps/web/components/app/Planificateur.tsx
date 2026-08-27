@@ -7,7 +7,8 @@ import type { Langue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
 import { nomCourt } from "@/lib/nomMaster";
 import { evaluationDuCours, langueDuCours } from "@/lib/codes";
-import { libelleSaison } from "@/lib/semestres";
+import { anneeAcademique, libelleSaison } from "@/lib/semestres";
+import { ANNEE_VISEE } from "@/lib/annee";
 import { coursEnConflit, messageDiagnostic, nomModule, valider } from "@/lib/valider";
 import { Mascotte } from "@/components/brand/Mascotte";
 import { GrilleHoraire } from "./GrilleHoraire";
@@ -247,9 +248,25 @@ export function Planificateur({
           <div className="mb-10 grid grid-cols-1 gap-6">
             {semestres.map((s) => (
               <div key={s} className="min-w-0">
-                <h2 className="mb-3 font-display text-[20px] tracking-[-0.02em] text-ink">
+                <h2 className="font-display text-[20px] tracking-[-0.02em] text-ink">
                   {libelleSemestre(s, langue)}
                 </h2>
+                {/*
+                  Une annee academique va de l'automne d'une annee civile au
+                  printemps de la suivante. Le releve d'aout 2026 porte donc un
+                  automne a venir et un printemps deja termine, celui de
+                  l'annee precedente. Le dire evite qu'un etudiant qui prepare
+                  2026-2027 prenne ce printemps la pour le sien.
+                */}
+                <p
+                  className={`mb-3 mt-1 text-[11.5px] leading-relaxed ${
+                    anneeAcademique(s) === ANNEE_VISEE ? "text-muted" : "text-warn"
+                  }`}
+                >
+                  {anneeAcademique(s) === ANNEE_VISEE
+                    ? T.semestreAVenir(anneeAcademique(s))
+                    : T.semestrePasse(anneeAcademique(s), ANNEE_VISEE)}
+                </p>
                 <GrilleHoraire
                   cours={avecHoraire}
                   semestre={s}

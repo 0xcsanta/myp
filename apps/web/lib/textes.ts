@@ -75,6 +75,9 @@ const fr = {
     catalogueOfficiel: "catalogue officiel",
     langueOfficielle:
       "Les intitulés de cours et les notes de module restent dans la langue où HEC les publie, donc certains sont en anglais.",
+    semestreAVenir: (annee: string) => `année ${annee}`,
+    semestrePasse: (annee: string, aVenir: string) =>
+      `relevé de l'année ${annee}, la dernière publiée. HEC n'a pas encore publié ce semestre pour ${aVenir}, donc ces créneaux sont indicatifs.`,
   },
 
   grille: {
@@ -198,6 +201,9 @@ const en: Textes = {
     catalogueOfficiel: "official course catalogue",
     langueOfficielle:
       "Course titles and module notes stay in the language HEC publishes them in, so some of them are in French.",
+    semestreAVenir: (annee: string) => `${annee} academic year`,
+    semestrePasse: (annee: string, aVenir: string) =>
+      `read from the ${annee} academic year, the latest published. HEC has not published this semester for ${aVenir} yet, so these slots are indicative.`,
   },
 
   grille: {
