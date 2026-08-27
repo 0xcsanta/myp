@@ -30,3 +30,15 @@ shot-*.png
 # dossier nomme « horaires », donc data/horaires, que l'application lit au
 # build. Un clone neuf se serait deploye sans un seul horaire.
 /horaires/
+
+# Configuration locale d'outils, sans rapport avec le site. Le .mcp.json
+# publiait en prime la reference d'un projet Supabase qui n'a rien a faire ici.
+.mcp.json
+.claude/
+
+# Le depot est public : etudiants et enseignants le lisent. On n'y met que ce
+# qui fait le site et ce qui prouve d'ou viennent les donnees. Les fichiers de
+# travail, tableurs, captures et pages enregistrees, vivent dans
+# sources-brutes/, qui n'est pas versionne.
+*.xlsx
+*.docx

@@ -3,7 +3,7 @@
 Un outil gratuit qui aide les étudiantes et étudiants de l'UNIL à composer leur
 plan d'études : compteur de crédits ECTS en direct, vérification des minimums
 par module, alerte quand on dépasse le total du diplôme, détection des
-chevauchements d'horaire, et export du calendrier.
+chevauchements d'horaire.
 
 Périmètre : **les dix masters de HEC Lausanne**, et rien d'autre. Une extension
 à d'autres facultés se décidera à la demande, si elle vient, et pas avant.
@@ -47,11 +47,17 @@ de l'UNIL.
 apps/web/            le site, Next.js
 packages/scraper/    lecture des sources autorisées, garde robots.txt incluse
 packages/rules/      le moteur de règles, sans dépendance, testable seul
-data/rules/          un fichier JSON par master, seuils de crédits saisis à la main
-data/raw/            sorties de lecture, versionnées
-allmaster/           les plans d'études et règlements officiels, copies locales
+data/programmes/     un fichier par master, le catalogue extrait du plan d'études
+data/rules/          un fichier par master, les seuils de crédits
+data/horaires/       les créneaux, et dans brut/ le relevé dont ils sortent
 docs/                sources, cadre légal, décisions
+tools_*.py           extraction des plans et des horaires depuis les PDF
 ```
+
+Deux dossiers existent sur le disque mais **ne sont pas versionnés**, et c'est
+voulu : `allmaster/`, qui contient les PDF officiels de l'UNIL, et
+`sources-brutes/`, les fichiers de travail. Le dépôt ne redistribue aucun
+document de l'UNIL, il renvoie vers les URL officielles.
 
 ## Démarrer
 
@@ -62,6 +68,10 @@ npm run test:rules
 
 ## Licence
 
-Le code est ouvert. Les documents de l'UNIL présents dans `allmaster/` restent
-la propriété de l'Université de Lausanne et ne sont pas redistribués par le
-site, qui renvoie vers les URL officielles.
+Le code et les données n'ont pas le même statut, et la distinction compte :
+voir **[LICENSE.md](LICENSE.md)**. En bref, aucune licence de réutilisation
+n'est accordée sur le code à ce jour, et les données relevées des documents de
+l'UNIL ne nous appartiennent pas, donc nous ne les licencions pas.
+
+Si vous êtes de l'UNIL et que quelque chose vous gêne, écrivez : ce sera
+corrigé ou retiré.
