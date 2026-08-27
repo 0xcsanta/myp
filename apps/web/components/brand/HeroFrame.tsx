@@ -44,16 +44,23 @@ const aPortraitWebp = fs.existsSync(path.join(dossierHero, "hero-portrait.webp")
 const SUR_TELEPHONE = "(max-width: 639px)";
 
 /*
- * Ce qu'il faut retrancher a la fenetre pour connaitre la place laissee a
- * l'appareil : l'en-tete, le titre, et un peu d'air en dessous. La borne de
- * 522 pixels est la cote du Figma, que l'appareil ne depasse jamais meme sur
- * un grand telephone.
+ * La hauteur de l'appareil sur telephone.
+ *
+ * `100%`, et non une soustraction a la fenetre. La premiere version retranchait
+ * 200 pixels pour l'en-tete et le titre, ce qui est faux des que le titre passe
+ * sur deux lignes : l'appareil depassait alors le bas de l'ecran et s'y
+ * trouvait coupe. Le parent est un element flexible qui occupe exactement la
+ * place restante sous le titre, donc `100%` mesure cette place au lieu de la
+ * deviner, quel que soit le titre et quelle que soit la fenetre.
+ *
+ * La borne de 522 pixels est la cote du Figma, que l'appareil ne depasse jamais
+ * meme quand la place ne manque pas.
  */
-const HAUTEUR_APPAREIL = "min(522px, calc(100dvh - 200px))";
+const HAUTEUR_APPAREIL = "min(522px, 100%)";
 
 export function HeroFrame() {
   return (
-    <div className="flex w-full justify-center sm:relative sm:block sm:aspect-[1200/560]">
+    <div className="flex h-full w-full items-end justify-center sm:relative sm:block sm:h-auto sm:aspect-[1200/560]">
       {/* la scene : sur telephone elle epouse l'appareil, sur grand ecran elle
           occupe toute la largeur et c'est l'appareil qui s'y place */}
       <div
