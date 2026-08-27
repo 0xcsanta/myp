@@ -1,0 +1,15 @@
+{
+ "note": "Intitules de cours retablis a la main, quand le PDF du plan d'etudes est lui meme fautif. A ne pas confondre avec data/horaires/corrections.json, qui repare les intitules haches par la mise en page des grilles d'horaire : ici, le texte du PDF est deja faux avant toute lecture.",
+ "regle": "Une correction porte le texte exact tel qu'il sort du PDF, dans « lu », et le texte retabli dans « titre ». Si « lu » ne se retrouve plus, l'outil le signale au lieu de l'appliquer en silence : une correction devenue caduque doit se voir, sinon elle survit a la source qu'elle corrigeait.",
+ "etabliLe": "2026-08-27",
+
+ "corrections": [
+  {
+   "master": "mscm-behaviour",
+   "lu": "Behavior, Economics and Evolution Lectures Series (open to other orientationsLehmann",
+   "titre": "Behavior, Economics and Evolution Lectures Series (open to other orientations)",
+   "enseignants": "Lehmann L./Efferson C.",
+   "pourquoi": "Le flux de texte du PDF ne met ni parenthese fermante ni espace : « orientationsLehmann » est un seul mot dans le document, verifie par geometrie. Le nom de l'enseignant se retrouvait donc dans l'intitule, l'intitule perdait sa parenthese, et le releve d'horaire ne reconnaissait plus le cours. Le meme enseignement figure au plan du MScE sous « Behavior, Economics and Evolution Lecture Series », ce qui confirme la lecture."
+  }
+ ]
+}

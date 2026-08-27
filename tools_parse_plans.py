@@ -341,6 +341,47 @@ def parse_plan(pdf_path, slug):
 
 # ---------------------------------------------------------------------- main
 
+def corrections_de_plan():
+    """
+    Intitules retablis a la main, quand le PDF du plan est lui meme fautif.
+
+    A ne pas confondre avec data/horaires/corrections.json, qui repare les
+    intitules haches par la mise en page des grilles d'horaire. Ici le texte du
+    document est deja faux avant toute lecture : le plan du MScM Comportement
+    ecrit « orientationsLehmann » en un seul mot, sans parenthese fermante ni
+    espace, si bien que le nom de l'enseignant entre dans l'intitule.
+
+    Une regle generale serait plus fragile qu'utile : quatre cents intitules
+    passent par la, et un motif assez large pour attraper celui la en abimerait
+    d'autres. Une table se relit.
+    """
+    f = 'data/corrections-plans.json'
+    if not os.path.exists(f):
+        return {}
+    out = {}
+    for c in json.load(io.open(f, encoding='utf-8'))['corrections']:
+        out.setdefault(c['master'], []).append(c)
+    return out
+
+
+def appliquer_corrections(slug, courses, table):
+    """Applique les corrections du master, et signale celles qui ne mordent plus."""
+    n = 0
+    for c in table.get(slug, []):
+        touche = False
+        for cours in courses:
+            if cours['title'] == c['lu']:
+                cours['title'] = c['titre']
+                if c.get('enseignants'):
+                    cours['teachers'] = c['enseignants']
+                touche = True
+                n += 1
+        if not touche:
+            # une correction caduque doit se voir : elle a survecu a sa source
+            print(f"  {slug:26} CORRECTION SANS EFFET : « {c['lu'][:56]} »")
+    return n
+
+
 def main():
     os.makedirs(OUT_RULES, exist_ok=True)
     os.makedirs(OUT_COURSES, exist_ok=True)
@@ -348,6 +389,7 @@ def main():
     plans = [r for r in index if r.get('kind') == 'plan' and r.get('year') == YEAR and r.get('slug')]
 
     print(f'{len(plans)} plans d\'etudes {YEAR}\n')
+    table = corrections_de_plan()
     summary = []
     for r in sorted(plans, key=lambda x: x['slug']):
         path = os.path.join('allmaster', r['file'])
@@ -356,6 +398,10 @@ def main():
             print(f"  {r['slug']:26} ECHEC  {err}")
             summary.append({'slug': r['slug'], 'error': err})
             continue
+
+        n = appliquer_corrections(r['slug'], data['courses'], table)
+        if n:
+            print(f"  {r['slug']:26} {n} intitule(s) retabli(s) a la main")
 
         # seuls les modules racines comptent dans le total du diplome
         roots = [m for m in data['modules'] if not m.get('parent')]

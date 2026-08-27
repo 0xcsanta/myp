@@ -129,6 +129,16 @@
    "note": ""
   },
   {
+   "cours": "procedure-et-juridiction-administratives",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/272",
+   "cadence": "irregulier",
+   "note": ""
+  },
+  {
    "cours": "arbitrage-en-droit-du-sport",
    "semestre": "automne-2026",
    "jour": "Mardi",
@@ -207,6 +217,26 @@
    "salle": "Internef/233",
    "cadence": "hebdomadaire",
    "note": ""
+  },
+  {
+   "cours": "international-tax-disputes-investment-treaty-a",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "16:00",
+   "salle": null,
+   "cadence": "irregulier",
+   "note": ""
+  },
+  {
+   "cours": "international-tax-disputes-investment-treaty-a",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/275",
+   "cadence": "irregulier",
+   "note": "Trimestre 1"
   },
   {
    "cours": "corporate-sustainability-aut26",
@@ -336,6 +366,16 @@
    "fin": "10:00",
    "salle": "Internef/275",
    "cadence": "hebdomadaire",
+   "note": ""
+  },
+  {
+   "cours": "droit-de-l-immobilier",
+   "semestre": "automne-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/121",
+   "cadence": "irregulier",
    "note": ""
   },
   {
@@ -887,26 +927,6 @@
    "salle": "Internef/272",
    "cadence": "hebdomadaire",
    "note": ""
-  },
-  {
-   "cours": "droit-de-l-immobilier",
-   "semestre": "automne-2026",
-   "jour": "Jeudi",
-   "debut": "08:30",
-   "fin": "12:00",
-   "salle": "Internef/121",
-   "cadence": "hebdomadaire",
-   "note": ""
-  },
-  {
-   "cours": "international-tax-disputes-investment-treaty-a",
-   "semestre": "automne-2026",
-   "jour": "Mardi",
-   "debut": "14:15",
-   "fin": "18:00",
-   "salle": "Internef/275",
-   "cadence": "hebdomadaire",
-   "note": "en 2026-2027, S. Wuschka remplace le professeur Danon"
   },
   {
    "cours": "managerial-decision-making",
