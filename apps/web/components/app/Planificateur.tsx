@@ -543,6 +543,37 @@ export function Planificateur({
 
   const q = recherche.trim().toLowerCase();
   const parModule = useMemo(() => {
+    /*
+     * Les cours des orientations qu'on ne suit pas changent de module.
+     *
+     * Cela ne vaut que pour la forme interne, celle du MScF, dont les
+     * orientations sont des sous-modules du meme plan. Le plan dit « Any
+     * compulsory courses in other tracks » au Module 4, et valider() les y
+     * comptait deja. Ils restaient pourtant affiches sous le Module 3, chacun
+     * sous son orientation : un etudiant qui regardait son Module 4 ne les
+     * voyait pas et ne devinait pas qu'il avait le droit de les prendre.
+     *
+     * Rien ne bouge tant que l'orientation n'est pas choisie. Sans elle, il n'y
+     * a pas d'orientation « autre », et masquer quoi que ce soit rendrait le
+     * choix impossible.
+     */
+    const interne =
+      regles.autresOrientations?.portee === "interne" ? regles.autresOrientations : null;
+    const choix = regles.modules.find((m) => m.choisirUn);
+    const origine = new Map<string, string>();
+    if (interne && choix && orientation) {
+      const descendants = (code: string): string[] => {
+        const fils = regles.modules.filter((x) => x.parent === code);
+        return fils.flatMap((f) => [f.code, ...descendants(f.code)]);
+      };
+      for (const b of regles.modules.filter((x) => x.parent === choix.code)) {
+        if (b.code === orientation) continue;
+        // la meme etiquette que le bouton de choix, pour qu'on la reconnaisse
+        const nom = b.note ? b.note.split(" - ")[0] : nomModule(b, langue);
+        for (const code of [b.code, ...descendants(b.code)]) origine.set(code, nom);
+      }
+    }
+
     const groupes = new Map<string, Cours[]>();
     for (const c of catalogue) {
       if (
@@ -553,12 +584,15 @@ export function Planificateur({
           .includes(q)
       )
         continue;
-      const l = groupes.get(c.module) ?? [];
-      l.push(c);
-      groupes.set(c.module, l);
+      const venu = origine.get(c.module);
+      const cours: Cours =
+        venu && interne ? { ...c, module: interne.moduleDAccueil, venantDe: [venu] } : c;
+      const l = groupes.get(cours.module) ?? [];
+      l.push(cours);
+      groupes.set(cours.module, l);
     }
     return groupes;
-  }, [catalogue, q]);
+  }, [catalogue, q, regles, orientation, langue]);
 
   const erreurs = resultat.diagnostics.filter((x) => x.niveau === "erreur");
 
@@ -767,7 +801,11 @@ export function Planificateur({
                           */}
                           {c.venantDe?.length ? (
                             <span
-                              title={T.venantDeExplique(c.venantDe)}
+                              title={
+                                regles.autresOrientations?.portee === "interne"
+                                  ? T.venantDeInterne(c.venantDe)
+                                  : T.venantDeExplique(c.venantDe)
+                              }
                               className="shrink-0 rounded-full border border-unil-200 bg-unil-100 px-2 py-[1px]
                                 text-[10.5px] font-semibold uppercase tracking-[0.04em] text-unil-500"
                             >
@@ -1120,14 +1158,17 @@ export function Planificateur({
                     qu'il ne reconnait pas et ne sait pas s'il a le droit de les
                     prendre.
                   */}
-                  {regles.autresOrientations?.portee === "externe" &&
+                  {regles.autresOrientations &&
                     m.code === regles.autresOrientations.moduleDAccueil &&
                     (() => {
                       const n = (cours ?? []).filter((c) => c.venantDe?.length).length;
                       if (!n) return null;
+                      const interne = regles.autresOrientations!.portee === "interne";
                       return (
                         <p className="mt-1.5 max-w-[70ch] text-[12px] leading-relaxed text-muted">
-                          {T.autresOrientationsTitre(n)}{" "}
+                          {interne
+                            ? T.autresOrientationsInterne(n)
+                            : T.autresOrientationsTitre(n)}{" "}
                           <span className="italic">
                             « {regles.autresOrientations!.citation} »
                           </span>

@@ -142,6 +142,12 @@ const fr = {
       `Tes semestres sont déséquilibrés : ${fort} d'un côté, ${faible} de l'autre. Rien ne l'interdit, mais ça se vit.`,
     autresOrientationsTitre: (n: number) =>
       `${n} de ces cours viennent du Module 5 des trois autres orientations. Selon le plan :`,
+    autresOrientationsInterne: (n: number) =>
+      n > 1
+        ? `${n} de ces cours viennent des orientations que tu ne suis pas, et comptent ici plutôt qu'au Module 3. Selon le plan :`
+        : "1 de ces cours vient d'une orientation que tu ne suis pas, et compte ici plutôt qu'au Module 3. Selon le plan :",
+    venantDeInterne: (o: string[]) =>
+      `Cours de l'orientation ${o[0]}, que tu ne suis pas. Ton plan l'accepte en option, et il compte dans ce module.`,
     venantDe: (o: string[]) =>
       o.length === 1 ? `orientation ${o[0]}` : "autres orientations",
     venantDeExplique: (o: string[]) =>
@@ -381,6 +387,12 @@ const en: Textes = {
       `Your semesters are lopsided: ${fort} on one side, ${faible} on the other. Nothing forbids it, but you will feel it.`,
     autresOrientationsTitre: (n: number) =>
       `${n} of these courses come from Module 5 of the three other tracks. According to the plan:`,
+    autresOrientationsInterne: (n: number) =>
+      n > 1
+        ? `${n} of these courses come from tracks you do not follow, and count here rather than in Module 3. According to the plan:`
+        : "1 of these courses comes from a track you do not follow, and counts here rather than in Module 3. According to the plan:",
+    venantDeInterne: (o: string[]) =>
+      `Course from the ${o[0]} track, which you do not follow. Your plan accepts it as an option, and it counts in this module.`,
     venantDe: (o: string[]) => (o.length === 1 ? `${o[0]} track` : "other tracks"),
     venantDeExplique: (o: string[]) =>
       o.length === 1
