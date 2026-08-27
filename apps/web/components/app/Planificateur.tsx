@@ -6,6 +6,7 @@ import { libelleSemestre, semestresDe } from "@/lib/semestres";
 import type { Langue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
 import { bilanParSemestre, enHeures } from "@/lib/bilan";
+import { comparer } from "@/lib/comparer";
 import type { CalendrierAcademique } from "@/lib/ics";
 import { fabriquerIcs } from "@/lib/ics";
 import { nomCourt } from "@/lib/nomMaster";
@@ -253,6 +254,13 @@ export function Planificateur({
   const [recherche, setRecherche] = useState("");
   /* le compte rendu de l'export, efface tout seul apres quelques secondes */
   const [rapportExport, setExport] = useState<{ texte: string; bon: boolean } | null>(null);
+  /*
+   * Le plan mis de cote, pour la comparaison. Un etudiant hesite rarement
+   * entre valide et invalide : il hesite entre deux plans qui tiennent tous les
+   * deux. Il est garde sous sa forme partagee, la meme chaine que le lien, ce
+   * qui evite un second format a maintenir.
+   */
+  const [deCote, setDeCote] = useState<string | null>(null);
   /* les credits pris hors du plan, quand le plan l'autorise */
   const [externes, setExternes] = useState(0);
   /* l'orientation suivie, quand le plan demande d'en choisir une */
@@ -317,6 +325,7 @@ export function Planificateur({
     setPlacements(lirePlacements(plac, catalogue));
     setGroupes(lireGroupes(grp, catalogue));
     setRecu(Boolean(partage));
+    setDeCote(window.localStorage.getItem(`${cle}:de-cote`));
     setPret(true);
   }, [cle, catalogue]);
 
@@ -481,6 +490,50 @@ export function Planificateur({
     () => bilanParSemestre(catalogue.filter((c) => selection.has(c.id)), placements, groupes),
     [catalogue, selection, placements, groupes],
   );
+
+  const codeActuel = () =>
+    assembler(
+      encoder(selection, catalogue),
+      externes,
+      orientation,
+      ecrirePlacements(placements, catalogue),
+      ecrireGroupes(groupes, catalogue),
+    );
+
+  const mettreDeCote = () => {
+    const c = codeActuel();
+    setDeCote(c);
+    try {
+      window.localStorage.setItem(`${cle}:de-cote`, c);
+    } catch {
+      /* navigation privee, stockage refuse : la comparaison vaut pour la session */
+    }
+  };
+
+  const oublierDeCote = () => {
+    setDeCote(null);
+    try {
+      window.localStorage.removeItem(`${cle}:de-cote`);
+    } catch {
+      /* rien a faire : il n'y avait rien a effacer */
+    }
+  };
+
+  /* la comparaison elle meme, quand un plan est de cote */
+  const comparaison = useMemo(() => {
+    if (!deCote) return null;
+    const { bits, placements: plac, groupes: grp } = separer(deCote);
+    return comparer({
+      catalogue,
+      regles,
+      a: decoder(bits, catalogue),
+      b: selection,
+      placementsA: lirePlacements(plac, catalogue),
+      placementsB: placements,
+      groupesA: lireGroupes(grp, catalogue),
+      groupesB: groupes,
+    });
+  }, [deCote, catalogue, regles, selection, placements, groupes]);
 
   const q = recherche.trim().toLowerCase();
   const parModule = useMemo(() => {
@@ -1285,6 +1338,101 @@ export function Planificateur({
           )}
 
           {/*
+            La comparaison. Elle ne s'affiche que si un plan a ete mis de cote,
+            et elle ne dit que les ecarts : lister ce qui ne bouge pas noierait
+            ce qui bouge.
+          */}
+          {comparaison && (
+            <div className="mt-6 border-t border-line pt-5">
+              <h2 className="text-[12.5px] font-semibold text-ink">{T.comparerTitre}</h2>
+              {comparaison.identiques ? (
+                <p className="mt-2 text-[11.5px] text-muted">{T.comparerIdentiques}</p>
+              ) : (
+                <>
+                  <p className="mt-2 tnum font-mono text-[12px] text-ink-2">
+                    {T.comparerTotal(comparaison.totalA, comparaison.totalB)}
+                  </p>
+                  <p className="mt-1 text-[11.5px] text-muted">
+                    {[
+                      comparaison.entrants.length
+                        ? T.comparerEntrants(comparaison.entrants.length)
+                        : null,
+                      comparaison.sortants.length
+                        ? T.comparerSortants(comparaison.sortants.length)
+                        : null,
+                    ]
+                      .filter(Boolean)
+                      .join(" · ")}
+                  </p>
+
+                  <ul className="mt-2 grid gap-1">
+                    {comparaison.entrants.map((c) => (
+                      <li key={`in-${c.id}`} className="text-[11.5px] leading-snug text-ok">
+                        + {c.titre}
+                      </li>
+                    ))}
+                    {comparaison.sortants.map((c) => (
+                      <li key={`out-${c.id}`} className="text-[11.5px] leading-snug text-warn">
+                        − {c.titre}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {comparaison.modules.length > 0 && (
+                    <>
+                      <h3 className="mt-3 text-[11.5px] font-semibold text-ink-2">
+                        {T.comparerModules}
+                      </h3>
+                      <ul className="mt-1 grid gap-0.5">
+                        {comparaison.modules.map((l) => (
+                          <li
+                            key={l.code}
+                            className="tnum flex items-baseline justify-between font-mono text-[11.5px] text-muted"
+                          >
+                            <span>
+                              {(() => {
+                                const m = regles.modules.find((x) => x.code === l.code);
+                                // un cours importe d'une autre orientation vise
+                                // le module d'accueil, qui existe toujours ;
+                                // le repli n'est la que pour ne jamais planter
+                                return m ? nomModule(m, langue) : l.code;
+                              })()}
+                            </span>
+                            <span>
+                              {l.a} → <span className="text-ink-2">{l.b}</span>
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+
+                  {comparaison.semestres.length > 0 && (
+                    <>
+                      <h3 className="mt-3 text-[11.5px] font-semibold text-ink-2">
+                        {T.comparerSemestres}
+                      </h3>
+                      <ul className="mt-1 grid gap-0.5">
+                        {comparaison.semestres.map((l) => (
+                          <li
+                            key={l.code}
+                            className="tnum flex items-baseline justify-between font-mono text-[11.5px] text-muted"
+                          >
+                            <span>{libelleRang(Number(l.code), langue)}</span>
+                            <span>
+                              {l.a} → <span className="text-ink-2">{l.b}</span>
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+          )}
+
+          {/*
             Les verifications changent a chaque case cochee. Sans region
             annoncee, un lecteur d'ecran ne dit rien : l'etudiant coche, et
             l'avertissement qui est la raison d'etre du site passe inapercu.
@@ -1347,6 +1495,15 @@ export function Planificateur({
                   : copie === "echec"
                     ? T.lienEchec
                     : T.partager}
+              </button>
+              <button
+                onClick={deCote ? oublierDeCote : mettreDeCote}
+                title={T.comparerAide}
+                className="w-full rounded-lg border border-line-2 py-2 text-[13px]
+                  font-medium text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)]
+                  hover:border-unil-400 hover:text-unil-400"
+              >
+                {deCote ? T.comparerOublier : T.comparerMettreDeCote}
               </button>
               <button
                 onClick={exporter}
