@@ -54,6 +54,12 @@ export type Resultat = {
   parModule: Record<string, number>;
   diagnostics: Diagnostic[];
   valide: boolean;
+  /**
+   * Les modules qui ne concernent pas ce plan : les orientations qu'on n'a pas
+   * choisies, quand le plan demande d'en choisir une. Ils n'exigent rien et ne
+   * s'affichent pas.
+   */
+  enSommeil: Set<string>;
 };
 
 const somme = (xs: number[]) => xs.reduce((a, b) => a + b, 0);
@@ -97,11 +103,41 @@ export function valider(
     }
   }
 
+  /*
+   * Les orientations qu'on ne suit pas.
+   *
+   * « MODULE 3: Choose the submodule of your orientation » : celui qui prend
+   * l'orientation 3.3 n'a pas a se voir reclamer les neuf credits du
+   * sous-sous-module 3.2.1, qui appartient a une autre orientation. Tant
+   * qu'aucune n'est choisie, toutes dorment et c'est le module parent qui
+   * porte l'exigence, avec son seuil a lui.
+   */
+  const descendants = (code: string): string[] => {
+    const fils = regles.modules.filter((m) => m.parent === code);
+    return fils.flatMap((f) => [f.code, ...descendants(f.code)]);
+  };
+  const enSommeil = new Set<string>();
+  for (const m of regles.modules) {
+    if (!m.choisirUn) continue;
+    const branches = enfantsDe(m.code);
+    const suivie = (b: Module) => {
+      const codes = [b.code, ...descendants(b.code)];
+      return choisis.some((c) => codes.includes(c.module));
+    };
+    const suivies = branches.filter(suivie);
+    for (const b of branches) {
+      if (suivies.length && suivies.includes(b)) continue;
+      enSommeil.add(b.code);
+      for (const d of descendants(b.code)) enSommeil.add(d);
+    }
+  }
+
   const racines = regles.modules.filter((m) => !m.parent);
   const total = somme(racines.map((m) => parModule[m.code] ?? 0));
 
   /* ---------- chaque module ---------- */
   for (const m of regles.modules) {
+    if (enSommeil.has(m.code)) continue;
     const obtenu = parModule[m.code] ?? 0;
 
     /*
@@ -266,6 +302,7 @@ export function valider(
     parModule,
     diagnostics: d,
     valide: erreurs.length === 0 && total === regles.totalEcts,
+    enSommeil,
   };
 }
 

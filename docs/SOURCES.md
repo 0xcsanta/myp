@@ -273,5 +273,14 @@ prend **un**, pas les trois. Le site le signale quand des cours sont cochés dan
 plusieurs orientations à la fois.
 
 Un module dont le plan ne chiffre aucun seuil, comme ces orientations, affiche
-ce qu'il totalise sans barre de comparaison : annoncer « 6 / 0 » serait faux,
+ce qu'il totalise sans barre de comparaison : annoncer « 21 / 0 » serait faux,
 le seuil vivant sur le module parent.
+
+**Les orientations qu'on ne suit pas n'exigent rien.** Celui qui prend
+l'orientation 3.3 ne doit pas se voir réclamer les neuf crédits du
+sous-sous-module 3.2.1, qui appartient à une autre orientation. Elles
+disparaissent donc du rail et des vérifications, et c'est le module parent qui
+porte l'exigence, avec son seuil à lui : « Module 3 : 21 / 21 ».
+
+En revanche **le catalogue les montre toutes**, puisque c'est là qu'on choisit
+la sienne. Les masquer rendrait le choix impossible.

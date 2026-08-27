@@ -103,17 +103,28 @@ function Jauge({
   obtenu: number;
   requis: number;
 }) {
-  const pct = Math.min(100, requis ? Math.round((obtenu / requis) * 100) : 0);
-  const etat = obtenu > requis ? "trop" : obtenu === requis ? "fait" : "";
+  /*
+   * Un module dont le plan ne chiffre aucun seuil n'a rien a comparer : les
+   * orientations du MScF sont dans ce cas, leur exigence vivant sur le module
+   * parent. Afficher « 21 / 0 » et une barre pleine serait un contresens.
+   */
+  const sansSeuil = requis <= 0;
+  const pct = sansSeuil ? 0 : Math.min(100, Math.round((obtenu / requis) * 100));
+  const etat = sansSeuil ? "" : obtenu > requis ? "trop" : obtenu === requis ? "fait" : "";
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
         <span className="text-[13px] font-medium text-ink">{nom}</span>
         <span className="tnum font-mono text-[11.5px] text-muted">
-          {obtenu} / {requis}
+          {obtenu}
+          {sansSeuil ? " ECTS" : ` / ${requis}`}
         </span>
       </div>
-      <div className="mt-1.5 h-[7px] overflow-hidden rounded-full bg-line/70">
+      <div
+        className={`mt-1.5 h-[7px] overflow-hidden rounded-full bg-line/70 ${
+          sansSeuil ? "opacity-0" : ""
+        }`}
+      >
         <i
           className={`block h-full rounded-full transition-[width,background-color] duration-500 ease-[var(--ease-pop)] ${
             etat === "trop"
@@ -333,9 +344,19 @@ export function Planificateur({
       .replace(/[^A-Za-z0-9 \-]/g, "")
       .replace(/\s+/g, " ")
       .trim();
-  const feuilles = regles.modules.filter(
-    (m) => !regles.modules.some((x) => x.parent === m.code),
-  );
+  /*
+   * Ce que le rail montre.
+   *
+   * Les feuilles, comme avant, mais amputees des orientations qu'on ne suit
+   * pas : celui qui prend l'orientation 3.3 du MScF n'a que faire des jauges
+   * du 3.2.1 et du 3.2.2. En echange, le module qui porte le choix s'affiche
+   * lui meme, puisque c'est lui qui porte le seuil des 21 credits.
+   */
+  const feuilles = regles.modules.filter((m) => {
+    if (resultat.enSommeil.has(m.code)) return false;
+    const aDesEnfants = regles.modules.some((x) => x.parent === m.code);
+    return aDesEnfants ? m.choisirUn === true : true;
+  });
 
   return (
     <div className="shell grid gap-10 pb-[clamp(64px,8vw,128px)] lg:grid-cols-[1fr_340px] lg:items-start lg:gap-12">
@@ -457,6 +478,13 @@ export function Planificateur({
              * de choisir son orientation. Le masquer faisait disparaitre cette
              * consigne, et les trois orientations flottaient sans en-tete.
              */
+            /*
+              Le catalogue montre toutes les orientations, y compris celles
+              qu'on ne suit pas : c'est la qu'on choisit la sienne, donc les
+              masquer rendrait le choix impossible. Ce sont le rail et les
+              verifications qui se taisent sur les orientations non suivies,
+              pas la liste des cours.
+            */
             .filter((m) => {
               if (parModule.has(m.code)) return true;
               const descendants = (code: string): string[] => {
