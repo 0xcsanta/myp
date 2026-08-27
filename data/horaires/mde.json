@@ -1017,6 +1017,39 @@
    "salle": "Anthropole/3021",
    "cadence": "hebdomadaire",
    "note": ""
+  },
+  {
+   "cours": "droit-des-marches-financiers",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Internef/232",
+   "cadence": "hebdomadaire",
+   "note": "",
+   "reprisDe": "mscf"
+  },
+  {
+   "cours": "managing-contractual-relationship",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "17:00",
+   "salle": "Anthropole 3185",
+   "cadence": "irregulier",
+   "note": "",
+   "reprisDe": "mscm-strategy"
+  },
+  {
+   "cours": "managing-contractual-relationship",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/125",
+   "cadence": "irregulier",
+   "note": "Zanarone / Giorgio /",
+   "reprisDe": "mscm-strategy"
   }
  ]
 }

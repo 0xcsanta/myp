@@ -23,7 +23,7 @@ défaut. Le titre peut être abrégé : la résolution accepte un préfixe uniqu
     python tools_horaires.py            construit tous les fichiers
     python tools_horaires.py mscis      un seul master
 """
-import difflib, glob, io, json, os, re, sys, unicodedata
+import collections, difflib, glob, io, json, os, re, sys, unicodedata
 
 BRUT = 'data/horaires/brut'
 SORTIE = 'data/horaires'
@@ -292,6 +292,112 @@ def construire(slug):
     return len(soucis)
 
 
+def nom_de_famille(prof):
+    """
+    Les noms de famille d'une ligne d'enseignants, comparables entre plans.
+
+    Les dix plans ne les ecrivent pas pareil : le MDE ecrit « C. Lombardini »,
+    le MScF « Lombardini C. ». Les initiales sautent, l'ordre ne compte pas.
+    """
+    n = unicodedata.normalize('NFKD', prof or '')
+    n = ''.join(c for c in n if not unicodedata.combining(c)).lower()
+    # on ne passe pas par fold() : il appelle nettoyer(), taille pour des
+    # intitules de cours, qui recolle les lettres isolees et coupe aux noms de
+    # batiments. Sur un nom de personne, ces reparations n'ont rien a faire.
+    return ' '.join(sorted(m for m in re.split(r'[^a-z0-9]+', n) if len(m) > 1))
+
+
+def meme_enseignant(a, b):
+    """Le meme, a une coquille pres : un plan ecrit « Peuckert », l'autre « Peukert »."""
+    na, nb = nom_de_famille(a), nom_de_famille(b)
+    if not na or not nb:
+        return False
+    return na == nb or difflib.SequenceMatcher(None, na, nb).ratio() >= 0.9
+
+
+def croiser(cibles):
+    """
+    Un cours enseigne dans plusieurs masters n'a qu'un horaire.
+
+    Verifie avant d'etre applique, et c'est tout l'interet : sur les 44 cours
+    donnes dans plusieurs masters dont au moins deux relevés portent l'horaire,
+    42 s'accordent au jour et a l'heure pres, 2 sont des relevés incomplets ou
+    un master a un creneau de moins, et aucun ne se contredit. Les seuls ecarts
+    apparents portaient sur la salle, « Anthropole 3021 » contre
+    « Anthropole/3021 », ou sur une salle tronquee par le PDF.
+
+    Combler un trou avec le relevé d'un autre master ne fabrique donc pas
+    d'information : c'est le meme cours, lu sur une autre page du meme agenda
+    officiel. Le creneau garde la trace du master d'ou il vient.
+
+    Deux garde-fous. L'intitule doit etre identique au caractere pres, et
+    l'enseignant doit concorder. Et quand plusieurs masters ont l'horaire, on
+    prend le relevé le plus complet, puisque le seul ecart rencontre entre deux
+    relevés est un creneau manquant. Et si les relevés candidats se
+    contredisent, on ne reprend rien.
+    """
+    horaires, plans = {}, {}
+    for slug in cibles:
+        f = f'{SORTIE}/{slug}.json'
+        if os.path.exists(f):
+            horaires[slug] = json.load(io.open(f, encoding='utf-8'))
+        g = f'data/programmes/{slug}-{ANNEE_REGLES}.json'
+        if os.path.exists(g):
+            plans[slug] = {c['title']: c for c in json.load(io.open(g, encoding='utf-8'))['courses']}
+
+    # les creneaux disponibles pour chaque intitule, master par master
+    offre = collections.defaultdict(dict)
+    for slug, h in horaires.items():
+        par_cours = collections.defaultdict(list)
+        for k in h['creneaux']:
+            par_cours[k['cours']].append(k)
+        for cid, ks in par_cours.items():
+            offre[cid][slug] = ks
+
+    repris = collections.Counter()
+    desaccords = []
+    for slug, cours in sorted(plans.items()):
+        h = horaires.get(slug)
+        if h is None:
+            continue
+        deja = {k['cours'] for k in h['creneaux']}
+        ajouts = []
+        for titre, c in cours.items():
+            cid = ident(titre)
+            if cid in deja or cid not in offre:
+                continue
+            candidats = {s: ks for s, ks in offre[cid].items()
+                         if s != slug and s in plans and titre in plans[s]
+                         and meme_enseignant(c.get('teachers'), plans[s][titre].get('teachers'))}
+            if not candidats:
+                continue
+            # Les relevés candidats doivent s'accorder. « Crisis Management »
+            # est le seul cours ou trois masters se contredisent, l'un donnant
+            # trois creneaux le meme lundi qui finissent a 16h, 17h et 18h, avec
+            # une salle hachee par le PDF, « Anthropole e ». Ce n'est pas un
+            # horaire, c'est un bloc mal decoupe. On ne reprend rien dans ce
+            # cas la : mieux vaut un trou qu'un faux horaire.
+            quand = {s: frozenset((k['semestre'], k['jour'], k['debut'], k['fin'])
+                                  for k in ks) for s, ks in candidats.items()}
+            if len(set(quand.values())) > 1:
+                desaccords.append((slug, titre, sorted(candidats)))
+                continue
+            source = sorted(candidats)[0]
+            for k in candidats[source]:
+                ajouts.append({**k, 'reprisDe': source})
+            repris[slug] += 1
+        if ajouts:
+            h['creneaux'] += ajouts
+            json.dump(h, io.open(f'{SORTIE}/{slug}.json', 'w', encoding='utf-8'),
+                      ensure_ascii=False, indent=1)
+            print(f'{slug:26} {repris[slug]} cours repris d un autre master '
+                  f'({len(ajouts)} creneaux)')
+    for slug, titre, sources in desaccords:
+        print(f'{slug:26} rien repris pour « {titre[:44]} » : '
+              f'{", ".join(sources)} ne s accordent pas')
+    return sum(repris.values())
+
+
 def main():
     os.makedirs(BRUT, exist_ok=True)
     cibles = sys.argv[1:] or [os.path.basename(f)[:-4] for f in sorted(glob.glob(f'{BRUT}/*.txt'))]
@@ -301,6 +407,10 @@ def main():
             print(f'{slug:26} pas de releve brut')
             continue
         total += construire(slug)
+    print()
+    n = croiser(cibles)
+    if n:
+        print(f'{n} cours ont recupere l horaire d un autre master')
     print()
     print('OK' if not total else f'{total} ligne(s) a corriger avant ecriture')
     sys.exit(1 if total else 0)

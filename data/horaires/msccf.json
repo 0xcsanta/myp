@@ -327,6 +327,17 @@
    "salle": "Anthropole/3174",
    "cadence": "hebdomadaire",
    "note": ""
+  },
+  {
+   "cours": "seminaire-de-fiscalite",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "10:00",
+   "salle": "Extranef/109",
+   "cadence": "hebdomadaire",
+   "note": "",
+   "reprisDe": "mde"
   }
  ]
 }

@@ -347,6 +347,17 @@
    "salle": "Anthropole/2013",
    "cadence": "hebdomadaire",
    "note": "7 dernières semaines du semestre"
+  },
+  {
+   "cours": "droit-bancaire",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Internef/271",
+   "cadence": "hebdomadaire",
+   "note": "",
+   "reprisDe": "mde"
   }
  ]
 }

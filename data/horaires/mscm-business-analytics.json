@@ -357,6 +357,17 @@
    "salle": "Anthropole/5021",
    "cadence": "hebdomadaire",
    "note": "D e ci s ion Analysis / n z D u rant les 7 premières semaines du semestre"
+  },
+  {
+   "cours": "advanced-issues-in-international-and-european-",
+   "semestre": "automne-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Synathlon/2420",
+   "cadence": "hebdomadaire",
+   "note": "Trimestre 2, Prof. Chand en remplacement du Prof. Danon",
+   "reprisDe": "msccf"
   }
  ]
 }

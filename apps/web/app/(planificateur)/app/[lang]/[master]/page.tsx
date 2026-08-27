@@ -59,7 +59,7 @@ export default async function PageMaster({
   const T = textes(lang).master;
 
   const regles = reglesDe(slug);
-  const catalogue = coursDe(slug);
+  const catalogue = coursDe(slug, lang);
 
   /*
    * Un creneau qui vise un cours inexistant serait autrement ignore en

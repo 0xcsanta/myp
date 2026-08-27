@@ -899,17 +899,32 @@ export function Planificateur({
                                 const multiples = Object.values(parSem).some(
                                   (v) => v.length > 1,
                                 );
+                                /*
+                                  Un cours enseigne dans plusieurs masters n'a
+                                  qu'un horaire, et l'agenda de l'un comble le
+                                  trou de l'autre. Le dire : ce n'est pas
+                                  l'agenda de ce master la que le lecteur
+                                  retrouvera s'il verifie.
+                                */
+                                const ailleurs = c.creneaux.find((k) => k.reprisDe)?.reprisDe;
                                 if (!pris || !multiples) {
                                   return (
-                                    <span
-                                      className={`mt-1 block font-mono text-[11.5px] ${
-                                        libelleCreneaux(c, langue)
-                                          ? "text-unil-400"
-                                          : "text-muted"
-                                      }`}
-                                    >
-                                      {libelleCreneaux(c, langue) ?? T.horaireNonReleve}
-                                    </span>
+                                    <>
+                                      <span
+                                        className={`mt-1 block font-mono text-[11.5px] ${
+                                          libelleCreneaux(c, langue)
+                                            ? "text-unil-400"
+                                            : "text-muted"
+                                        }`}
+                                      >
+                                        {libelleCreneaux(c, langue) ?? T.horaireNonReleve}
+                                      </span>
+                                      {ailleurs && (
+                                        <span className="mt-0.5 block text-[11px] text-muted">
+                                          {T.horaireReprisDe(ailleurs)}
+                                        </span>
+                                      )}
+                                    </>
                                   );
                                 }
                                 return (

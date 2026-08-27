@@ -82,6 +82,8 @@ const fr = {
     choixSemestre: "Choisir le semestre à afficher",
     choixDuSemestreDuCours: "À quel semestre suis tu ce cours",
     choixDuGroupe: "Quel créneau suis tu",
+    horaireReprisDe: (master: string) =>
+      `horaire relevé sur l'agenda du master en ${master}, où le même cours est donné`,
     groupePasChoisi: (n: number) => `${n} créneaux, dis lequel tu suis`,
     semestreSansHoraire:
       "Aucun horaire n'est relevé pour ce semestre. Le relevé de ce master ne couvre que l'autre saison, donc ces cours existent bien, mais leurs créneaux ne sont pas encore connus.",
@@ -255,6 +257,8 @@ const en: Textes = {
     choixSemestre: "Choose which semester to show",
     choixDuSemestreDuCours: "Which semester you take this course in",
     choixDuGroupe: "Which slot you attend",
+    horaireReprisDe: (master: string) =>
+      `slot read from the ${master} timetable, where the same course is taught`,
     groupePasChoisi: (n: number) => `${n} slots, tell me which one you attend`,
     semestreSansHoraire:
       "No timetable has been read for this semester. This programme's record only covers the other season, so these courses do exist, but their slots are not known yet.",

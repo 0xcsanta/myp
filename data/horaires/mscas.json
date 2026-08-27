@@ -337,6 +337,39 @@
    "salle": "Internef/121",
    "cadence": "hebdomadaire",
    "note": ""
+  },
+  {
+   "cours": "blockchain-and-crypto-economy",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "10:15",
+   "fin": "12:00",
+   "salle": "Amphipôle/340",
+   "cadence": "hebdomadaire",
+   "note": "27 avril en ligne",
+   "reprisDe": "mscf"
+  },
+  {
+   "cours": "blockchain-and-crypto-economy",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "12:30",
+   "fin": "18:00",
+   "salle": "Amphipôle/340",
+   "cadence": "hebdomadaire",
+   "note": "27 avril en ligne",
+   "reprisDe": "mscf"
+  },
+  {
+   "cours": "cloud-and-advanced-analytics",
+   "semestre": "printemps-2026",
+   "jour": "Jeudi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Internef/237",
+   "cadence": "hebdomadaire",
+   "note": "",
+   "reprisDe": "mscis"
   }
  ]
 }

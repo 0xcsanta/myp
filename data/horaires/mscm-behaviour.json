@@ -347,6 +347,28 @@
    "salle": "Internef/123",
    "cadence": "hebdomadaire",
    "note": ""
+  },
+  {
+   "cours": "power-and-leadership",
+   "semestre": "printemps-2026",
+   "jour": "Lundi",
+   "debut": "14:15",
+   "fin": "18:00",
+   "salle": "Anthropole/3021",
+   "cadence": "hebdomadaire",
+   "note": "",
+   "reprisDe": "mde"
+  },
+  {
+   "cours": "managerial-decision-making",
+   "semestre": "automne-2026",
+   "jour": "Mardi",
+   "debut": "08:30",
+   "fin": "12:00",
+   "salle": "Anthropole/2106",
+   "cadence": "hebdomadaire",
+   "note": "sauf le 16 septembre",
+   "reprisDe": "mde"
   }
  ]
 }

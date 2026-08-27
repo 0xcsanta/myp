@@ -1,6 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import type { Langue } from "./langues";
+import { nomCourt } from "./nomMaster";
+
 /**
  * Lecture des donnees, cote serveur uniquement.
  *
@@ -135,6 +138,14 @@ export type Creneau = {
   salle: string | null;
   cadence: "hebdomadaire" | "quinzaine" | "bloc" | "irregulier";
   note: string | null;
+  /*
+   * Le master dont l'agenda a fourni ce creneau, quand ce n'est pas celui
+   * qu'on consulte. Un cours enseigne dans plusieurs masters n'a qu'un
+   * horaire, et l'agenda de l'un comble le trou de l'autre. L'etiquette est
+   * resolue cote serveur, dans coursDe, qui seule connait la liste des
+   * masters et la langue : le composant client n'a ni l'une ni l'autre.
+   */
+  reprisDe?: string | null;
 };
 
 export type Horaires = {
@@ -230,7 +241,7 @@ export function horairesDe(slug: string): Horaires | null {
   return JSON.parse(fs.readFileSync(f, "utf8")) as Horaires;
 }
 
-export function coursDe(slug: string): Cours[] {
+export function coursDe(slug: string, langue: Langue = "fr"): Cours[] {
   const brut = lire<{ courses: CoursBrut[] }>(`programmes/${slug}-${ANNEE}.json`);
   const vus = new Map<string, number>();
   const horaires = horairesDe(slug);
@@ -257,9 +268,15 @@ export function coursDe(slug: string): Cours[] {
     };
   }).map((c) => {
     if (!horaires) return c;
+    const noms = new Map(tousLesMasters().map((m) => [m.slug, nomCourt(m, langue)]));
     const siens = horaires.creneaux
       .filter((x) => x.cours === c.id)
-      .map((x) => ({ ...x, debutMin: enMinutes(x.debut), finMin: enMinutes(x.fin) }));
+      .map((x) => ({
+        ...x,
+        debutMin: enMinutes(x.debut),
+        finMin: enMinutes(x.fin),
+        reprisDe: x.reprisDe ? (noms.get(x.reprisDe) ?? x.reprisDe) : null,
+      }));
     return siens.length ? { ...c, creneaux: siens, horaireConnu: true } : c;
   });
 }
