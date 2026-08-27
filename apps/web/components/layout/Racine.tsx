@@ -1,6 +1,7 @@
 import { Crimson_Text, DM_Sans, DynaPuff, IBM_Plex_Mono } from "next/font/google";
 import type { Langue } from "@/lib/langues";
 import { textes } from "@/lib/textes";
+import { Vague } from "@/components/brand/Vague";
 
 /**
  * Le squelette du document, partage par les deux mises en page racines.
@@ -57,7 +58,10 @@ export function Racine({
       lang={textes(langue).htmlLang}
       className={`${crimson.variable} ${dmSans.variable} ${dynaPuff.variable} ${plexMono.variable}`}
     >
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <Vague />
+      </body>
     </html>
   );
 }

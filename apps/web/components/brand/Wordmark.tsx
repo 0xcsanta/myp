@@ -51,6 +51,7 @@ export function Wordmark({
     return (
       <a
         href={href}
+        data-vague="descend"
         className={`${classe} rounded-[6px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-unil-400`}
         style={style}
         aria-label="MYP"

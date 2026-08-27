@@ -212,6 +212,90 @@ body {
   to   { opacity: 1 }
 }
 
+/* ------------------------------------------------------------------------
+   La vague
+   ------------------------------------------------------------------------
+
+   Le degrade de la marque envahit l'ecran, puis se retire par l'autre bord.
+   Le sens dit ou l'on va : en entrant dans l'application la vague monte, en
+   revenant a l'accueil elle descend. Le sens est pose dans le stockage de
+   session au moment du clic, donc la page qui s'ouvre sait dans quel sens
+   poursuivre le mouvement commence par la precedente.
+
+   Le bord d'attaque est arrondi et s'aplatit en deferlant. C'est ce qui fait
+   la difference entre une vague et un rectangle qui monte : une masse d'eau
+   arrive par le milieu et se repand sur les cotes.
+
+   L'element mesure 130vh pour deux raisons. Le bord arrondi mange une dizaine
+   de vh, qu'il faut pouvoir sortir de l'ecran pour que la couverture soit
+   franche, et la marge evite qu'un rebond de defilement laisse voir le fond.
+*/
+
+.vague {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 130vh;
+  z-index: 70;
+  pointer-events: none;
+  will-change: transform, border-radius;
+  /*
+     Au repos, largement hors champ. Les cent cinquante valent mieux que cent :
+     sur telephone `vh` se cale sur la fenetre barre d'adresse repliee, donc
+     une valeur juste au ras laisserait parfois depasser un liseré bleu. Le
+     premier pas de chaque animation se pose des son demarrage, `both` etant
+     actif, donc ce repos plus lointain ne cree aucun saut visible.
+  */
+  transform: translateY(150vh);
+  background:
+    radial-gradient(120% 80% at 18% 88%, #6a88eb 0%, transparent 60%),
+    linear-gradient(180deg, #0000c2 0%, #0037eb 55%, #0037eb 100%);
+}
+
+.vague[data-phase="depart"][data-sens="monte"] {
+  animation: vague-depart-monte 560ms cubic-bezier(0.7, 0, 0.84, 0) both;
+}
+
+.vague[data-phase="arrivee"][data-sens="monte"] {
+  animation: vague-arrivee-monte 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.vague[data-phase="depart"][data-sens="descend"] {
+  animation: vague-depart-descend 560ms cubic-bezier(0.7, 0, 0.84, 0) both;
+}
+
+.vague[data-phase="arrivee"][data-sens="descend"] {
+  animation: vague-arrivee-descend 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* le bord d'attaque est en haut : la vague monte */
+@keyframes vague-depart-monte {
+  from { transform: translateY(100vh); border-radius: 50% 50% 0 0 / 16vh 16vh 0 0 }
+  70%  { border-radius: 50% 50% 0 0 / 5vh 5vh 0 0 }
+  to   { transform: translateY(-15vh); border-radius: 0 }
+}
+
+/* elle poursuit sa course et sort par le haut, en creusant derriere elle */
+@keyframes vague-arrivee-monte {
+  from { transform: translateY(-15vh); border-radius: 0 }
+  35%  { border-radius: 0 0 50% 50% / 0 0 6vh 6vh }
+  to   { transform: translateY(-130vh); border-radius: 0 0 50% 50% / 0 0 16vh 16vh }
+}
+
+/* le bord d'attaque est en bas : la vague descend */
+@keyframes vague-depart-descend {
+  from { transform: translateY(-130vh); border-radius: 0 0 50% 50% / 0 0 16vh 16vh }
+  70%  { border-radius: 0 0 50% 50% / 0 0 5vh 5vh }
+  to   { transform: translateY(-15vh); border-radius: 0 }
+}
+
+@keyframes vague-arrivee-descend {
+  from { transform: translateY(-15vh); border-radius: 0 }
+  35%  { border-radius: 50% 50% 0 0 / 6vh 6vh 0 0 }
+  to   { transform: translateY(100vh); border-radius: 50% 50% 0 0 / 16vh 16vh 0 0 }
+}
+
 @media (prefers-reduced-motion: reduce) {
   /*
      Les pseudo-elements de transition de vue vivent dans leur propre arbre :
@@ -226,6 +310,10 @@ body {
   ::view-transition-old(*),
   ::view-transition-new(*) {
     animation: none !important;
+  }
+
+  .vague {
+    display: none;
   }
 
   html {

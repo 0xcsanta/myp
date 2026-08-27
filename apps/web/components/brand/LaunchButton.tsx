@@ -23,6 +23,7 @@ export function LaunchButton({
   return (
     <a
       href={href}
+      data-vague="monte"
       className={`group inline-flex items-center justify-center gap-[6px] rounded-[1000px]
         bg-gradient-to-b from-myp-from to-myp-to px-[22px] py-[14px]
         text-[14px] font-bold leading-[1.4] text-white whitespace-nowrap

@@ -119,6 +119,44 @@ sont acceptées, un seul élément porte le nom, et `pageswap` confirme une
 navigation de document. **L'animation elle même est à juger à l'œil, sur un
 vrai écran.**
 
+## La vague, demandée le 27 août
+
+Le dégradé de la marque envahit l'écran puis se retire par l'autre bord. **Le
+sens dit où l'on va** : en entrant dans l'application la vague monte, en
+revenant à l'accueil elle descend. Le bord d'attaque est arrondi et s'aplatit
+en déferlant, ce qui fait la différence entre une vague et un rectangle qui
+monte.
+
+Le sens voyage d'une page à l'autre par le stockage de session, la seule chose
+qui survive à un changement de document sans passer par le serveur. La page qui
+s'ouvre sait ainsi dans quel sens poursuivre le mouvement commencé par la
+précédente.
+
+**Pourquoi pas la transition de vue pour ça.** Une transition de vue croise
+deux captures ; elle ne peut pas retenir la navigation le temps qu'une masse de
+couleur traverse l'écran. Les deux mécanismes cohabitent sans se gêner : quand
+le composant intercepte le clic il navigue par script, ce qui n'active pas les
+transitions de vue ; quand il ne l'intercepte pas, faute de JavaScript, le clic
+reste natif et la transition de vue prend le relais. Le logotype qui morphe
+devient donc un repli, pas l'effet principal.
+
+**Trois gardes, qui comptent autant que l'effet :**
+
+- Si la navigation échoue, l'écran resterait bleu et la page inutilisable. La
+  vague se retire d'elle même au bout de deux secondes.
+- Un lien qui pointe sur la page courante ne déclenche rien : le logotype mène
+  à l'accueil depuis toutes les pages, l'accueil compris.
+- `prefers-reduced-motion` navigue directement, et le CSS masque la vague.
+
+Clic milieu, Ctrl, Cmd et cible `_blank` restent des clics normaux.
+
+**Non vérifié à l'œil**, pour la même raison que la transition : le navigateur
+du banc d'essai ne peint pas. La mécanique, elle, est vérifiée maillon par
+maillon : le clic pose la phase et le sens, l'animation nommée s'applique avec
+la bonne durée, la navigation est retardée, le sens arrive dans la page
+suivante, le stockage est vidé, et le filet remet la vague au repos. Vérifié
+dans les deux sens.
+
 ## Avant la mise en ligne
 
 - [x] **Plan du site et robots.txt.** Faits le 27 août. 24 adresses, chacune
