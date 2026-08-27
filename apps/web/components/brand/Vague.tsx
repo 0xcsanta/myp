@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 /**
  * La vague qui couvre l'ecran entre l'accueil et l'application.
  *
- * Le principe tient en une phrase : au clic, la vague monte et couvre, la
- * navigation part quand l'ecran est plein, et la page suivante poursuit le
- * mouvement en la faisant sortir par l'autre bord. Le sens voyage d'une page a
- * l'autre par le stockage de session, la seule chose qui survive a un
+ * Le principe tient en une phrase : au clic, la vague couvre l'ecran, la
+ * navigation part quand il est plein, et la page suivante la fait se retirer
+ * par ou elle est venue, comme une vague sur une plage. Le sens voyage d'une
+ * page a l'autre par le stockage de session, la seule chose qui survive a un
  * changement de document sans serveur.
  *
  * Pourquoi ce mecanisme plutot que la transition de vue posee dans globals.css :

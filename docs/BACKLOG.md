@@ -121,9 +121,11 @@ vrai écran.**
 
 ## La vague, demandée le 27 août
 
-Le dégradé de la marque envahit l'écran puis se retire par l'autre bord. **Le
-sens dit où l'on va** : en entrant dans l'application la vague monte, en
-revenant à l'accueil elle descend. Le bord d'attaque est arrondi et s'aplatit
+Le dégradé de la marque envahit l'écran puis **se retire par où il est venu**,
+comme une vague sur une plage. **Le sens dit où l'on va** : en entrant dans
+l'application elle monte du bas puis redescend, en revenant à l'accueil elle
+descend du haut puis remonte. Le dôme reste tourné vers le bord d'origine, donc
+le milieu arrive en premier et se retire en dernier. Le bord d'attaque est arrondi et s'aplatit
 en déferlant, ce qui fait la différence entre une vague et un rectangle qui
 monte.
 

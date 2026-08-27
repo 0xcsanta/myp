@@ -216,11 +216,12 @@ body {
    La vague
    ------------------------------------------------------------------------
 
-   Le degrade de la marque envahit l'ecran, puis se retire par l'autre bord.
-   Le sens dit ou l'on va : en entrant dans l'application la vague monte, en
-   revenant a l'accueil elle descend. Le sens est pose dans le stockage de
-   session au moment du clic, donc la page qui s'ouvre sait dans quel sens
-   poursuivre le mouvement commence par la precedente.
+   Le degrade de la marque envahit l'ecran, puis se retire par ou il est venu,
+   comme une vague sur une plage. Le sens dit ou l'on va : en entrant dans
+   l'application elle monte du bas et redescend, en revenant a l'accueil elle
+   descend du haut et remonte. Le sens est pose dans le stockage de session au
+   moment du clic, donc la page qui s'ouvre sait par ou la precedente l'a fait
+   entrer.
 
    Le bord d'attaque est arrondi et s'aplatit en deferlant. C'est ce qui fait
    la difference entre une vague et un rectangle qui monte : une masse d'eau
@@ -276,11 +277,17 @@ body {
   to   { transform: translateY(-15vh); border-radius: 0 }
 }
 
-/* elle poursuit sa course et sort par le haut, en creusant derriere elle */
+/*
+   Elle se retire par ou elle est venue, vers le bas, plutot que de poursuivre
+   sa course vers le haut. C'est ce que fait une vague sur une plage, et c'est
+   ce qui se lit : le bord qui descend decouvre la page du haut vers le bas.
+   Le dome reste tourne vers le haut, donc le milieu se retire en dernier,
+   exactement l'inverse de l'arrivee ou il montait en premier.
+*/
 @keyframes vague-arrivee-monte {
   from { transform: translateY(-15vh); border-radius: 0 }
-  35%  { border-radius: 0 0 50% 50% / 0 0 6vh 6vh }
-  to   { transform: translateY(-130vh); border-radius: 0 0 50% 50% / 0 0 16vh 16vh }
+  35%  { border-radius: 50% 50% 0 0 / 6vh 6vh 0 0 }
+  to   { transform: translateY(150vh); border-radius: 50% 50% 0 0 / 16vh 16vh 0 0 }
 }
 
 /* le bord d'attaque est en bas : la vague descend */
@@ -290,10 +297,11 @@ body {
   to   { transform: translateY(-15vh); border-radius: 0 }
 }
 
+/* symetrique : venue du haut, elle y retourne, et decouvre du bas vers le haut */
 @keyframes vague-arrivee-descend {
   from { transform: translateY(-15vh); border-radius: 0 }
-  35%  { border-radius: 50% 50% 0 0 / 6vh 6vh 0 0 }
-  to   { transform: translateY(100vh); border-radius: 50% 50% 0 0 / 16vh 16vh 0 0 }
+  35%  { border-radius: 0 0 50% 50% / 0 0 6vh 6vh }
+  to   { transform: translateY(-130vh); border-radius: 0 0 50% 50% / 0 0 16vh 16vh }
 }
 
 @media (prefers-reduced-motion: reduce) {
