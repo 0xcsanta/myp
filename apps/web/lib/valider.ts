@@ -42,6 +42,8 @@ export type Diagnostic =
       titres: [string, string];
     }
   | { niveau: "info"; code: "horaire_inconnu"; sans: number; total: number }
+  | { niveau: "erreur"; code: "externes_max"; module: string; pris: number; max: number }
+  | { niveau: "info"; code: "externes_accord"; module: string; pris: number }
   | { niveau: "erreur"; code: "total_depasse"; total: number; exces: number; requis: number }
   | { niveau: "info"; code: "total_manque"; total: number; requis: number }
   | { niveau: "ok"; code: "plan_valide"; total: number };
@@ -59,6 +61,12 @@ export function valider(
   selection: Set<string>,
   regles: Regles,
   catalogue: Cours[],
+  /*
+   * Les credits pris hors du plan, quand le plan l'autorise. Ils ne
+   * correspondent a aucun cours du catalogue, donc ils s'ajoutent au module
+   * d'accueil sans passer par la selection.
+   */
+  creditsExternes = 0,
 ): Resultat {
   const parId = new Map(catalogue.map((c) => [c.id, c]));
   const choisis = [...selection].map((id) => parId.get(id)).filter(Boolean) as Cours[];
@@ -68,6 +76,12 @@ export function valider(
   const parModule: Record<string, number> = {};
   for (const m of regles.modules) parModule[m.code] = 0;
   for (const c of choisis) parModule[c.module] = (parModule[c.module] ?? 0) + c.ects;
+
+  const externes = regles.externes;
+  const horsPlan = externes ? Math.max(0, creditsExternes) : 0;
+  if (externes && horsPlan) {
+    parModule[externes.module] = (parModule[externes.module] ?? 0) + horsPlan;
+  }
 
   /*
    * Un module parent n'a pas de cours en propre : ses credits sont ceux de ses
@@ -164,6 +178,30 @@ export function valider(
     }
   }
 
+  /* ---------- les enseignements pris hors du plan ---------- */
+  if (externes && horsPlan) {
+    if (externes.maxEcts !== null && horsPlan > externes.maxEcts) {
+      d.push({
+        niveau: "erreur",
+        code: "externes_max",
+        module: externes.module,
+        pris: horsPlan,
+        max: externes.maxEcts,
+      });
+    }
+    /*
+     * L'accord de la direction est rappele en permanence, meme quand tout est
+     * dans les clous : c'est une condition du plan, pas un avertissement lie a
+     * un depassement, et le site ne peut ni le donner ni le prevoir.
+     */
+    d.push({
+      niveau: "info",
+      code: "externes_accord",
+      module: externes.module,
+      pris: horsPlan,
+    });
+  }
+
   const sansHoraire = choisis.filter((c) => !c.horaireConnu);
   if (sansHoraire.length && choisis.length) {
     d.push({
@@ -252,6 +290,10 @@ export function messageDiagnostic(
       );
     case "horaire_inconnu":
       return d.sans === d.total ? T.horaireAucun : T.horaireCertains(d.sans, d.total);
+    case "externes_max":
+      return T.externesMax(nom(d.module), d.pris, d.max);
+    case "externes_accord":
+      return T.externesAccord(nom(d.module), d.pris);
     case "total_depasse":
       return T.totalDepasse(d.total, d.exces, d.requis);
     case "total_manque":

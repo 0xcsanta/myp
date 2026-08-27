@@ -1,0 +1,30 @@
+{
+ "note": "Les masters dont le plan d'etudes 2025-2026 autorise explicitement a prendre des enseignements hors de son propre plan. Releve le 27 aout 2026 en relisant les dix plans officiels un par un. Seuls deux d'entre eux portent cette mention : elle n'est donc pas une regle generale de HEC, contrairement a ce qu'on pourrait croire, et le site ne doit surtout pas l'etendre aux huit autres.",
+ "methode": "Recherche des formulations « autres cours », « autres enseignements », « other courses », « courses of other Masters », « autre maitrise », « approbation », « approval » dans les dix plans et dans les reglements. Le module d'accueil a ete etabli en reperant le cours voisin immediat de la ligne dans le tableau, puis en lisant le module de ce voisin dans le catalogue deja extrait.",
+ "avertissement": "Dans les deux cas, l'accord de la direction du programme est obligatoire. Le site ne peut ni le donner ni le prevoir : il compte les credits et rappelle la condition.",
+ "etabliLe": "2026-08-27",
+ "programmes": [
+  {
+   "programme": "msccf",
+   "module": "SM3.2",
+   "maxEcts": null,
+   "citation": "Autres cours de Master (sous réserve de l'approbation de la Direction du programme)",
+   "ou": "Ligne du tableau du Module 3, sous-module 3.2 « Enseignements d'approfondissement », juste après « Stage MScCCF ».",
+   "aucunPlafond": "Le plan ne chiffre aucun maximum sur cette ligne : la colonne des crédits y est vide. Le site n'en invente donc pas, et se contente du minimum du sous-module et du total du diplôme.",
+   "source": "allmaster/msccf--plan--2025-2026.pdf"
+  },
+  {
+   "programme": "msce",
+   "module": "M2",
+   "maxEcts": 6,
+   "citation": "Students can take 6 credits ECTS in courses of other Masters not covered by this study plan or any pre-approved IHEID courses below. This is subject to approval by the Director of this curriculum.",
+   "ou": "Note générale numéro 4 du plan, rattachée au Module 2 « Optional courses for Mentions and the BEE Specialisation ».",
+   "aussi": "La même phrase couvre les enseignements pré-approuvés de l'IHEID, l'Institut de hautes études internationales et du développement, dont le plan donne la liste.",
+   "source": "allmaster/msce--plan--2025-2026.pdf"
+  }
+ ],
+ "lesHuitAutres": {
+  "sansMention": ["mde", "mscas", "mscf", "mscis", "mscm-behaviour", "mscm-business-analytics", "mscm-marketing", "mscm-strategy"],
+  "cequecelaveutdire": "Leur plan 2025-2026 ne dit rien sur les enseignements pris hors du plan. Cela ne prouve pas que ce soit interdit, seulement que le document ne l'autorise pas noir sur blanc. Un etudiant concerne doit ecrire a l'administration des cursus de Master : c'est ce que le site lui repond."
+ }
+}

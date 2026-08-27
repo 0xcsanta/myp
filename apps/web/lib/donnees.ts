@@ -44,6 +44,22 @@ export type Module = {
   unlockedNote?: string;
 };
 
+/**
+ * L'autorisation de prendre des enseignements hors de son propre plan.
+ *
+ * Deux masters sur dix la portent dans leur plan 2025-2026, et deux seulement.
+ * Ce n'est donc pas une regle generale de HEC : le site ne l'affiche que la ou
+ * le document l'ecrit, et repond « demande a l'administration » ailleurs.
+ */
+export type CoursExternes = {
+  /** Le module qui accueille ces credits. */
+  module: string;
+  /** Le plafond en credits, quand le plan en donne un. */
+  maxEcts: number | null;
+  /** La phrase du plan, mot pour mot. */
+  citation: string;
+};
+
 export type Regles = {
   programme: string;
   year: string;
@@ -51,6 +67,7 @@ export type Regles = {
   modules: Module[];
   checks: string[];
   source: { document: string; page: string; checkedOn: string };
+  externes?: CoursExternes;
 };
 
 export type CoursBrut = {
@@ -135,8 +152,23 @@ const identifiant = (titre: string, i: number) =>
     .replace(/^-|-$/g, "")
     .slice(0, 46) || `cours-${i}`;
 
+type FicheExternes = {
+  programmes: { programme: string; module: string; maxEcts: number | null; citation: string }[];
+};
+
 export function reglesDe(slug: string): Regles {
-  return lire<Regles>(`rules/${slug}-${ANNEE}.json`);
+  const regles = lire<Regles>(`rules/${slug}-${ANNEE}.json`);
+  /*
+   * L'autorisation vit dans son propre fichier plutot que dans les regles :
+   * elle a ete relevee a la main, plan par plan, et son fichier porte les
+   * citations et la methode. La melanger aux regles extraites automatiquement
+   * ferait perdre cette distinction.
+   */
+  const fiche = lire<FicheExternes>("cours-externes.json");
+  const e = fiche.programmes.find((x) => x.programme === slug);
+  return e
+    ? { ...regles, externes: { module: e.module, maxEcts: e.maxEcts, citation: e.citation } }
+    : regles;
 }
 
 const enMinutes = (t: string): number => {

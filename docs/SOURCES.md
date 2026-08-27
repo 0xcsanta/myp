@@ -179,3 +179,41 @@ intitulés officiels en anglais, et en inventer un serait fabriquer une donnée
 officielle. Seules les étiquettes courtes du sélecteur de master
 (`courtEn` dans `data/masters.json`) sont écrites pour le site, et le fichier
 le dit.
+
+---
+
+## 9. Les enseignements pris hors de son propre plan
+
+**Relu le 27 août 2026, les dix plans un par un.** Contrairement à ce qu'on
+pourrait croire, ce n'est pas une règle générale de HEC : **deux masters sur
+dix** seulement portent cette possibilité dans leur plan 2025-2026.
+
+| Master | Module | Plafond | Ce que dit le plan |
+|---|---|---|---|
+| MScCCF | Sous-module 3.2 | aucun chiffré | « Autres cours de Master (sous réserve de l'approbation de la Direction du programme) » |
+| MScE | Module 2 | **6 ECTS** | « Students can take 6 credits ECTS in courses of other Masters not covered by this study plan or any pre-approved IHEID courses below. This is subject to approval by the Director of this curriculum. » |
+
+La note du MScE couvre aussi les enseignements pré-approuvés de l'IHEID,
+l'Institut de hautes études internationales et du développement, dont le plan
+donne la liste.
+
+**Méthode.** Recherche des formulations « autres cours », « autres
+enseignements », « other courses », « courses of other Masters », « autre
+maîtrise », « approbation » et « approval » dans les dix plans et dans les
+règlements. Le module d'accueil a été établi en repérant le cours voisin
+immédiat de la ligne dans le tableau, puis en lisant le module de ce voisin
+dans le catalogue déjà extrait, l'ordre du texte d'un PDF ne suivant pas celui
+des colonnes.
+
+**Les huit autres** (MDE, MScAS, MScF, MScIS et les quatre orientations du
+MScM) ne disent rien à ce sujet. Cela ne prouve pas que ce soit interdit,
+seulement que le document ne l'autorise pas noir sur blanc. Le site n'affiche
+donc rien chez eux : un étudiant concerné doit écrire à l'administration des
+cursus de Master.
+
+**Dans les deux cas, l'accord de la direction du programme est obligatoire.**
+MYP compte les crédits et rappelle la condition ; il ne peut ni donner cet
+accord ni le prévoir.
+
+Le relevé, avec ses citations et sa méthode, est dans
+[data/cours-externes.json](../data/cours-externes.json).

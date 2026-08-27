@@ -240,6 +240,26 @@ celles de la marque, pas le cyan de la démonstration.
   garantit rien au delà, et un accent dans un commentaire peut faire échouer
   la compilation sur certains pilotes, donc l'effet entier, sans message.
 
+## Les enseignements pris hors du plan
+
+Fait le 27 août, après relecture des dix plans.
+
+**Deux masters sur dix seulement** l'autorisent noir sur blanc : le MScCCF dans
+son sous-module 3.2, sans plafond chiffré, et le MScE dans son module 2, avec
+un maximum de 6 crédits. Les huit autres n'en disent rien, donc le site
+n'affiche rien chez eux. Le détail et les citations sont dans
+[SOURCES.md](./SOURCES.md), section 9.
+
+Dans les modules concernés, un encart permet de saisir les crédits pris hors
+du plan. Ils comptent dans le module et dans le total, le dépassement du
+plafond lève une erreur, et **l'accord de la direction est rappelé en
+permanence**, même quand tout est dans les clous : c'est une condition du plan,
+pas un avertissement lié à un dépassement.
+
+Ces crédits voyagent dans le lien de partage, écrits en clair après un tilde,
+qui n'appartient pas à l'alphabet base 64 et ne peut donc pas être confondu
+avec le champ de bits. Un ancien lien, sans tilde, reste lisible.
+
 ## Avant la mise en ligne
 
 - [x] **Plan du site et robots.txt.** Faits le 27 août. 24 adresses, chacune

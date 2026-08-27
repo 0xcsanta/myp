@@ -79,6 +79,13 @@ const fr = {
     noteSansHoraires:
       "Aucun horaire n'est encore relevé pour ce master, donc les chevauchements ne sont pas détectés. Vérifie les créneaux sur le ",
     catalogueOfficiel: "catalogue officiel",
+    externesTitre: "Un enseignement d'un autre master",
+    externesChamp: "Crédits pris hors du plan",
+    externesPlafond: (max: number) => `${max} crédits au maximum.`,
+    externesSansPlafond: "Le plan ne chiffre aucun maximum sur cette ligne.",
+    externesAccord:
+      "L'accord de la direction du programme est obligatoire. MYP compte les crédits, il ne peut pas donner cet accord ni le prévoir.",
+    externesSelonLePlan: "Ce que dit le plan d'études :",
     langueOfficielle:
       "Les intitulés de cours et les notes de module restent dans la langue où HEC les publie, donc certains sont en anglais.",
     semestreAVenir: (annee: string) => `année ${annee}`,
@@ -124,6 +131,10 @@ const fr = {
       `Total : ${total} crédits sur ${requis}. Il t'en manque ${requis - total}.`,
     planValide: (total: number) =>
       `Plan complet et conforme. ${total} crédits, tous les modules satisfaits.`,
+    externesMax: (nom: string, pris: number, max: number) =>
+      `${nom} : ${pris} crédits pris hors du plan, le maximum est de ${max}.`,
+    externesAccord: (nom: string, pris: number) =>
+      `${nom} : ${pris} crédits pris hors du plan. L'accord de la direction du programme est obligatoire, écris à HECmaster@unil.ch.`,
     et: " et ",
   },
 
@@ -223,6 +234,13 @@ const en: Textes = {
     noteSansHoraires:
       "No timetable has been read for this programme yet, so clashes are not detected. Check the slots on the ",
     catalogueOfficiel: "official course catalogue",
+    externesTitre: "A course from another master's",
+    externesChamp: "Credits taken outside the plan",
+    externesPlafond: (max: number) => `${max} credits at most.`,
+    externesSansPlafond: "The plan states no maximum on this line.",
+    externesAccord:
+      "Approval by the programme direction is required. MYP counts the credits, it can neither give that approval nor predict it.",
+    externesSelonLePlan: "What the study plan says:",
     langueOfficielle:
       "Course titles and module notes stay in the language HEC publishes them in, so some of them are in French.",
     semestreAVenir: (annee: string) => `${annee} academic year`,
@@ -268,6 +286,10 @@ const en: Textes = {
       `Total: ${total} credits out of ${requis}. You are ${requis - total} short.`,
     planValide: (total: number) =>
       `Plan complete and compliant. ${total} credits, every module satisfied.`,
+    externesMax: (nom: string, pris: number, max: number) =>
+      `${nom}: ${pris} credits taken outside the plan, the maximum is ${max}.`,
+    externesAccord: (nom: string, pris: number) =>
+      `${nom}: ${pris} credits taken outside the plan. Approval by the programme direction is required, write to HECmaster@unil.ch.`,
     et: " and ",
   },
 

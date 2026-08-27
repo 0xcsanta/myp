@@ -58,6 +58,23 @@ function encoder(selection: Set<string>, catalogue: Cours[]): string {
   return out.replace(/A+$/, "");
 }
 
+/*
+ * Les credits pris hors du plan ne correspondent a aucun cours du catalogue :
+ * ils ne peuvent pas tenir dans le champ de bits. Ils sont donc ecrits en clair
+ * apres un tilde, qui n'appartient pas a l'alphabet base 64 et ne peut donc pas
+ * etre confondu avec lui. Un ancien lien, sans tilde, reste lisible.
+ */
+export function assembler(bits: string, externes: number): string {
+  return externes > 0 ? `${bits}~${externes}` : bits;
+}
+
+export function separer(code: string): { bits: string; externes: number } {
+  const i = code.indexOf("~");
+  if (i < 0) return { bits: code, externes: 0 };
+  const n = Number.parseInt(code.slice(i + 1), 10);
+  return { bits: code.slice(0, i), externes: Number.isFinite(n) && n > 0 ? n : 0 };
+}
+
 function decoder(code: string, catalogue: Cours[]): Set<string> {
   const s = new Set<string>();
   if (!code) return s;
@@ -131,6 +148,8 @@ export function Planificateur({
   const T = TT.plan;
   const [selection, setSelection] = useState<Set<string>>(new Set());
   const [recherche, setRecherche] = useState("");
+  /* les credits pris hors du plan, quand le plan l'autorise */
+  const [externes, setExternes] = useState(0);
   const [pret, setPret] = useState(false);
   /*
    * Un plan ouvert depuis un lien recu n'est pas encore le sien : tant que le
@@ -172,7 +191,9 @@ export function Planificateur({
     }
     const partage = partageInitial.current;
     const source = partage ?? window.localStorage.getItem(cle) ?? "";
-    setSelection(decoder(source, catalogue));
+    const { bits, externes: horsPlan } = separer(source);
+    setSelection(decoder(bits, catalogue));
+    setExternes(regles.externes ? horsPlan : 0);
     setRecu(Boolean(partage));
     setPret(true);
   }, [cle, catalogue]);
@@ -189,15 +210,15 @@ export function Planificateur({
   useEffect(() => {
     if (!pret || !modifie) return;
     try {
-      window.localStorage.setItem(cle, encoder(selection, catalogue));
+      window.localStorage.setItem(cle, assembler(encoder(selection, catalogue), externes));
     } catch {
       /* navigation privee : le stockage est refuse, tant pis */
     }
-  }, [selection, pret, modifie, cle, catalogue]);
+  }, [selection, externes, pret, modifie, cle, catalogue]);
 
   const resultat = useMemo(
-    () => valider(selection, regles, catalogue),
-    [selection, regles, catalogue],
+    () => valider(selection, regles, catalogue, externes),
+    [selection, externes, regles, catalogue],
   );
 
   const basculer = (id: string) => {
@@ -215,6 +236,13 @@ export function Planificateur({
     setModifie(true);
     setRecu(false);
     setSelection(new Set());
+    setExternes(0);
+  };
+
+  const changerExternes = (n: number) => {
+    setModifie(true);
+    setRecu(false);
+    setExternes(Math.max(0, Math.min(120, Math.round(n) || 0)));
   };
 
   /*
@@ -223,7 +251,7 @@ export function Planificateur({
    */
   const partager = async () => {
     const u = new URL(window.location.href);
-    u.searchParams.set("p", encoder(selection, catalogue));
+    u.searchParams.set("p", assembler(encoder(selection, catalogue), externes));
     try {
       await navigator.clipboard.writeText(u.toString());
       setCopie("copie");
@@ -512,6 +540,46 @@ export function Planificateur({
                       );
                     })}
                   </ul>
+
+                  {/*
+                    Le module que le plan autorise a completer hors de son
+                    catalogue. Deux masters sur dix seulement : l'encart
+                    n'apparait donc que la ou le document l'ecrit, avec sa
+                    phrase citee, et jamais ailleurs.
+                  */}
+                  {regles.externes?.module === m.code && (
+                    <div className="mt-4 rounded-xl border border-dashed border-line-2 bg-surface-2 p-4">
+                      <h3 className="text-[13.5px] font-semibold text-ink">
+                        {T.externesTitre}
+                      </h3>
+                      <p className="mt-1.5 text-[12px] leading-relaxed text-muted">
+                        {T.externesSelonLePlan}{" "}
+                        <span className="italic">« {regles.externes.citation} »</span>
+                      </p>
+                      <p className="mt-1.5 text-[12px] leading-relaxed text-muted">
+                        {regles.externes.maxEcts !== null
+                          ? T.externesPlafond(regles.externes.maxEcts)
+                          : T.externesSansPlafond}{" "}
+                        {T.externesAccord}
+                      </p>
+                      <label className="mt-3 flex items-center gap-3">
+                        <span className="text-[12.5px] text-ink-2">{T.externesChamp}</span>
+                        <input
+                          type="number"
+                          min={0}
+                          max={regles.externes.maxEcts ?? 120}
+                          step={1}
+                          inputMode="numeric"
+                          value={externes}
+                          onChange={(e) => changerExternes(Number(e.target.value))}
+                          className="tnum w-[76px] rounded-lg border border-line-2 bg-white px-3 py-1.5
+                            text-[13px] font-mono text-ink outline-none
+                            transition-colors duration-150 ease-[var(--ease-out-std)]
+                            focus:border-unil-400"
+                        />
+                      </label>
+                    </div>
+                  )}
                 </section>
               );
             })}
@@ -607,7 +675,7 @@ export function Planificateur({
             </p>
           )}
 
-          {selection.size > 0 && (
+          {(selection.size > 0 || externes > 0) && (
             <div className="mt-6 grid gap-2">
               <button
                 onClick={partager}
