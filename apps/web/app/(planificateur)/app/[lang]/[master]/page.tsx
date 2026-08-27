@@ -79,6 +79,7 @@ export default async function PageMaster({
       <SiteHeader
         langue={lang}
         hrefAutreLangue={`/app/${autreLangue(lang)}/${slug}`}
+        variante="app"
       />
 
       <main className="flex-1">

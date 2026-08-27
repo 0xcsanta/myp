@@ -48,7 +48,11 @@ export default async function ChoixDuMaster({
 
   return (
     <div className="flex min-h-dvh flex-col bg-white">
-      <SiteHeader langue={lang} hrefAutreLangue={`/app/${autreLangue(lang)}`} />
+      <SiteHeader
+        langue={lang}
+        hrefAutreLangue={`/app/${autreLangue(lang)}`}
+        variante="app"
+      />
 
       <main className="flex-1">
         <section className="shell pt-[clamp(40px,5vw,80px)] pb-[clamp(64px,8vw,128px)]">

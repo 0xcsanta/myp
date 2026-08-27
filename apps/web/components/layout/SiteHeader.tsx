@@ -20,29 +20,50 @@ import type { Langue } from "@/lib/langues";
  * Ensuite, le bandeau est pleine largeur et la gouttiere vient de `.shell`.
  * La page etant un flex en colonne, poser `mx-auto` directement sur l'en-tete
  * annulerait l'etirement et la ferait retrecir a la largeur de son contenu.
+ *
+ * Deux variantes, parce que les deux moments n'ont pas le meme besoin. Sur
+ * l'accueil, l'en-tete est une vitrine : grand logotype, et le bouton qui fait
+ * entrer dans l'application. Une fois dedans, ce bouton ne mene plus nulle
+ * part, et un grand logotype ne fait qu'occuper la place utile a l'outil.
+ * L'en-tete se resserre donc, et il ne reste a droite que ce qui sert encore :
+ * changer de langue. Le retour au choix du master vit dans le corps de la
+ * page, a sa place de fil d'Ariane, juste au dessus du titre.
  */
 export function SiteHeader({
   langue,
   hrefAutreLangue,
+  variante = "accueil",
 }: {
   langue: Langue;
   hrefAutreLangue: string;
+  variante?: "accueil" | "app";
 }) {
+  const dansLApp = variante === "app";
+
   return (
-    <header className="w-full pt-[clamp(20px,2.6vw,52px)]">
+    <header
+      className={`w-full ${
+        dansLApp ? "pt-[clamp(16px,1.8vw,30px)]" : "pt-[clamp(20px,2.6vw,52px)]"
+      }`}
+    >
       <div className="shell grid grid-cols-[auto_auto] items-center gap-4 lg:grid-cols-[1fr_auto_1fr]">
         <div className="justify-self-start">
-          <Wordmark href={`/${langue}`} />
+          <Wordmark
+            href={`/${langue}`}
+            size={
+              dansLApp ? "clamp(28px, 3vw, 40px)" : "clamp(38px, 4.6vw, 64px)"
+            }
+          />
         </div>
 
         {/* la signature quitte l'en-tete sous 1024px et repasse en pied de page */}
         <div className="hidden justify-self-center lg:block">
-          <MadeByPill />
+          <MadeByPill compacte={dansLApp} />
         </div>
 
         <div className="flex items-center gap-2 justify-self-end sm:gap-3">
           <BasculeLangue langue={langue} href={hrefAutreLangue} />
-          <LaunchButton href={`/app/${langue}`} />
+          {!dansLApp && <LaunchButton href={`/app/${langue}`} />}
         </div>
       </div>
     </header>
