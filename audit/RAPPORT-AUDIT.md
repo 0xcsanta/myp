@@ -67,14 +67,29 @@ attend une décision explicite.
 | 6.3 | Contraste à 4,54:1 | ✅ 5,39:1. |
 | 9.1 | Mipmip promettait trop | ✅ Cadre et exemples réalignés sur ce qu'il sait faire. |
 | 2.1 | Cache de dev corrompu | ✅ Documenté, non reproductible. |
-| 4.3 | 15 Mo dans l'historique git | ⏸️ **En attente** : réécriture d'historique, destructive. |
+| 4.3 | 15 Mo dans l'historique git | ✅ **Purgé.** Un clone neuf passe de 18 Mo à 2,77 Mo. |
 | 7.1 | README muet sur la récolte | ✅ Sans objet, les outils n'existent plus. |
 | 10.1 | Aucune surveillance | ⏸️ À poser hors du dépôt (UptimeRobot, alerte de solde). |
 | 10.2 | Facteur d'autobus | ⏸️ Document de reprise à écrire. |
 
 **Vérification finale**, sur un build de production, 5 pages × 4 tailles : aucun
 défilement horizontal, aucune erreur console, aucune violation CSP, aucune
-réponse HTTP ≥ 400.
+réponse HTTP ≥ 400. En production : en-têtes en place, `/api/mipmip` répond 403
+sans origine et 200 avec la bonne.
+
+**Purge de l'historique git.** `git filter-repo` a retiré `cours-details.json`,
+`cours-resumes.json` et les 15 Mo d'images de « Nouveau dossier ». Un premier
+clone de contrôle pesait encore 18 Mo : une branche distante oubliée,
+`accueil-hero`, pointait sur l'ancien historique et le maintenait en vie. Elle
+ne contenait rien d'unique, son sommet existant dans le `main` réécrit, et a été
+supprimée. **Clone neuf : 2,77 Mo, et plus aucune trace des données récoltées.**
+Une sauvegarde complète du dépôt d'avant la purge existe en `.bundle`.
+
+Les trois outils `tools_fiches*.py` restent dans l'historique, et c'est
+volontaire : ce sont des scripts d'analyse écrits pour ce projet, ils ne
+contiennent aucun texte de l'UNIL et n'effectuent aucune requête. Effacer plus
+d'historique que nécessaire serait une autre façon de mentir ; l'incident est
+documenté dans `docs/LEGAL.md`.
 
 **Une régression introduite puis corrigée pendant les corrections** : la première
 CSP interdisait tout script en ligne, ce qui empêchait Next d'hydrater la page.
