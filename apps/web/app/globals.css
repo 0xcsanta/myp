@@ -33,7 +33,7 @@
   --color-line-2: #c3d0da;
   --color-surface-2: #eff3f6;
 
-  /* semantique : jamais le rouge Omniscient dans l'interface courante */
+  /* semantique : le rouge reste reserve aux erreurs, jamais decoratif */
   --color-ok: #0e8a5f;
   --color-ok-soft: #e3f4ec;
   --color-warn: #b26b00;

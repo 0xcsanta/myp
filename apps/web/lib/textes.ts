@@ -266,7 +266,7 @@ const fr = {
     planPublie: (annee: string) => `Plan d'études ${annee}, le dernier publié par HEC`,
     horairesReleves: "Horaires relevés sur l'agenda officiel de l'UNIL",
     ceQueCeNestPas: "Ce que MYP n'est pas",
-    miseAuPointFort: "MYP est un projet indépendant d'Omniscient.",
+    miseAuPointFort: "MYP est un projet indépendant.",
     miseAuPoint1:
       " Il n'est ni affilié à l'Université de Lausanne, ni approuvé, ni relu par elle. Les informations proviennent des ",
     miseAuPointLien: "plans d'études officiels",
@@ -530,7 +530,7 @@ const en: Textes = {
     planPublie: (annee: string) => `${annee} study plan, the latest one published by HEC`,
     horairesReleves: "Timetables read from the official UNIL agenda",
     ceQueCeNestPas: "What MYP is not",
-    miseAuPointFort: "MYP is an independent project by Omniscient.",
+    miseAuPointFort: "MYP is an independent project.",
     miseAuPoint1:
       " It is not affiliated with the University of Lausanne, nor approved, nor reviewed by it. The information comes from the ",
     miseAuPointLien: "official study plans",

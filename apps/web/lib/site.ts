@@ -9,7 +9,7 @@
  *      deploiement correct sans rien configurer ;
  *   3. localhost, pour le developpement.
  *
- * La valeur par defaut etait « myp.omniscient.swiss », un domaine qui n'a pas
+ * La valeur par defaut etait un domaine qui n'a pas
  * ete achete. Le site deploye annoncait donc dans son plan et ses adresses
  * canoniques une adresse qui ne repond pas, ce qui est pire que pas d'adresse
  * du tout : les moteurs suivent le canonique.

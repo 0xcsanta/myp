@@ -7,7 +7,7 @@ porter les mêmes conditions.
 
 `apps/`, `packages/`, les scripts `tools_*.py` et la configuration.
 
-Écrit par [Omniscient](https://omniscient.swiss), sous licence MIT : voir
+Écrit par [Clément Santacreu](https://github.com/0xcsanta/myp), sous licence MIT : voir
 [LICENSE](LICENSE). Reprenez le, modifiez le, servez vous en, y compris pour
 un autre établissement. Gardez simplement la mention de copyright.
 

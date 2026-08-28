@@ -1,5 +1,9 @@
 /**
- * La signature « Made by a guy at omniscient.swiss ».
+ * La signature du site.
+ *
+ * Elle nomme une personne et non une entreprise, et pointe vers le code.
+ * Un projet dont on ignore qui le porte ne se defend pas : si quelqu'un a
+ * une objection et ne sait a qui l'adresser, il l'adresse a l'hebergeur.
  *
  * C'est un lien, pas un bouton : il mene quelque part. Le Figma l'exportait en
  * <button>, ce qui aurait prive les lecteurs d'ecran de sa destination et
@@ -15,7 +19,7 @@ export function MadeByPill({
 }) {
   return (
     <a
-      href="https://omniscient.swiss"
+      href="https://github.com/0xcsanta/myp"
       target="_blank"
       rel="noopener noreferrer"
       className={`inline-flex items-center rounded-[100px] bg-white/40 whitespace-nowrap
@@ -26,7 +30,7 @@ export function MadeByPill({
         focus-visible:outline-unil-400 ${className}`}
       style={{ letterSpacing: "-0.025em", fontVariationSettings: '"opsz" 14' }}
     >
-      Made by a guy at omniscient.swiss
+      Made by Clément Santacreu
     </a>
   );
 }

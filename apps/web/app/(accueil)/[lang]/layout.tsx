@@ -23,7 +23,7 @@ export async function generateMetadata({
     title: T.accueil.titre,
     description: T.accueil.description,
     applicationName: "MYP",
-    authors: [{ name: "Omniscient", url: "https://omniscient.swiss" }],
+    authors: [{ name: "Clément Santacreu", url: "https://github.com/0xcsanta/myp" }],
     alternates: {
       canonical: `/${lang}`,
       languages: { fr: "/fr", en: "/en" },

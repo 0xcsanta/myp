@@ -16,7 +16,7 @@ const L = {
     "https://applicationspub.unil.ch/interpub/noauth/php/Ud/index.php?v_ueid=173&v_langue=fr",
   moodle: "https://moodle.unil.ch",
   repo: "https://github.com/0xcsanta/organizemyMaster",
-  omniscient: "https://omniscient.swiss",
+
 };
 
 function Colonne({
@@ -92,7 +92,6 @@ export function SiteFooter({ langue }: { langue: Langue }) {
                 <Lien href={`${L.repo}/blob/main/docs/LEGAL.md`}>
                   {T.cadreLegal}
                 </Lien>
-                <Lien href={L.omniscient}>Omniscient</Lien>
               </Colonne>
 
               <Colonne titre={T.documents}>
@@ -151,7 +150,7 @@ export function SiteFooter({ langue }: { langue: Langue }) {
                 <Wordmark size="clamp(30px, 2.6vw, 40px)" href={`/${langue}#vague-descend`} />
               </div>
               <p className="order-3 w-full text-center text-[12.5px] text-muted sm:order-2 sm:w-auto">
-                © 2026 Omniscient · Lausanne
+                © 2026 Clément Santacreu · Lausanne
               </p>
               <div className="order-2 sm:order-3">
                 <MadeByPill />

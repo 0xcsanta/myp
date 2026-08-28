@@ -8,7 +8,7 @@ chevauchements d'horaire, et export vers un agenda au format iCalendar.
 Périmètre : **les dix masters de HEC Lausanne**, et rien d'autre. Une extension
 à d'autres facultés se décidera à la demande, si elle vient, et pas avant.
 
-> **MYP est un projet indépendant réalisé par [Omniscient](https://omniscient.swiss).
+> **MYP est un projet indépendant réalisé par [Clément Santacreu](https://github.com/0xcsanta/myp).
 > Il n'est ni affilié à l'Université de Lausanne, ni approuvé, ni soutenu, ni
 > relu par elle.**
 >

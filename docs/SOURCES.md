@@ -77,7 +77,7 @@ depuis plus d'un semestre est marqué comme tel dans l'interface.
 |---|---|
 | Bleu `#0037EB` et échelle de neutres | jetons `--brand-primary-*` et `--brand-neutral-*` de `https://www.unil.ch/modules/refonte-templates/css/styles.css` |
 | DynaPuff (logotype), Crimson Text (titres), DM Sans (interface), IBM Plex Mono (chiffres) | Google Fonts, licence SIL Open Font |
-| Logo et signature Omniscient | charte de marque Omniscient |
+| Logo et signature du site | dessinés pour MYP |
 
 Aucun élément graphique de l'UNIL n'est repris : ni logo, ni armoiries, ni
 gabarit. Voir la section 3 de [LEGAL.md](./LEGAL.md).

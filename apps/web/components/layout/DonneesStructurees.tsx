@@ -35,17 +35,21 @@ export function DonneesStructurees({ langue }: { langue: Langue }) {
         inLanguage: ["fr-CH", "en-GB"],
         isAccessibleForFree: true,
         offers: { "@type": "Offer", price: "0", priceCurrency: "CHF" },
-        publisher: { "@id": `${SITE}/#omniscient` },
+        author: { "@id": `${SITE}/#auteur` },
         disambiguatingDescription:
           langue === "fr"
             ? "Projet indépendant, ni affilié à l'Université de Lausanne ni approuvé par elle. Seuls les plans d'études officiels font foi."
             : "Independent project, neither affiliated with nor endorsed by the University of Lausanne. Only the official study plans are authoritative.",
       },
       {
-        "@type": "Organization",
-        "@id": `${SITE}/#omniscient`,
-        name: "Omniscient",
-        url: "https://omniscient.swiss",
+        /*
+         * Une personne, pas une entreprise. Le projet est porte a titre
+         * personnel tant que l'UNIL ne s'est pas prononcee.
+         */
+        "@type": "Person",
+        "@id": `${SITE}/#auteur`,
+        name: "Clément Santacreu",
+        url: "https://github.com/0xcsanta/myp",
       },
     ],
   };

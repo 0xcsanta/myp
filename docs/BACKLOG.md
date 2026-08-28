@@ -279,7 +279,7 @@ nom de fichier compris.
       traite la version anglaise comme un doublon. Tout est ouvert aux
       robots : MYP ne publie que du public remis en forme.
 - [ ] **Le domaine.** Pas tranché. Tout le code lit `NEXT_PUBLIC_SITE_URL`, et
-      la valeur par défaut est `https://myp.omniscient.swiss`, qui n'est
+      la valeur par défaut est un domaine propre, qui n'est
       qu'une supposition. Une variable à changer le jour où tu décides.
 - [x] **Accessibilité du planificateur.** Vérifié le 27 août : toutes les cases
       ont un libellé, aucun bouton muet, images et SVG annotés, hiérarchie de

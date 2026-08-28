@@ -94,7 +94,7 @@ une trentaine de cours chacun. Ce n'est pas un robot, c'est de la curation.
 
 À afficher en pied de chaque page et dans le README :
 
-> MYP est un projet indépendant réalisé par Omniscient. Il n'est ni affilié
+> MYP est un projet indépendant réalisé par Clément Santacreu. Il n'est ni affilié
 > à l'Université de Lausanne, ni approuvé, ni soutenu, ni relu par elle. Les
 > informations présentées sont reprises de documents publics de l'UNIL et
 > peuvent contenir des erreurs ou être périmées. Seuls le plan d'études et le
@@ -107,8 +107,11 @@ Règles de marque qui vont avec :
 - le bleu `#0037EB` est repris comme couleur produit, ce qui n'est pas
   protégeable en soi, mais l'ensemble ne doit jamais évoquer un site officiel ;
 - le nom du site ne contient ni « UNIL », ni « HEC », ni « officiel » ;
-- le nom de domaine est un sous domaine d'`omniscient.swiss`, pas un domaine
-  qui pourrait passer pour institutionnel.
+- le nom de domaine ne doit pas pouvoir passer pour institutionnel. **Point
+  ouvert : l'adresse actuelle est `myphec.vercel.app`, qui contient « hec » et
+  contredit donc la ligne ci-dessus.** À renommer, ou à assumer explicitement.
+- le projet est porté **à titre personnel**, sans mention d'entreprise, tant
+  que l'UNIL ne s'est pas prononcée sur la demande qui lui est adressée.
 
 ---
 
