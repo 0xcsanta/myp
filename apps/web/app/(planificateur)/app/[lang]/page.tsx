@@ -73,7 +73,7 @@ export default async function ChoixDuMaster({
         variante="app"
       />
 
-      <main className="flex-1">
+      <main id="contenu" className="flex-1">
         <section className="shell pt-[clamp(40px,5vw,80px)] pb-[clamp(64px,8vw,128px)]">
           <h1
             className="max-w-[18ch] font-display leading-[0.92] text-black"

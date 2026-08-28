@@ -104,11 +104,12 @@ export default async function PageMaster({
         variante="app"
       />
 
-      <main className="flex-1">
+      <main id="contenu" className="flex-1">
         <section className="shell pt-[clamp(32px,4vw,64px)] pb-[clamp(28px,3vw,48px)]">
           <Link
             href={`/app/${lang}`}
-            className="inline-flex items-center gap-1.5 text-[13px] text-muted
+            /* py-1 : lien de retour autonome, 20 px de haut sans lui */
+            className="inline-flex items-center gap-1.5 py-1 text-[13px] text-muted
               transition-colors duration-150 ease-[var(--ease-out-std)] hover:text-unil-400"
           >
             <span aria-hidden="true">←</span> {T.retour}

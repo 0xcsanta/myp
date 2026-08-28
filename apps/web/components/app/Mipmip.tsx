@@ -21,7 +21,8 @@ import { textes } from "@/lib/textes";
 type Tour = {
   de: "toi" | "mipmip";
   texte: string;
-  cours?: { titre: string; source: string | null }[];
+  /* Les cours sur lesquels la reponse s'appuie, pour qu'on puisse la verifier. */
+  cours?: string[];
 };
 
 /*
@@ -177,25 +178,14 @@ export function Mipmip({ master, langue }: { master: string; langue: Langue }) {
                 >
                   {t.texte}
                   {t.cours?.length ? (
-                    <span className="mt-2 flex flex-col gap-1 border-t border-line pt-2">
-                      {t.cours.map((c) =>
-                        c.source ? (
-                          <a
-                            key={c.titre}
-                            href={c.source}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            className="text-[11.5px] font-semibold text-[var(--color-unil-500)] underline
-                              decoration-line-2 underline-offset-2"
-                          >
-                            {T.fiche} {c.titre} ↗
-                          </a>
-                        ) : (
-                          <span key={c.titre} className="text-[11.5px] text-muted">
-                            {c.titre}
-                          </span>
-                        ),
-                      )}
+                    /*
+                     * On nomme les cours d'ou sort la reponse, sans lien vers
+                     * la fiche de l'UNIL : leur catalogue interdit l'acces
+                     * automatise, donc le site ne connait pas leurs adresses.
+                     * Voir docs/LEGAL.md.
+                     */
+                    <span className="mt-2 block border-t border-line pt-2 text-[11.5px] text-muted">
+                      {T.dapres} {t.cours.join(", ")}
                     </span>
                   ) : null}
                 </div>
@@ -213,6 +203,9 @@ export function Mipmip({ master, langue }: { master: string; langue: Langue }) {
               onChange={(e) => setQuestion(e.target.value)}
               maxLength={400}
               placeholder={T.invite}
+              /* un placeholder disparait des la premiere lettre tapee et n'est
+                 pas annonce comme un nom : le champ en a besoin d'un vrai */
+              aria-label={T.invite}
               className="min-w-0 flex-1 rounded-lg border border-line bg-surface-2 px-3 py-2
                 text-[13px] text-ink outline-none placeholder:text-muted
                 focus:border-[var(--color-unil-400)]"

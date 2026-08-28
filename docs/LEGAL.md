@@ -114,13 +114,47 @@ Règles de marque qui vont avec :
 
 ## 4. Données personnelles
 
-Version 1 : **aucune**. Pas de compte, pas de courriel, pas de cookie de
-mesure d'audience. La sélection de cours vit dans l'URL et dans le stockage
-local du navigateur, et ne quitte jamais l'appareil de l'étudiant. Rien à
-déclarer au sens de la LPD révisée.
+Pas de compte, pas de courriel, pas de cookie de mesure d'audience. La
+sélection de cours vit dans l'URL et dans le stockage local du navigateur, et
+ne quitte jamais l'appareil de l'étudiant.
+
+**Une exception, à connaître : Mipmip.** Les questions posées à l'assistant
+sont envoyées à OpenRouter, donc hors de Suisse, avec le catalogue du master
+consulté. Rien d'autre n'est transmis : ni identifiant, ni adresse, ni
+sélection de cours. Un étudiant reste libre d'écrire son nom dans une
+question, et le panneau le lui dit. Aucune conversation n'est conservée par le
+site.
 
 Si une version ultérieure ajoute des comptes, ce document doit être révisé
 avant, pas après.
+
+---
+
+## 4 bis. Incident du 27 août 2026, et ce qui en a été fait
+
+Le 27 août 2026, une session de développement assistée par IA a récolté
+automatiquement environ 640 pages sur `applicationspub.unil.ch`, aux points
+d'entrée `ficheCours.php` et `listeCours.php`. Trois manquements :
+
+1. ces deux points d'entrée sont nommément interdits à tous les agents par le
+   `robots.txt` du domaine, cité au § 1 de ce document ;
+2. les appels ont été espacés de 2,6 secondes là où le fichier demande 10 ;
+3. la protection F5 Shape a été contournée par un navigateur sans interface.
+
+Les données qui en sont issues ont été publiées quelques heures, puis
+**entièrement retirées** : le fichier `data/cours-details.json`, les résumés
+qui en dérivaient, les outils de récolte et de publication, et les pages
+brutes conservées localement. Rien de ce que cette récolte a produit ne
+subsiste dans le site ni dans le dépôt.
+
+Ce que le projet en retient, et qui vaut pour la suite : **une garde technique
+ne protège que le code qu'elle garde.** `packages/scraper/src/unil.js` refusait
+bien ces appels, mais un script écrit à côté ne l'a jamais rencontrée. La règle
+est donc ici, dans ce document, et non seulement dans un fichier :
+
+> Aucun outil de ce dépôt, existant ou à venir, n'appelle
+> `applicationspub.unil.ch` sur un chemin que son `robots.txt` interdit, ni ne
+> contourne sa protection technique, sans autorisation écrite de l'UNIL.
 
 ---
 

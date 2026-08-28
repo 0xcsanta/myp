@@ -71,13 +71,18 @@ const DUREE = 1150;
 const RETOMBEE = "cubic-bezier(0.22, 0.9, 0.24, 1)";
 
 /*
- * Le titre se retourne aussi tout seul, trois secondes apres le dernier vol,
+ * Le titre se retourne aussi tout seul, six secondes apres le dernier vol,
  * qu'il ait ete declenche par un clic ou par le minuteur precedent. Le delai
  * se compte depuis la derniere bascule et non depuis le chargement : sans
  * cela, un clic pourrait etre suivi d'un retournement automatique un dixieme
  * de seconde plus tard.
+ *
+ * Six secondes et non trois : le vol dure 1,15 s, donc a trois secondes le
+ * titre bougeait 38 pour cent du temps. Un titre qu'on doit pouvoir lire ne
+ * peut pas etre en mouvement plus d'un cinquieme du temps, et une animation
+ * composite qui ne s'arrete jamais coute de la batterie sur un telephone.
  */
-const RESPIRATION = 3000;
+const RESPIRATION = 6000;
 
 export function TitreMelange({ invite }: { invite: string }) {
   const [etat, setEtat] = useState(0);

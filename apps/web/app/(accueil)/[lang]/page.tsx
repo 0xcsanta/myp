@@ -33,7 +33,7 @@ export default async function Accueil({
       <div className="flex h-dvh flex-col sm:h-auto sm:min-h-dvh">
         <SiteHeader langue={lang} hrefAutreLangue={`/${autreLangue(lang)}`} />
 
-        <main className="flex flex-1 flex-col">
+        <main id="contenu" className="flex flex-1 flex-col">
           <section className="shell flex flex-1 flex-col overflow-x-clip pt-[clamp(40px,5vw,88px)]">
           <h1
             className="shrink-0 text-center font-display leading-[0.9] text-black"

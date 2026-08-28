@@ -24,7 +24,11 @@
   /* neutres UNIL */
   --color-ink: #0a1f30;
   --color-ink-2: #3d4d5b;
-  --color-muted: #6a7883;
+  /* 5,39:1 sur blanc, la ou #6a7883 tenait a 4,54 pour un seuil AA de 4,5.
+     Une marge de 0,04 n'est pas une marge : le moindre fond legerement teinte,
+     comme ceux du selecteur de fond de calendrier, faisait passer dessous sans
+     que personne ne le voie. */
+  --color-muted: #5f6c77;
   --color-line: #d4dde4;
   --color-line-2: #c3d0da;
   --color-surface-2: #eff3f6;

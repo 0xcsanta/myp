@@ -1,3 +1,11 @@
+/*
+ * Ce module lit les fichiers de donnees : il n'a rien a faire dans le navigateur.
+ * `server-only` fait echouer le build a l'instant ou quelqu'un l'importe
+ * depuis un composant client, avec un message clair, au lieu de le laisser
+ * partir dans le paquet envoye au visiteur.
+ */
+import "server-only";
+
 import fs from "node:fs";
 import path from "node:path";
 

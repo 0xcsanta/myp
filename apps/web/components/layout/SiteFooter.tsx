@@ -50,7 +50,14 @@ function Lien({
       <a
         href={href}
         {...(externe ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-        className="text-ink-2 transition-colors duration-150 ease-[var(--ease-out-std)] hover:text-unil-400"
+        /*
+          `inline-block py-1` porte la cible de 17 a 25 pixels de haut. Ce sont
+          des liens autonomes dans une liste, pas des liens au fil d'une phrase :
+          l'exception du critere 2.5.8 ne les couvre pas, et 17 pixels se ratent
+          au pouce. Le texte ne bouge pas d'un pixel, seule la zone grandit.
+        */
+        className="inline-block py-1 text-ink-2 transition-colors duration-150
+          ease-[var(--ease-out-std)] hover:text-unil-400"
       >
         {children}
       </a>

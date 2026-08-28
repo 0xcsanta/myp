@@ -62,7 +62,13 @@ export function SiteHeader({
           <MadeByPill compacte={dansLApp} />
         </div>
 
-        <div className="flex items-center gap-2 justify-self-end sm:gap-3">
+        {/*
+          L'ecart passe a 1,5 sous 360 px. « Launch app » etant plus long que
+          « Lancer l'app », l'anglais debordait de trois pixels a 320 px et
+          faisait apparaitre une barre de defilement horizontale sur toute la
+          page. Trois pixels suffisent a faire glisser la page au doigt.
+        */}
+        <div className="flex items-center gap-1.5 justify-self-end min-[360px]:gap-2 sm:gap-3">
           <BasculeLangue langue={langue} href={hrefAutreLangue} />
           {!dansLApp && <LaunchButton href={`/app/${langue}#vague-monte`} />}
         </div>

@@ -18,6 +18,7 @@ const fr = {
   htmlLang: "fr",
   nomAutreLangue: "English",
   versAutreLangue: "Read this page in English",
+  allerAuContenu: "Aller au contenu",
 
   accueil: {
     titre: "MYP, Master Your Plan",
@@ -29,17 +30,17 @@ const fr = {
   mipmip: {
     bouton: "Discute avec Mipmip",
     fermer: "Fermer",
-    cadre: "Mipmip ne connaît que les cours de ce master. Pour tout le reste, et pour ce qui fait foi, il y a unil.ch.",
-    accueil: "Pose ta question sur un cours de ce master.",
+    cadre: "Mipmip lit le plan d’études de ce master : horaires, crédits, modules, examens. Il ne décrit pas le contenu des cours, et unil.ch fait seule foi.",
+    accueil: "Pose ta question sur les cours de ce master.",
     exemples: [
-      "De quoi parle Corporate Finance ?",
-      "Quels cours ont un examen oral ?",
-      "Lesquels se donnent en français ?",
+      "Quels cours ont lieu le lundi ?",
+      "Lesquels ont un examen oral ?",
+      "Combien de crédits au module 1 ?",
     ],
     invite: "Ta question sur un cours",
     envoyer: "Envoyer",
     reflechit: "Mipmip cherche dans le plan d'études...",
-    fiche: "Fiche officielle :",
+    dapres: "D’après :",
     tropVite: "Doucement, une question à la fois. Réessaie dans une minute.",
     panne: "Je n'arrive pas à répondre pour l'instant. La source officielle reste unil.ch.",
   },
@@ -284,6 +285,7 @@ const en: Textes = {
   htmlLang: "en",
   nomAutreLangue: "Français",
   versAutreLangue: "Lire cette page en français",
+  allerAuContenu: "Skip to content",
 
   accueil: {
     titre: "MYP, Master Your Plan",
@@ -295,17 +297,17 @@ const en: Textes = {
   mipmip: {
     bouton: "Chat with Mipmip",
     fermer: "Close",
-    cadre: "Mipmip only knows the courses in this master's programme. For everything else, and for what counts, there is unil.ch.",
-    accueil: "Ask about a course in this programme.",
+    cadre: "Mipmip reads this programme’s study plan: timetables, credits, modules, exams. It does not describe course content, and unil.ch alone is authoritative.",
+    accueil: "Ask about the courses in this programme.",
     exemples: [
-      "What is Corporate Finance about?",
-      "Which courses have an oral exam?",
-      "Which ones are taught in French?",
+      "Which courses are on Monday?",
+      "Which ones have an oral exam?",
+      "How many credits in module 1?",
     ],
     invite: "Your question about a course",
     envoyer: "Send",
     reflechit: "Mipmip is looking through the study plan...",
-    fiche: "Official course sheet:",
+    dapres: "From:",
     tropVite: "Steady on, one question at a time. Try again in a minute.",
     panne: "I cannot answer right now. The official source is still unil.ch.",
   },

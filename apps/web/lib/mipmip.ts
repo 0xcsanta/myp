@@ -1,5 +1,10 @@
-import fs from "node:fs";
-import path from "node:path";
+/*
+ * Ce module lit le catalogue et la clef : il n'a rien a faire dans le navigateur.
+ * `server-only` fait echouer le build a l'instant ou quelqu'un l'importe
+ * depuis un composant client, avec un message clair, au lieu de le laisser
+ * partir dans le paquet envoye au visiteur.
+ */
+import "server-only";
 
 import { coursDe, master, reglesDe } from "./donnees";
 import type { Langue } from "./langues";
@@ -20,42 +25,13 @@ import type { Langue } from "./langues";
  *   1. Le contexte. Le modele ne recoit que les cours du master consulte. Il
  *      n'a rien d'autre sous la main a quoi se raccrocher.
  *   2. La consigne. Elle impose de repondre a partir de ce seul contexte, de
- *      nommer les cours utilises, et de renvoyer a la fiche officielle.
+ *      nommer les cours utilises, et de renvoyer a unil.ch.
  *   3. La verification, cote serveur. La reponse doit citer au moins un cours
  *      qui existe vraiment dans le contexte. Sinon elle est jetee et
  *      remplacee par un refus ecrit d'avance. Une reponse hors sujet, ou
  *      obtenue en detournant la consigne, ne cite aucun cours reel : elle ne
  *      passe pas. Cette couche tient meme si les deux premieres cedent.
  */
-
-const RACINE = path.join(process.cwd(), "..", "..", "data");
-
-export type Details = {
-  titre: string;
-  source: string;
-  resume?: Record<string, { quoi: string; programme: string }>;
-  faits?: Record<string, Record<string, unknown>>;
-  langues?: string;
-  credits?: number;
-  moodle?: string;
-};
-
-let cacheDetails: Record<string, Details> | null = null;
-
-/*
- * Le fichier est relu a chaque appel en developpement, et garde en memoire
- * une seule fois en production. Il est ecrit par tools_fiches_publier.py, donc
- * il change pendant qu'on travaille : le retenir ferait mentir la page a
- * chaque regeneration, et on chercherait le defaut ailleurs.
- */
-export function detailsDesCours(): Record<string, Details> {
-  if (cacheDetails && process.env.NODE_ENV === "production") return cacheDetails;
-  const f = path.join(RACINE, "cours-details.json");
-  cacheDetails = fs.existsSync(f)
-    ? (JSON.parse(fs.readFileSync(f, "utf8")) as Record<string, Details>)
-    : {};
-  return cacheDetails;
-}
 
 const JOURS_COURTS: Record<string, string> = {
   Lundi: "lun",
@@ -69,7 +45,10 @@ const JOURS_COURTS: Record<string, string> = {
 /**
  * Le catalogue d'un master, mis a plat pour tenir dans une consigne.
  *
- * Une ligne par cours, les faits d'abord, le resume ensuite quand il existe.
+ * Une ligne par cours, et uniquement ce que les plans d'etudes officiels
+ * donnent : intitule, credits, module, saison, langue, enseignant, evaluation,
+ * horaire releve a la main. Rien qui vienne d'ailleurs.
+ *
  * Le format est volontairement telegraphique : chaque mot economise ici est
  * paye a chaque question posee par chaque etudiant.
  */
@@ -79,7 +58,6 @@ export function contexteDuMaster(slug: string, langue: Langue): string | null {
 
   const regles = reglesDe(slug);
   const cours = coursDe(slug, langue);
-  const details = detailsDesCours();
 
   const lignes = cours.map((c) => {
     const bouts = [c.titre, `${c.ects} ECTS`, `module ${c.module}`];
@@ -97,13 +75,7 @@ export function contexteDuMaster(slug: string, langue: Langue): string | null {
       );
     }
 
-    const d = details[c.titre];
-    const r = d?.resume?.[langue];
-    let ligne = `- ${bouts.join(" | ")}`;
-    if (r) ligne += `\n  ${r.quoi}\n  Au programme : ${r.programme}`;
-    const prereq = d?.faits?.[langue]?.prerequis;
-    if (typeof prereq === "string") ligne += `\n  Prerequis : ${prereq.slice(0, 200)}`;
-    return ligne;
+    return `- ${bouts.join(" | ")}`;
   });
 
   return [

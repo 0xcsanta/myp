@@ -1,13 +1,8 @@
 import { NextResponse } from "next/server";
 
 import { estLangue, type Langue } from "@/lib/langues";
-import {
-  CONSIGNE,
-  contexteDuMaster,
-  detailsDesCours,
-  filtrerReponse,
-  titresDuMaster,
-} from "@/lib/mipmip";
+import { SITE } from "@/lib/site";
+import { CONSIGNE, contexteDuMaster, filtrerReponse, titresDuMaster } from "@/lib/mipmip";
 
 /**
  * La route qui fait parler Mipmip.
@@ -54,6 +49,34 @@ export async function POST(req: Request) {
   const cle = process.env.OPENROUTER_API_KEY;
   if (!cle) {
     return NextResponse.json({ erreur: "indisponible" }, { status: 503 });
+  }
+
+  /*
+   * Un appel doit venir du site.
+   *
+   * Le navigateur bloque deja les appels croises, faute d'en-tete CORS. Mais
+   * `curl` n'a pas de navigateur, et cet endpoint coute de l'argent a chaque
+   * appel : sans ce controle, n'importe quel script vide le credit en une
+   * nuit. Ce n'est pas une protection contre quelqu'un de determine, qui
+   * forgera l'en-tete en une ligne. C'est ce qui arrete tous les autres.
+   *
+   * La vraie borne reste le plafond de depense pose sur la clef, chez le
+   * fournisseur : c'est la seule qui ne depende pas de ce fichier.
+   */
+  const provenance = req.headers.get("origin") || req.headers.get("referer") || "";
+  const attendu = new URL(SITE).host;
+  const permis =
+    provenance === "" && process.env.NODE_ENV !== "production"
+      ? true // en developpement, laisser passer curl et les tests
+      : (() => {
+          try {
+            return new URL(provenance).host === attendu;
+          } catch {
+            return false;
+          }
+        })();
+  if (!permis) {
+    return NextResponse.json({ erreur: "origine-refusee" }, { status: 403 });
   }
 
   const ip =
@@ -120,9 +143,5 @@ export async function POST(req: Request) {
   }
 
   const { reponse, cours } = filtrerReponse(brut, titresDuMaster(slug, langue), langue);
-  const details = detailsDesCours();
-  return NextResponse.json({
-    reponse,
-    cours: cours.map((titre) => ({ titre, source: details[titre]?.source ?? null })),
-  });
+  return NextResponse.json({ reponse, cours });
 }

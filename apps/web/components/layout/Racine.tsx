@@ -1,5 +1,6 @@
 import { Crimson_Text, DM_Sans, DynaPuff, IBM_Plex_Mono } from "next/font/google";
 import type { Langue } from "@/lib/langues";
+import { DonneesStructurees } from "@/components/layout/DonneesStructurees";
 import { textes } from "@/lib/textes";
 import { Vague } from "@/components/brand/Vague";
 
@@ -59,6 +60,28 @@ export function Racine({
       className={`${crimson.variable} ${dmSans.variable} ${dynaPuff.variable} ${plexMono.variable}`}
     >
       <body className="antialiased">
+        <DonneesStructurees langue={langue} />
+
+        {/*
+          Le lien d'evitement. Invisible tant qu'il n'a pas le focus, il est la
+          premiere chose que rencontre quelqu'un qui navigue au clavier, et lui
+          epargne de traverser tout l'en-tete a chaque page. Il vise `#contenu`,
+          pose sur le `<main>` de chaque mise en page.
+        */}
+        <a
+          href="#contenu"
+          /*
+            Le remplissage est dans la variante de focus, pas dans la base :
+            `not-sr-only` remet `padding: 0`, donc un `py-2` pose avant lui est
+            ecrase et le lien retombait a 21 pixels de haut, sous le seuil.
+          */
+          className="sr-only rounded-lg bg-[var(--color-unil-400)] text-[14px] font-semibold
+            text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50
+            focus:px-4 focus:py-2.5 focus:outline-2 focus:outline-offset-2 focus:outline-ink"
+        >
+          {textes(langue).allerAuContenu}
+        </a>
+
         {/*
           Les deux ancres du retrait. Le sens de la vague voyage dans l'adresse
           plutot que dans un stockage, et `:target` le lit avant que la page
